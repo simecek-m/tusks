@@ -1,11 +1,13 @@
 import React from 'react';
+
 import './App.sass';
+import Todos from './Todos'
 
 function App() {
+
   return (
-    <div className="App">
-    </div>
-  );
+    <Todos />
+  )
 }
 
 export default App;
