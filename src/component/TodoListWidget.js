@@ -10,7 +10,7 @@ function TodoListWidget({ title, count }){
         <span class="list-title">{ title }</span>
         <span class="list-count">({ count })</span>
       </div>
-      <img class="icon-trash" src={ trash }/>
+      <img class="icon-trash" src={ trash } alt="trash"/>
     </div>
   )
 }
