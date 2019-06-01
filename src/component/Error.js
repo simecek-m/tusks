@@ -3,8 +3,7 @@ import React from 'react';
 import './Error.sass'
 import errorImg from '../assets/image/404.svg';
 
-function Error(props){
-  console.log(props);  
+function Error(){
   return (
     <div>
       <h1 className="title">Oooooooops</h1>
