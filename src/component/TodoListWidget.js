@@ -1,10 +1,9 @@
 import React from 'react';
 
-import './TodoListItem.sass';
+import './TodoListWidget.sass';
 import trash from '../assets/image/trash.svg'
 
-function TodoListItem(props){
-	const { title, count } = props;
+function TodoListWidget({ title, count }){
 	return (
 		<div class="container">
 			<div class="list-item">
@@ -16,4 +15,4 @@ function TodoListItem(props){
 	)
 }
 
-export default TodoListItem;
+export default TodoListWidget;
