@@ -1,9 +1,8 @@
 import React from 'react';
-
-import './App.sass';
-import Todos from './Todos'
-import Error from './Error'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Todos from 'component/Todos';
+import Error from 'component/Error';
+import 'component/App.sass';
 
 function App() {
 

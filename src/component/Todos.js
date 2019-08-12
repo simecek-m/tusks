@@ -1,6 +1,5 @@
 import React from 'react';
-
-import TodoListWidget from './TodoListWidget';
+import TodoListWidget from 'component/TodoListWidget';
 
 class Todos extends React.Component {
   state = {

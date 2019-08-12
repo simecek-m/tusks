@@ -1,7 +1,6 @@
 import React from 'react';
-
-import './TodoListWidget.sass';
-import trash from '../assets/image/trash.svg'
+import trash from 'assets/image/trash.svg';
+import 'component/TodoListWidget.sass';
 
 function TodoListWidget({ title, count }){
   return (
