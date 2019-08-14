@@ -1,6 +1,7 @@
 import React from 'react';
-import trash from 'assets/image/trash.svg';
 import 'component/TodoListWidget.sass';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 function TodoListWidget({ title, count }){
   return (
@@ -9,7 +10,7 @@ function TodoListWidget({ title, count }){
         <span className="list-title">{ title }</span>
         <span className="list-count">({ count })</span>
       </div>
-      <img className="icon-trash" src={ trash } alt="trash"/>
+      <FontAwesomeIcon className="icon-trash" icon={ faTrashAlt }/>      
     </div>
   )
 }
