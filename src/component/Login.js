@@ -2,15 +2,25 @@ import React from 'react';
 import 'component/Login.sass';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { GoogleLogin } from 'react-google-login'
+import { GoogleLogin } from 'react-google-login';
+import { connect } from 'react-redux';
+import { login } from 'store/actions';
 
-function Login() {
+function Login({login}) {
+
   const loginSuccessCallback = (response) => {
-    console.log('jwt: ', response.tokenId)
-  }
+    const jwt = response.tokenId;
+    if (jwt) {
+      login(response.tokenId);
+    } else {
+      console.error('No JWT received!');
+    }
+  };
+
   const loginFailCallback = (error) => {
-    console.error('error: ', error)
-  }
+    console.error(error);
+  };
+
   return (
     <div>
       <h1 className="title">React-To-Do</h1>
@@ -32,4 +42,4 @@ function Login() {
   )
 }
 
-export default Login;
+export default connect(null, { login })(Login);
