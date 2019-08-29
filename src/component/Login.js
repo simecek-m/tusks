@@ -5,8 +5,11 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { GoogleLogin } from 'react-google-login';
 import { connect } from 'react-redux';
 import { login } from 'store/actions';
+import { useToasts } from 'react-toast-notifications';
 
 function Login({login}) {
+
+  const { addToast } = useToasts();
 
   const loginSuccessCallback = (response) => {
     const jwt = response.tokenId;
@@ -14,11 +17,13 @@ function Login({login}) {
       login(response.tokenId);
     } else {
       console.error('No JWT received!');
+      addToast('Login failed! Identity authority didn\'t send any JWT.', { appearance: 'error', autoDismiss: true });
     }
   };
 
   const loginFailCallback = (error) => {
     console.error(error);
+    addToast('Login failed! Please try again later.', { appearance: 'error', autoDismiss: true });
   };
 
   return (
