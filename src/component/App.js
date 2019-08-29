@@ -4,14 +4,16 @@ import Todos from 'component/Todos';
 import Error from 'component/Error';
 import Login from 'component/Login';
 import 'component/App.sass';
+import AnonymousRoute from 'router/AnonymousRoute'
+import ProtectedRoute from 'router/ProtectedRoute';
 
 function App() {
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route exact path="/" component={Todos} />
+        <AnonymousRoute path="/login" component={Login} />
+        <ProtectedRoute exact path="/" component={Todos} />
         <Route component={Error} />
       </Switch>
     </BrowserRouter>
