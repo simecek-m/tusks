@@ -1,0 +1,37 @@
+@import 'colors.sass'
+
+#user-widget
+  display: inline-block
+  border-radius: 5px
+  padding: 10px
+  height: 40px
+  line-height: 40px
+  vertical-align: top
+  border-radius: 40px
+  cursor: pointer
+  font-weight: bold
+  transition: .7s all ease
+  float: right
+  position: fixed
+  top: 20px
+  right: 20px
+  overflow: hidden
+  width: 40px
+  user-select: none
+
+  img
+    width: 40px
+    height: 40px
+    display: inline-block
+    border-radius: 50%
+
+  span
+    vertical-align: top
+    margin: 0 10px
+    display: inline-block
+
+  &:hover
+    color: $background-primary
+    border-color: $text-primary
+    background: $text-primary
+    width: auto

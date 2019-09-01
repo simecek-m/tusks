@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoListWidget from 'component/TodoListWidget';
+import UserWidget from 'component/UserWidget'
 
 class Todos extends React.Component {
   state = {
@@ -27,6 +28,7 @@ class Todos extends React.Component {
 
     return (
       <div>
+        <UserWidget />
         <h1 className="title">React-To-Do</h1>
         { items }
       </div>
