@@ -2,15 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'component/App';
 import * as serviceWorker from 'serviceWorker';
-import store from 'store';
+import store, { persistor } from 'store';
 import { Provider } from 'react-redux';
 import { ToastProvider } from 'react-toast-notifications';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import Loading from 'component/Loading';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ToastProvider placement="bottom-right">
-      <App/>
-    </ToastProvider>
+    <PersistGate loading={<Loading />} persistor={persistor}>
+      <ToastProvider placement="bottom-right">
+        <App/>
+      </ToastProvider>
+    </PersistGate>
   </Provider>, 
 document.getElementById('root'));
 
