@@ -6,11 +6,10 @@ import store, { persistor } from 'store';
 import { Provider } from 'react-redux';
 import { ToastProvider } from 'react-toast-notifications';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import Loading from 'component/Loading';
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={<Loading />} persistor={persistor}>
+    <PersistGate persistor={persistor}>
       <ToastProvider placement="bottom-right">
         <App/>
       </ToastProvider>
