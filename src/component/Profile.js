@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import jsonwebtoken from 'jsonwebtoken';
 import 'component/Profile.sass';
+import Logout from 'component/Logout';
 
 function Profile({user}) {
   const userInfo = jsonwebtoken.decode(user);
   return (
     <div>
+      <Logout />
       <h1 className="title">Profile</h1>
       <div id="profile-info">
         <div className="row">
