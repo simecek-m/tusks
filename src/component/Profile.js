@@ -9,8 +9,9 @@ function Profile({user}) {
   const userInfo = jsonwebtoken.decode(user);
   return (
     <div>
+      <Back/>
       <Logout />
-      <h1 className="title"><Back/>Profile</h1>
+      <h1 className="title">Profile</h1>
       <div id="profile-info">
         <div className="row">
           <span className="property">avatar</span>
