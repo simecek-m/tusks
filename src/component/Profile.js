@@ -2,15 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import jsonwebtoken from 'jsonwebtoken';
 import 'component/Profile.sass';
-import Logout from 'component/Logout';
 import Back from 'component/Back';
+import Button from 'component/Button';
+import { faDoorOpen } from '@fortawesome/free-solid-svg-icons';
+import { logout } from 'store/actions';
 
-function Profile({user}) {
+function Profile({ user, logout }) {
   const userInfo = jsonwebtoken.decode(user);
   return (
     <div>
       <Back/>
-      <Logout />
       <h1 className="title">Profile</h1>
       <div id="profile-info">
         <div className="row">
@@ -33,6 +34,9 @@ function Profile({user}) {
           <span className="property">authority</span>
           <span className="value">{userInfo.iss}</span>
         </div>
+        <div className="row single">
+          <Button icon={faDoorOpen} text="Logout" onClick={() => logout()} />
+        </div>
       </div>
     </div>
   )
@@ -44,4 +48,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, { logout })(Profile);
