@@ -1,30 +1,26 @@
 import React from 'react';
 import TodoListWidget from 'component/TodoListWidget';
-import UserWidget from 'component/UserWidget'
+import UserWidget from 'component/UserWidget';
+import { connect } from 'react-redux';
+import api, { setAuthorizationHeader } from 'api';
 
 class Todos extends React.Component {
   state = {
-    list: [
-      {
-        id: 1,
-        title: "work",
-        tasks: 3
-      },
-      {
-        id: 2,
-        title: "email",
-        tasks: 14
-      },
-      {
-        id: 3,
-        title: "friends",
-        tasks: 6
-      }
-    ]
+    list: []
   }
-  
+
+  componentDidMount() {
+    api.get('/todos', setAuthorizationHeader(this.props.user))
+      .then(response => 
+        this.setState({
+          list: response.data
+        })
+      )
+      .catch(error => console.error(error));
+  }
+
   render() {
-    const items = this.state.list.map( item => <TodoListWidget key={item.id} title={item.title} count={item.tasks}/>);
+    const items = this.state.list.map( item => <TodoListWidget key={item._id} title={item.title} count={item.tasks.length}/>);
 
     return (
       <div>
@@ -34,7 +30,12 @@ class Todos extends React.Component {
       </div>
     )
   }
-
 }
 
-export default Todos;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Todos);
