@@ -1,10 +1,10 @@
-import { ACTION_TYPE_LOGIN, ACTION_TYPE_LOGOUT } from 'store/actions';
+import { ACTION_TYPE_LOGIN, ACTION_TYPE_LOGOUT } from "store/actions";
 
 const initialState = {
   user: null
 };
 
-function reducer (state = initialState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case ACTION_TYPE_LOGIN:
       return {
@@ -19,6 +19,6 @@ function reducer (state = initialState, action) {
     default:
       return state;
   }
-};
+}
 
 export default reducer;

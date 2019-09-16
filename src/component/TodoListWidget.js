@@ -1,18 +1,18 @@
-import React from 'react';
-import 'component/TodoListWidget.sass';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import React from "react";
+import "component/TodoListWidget.sass";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 
-function TodoListWidget({ title, count }){
+function TodoListWidget({ title, count }) {
   return (
     <div className="container">
       <div className="list-item">
-        <span className="list-title">{ title }</span>
-        <span className="list-count">({ count })</span>
+        <span className="list-title">{title}</span>
+        <span className="list-count">({count})</span>
       </div>
-      <FontAwesomeIcon className="icon-trash" icon={ faTrashAlt }/>      
+      <FontAwesomeIcon className="icon-trash" icon={faTrashAlt} />
     </div>
-  )
+  );
 }
 
 export default TodoListWidget;

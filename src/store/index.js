@@ -1,11 +1,11 @@
-import { createStore } from 'redux';
-import reducers from 'store/reducers';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore } from "redux";
+import reducers from "store/reducers";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage
 };
 
