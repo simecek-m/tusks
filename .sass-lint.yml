@@ -1,0 +1,115 @@
+options:
+  # Merge default rules
+  merge-default-rules: false
+  # Raise an error if more than 10 warnings are generated
+  max-warnings: 10
+# File Options
+files:
+  include: "src/**/*.s+(a|c)ss"
+# Rule Configuration
+rules:
+  attribute-quotes:
+    - 2
+    - include: true
+  border-zero:
+    - 2
+    - convention: "none"
+  brace-style:
+    - 2
+    - style: "1tbs"
+      allow-single-line: false
+  class-name-format:
+    - 2
+    - allow-leading-underscore: false
+      convention: "hyphenatedlowercase"
+  clean-import-paths:
+    - 1
+    - leading-underscore: false
+      filename-extension: true
+  declarations-before-nesting:
+    - 2
+    - include: true
+  empty-args:
+    - 2
+    - include: false
+  empty-line-between-blocks:
+    - 2
+    - include: true
+      allow-single-line-rulesets: false
+  extends-before-declarations: 2
+  extends-before-mixins: 2
+  final-newline:
+    - 2
+    - include: true
+  force-element-nesting: 2
+  function-name-format:
+    - 2
+    - allow-leading-underscore: false
+      convention: "camelcase"
+  hex-length:
+    - 2
+    - style: "long"
+  hex-notation:
+    - 2
+    - style: "lowercase"
+  id-name-format:
+    - 2
+    - allow-leading-underscore: false
+      convention: "hyphenatedlowercase"
+  indentation:
+    - 2
+    - size: 2
+  leading-zero:
+    - 2
+    - include: true
+  max-line-length:
+    - 2
+    - length: 80
+  mixin-name-format:
+    - 2
+    - allow-leading-underscore: false
+      convention: "camelcase"
+  mixins-before-declarations: 2
+  nesting-depth:
+    - 2
+    - max-depth: 3
+  no-color-hex: 2
+  no-color-literals: 2
+  no-duplicate-properties: 2
+  no-empty-rulesets: 2
+  no-invalid-hex: 2
+  no-misspelled-properties: 2
+  no-trailing-whitespace: 2
+  no-trailing-zero: 2
+  no-universal-selectors: 2
+  no-vendor-prefixes: 2
+  one-declaration-per-line: 2
+  pseudo-element: 2
+  quotes:
+    - 2
+    - style: "double"
+  space-after-bang:
+    - 2
+    - include: false
+  space-after-colon:
+    - 2
+    - include: true
+  space-after-comma:
+    - 2
+    - include: true
+  space-around-operator:
+    - 2
+    - include: true
+  space-before-bang:
+    - 2
+    - include: true
+  space-between-parens:
+    - 2
+    - include: false
+  url-quotes: 2
+  variable-name-format:
+    - allow-leading-underscore: false
+      convention: "hyphenatedlowercase"
+  zero-unit:
+    - 2
+    - include: false
