@@ -1,5 +1,5 @@
-@import 'colors.sass'
-  
+@import "colors.sass"
+
 .login-methods
   background: $background-secondary
   width: 40%
@@ -13,14 +13,15 @@
     cursor: pointer
     height: 50px
 
-    span.authority
-      display: inline-block
-      color: $text-secondary
-      text-decoration: none
-      font-size: 28px
-      font-weight: bold
-      line-height: 50px
-      vertical-align: middle
+    span
+      &.authority
+        display: inline-block
+        color: $text-secondary
+        text-decoration: none
+        font-size: 28px
+        font-weight: bold
+        line-height: 50px
+        vertical-align: middle
 
     .icon
       display: inline-block
@@ -29,4 +30,3 @@
       margin: 0 25px
       float: left
       clear: fix
-

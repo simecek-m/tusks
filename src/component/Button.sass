@@ -1,14 +1,14 @@
-@import 'colors.sass'
+@import "colors.sass"
 
 .button-component
   color: $text-primary
-  border: 2px solid $text-primary
+  border: none
   background: none
   padding: 10px 30px
   border-radius: 5px
   user-select: none
   cursor: pointer
-  transition: .3s ease all
+  transition: 0.3s ease all
 
   .button-component-icon
     display: inline-block
@@ -22,7 +22,7 @@
   &.primary
     color: $brand-color
     border-color: $brand-color
-    
+
     &:hover
       color: $background-primary
       border: 2px solid $brand-color
@@ -63,4 +63,3 @@
       color: $background-primary
       border: 2px solid $error-color
       background: $error-color
-  

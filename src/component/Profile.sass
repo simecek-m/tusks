@@ -1,4 +1,4 @@
-@import 'colors.sass'
+@import "colors.sass"
 
 #profile-info
   display: block
@@ -6,30 +6,32 @@
   width: 80%
   min-width: 500px
 
-  div.row
-    margin: 40px 0
-    font-size: 22px
-    font-weight: bold
+  div
+    &.row
+      margin: 40px 0
+      font-size: 22px
+      font-weight: bold
 
-    .property
-      display: inline-block
-      color: $text-secondary
-      width: 45%
-      text-align: right
-      margin-right: 40px
+      .property
+        display: inline-block
+        color: $text-secondary
+        width: 45%
+        text-align: right
+        margin-right: 40px
 
-    .value
-      display: inline-block
-      color: $text-primary
-      width: 45%
-    
-    &.single
-      width: 45%
-      margin: 70px auto
-      text-align: center
+      .value
+        display: inline-block
+        color: $text-primary
+        width: 45%
 
-    img.profile-picture
-      display: inline-block
-      width: 120px
-      height: auto
-      border-radius: 50%
+      &.single
+        width: 45%
+        margin: 70px auto
+        text-align: center
+
+      img
+        .profile-picture
+          display: inline-block
+          width: 120px
+          height: auto
+          border-radius: 50%
