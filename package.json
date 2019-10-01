@@ -27,8 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix",
     "format": "prettier --write \"**/*.{js,jsx}\"",
     "sass-lint": "sass-lint -v -q",
     "sass-lint:fix": "sass-lint-auto-fix"
@@ -46,7 +46,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "yarn lint:fix",
+      "eslint --fix",
       "git add"
     ],
     "*.{sass}": [
