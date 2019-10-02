@@ -29,7 +29,7 @@ function Loading({ loading, error, children }) {
       isClickToPauseDisabled={true}
       width={400}
       height={400}
-      style={{ "margin-top": "100px" }}
+      style={{ marginTop: "100px" }}
     />
   ) : error ? (
     <Lottie
@@ -37,7 +37,7 @@ function Loading({ loading, error, children }) {
       isClickToPauseDisabled={true}
       width={400}
       height={300}
-      style={{ "margin-top": "100px" }}
+      style={{ marginTop: "100px" }}
     />
   ) : (
     <div className="loading-component complete">{children}</div>
