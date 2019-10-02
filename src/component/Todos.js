@@ -8,6 +8,7 @@ import Lottie from "react-lottie";
 import writeAnimation from "assets/animation/write.json";
 import Button from "component/Button";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { withToastManager } from "react-toast-notifications";
 
 class Todos extends React.Component {
   state = {
@@ -15,6 +16,11 @@ class Todos extends React.Component {
     error: false,
     list: []
   };
+
+  constructor(props) {
+    super(props);
+    this.toastManager = props.toastManager;
+  }
 
   componentDidMount() {
     api
@@ -25,12 +31,25 @@ class Todos extends React.Component {
           loading: false
         })
       )
-      .catch(() => {
+      .catch(error => {
+        this.showNotification(error);
         this.setState({
           error: true,
           loading: false
         });
       });
+  }
+
+  showNotification(error) {
+    if (error.response) {
+      this.toastManager.add(
+        `${error.response.data.message} (status: ${error.response.status})`,
+        {
+          appearance: "error",
+          autoDismiss: true
+        }
+      );
+    }
   }
 
   render() {
@@ -81,4 +100,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Todos);
+export default withToastManager(connect(mapStateToProps)(Todos));
