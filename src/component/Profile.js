@@ -6,13 +6,15 @@ import Back from "component/Back";
 import Button from "component/Button";
 import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "store/actions";
+import Title from "component/Title";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 function Profile({ user, logout }) {
   const userInfo = jsonwebtoken.decode(user);
   return (
     <div>
       <Back />
-      <h1 className="title">Profile</h1>
+      <Title text="profile" icon={faUserCircle} />
       <div id="profile-info">
         <div className="row">
           <span className="property">avatar</span>

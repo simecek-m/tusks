@@ -6,6 +6,8 @@ import { GoogleLogin } from "react-google-login";
 import { connect } from "react-redux";
 import { login } from "store/actions";
 import { useToasts } from "react-toast-notifications";
+import Title from "component/Title";
+import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 
 function Login({ login }) {
   const { addToast } = useToasts();
@@ -33,7 +35,7 @@ function Login({ login }) {
 
   return (
     <div>
-      <h1 className="title">React-To-Do</h1>
+      <Title text="login" icon={faUserShield} />
       <h2 className="sub-title">
         Login into our todo app through your Google account.
       </h2>

@@ -9,6 +9,7 @@ import writeAnimation from "assets/animation/write.json";
 import Button from "component/Button";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { withToastManager } from "react-toast-notifications";
+import Title from "component/Title";
 
 class Todos extends React.Component {
   state = {
@@ -85,7 +86,7 @@ class Todos extends React.Component {
     return (
       <div>
         <UserWidget />
-        <h1 className="title">React-To-Do</h1>
+        <Title text="to-do" />
         <Loading loading={this.state.loading} error={this.state.error}>
           {content}
         </Loading>
