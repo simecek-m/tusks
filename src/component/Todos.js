@@ -76,7 +76,7 @@ class Todos extends React.Component {
           options={writeAnimationOptions}
           width={400}
           height={300}
-          style={{ "margin-bottom": "50px" }}
+          style={{ marginBottom: "50px" }}
           isClickToPauseDisabled={true}
         />
         <Button icon={faPlus} text="Create" />
