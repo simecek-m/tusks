@@ -1,5 +1,10 @@
 {
   "translation": {
-    "create": "Create"
+    "login": {
+      "title": "login",
+      "description": "Login into our todo app through your Google account.",
+      "loginFailed": "Login failed! Please try again later.",
+      "loginFailedNoJwt": "Login failed! Identity authority didn't send any JWT."
+    }
   }
 }

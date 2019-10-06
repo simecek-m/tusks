@@ -8,8 +8,9 @@ import { login } from "store/actions";
 import { useToasts } from "react-toast-notifications";
 import Title from "component/Title";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
+import { withTranslation } from "react-i18next";
 
-function Login({ login }) {
+function Login({ login, t }) {
   const { addToast } = useToasts();
 
   const loginSuccessCallback = response => {
@@ -17,17 +18,15 @@ function Login({ login }) {
     if (jwt) {
       login(response.tokenId);
     } else {
-      console.error("No JWT received!");
-      addToast("Login failed! Identity authority didn't send any JWT.", {
+      addToast(t("login.loginFailedNoJwt"), {
         appearance: "error",
         autoDismiss: true
       });
     }
   };
 
-  const loginFailCallback = error => {
-    console.error(error);
-    addToast("Login failed! Please try again later.", {
+  const loginFailCallback = () => {
+    addToast(t("login.loginFailed"), {
       appearance: "error",
       autoDismiss: true
     });
@@ -35,10 +34,8 @@ function Login({ login }) {
 
   return (
     <div>
-      <Title text="login" icon={faUserShield} />
-      <h2 className="sub-title">
-        Login into our todo app through your Google account.
-      </h2>
+      <Title text={t("login.title")} icon={faUserShield} />
+      <h2 className="sub-title">{t("login.description")}</h2>
       <div className="login-methods">
         <GoogleLogin
           clientId={process.env.REACT_APP_GOOGLE_API_CLIENT_ID}
@@ -56,7 +53,9 @@ function Login({ login }) {
   );
 }
 
-export default connect(
-  null,
-  { login }
-)(Login);
+export default withTranslation()(
+  connect(
+    null,
+    { login }
+  )(Login)
+);

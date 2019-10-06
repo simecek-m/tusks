@@ -1,5 +1,10 @@
 {
   "translation": {
-    "create": "Vytvořit"
+    "login": {
+      "title": "přihlášení",
+      "description": "Přihlašte se do naší todo aplikace pomocí Vašeho Google účtu.",
+      "loginFailed": "Přihlášení selhalo! Zkuste to prosím znovu později.",
+      "loginFailedNoJwt": "Přihlášení selhalo! Identifikační autorita nezaslala žádný JWT."
+    }
   }
 }
