@@ -3,16 +3,17 @@ import errorImg from "assets/image/404.svg";
 import "component/Error.sass";
 import Title from "component/Title";
 import { faBug } from "@fortawesome/free-solid-svg-icons";
+import { withTranslation } from "react-i18next";
 
-function Error() {
+function Error({ t }) {
   return (
     <div>
-      <Title text="Oooooooops!" icon={faBug} />
+      <Title text={t("error.title")} icon={faBug} />
       <img src={errorImg} alt="error" />
-      <p className="text-primary">Something went wrong!</p>
-      <p className="text-secondary">Please try again later...</p>
+      <p className="text-primary">{t("error.primary")}</p>
+      <p className="text-secondary">{t("error.secondary")}</p>
     </div>
   );
 }
 
-export default Error;
+export default withTranslation()(Error);

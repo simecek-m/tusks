@@ -5,6 +5,11 @@
       "description": "Přihlašte se do naší todo aplikace pomocí Vašeho Google účtu.",
       "loginFailed": "Přihlášení selhalo! Zkuste to prosím znovu později.",
       "loginFailedNoJwt": "Přihlášení selhalo! Identifikační autorita nezaslala žádný JWT."
+    },
+    "error": {
+      "title": "Oooooooops!",
+      "primary": "Něco se pokazilo!",
+      "secondary": "Prosím, zkuste to znovu později..."
     }
   }
 }

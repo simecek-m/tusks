@@ -5,6 +5,11 @@
       "description": "Login into our todo app through your Google account.",
       "loginFailed": "Login failed! Please try again later.",
       "loginFailedNoJwt": "Login failed! Identity authority didn't send any JWT."
+    },
+    "error": {
+      "title": "Oooooooops!",
+      "primary": "Something went wrong!",
+      "secondary": "Please try again later..."
     }
   }
 }
