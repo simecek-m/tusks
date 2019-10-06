@@ -19,6 +19,11 @@
       "email": "email",
       "authority": "autorita",
       "logout": "odhlášení"
+    },
+    "todos": {
+      "title": "to-do",
+      "create": "vytvořit",
+      "createFirstList": "Vytvořte Váš první to-do list:"
     }
   }
 }

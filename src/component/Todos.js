@@ -10,6 +10,7 @@ import Button from "component/Button";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { withToastManager } from "react-toast-notifications";
 import Title from "component/Title";
+import { withTranslation } from "react-i18next";
 
 class Todos extends React.Component {
   state = {
@@ -54,6 +55,7 @@ class Todos extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     const items = this.state.list.map(item => (
       <TodoListWidget
         key={item._id}
@@ -71,7 +73,7 @@ class Todos extends React.Component {
     };
     const writeFirstTodoAnimation = (
       <div>
-        <h2>Write your first todo list:</h2>
+        <h2>{t("todos.createFirstList")}</h2>
         <Lottie
           options={writeAnimationOptions}
           width={400}
@@ -79,14 +81,14 @@ class Todos extends React.Component {
           style={{ marginBottom: "50px" }}
           isClickToPauseDisabled={true}
         />
-        <Button icon={faPlus} text="Create" />
+        <Button icon={faPlus} text={t("todos.create")} />
       </div>
     );
     const content = items.length > 0 ? items : writeFirstTodoAnimation;
     return (
       <div>
         <UserWidget />
-        <Title text="to-do" />
+        <Title text={t("todos.title")} />
         <Loading loading={this.state.loading} error={this.state.error}>
           {content}
         </Loading>
@@ -101,4 +103,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default withToastManager(connect(mapStateToProps)(Todos));
+export default withTranslation()(
+  withToastManager(connect(mapStateToProps)(Todos))
+);

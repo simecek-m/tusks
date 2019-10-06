@@ -19,6 +19,11 @@
       "email": "email",
       "authority": "authority",
       "logout": "logout"
+    },
+    "todos": {
+      "title": "to-do",
+      "create": "create",
+      "createFirstList": "Write your first to=do list:"
     }
   }
 }
