@@ -10,6 +10,15 @@
       "title": "Oooooooops!",
       "primary": "Something went wrong!",
       "secondary": "Please try again later..."
+    },
+    "profile": {
+      "title": "profile",
+      "avatar": "avatar",
+      "firstName": "first name",
+      "lastName": "last name",
+      "email": "email",
+      "authority": "authority",
+      "logout": "logout"
     }
   }
 }

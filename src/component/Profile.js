@@ -8,16 +8,17 @@ import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "store/actions";
 import Title from "component/Title";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { withTranslation } from "react-i18next";
 
-function Profile({ user, logout }) {
+function Profile({ user, logout, t }) {
   const userInfo = jsonwebtoken.decode(user);
   return (
     <div>
       <Back />
-      <Title text="profile" icon={faUserCircle} />
+      <Title text={t("profile.title")} icon={faUserCircle} />
       <div id="profile-info">
         <div className="row">
-          <span className="property">avatar</span>
+          <span className="property">{t("profile.avatar")}</span>
           <img
             className="profile-picture"
             src={userInfo.picture}
@@ -25,23 +26,27 @@ function Profile({ user, logout }) {
           />
         </div>
         <div className="row">
-          <span className="property">fist name</span>
+          <span className="property">{t("profile.firstName")}</span>
           <span className="value">{userInfo.given_name}</span>
         </div>
         <div className="row">
-          <span className="property">last name</span>
+          <span className="property">{t("profile.lastName")}</span>
           <span className="value">{userInfo.family_name}</span>
         </div>
         <div className="row">
-          <span className="property">email</span>
+          <span className="property">{t("profile.email")}</span>
           <span className="value">{userInfo.email}</span>
         </div>
         <div className="row">
-          <span className="property">authority</span>
+          <span className="property">{t("profile.authority")}</span>
           <span className="value">{userInfo.iss}</span>
         </div>
         <div className="row single">
-          <Button icon={faDoorOpen} text="Logout" onClick={() => logout()} />
+          <Button
+            icon={faDoorOpen}
+            text={t("profile.logout")}
+            onClick={() => logout()}
+          />
         </div>
       </div>
     </div>
@@ -54,7 +59,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(Profile);
+export default withTranslation()(
+  connect(
+    mapStateToProps,
+    { logout }
+  )(Profile)
+);

@@ -10,6 +10,15 @@
       "title": "Oooooooops!",
       "primary": "Něco se pokazilo!",
       "secondary": "Prosím, zkuste to znovu později..."
+    },
+    "profile": {
+      "title": "profil",
+      "avatar": "avatar",
+      "firstName": "křestní jméno",
+      "lastName": "přijmení",
+      "email": "email",
+      "authority": "autorita",
+      "logout": "odhlášení"
     }
   }
 }
