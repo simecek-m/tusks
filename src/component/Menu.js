@@ -5,11 +5,13 @@ import "component/Menu.sass";
 import UserWidget from "component/UserWidget";
 import Localization from "component/Localization";
 
-function Menu() {
+function Menu({ userWidget = true, localization = true }) {
+  const localizationComponent = localization ? <Localization /> : null;
+  const userWidgetComponent = userWidget ? <UserWidget /> : null;
   return (
     <div id="menu-component">
-      <Localization />
-      <UserWidget />
+      {localizationComponent}
+      {userWidgetComponent}
     </div>
   );
 }
