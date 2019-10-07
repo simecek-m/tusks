@@ -1,0 +1,34 @@
+@import "colors.sass"
+
+.localization-component
+  padding: 10px
+  display: inline-block
+  color: $background-primary
+  border-radius: 50px 50px 10px 10px
+  background-color: none
+  position: absolute
+  user-select: none
+  transition: 0.5s ease all
+
+  &:hover
+    background-color: $text-primary
+
+    .locales
+      display: block
+
+  .flag
+    width: 40px
+    height: 40px
+
+  .locales
+    display: none
+    margin-top: 5px
+    font-size: 18px
+
+    .locale
+      margin: 5px 0
+      cursor: pointer
+      text-align: center
+
+      &:hover
+        font-weight: bold

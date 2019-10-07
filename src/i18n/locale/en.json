@@ -24,6 +24,10 @@
       "title": "to-do",
       "create": "create",
       "createFirstList": "Write your first to=do list:"
+    },
+    "localization": {
+      "english": "en",
+      "czech": "cs"
     }
   }
 }
