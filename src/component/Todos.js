@@ -1,16 +1,16 @@
 import React from "react";
-import TodoListWidget from "component/TodoListWidget";
-import UserWidget from "component/UserWidget";
 import { connect } from "react-redux";
-import api, { setAuthorizationHeader } from "api";
-import Loading from "component/Loading";
 import Lottie from "react-lottie";
-import writeAnimation from "assets/animation/write.json";
-import Button from "component/Button";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { withToastManager } from "react-toast-notifications";
-import Title from "component/Title";
 import { withTranslation } from "react-i18next";
+import api, { setAuthorizationHeader } from "api";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import writeAnimation from "assets/animation/write.json";
+import Title from "component/Title";
+import Button from "component/Button";
+import TodoListWidget from "component/TodoListWidget";
+import Loading from "component/Loading";
+import Menu from "component/Menu";
 
 class Todos extends React.Component {
   state = {
@@ -87,7 +87,7 @@ class Todos extends React.Component {
     const content = items.length > 0 ? items : writeFirstTodoAnimation;
     return (
       <div>
-        <UserWidget />
+        <Menu />
         <Title text={t("todos.title")} />
         <Loading loading={this.state.loading} error={this.state.error}>
           {content}
