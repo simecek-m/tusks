@@ -28,6 +28,9 @@
     "localization": {
       "english": "en",
       "czech": "cs"
+    },
+    "todo-list": {
+      "new": "přidat"
     }
   }
 }
