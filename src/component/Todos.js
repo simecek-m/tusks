@@ -68,7 +68,7 @@ class Todos extends React.Component {
         onClick={() => this.redirectTo(item._id)}
         key={item._id}
         title={item.title}
-        count={item.tasks.length}
+        count={item.tasks.filter(task => !task.completed).length}
       />
     ));
     const writeAnimationOptions = {
