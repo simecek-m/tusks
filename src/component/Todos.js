@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Lottie from "react-lottie";
 import { withToastManager } from "react-toast-notifications";
 import { withTranslation } from "react-i18next";
+import { withRouter } from "react-router-dom";
 import api, { setAuthorizationHeader } from "api";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import writeAnimation from "assets/animation/write.json";
@@ -54,10 +55,17 @@ class Todos extends React.Component {
     }
   }
 
+  redirectTo(id) {
+    const { history } = this.props;
+    console.log(id);
+    history.push(`/todos/${id}`);
+  }
+
   render() {
     const { t } = this.props;
     const items = this.state.list.map(item => (
       <TodoListWidget
+        onClick={() => this.redirectTo(item._id)}
         key={item._id}
         title={item.title}
         count={item.tasks.length}
@@ -103,6 +111,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default withTranslation()(
-  withToastManager(connect(mapStateToProps)(Todos))
+export default withRouter(
+  withTranslation()(withToastManager(connect(mapStateToProps)(Todos)))
 );
