@@ -31,6 +31,9 @@
     },
     "todo-list": {
       "new": "přidat"
+    },
+    "modal": {
+      "confirmation": "OK"
     }
   }
 }
