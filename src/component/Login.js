@@ -4,18 +4,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { GoogleLogin } from "react-google-login";
 import { connect } from "react-redux";
-import { login } from "store/actions";
+import { login, setLocale } from "store/actions";
 import { useToasts } from "react-toast-notifications";
 import Title from "component/Title";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
+import jsonwebtoken from "jsonwebtoken";
 
-function Login({ login, t }) {
+function Login({ login, setLocale, t }) {
   const { addToast } = useToasts();
 
   const loginSuccessCallback = response => {
-    const jwt = response.tokenId;
+    const jwt = jsonwebtoken.decode(response.tokenId);
     if (jwt) {
+      setLocale(jwt.locale);
       login(response.tokenId);
     } else {
       addToast(t("login.loginFailedNoJwt"), {
@@ -56,6 +58,6 @@ function Login({ login, t }) {
 export default withTranslation()(
   connect(
     null,
-    { login }
+    { login, setLocale }
   )(Login)
 );
