@@ -1,6 +1,7 @@
 import React from "react";
-import i18n from "i18next";
 import { withTranslation } from "react-i18next";
+import { connect } from "react-redux";
+import { setLocale } from "store/actions";
 
 // style
 import "component/Localization.sass";
@@ -10,24 +11,9 @@ import enFlag from "assets/image/flag/united-kingdom.png";
 import csFlag from "assets/image/flag/czech.png";
 
 class Localization extends React.Component {
-  state = {
-    locale: "en"
-  };
-
-  changeLocale(locale) {
-    i18n
-      .changeLanguage(locale)
-      .then(() =>
-        this.setState({
-          locale,
-          extends: false
-        })
-      )
-      .catch(error => console.log(error));
-  }
-
   getFlag() {
-    switch (this.state.locale) {
+    const { locale } = this.props;
+    switch (locale) {
       case "en":
         return enFlag;
       case "cs":
@@ -38,15 +24,15 @@ class Localization extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { setLocale, t } = this.props;
     return (
       <div className="localization-component">
         <img className="flag" src={this.getFlag()} alt="flag" />
         <div className="locales">
-          <div className="locale" onClick={() => this.changeLocale("en")}>
+          <div className="locale" onClick={() => setLocale("en")}>
             {t("localization.english")}
           </div>
-          <div className="locale" onClick={() => this.changeLocale("cs")}>
+          <div className="locale" onClick={() => setLocale("cs")}>
             {t("localization.czech")}
           </div>
         </div>
@@ -55,4 +41,13 @@ class Localization extends React.Component {
   }
 }
 
-export default withTranslation()(Localization);
+const mapStateToProps = state => {
+  return {
+    locale: state.locale
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setLocale }
+)(withTranslation()(Localization));
