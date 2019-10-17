@@ -1,7 +1,14 @@
-import { ACTION_TYPE_LOGIN, ACTION_TYPE_LOGOUT } from "store/actions";
+import {
+  ACTION_TYPE_LOGIN,
+  ACTION_TYPE_LOGOUT,
+  ACTION_TYPE_LOCALE
+} from "store/actions";
+
+const DEFAULT_LOCALE = process.env.REACT_APP_DEFAULT_LOCALE;
 
 const initialState = {
-  user: null
+  user: null,
+  locale: DEFAULT_LOCALE
 };
 
 function reducer(state = initialState, action) {
@@ -14,7 +21,13 @@ function reducer(state = initialState, action) {
     case ACTION_TYPE_LOGOUT:
       return {
         ...state,
+        locale: DEFAULT_LOCALE,
         user: null
+      };
+    case ACTION_TYPE_LOCALE:
+      return {
+        ...state,
+        locale: action.payload
       };
     default:
       return state;
