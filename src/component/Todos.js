@@ -57,7 +57,6 @@ class Todos extends React.Component {
 
   redirectTo(id) {
     const { history } = this.props;
-    console.log(id);
     history.push(`/todos/${id}`);
   }
 
