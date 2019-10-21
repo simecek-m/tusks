@@ -82,6 +82,29 @@ class TodoList extends React.Component {
     }
   }
 
+  deleteTask(taskId, index) {
+    const { match, user, toastManager } = this.props;
+    const id = match.params.id;
+    api
+      .delete(`/todos/${id}/tasks/${taskId}`, setAuthorizationHeader(user))
+      .then(() => {
+        const todoList = this.state.todoList;
+        todoList.tasks.splice(index, 1);
+        this.setState({
+          todoList
+        });
+      })
+      .catch(error => {
+        toastManager.add(
+          `${error.response.data.message} (status: ${error.response.status})`,
+          {
+            appearance: "error",
+            autoDismiss: true
+          }
+        );
+      });
+  }
+
   render() {
     const { t } = this.props;
     const tasks =
@@ -92,6 +115,10 @@ class TodoList extends React.Component {
           key={index}
           completed={task.completed}
           onClick={() => this.updateTask(index)}
+          onDelete={e => {
+            e.stopPropagation();
+            this.deleteTask(task._id, index);
+          }}
         />
       ));
 

@@ -1,9 +1,12 @@
 @import "colors.sass"
 
 .task-component
-  font-weight: bold
   cursor: pointer
   font-size: 22px
+
+  &:hover
+    .icon-trash
+      opacity: 1
 
   .icon
     width: 20px
@@ -11,7 +14,14 @@
     margin-right: 10px
     transition: 0.5s ease all
 
+  .icon-trash
+    opacity: 0
+    margin-left: 10px
+    transition: 0.5s ease all
+
   &.incomplete
+    margin-bottom: 10px
+
     &:hover
       .icon
         opacity: 1
