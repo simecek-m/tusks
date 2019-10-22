@@ -3,15 +3,13 @@ import api, { setAuthorizationHeader } from "api";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { withToastManager } from "react-toast-notifications";
-import { withTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import Menu from "component/Menu";
 import Title from "component/Title";
 import Loading from "component/Loading";
 import Back from "component/Back";
 import Task from "component/Task";
+import AddTask from "component/AddTask";
 import "component/TodoList.sass";
 
 class TodoList extends React.Component {
@@ -36,16 +34,6 @@ class TodoList extends React.Component {
         console.error(error);
         this.setState({ loading: false, error: true });
       });
-  }
-
-  openNewTaskModal() {
-    const warningMessge = "this feature is not supported yet...";
-    console.warn(warningMessge);
-    const { toastManager } = this.props;
-    toastManager.add(warningMessge, {
-      appearance: "warning",
-      autoDismiss: true
-    });
   }
 
   updateTask(index) {
@@ -94,19 +82,28 @@ class TodoList extends React.Component {
           todoList
         });
       })
-      .catch(error => {
-        toastManager.add(
-          `${error.response.data.message} (status: ${error.response.status})`,
-          {
-            appearance: "error",
-            autoDismiss: true
-          }
-        );
-      });
+      .catch(error => toastManager.add(this.showNotification(error)));
   }
 
+  addTask = text => {
+    if (text && text.length > 0) {
+      const { match, user, toastManager } = this.props;
+      const id = match.params.id;
+      const task = { text, completed: false };
+      api
+        .post(`/todos/${id}/tasks`, task, setAuthorizationHeader(user))
+        .then(response => {
+          const todoList = this.state.todoList;
+          todoList.tasks.push(response.data);
+          this.setState({
+            todoList
+          });
+        })
+        .catch(error => toastManager.add(this.showNotification(error)));
+    }
+  };
+
   render() {
-    const { t } = this.props;
     const tasks =
       this.state.todoList &&
       this.state.todoList.tasks.map((task, index) => (
@@ -121,7 +118,6 @@ class TodoList extends React.Component {
           }}
         />
       ));
-
     return (
       <div className="todo-list-component">
         <Back />
@@ -134,10 +130,7 @@ class TodoList extends React.Component {
           <div className="tasks tasks-incomplete">
             {tasks &&
               tasks.filter(taskComponent => !taskComponent.props.completed)}
-            <div className="add-task" onClick={() => this.openNewTaskModal()}>
-              <FontAwesomeIcon className="icon" icon={faPlus} />
-              {t("todo-list.new")}
-            </div>
+            <AddTask onAdd={this.addTask} />
           </div>
           <hr className="divider" />
           <div className="tasks tasks-completed">
@@ -156,6 +149,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withToastManager(
-  withTranslation()(withRouter(connect(mapStateToProps)(TodoList)))
-);
+export default withToastManager(withRouter(connect(mapStateToProps)(TodoList)));
