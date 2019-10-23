@@ -1,17 +1,17 @@
 import React from "react";
-import "component/Modal.sass";
+import "component/modal/ConfirmationModal.sass";
 import { withTranslation } from "react-i18next";
 
 function Modal({
   title = "Title",
   text = "Modal description text",
   visible = false,
-  closeModal = () => {},
-  confirmationModal = () => {},
+  onClose = () => {},
+  onConfirm = () => {},
   t
 }) {
   return visible ? (
-    <div className="modal" onClick={() => closeModal()}>
+    <div className="confirmation-modal-component" onClick={() => onClose()}>
       <div className="modal-body" onClick={e => e.stopPropagation()}>
         <h2 className="modal-title">{title}</h2>
         <div className="modal-description">{text}</div>
@@ -19,8 +19,8 @@ function Modal({
           <span
             className="confirmation-text"
             onClick={() => {
-              confirmationModal();
-              closeModal();
+              onConfirm();
+              onClose();
             }}
           >
             {t("modal.confirmation")}
