@@ -12,7 +12,7 @@ function Button({
   return (
     <span className={`button-component ${type}`} onClick={onClick}>
       <FontAwesomeIcon className="button-component-icon" icon={icon} />
-      <span className="text">{text}</span>
+      <span className="text">{text.toUpperCase()}</span>
     </span>
   );
 }
