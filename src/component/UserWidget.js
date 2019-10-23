@@ -2,7 +2,7 @@ import React from "react";
 import jsonwebtoken from "jsonwebtoken";
 import "component/UserWidget.sass";
 import { connect } from "react-redux";
-import { formatString } from "helper/string";
+import { shortenString } from "helper/string";
 import { withRouter } from "react-router-dom";
 
 function UserWidget({ user, history }) {
@@ -10,7 +10,7 @@ function UserWidget({ user, history }) {
   return (
     <span onClick={() => history.push("/profile")} id="user-widget">
       <img src={info.picture} alt="profile" />
-      <span>{formatString(info.name, 20)}</span>
+      <span>{shortenString(info.name, 20)}</span>
     </span>
   );
 }
