@@ -55,6 +55,20 @@ class Todos extends React.Component {
     }
   }
 
+  deleteTodoList(id, index) {
+    const { user } = this.props;
+    api
+      .delete(`/todos/${id}`, setAuthorizationHeader(user))
+      .then(() => {
+        const list = this.state.list;
+        list.splice(index, 1);
+        this.setState({
+          list
+        });
+      })
+      .catch(error => this.showNotification(error));
+  }
+
   redirectTo(id) {
     const { history } = this.props;
     history.push(`/todos/${id}`);
@@ -62,9 +76,10 @@ class Todos extends React.Component {
 
   render() {
     const { t } = this.props;
-    const items = this.state.list.map(item => (
+    const items = this.state.list.map((item, index) => (
       <TodoListWidget
         onClick={() => this.redirectTo(item._id)}
+        onDelete={() => this.deleteTodoList(item._id, index)}
         key={item._id}
         title={item.title}
         count={item.tasks.filter(task => !task.completed).length}

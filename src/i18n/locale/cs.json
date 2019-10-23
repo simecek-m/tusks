@@ -32,6 +32,12 @@
     "addTask": {
       "new": "přidat"
     },
+    "todoListWidget": {
+      "modal": {
+        "title": "Odstranit",
+        "text": "Určitě chcete odstranit \"{{name}}\" seznam? Tato akce je trvalá!"
+      }
+    },
     "modal": {
       "confirmation": "OK"
     }

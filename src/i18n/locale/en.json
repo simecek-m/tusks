@@ -32,6 +32,12 @@
     "addTask": {
       "new": "add"
     },
+    "todoListWidget": {
+      "modal": {
+        "title": "Delete",
+        "text": "Are you sure you want to delete \"{{name}}\" todo list? This action is permanent!"
+      }
+    },
     "modal": {
       "confirmation": "OK"
     }
