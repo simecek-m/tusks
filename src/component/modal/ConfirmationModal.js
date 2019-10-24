@@ -2,7 +2,7 @@ import React from "react";
 import "component/modal/ConfirmationModal.sass";
 import { withTranslation } from "react-i18next";
 
-function Modal({
+function ConfirmationModal({
   title = "Title",
   text = "Modal description text",
   visible = false,
@@ -31,4 +31,4 @@ function Modal({
   ) : null;
 }
 
-export default withTranslation()(Modal);
+export default withTranslation()(ConfirmationModal);
