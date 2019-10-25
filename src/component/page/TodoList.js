@@ -3,7 +3,6 @@ import api, { setAuthorizationHeader } from "api";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { faList } from "@fortawesome/free-solid-svg-icons";
-import Menu from "component/menu/Menu";
 import Title from "component/common/Title";
 import Loading from "component/animation/Loading";
 import Back from "component/navigation/Back";
@@ -119,7 +118,6 @@ class TodoList extends React.Component {
     return (
       <div className="todo-list-component">
         <Back />
-        <Menu />
         <Loading loading={this.state.loading} error={this.state.error}>
           <Title
             icon={faList}

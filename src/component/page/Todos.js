@@ -11,7 +11,6 @@ import Title from "component/common/Title";
 import Button from "component/button/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/animation/Loading";
-import Menu from "component/menu/Menu";
 import InputModal from "component/modal/InputModal";
 
 class Todos extends React.Component {
@@ -133,7 +132,6 @@ class Todos extends React.Component {
     const content = items.length > 0 ? items : writeFirstTodoAnimation;
     return (
       <div>
-        <Menu />
         <Title text={t("todos.title")} />
         <Loading loading={this.state.loading} error={this.state.error}>
           {content}
