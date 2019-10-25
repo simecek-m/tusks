@@ -42,6 +42,10 @@
     },
     "modal": {
       "confirmation": "OK"
+    },
+    "notification": {
+      "unsupportedFeature": "Unsupported feature",
+      "unsupportedFeatureDescription": "This feature is not yet supported."
     }
   }
 }
