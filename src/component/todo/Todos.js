@@ -10,7 +10,7 @@ import writeAnimation from "assets/animation/write.json";
 import Title from "component/Title";
 import Button from "component/button/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
-import Loading from "component/Loading";
+import Loading from "component/animation/Loading";
 import Menu from "component/menu/Menu";
 
 class Todos extends React.Component {

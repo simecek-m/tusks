@@ -2,7 +2,7 @@ import React from "react";
 import Lottie from "react-lottie";
 import loadingAnimation from "assets/animation/loading.json";
 import errorAnimation from "assets/animation/error.json";
-import "component/Loading.sass";
+import "component/animation/Loading.sass";
 
 function Loading({ loading, error, children }) {
   const loadingAnimationOptions = {
