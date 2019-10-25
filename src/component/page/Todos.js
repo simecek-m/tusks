@@ -5,24 +5,27 @@ import { withTranslation } from "react-i18next";
 import { withRouter } from "react-router-dom";
 import api, { setAuthorizationHeader } from "api";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { showDangerNotificationWithStatus } from "notification";
 import writeAnimation from "assets/animation/write.json";
 import Title from "component/common/Title";
 import Button from "component/button/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/animation/Loading";
 import Menu from "component/menu/Menu";
-import { showDangerNotificationWithStatus } from "notification";
+import InputModal from "component/modal/InputModal";
 
 class Todos extends React.Component {
   state = {
     loading: true,
     error: false,
-    list: []
+    list: [],
+    modalVisible: false
   };
 
   componentDidMount() {
+    const { user } = this.props;
     api
-      .get("/todos", setAuthorizationHeader(this.props.user))
+      .get("/todos", setAuthorizationHeader(user))
       .then(response =>
         this.setState({
           list: response.data,
@@ -65,6 +68,32 @@ class Todos extends React.Component {
     history.push(`/todos/${id}`);
   }
 
+  setModalVisibility(visibility) {
+    this.setState({
+      modalVisible: visibility
+    });
+  }
+
+  addTodoList = title => {
+    const { user } = this.props;
+    const todoList = { title };
+    api
+      .post(`/todos`, todoList, setAuthorizationHeader(user))
+      .then(response => {
+        const list = this.state.list;
+        list.push(response.data);
+        this.setState({
+          list
+        });
+      })
+      .catch(error =>
+        showDangerNotificationWithStatus(
+          error.response.data.message,
+          error.response.status
+        )
+      );
+  };
+
   render() {
     const { t } = this.props;
     const items = this.state.list.map((item, index) => (
@@ -94,7 +123,11 @@ class Todos extends React.Component {
           style={{ marginBottom: "50px" }}
           isClickToPauseDisabled={true}
         />
-        <Button icon={faPlus} text={t("todos.create")} />
+        <Button
+          icon={faPlus}
+          text={t("todos.create")}
+          onClick={() => this.setModalVisibility(true)}
+        />
       </div>
     );
     const content = items.length > 0 ? items : writeFirstTodoAnimation;
@@ -104,6 +137,13 @@ class Todos extends React.Component {
         <Title text={t("todos.title")} />
         <Loading loading={this.state.loading} error={this.state.error}>
           {content}
+          <InputModal
+            title={t("todos.modalTitle")}
+            text={t("todos.modalDescription")}
+            visible={this.state.modalVisible}
+            onClose={() => this.setModalVisibility(false)}
+            onConfirm={this.addTodoList}
+          />
         </Loading>
       </div>
     );
