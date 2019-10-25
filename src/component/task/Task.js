@@ -1,9 +1,9 @@
 import React from "react";
-import "component/Task.sass";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 import { faCheckCircle as SolidFaCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import "component/task/Task.sass";
 
 function Task({
   text = "Task",

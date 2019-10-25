@@ -2,7 +2,7 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import "component/AddTask.sass";
+import "component/task/AddTask.sass";
 
 class AddTask extends React.Component {
   state = {

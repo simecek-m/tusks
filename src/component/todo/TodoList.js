@@ -8,8 +8,8 @@ import Menu from "component/Menu";
 import Title from "component/Title";
 import Loading from "component/Loading";
 import Back from "component/Back";
-import Task from "component/Task";
-import AddTask from "component/AddTask";
+import Task from "component/task/Task";
+import AddTask from "component/task/AddTask";
 import "component/todo/TodoList.sass";
 
 class TodoList extends React.Component {
