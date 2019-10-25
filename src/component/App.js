@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Todos from "component/todo/Todos";
-import Error from "component/Error";
+import Error from "component/error/Error";
 import Login from "component/Login";
 import Profile from "component/Profile";
 import TodoList from "component/todo/TodoList";
