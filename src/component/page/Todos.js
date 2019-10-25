@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import Lottie from "react-lottie";
-import { withToastManager } from "react-toast-notifications";
 import { withTranslation } from "react-i18next";
 import { withRouter } from "react-router-dom";
 import api, { setAuthorizationHeader } from "api";
@@ -19,11 +18,6 @@ class Todos extends React.Component {
     error: false,
     list: []
   };
-
-  constructor(props) {
-    super(props);
-    this.toastManager = props.toastManager;
-  }
 
   componentDidMount() {
     api
@@ -45,13 +39,8 @@ class Todos extends React.Component {
 
   showNotification(error) {
     if (error.response) {
-      this.toastManager.add(
-        `${error.response.data.message} (status: ${error.response.status})`,
-        {
-          appearance: "error",
-          autoDismiss: true
-        }
-      );
+      console.error(error.reponse);
+      // TODO: show error notification
     }
   }
 
@@ -125,6 +114,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(
-  withTranslation()(withToastManager(connect(mapStateToProps)(Todos)))
-);
+export default withRouter(withTranslation()(connect(mapStateToProps)(Todos)));

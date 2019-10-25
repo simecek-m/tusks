@@ -2,7 +2,6 @@ import React from "react";
 import api, { setAuthorizationHeader } from "api";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { withToastManager } from "react-toast-notifications";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import Menu from "component/menu/Menu";
 import Title from "component/common/Title";
@@ -58,20 +57,13 @@ class TodoList extends React.Component {
   }
 
   showNotification(error) {
-    const { toastManager } = this.props;
     if (error.response) {
-      toastManager.add(
-        `${error.response.data.message} (status: ${error.response.status})`,
-        {
-          appearance: "error",
-          autoDismiss: true
-        }
-      );
+      // TODO: show notification
     }
   }
 
   deleteTask(taskId, index) {
-    const { match, user, toastManager } = this.props;
+    const { match, user } = this.props;
     const id = match.params.id;
     api
       .delete(`/todos/${id}/tasks/${taskId}`, setAuthorizationHeader(user))
@@ -82,12 +74,15 @@ class TodoList extends React.Component {
           todoList
         });
       })
-      .catch(error => toastManager.add(this.showNotification(error)));
+      .catch(error => {
+        console.error(error);
+        // TODO: show notification
+      });
   }
 
   addTask = text => {
     if (text && text.length > 0) {
-      const { match, user, toastManager } = this.props;
+      const { match, user } = this.props;
       const id = match.params.id;
       const task = { text, completed: false };
       api
@@ -99,7 +94,10 @@ class TodoList extends React.Component {
             todoList
           });
         })
-        .catch(error => toastManager.add(this.showNotification(error)));
+        .catch(error => {
+          console.error(error);
+          // TODO: show notification
+        });
     }
   };
 
@@ -149,4 +147,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withToastManager(withRouter(connect(mapStateToProps)(TodoList)));
+export default withRouter(connect(mapStateToProps)(TodoList));

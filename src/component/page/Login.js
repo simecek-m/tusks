@@ -5,33 +5,24 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { GoogleLogin } from "react-google-login";
 import { connect } from "react-redux";
 import { login, setLocale } from "store/actions";
-import { useToasts } from "react-toast-notifications";
 import Title from "component/common/Title";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
 import jsonwebtoken from "jsonwebtoken";
 
 function Login({ login, setLocale, t }) {
-  const { addToast } = useToasts();
-
   const loginSuccessCallback = response => {
     const jwt = jsonwebtoken.decode(response.tokenId);
     if (jwt) {
       setLocale(jwt.locale);
       login(response.tokenId);
     } else {
-      addToast(t("login.loginFailedNoJwt"), {
-        appearance: "error",
-        autoDismiss: true
-      });
+      // TODO: show notification: login.loginFailedNoJwt
     }
   };
 
   const loginFailCallback = () => {
-    addToast(t("login.loginFailed"), {
-      appearance: "error",
-      autoDismiss: true
-    });
+    // TODO: show notification: login.loginFailed
   };
 
   return (
