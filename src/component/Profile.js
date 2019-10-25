@@ -5,7 +5,7 @@ import Back from "component/navigation/Back";
 import Button from "component/button/Button";
 import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "store/actions";
-import Title from "component/Title";
+import Title from "component/common/Title";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
 import "component/Profile.sass";

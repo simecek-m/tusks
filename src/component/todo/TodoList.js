@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { withToastManager } from "react-toast-notifications";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import Menu from "component/menu/Menu";
-import Title from "component/Title";
+import Title from "component/common/Title";
 import Loading from "component/animation/Loading";
 import Back from "component/navigation/Back";
 import Task from "component/task/Task";

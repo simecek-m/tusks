@@ -6,7 +6,7 @@ import { GoogleLogin } from "react-google-login";
 import { connect } from "react-redux";
 import { login, setLocale } from "store/actions";
 import { useToasts } from "react-toast-notifications";
-import Title from "component/Title";
+import Title from "component/common/Title";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
 import jsonwebtoken from "jsonwebtoken";

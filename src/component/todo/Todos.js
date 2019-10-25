@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import api, { setAuthorizationHeader } from "api";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import writeAnimation from "assets/animation/write.json";
-import Title from "component/Title";
+import Title from "component/common/Title";
 import Button from "component/button/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/animation/Loading";

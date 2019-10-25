@@ -1,7 +1,7 @@
 import React from "react";
 import errorImg from "assets/image/404.svg";
 import "component/error/Error.sass";
-import Title from "component/Title";
+import Title from "component/common/Title";
 import { faBug } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
 
