@@ -8,7 +8,7 @@ import api, { setAuthorizationHeader } from "api";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import writeAnimation from "assets/animation/write.json";
 import Title from "component/Title";
-import Button from "component/Button";
+import Button from "component/button/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/Loading";
 import Menu from "component/menu/Menu";

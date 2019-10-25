@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "component/Button.sass";
+import "component/button/Button.sass";
 
 function Button({
   icon = null,
