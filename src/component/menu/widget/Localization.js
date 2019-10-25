@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { setLocale } from "store/actions";
 
 // style
-import "component/Localization.sass";
+import "component/menu/widget/Localization.sass";
 
 // flags
 import enFlag from "assets/image/flag/united-kingdom.png";

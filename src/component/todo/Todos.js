@@ -11,7 +11,7 @@ import Title from "component/Title";
 import Button from "component/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/Loading";
-import Menu from "component/Menu";
+import Menu from "component/menu/Menu";
 
 class Todos extends React.Component {
   state = {

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { withToastManager } from "react-toast-notifications";
 import { faList } from "@fortawesome/free-solid-svg-icons";
-import Menu from "component/Menu";
+import Menu from "component/menu/Menu";
 import Title from "component/Title";
 import Loading from "component/Loading";
 import Back from "component/Back";

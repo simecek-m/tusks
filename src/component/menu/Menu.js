@@ -1,9 +1,9 @@
 import React from "react";
-import "component/Menu.sass";
+import "component/menu/Menu.sass";
 
 // components
-import UserWidget from "component/UserWidget";
-import Localization from "component/Localization";
+import UserWidget from "component/menu/widget/Profile";
+import Localization from "component/menu/widget/Localization";
 
 function Menu({ userWidget = true, localization = true }) {
   const localizationComponent = localization ? <Localization /> : null;

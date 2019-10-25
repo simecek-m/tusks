@@ -1,6 +1,6 @@
 import React from "react";
 import jsonwebtoken from "jsonwebtoken";
-import "component/UserWidget.sass";
+import "component/menu/widget/Profile.sass";
 import { connect } from "react-redux";
 import { shortenString } from "helper/string";
 import { withRouter } from "react-router-dom";
