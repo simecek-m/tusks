@@ -1,5 +1,5 @@
 import React from "react";
-import "component/Login.sass";
+import "component/page/Login.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { GoogleLogin } from "react-google-login";

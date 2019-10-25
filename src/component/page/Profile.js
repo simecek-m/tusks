@@ -8,7 +8,7 @@ import { logout } from "store/actions";
 import Title from "component/common/Title";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
-import "component/Profile.sass";
+import "component/page/Profile.sass";
 
 function Profile({ user, logout, t }) {
   const userInfo = jsonwebtoken.decode(user);
