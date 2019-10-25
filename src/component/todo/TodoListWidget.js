@@ -1,5 +1,5 @@
 import React from "react";
-import "component/TodoListWidget.sass";
+import "component/todo/TodoListWidget.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { withTranslation } from "react-i18next";

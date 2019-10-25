@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Todos from "component/Todos";
+import Todos from "component/todo/Todos";
 import Error from "component/Error";
 import Login from "component/Login";
 import Profile from "component/Profile";
-import TodoList from "component/TodoList";
+import TodoList from "component/todo/TodoList";
 import "component/App.sass";
 import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";

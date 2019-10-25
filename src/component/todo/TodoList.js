@@ -10,7 +10,7 @@ import Loading from "component/Loading";
 import Back from "component/Back";
 import Task from "component/Task";
 import AddTask from "component/AddTask";
-import "component/TodoList.sass";
+import "component/todo/TodoList.sass";
 
 class TodoList extends React.Component {
   state = {
