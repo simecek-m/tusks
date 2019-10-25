@@ -8,6 +8,7 @@ import TodoList from "component/page/TodoList";
 import "component/App.sass";
 import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
+import "animate.css";
 
 function App() {
   return (
