@@ -7,7 +7,7 @@ import { faList } from "@fortawesome/free-solid-svg-icons";
 import Menu from "component/menu/Menu";
 import Title from "component/Title";
 import Loading from "component/Loading";
-import Back from "component/Back";
+import Back from "component/navigation/Back";
 import Task from "component/task/Task";
 import AddTask from "component/task/AddTask";
 import "component/todo/TodoList.sass";

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import jsonwebtoken from "jsonwebtoken";
 import "component/Profile.sass";
-import Back from "component/Back";
+import Back from "component/navigation/Back";
 import Button from "component/Button";
 import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "store/actions";

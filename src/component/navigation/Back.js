@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import "component/Back.sass";
+import "component/navigation/Back.sass";
 import ReactTooltip from "react-tooltip";
 
 function Back({ history }) {
