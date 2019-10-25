@@ -11,6 +11,7 @@ import Button from "component/button/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/animation/Loading";
 import Menu from "component/menu/Menu";
+import { showDangerNotificationWithStatus } from "notification";
 
 class Todos extends React.Component {
   state = {
@@ -29,19 +30,15 @@ class Todos extends React.Component {
         })
       )
       .catch(error => {
-        this.showNotification(error);
+        showDangerNotificationWithStatus(
+          error.response.data.message,
+          error.response.status
+        );
         this.setState({
           error: true,
           loading: false
         });
       });
-  }
-
-  showNotification(error) {
-    if (error.response) {
-      console.error(error.reponse);
-      // TODO: show error notification
-    }
   }
 
   deleteTodoList(id, index) {
@@ -55,7 +52,12 @@ class Todos extends React.Component {
           list
         });
       })
-      .catch(error => this.showNotification(error));
+      .catch(error =>
+        showDangerNotificationWithStatus(
+          error.response.data.message,
+          error.response.status
+        )
+      );
   }
 
   redirectTo(id) {
