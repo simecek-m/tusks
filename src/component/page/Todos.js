@@ -12,6 +12,10 @@ import Button from "component/button/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/animation/Loading";
 import InputModal from "component/modal/InputModal";
+import Settings from "component/menu/Settings";
+import SettingsItem from "component/menu/SettingsItem";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { redirect } from "helper/router";
 
 class Todos extends React.Component {
   state = {
@@ -62,11 +66,6 @@ class Todos extends React.Component {
       );
   }
 
-  redirectTo(id) {
-    const { history } = this.props;
-    history.push(`/todos/${id}`);
-  }
-
   setModalVisibility(visibility) {
     this.setState({
       modalVisible: visibility
@@ -97,7 +96,7 @@ class Todos extends React.Component {
     const { t } = this.props;
     const items = this.state.list.map((item, index) => (
       <TodoListWidget
-        onClick={() => this.redirectTo(item._id)}
+        onClick={() => redirect(`/todos/${item._id}`)}
         onDelete={() => this.deleteTodoList(item._id, index)}
         key={item._id}
         title={item.title}
@@ -132,6 +131,12 @@ class Todos extends React.Component {
     const content = items.length > 0 ? items : writeFirstTodoAnimation;
     return (
       <div>
+        <Settings>
+          <SettingsItem
+            icon={faUserCircle}
+            onClick={() => redirect("/profile")}
+          />
+        </Settings>
         <Title text={t("todos.title")} />
         <Loading loading={this.state.loading} error={this.state.error}>
           {content}
