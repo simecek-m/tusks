@@ -1,5 +1,5 @@
 import React from "react";
-import "component/modal/SelectItem.sass";
+import "component/modal/component/SelectItem.sass";
 
 function SelectItem({
   image = null,
