@@ -1,0 +1,33 @@
+@import "colors.sass"
+
+.select-item-component
+  color: $background-primary
+  text-align: left
+  line-height: 35px
+  height: 35px
+  cursor: pointer
+  font-size: 18px
+
+  .image
+    display: inline-block
+    height: 35px
+    width: 35px
+    text-align: center
+    transition: 0.3s ease all
+    margin-right: 10px
+
+  .text
+    vertical-align: top
+    transition: 0.3s ease all
+
+  &:hover
+    line-height: 40px
+    height: 40px
+
+    .image
+      width: 40px
+      height: 40px
+
+    .text
+      font-weight: bold
+      font-size: 20px
