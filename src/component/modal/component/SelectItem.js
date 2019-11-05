@@ -3,11 +3,7 @@ import "component/modal/component/SelectItem.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-function SelectItem({
-  image = null,
-  text = "select item",
-  onClick = () => {}
-}) {
+function SelectItem({ image = null, text = null, onClick = () => {} }) {
   const img = image ? (
     <img className="image" src={image} alt="select-item" />
   ) : null;
