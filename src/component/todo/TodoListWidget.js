@@ -1,41 +1,35 @@
 import React from "react";
-import "component/todo/TodoListWidget.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { withTranslation } from "react-i18next";
+import { withModal } from "modal/withModal";
+import { CONFIRMATION } from "modal/types";
+import "component/todo/TodoListWidget.sass";
 
-class TodoListWidget extends React.Component {
-  state = {
-    visibleModal: false
-  };
-
-  setModalVisibility(visible) {
-    this.setState({
-      visibleModal: visible
-    });
-  }
-
-  render() {
-    const { title, count, onClick } = this.props;
-    return (
-      <div>
-        <div className="todo-list-widget-component" onClick={onClick}>
-          <div className="list-item">
-            <span className="list-title">{title}</span>
-            <span className="list-count">({count})</span>
-          </div>
-          <FontAwesomeIcon
-            className="icon-trash"
-            icon={faTrashAlt}
-            onClick={e => {
-              e.stopPropagation();
-              this.setModalVisibility(true);
-            }}
-          />
+function TodoListWidget({ title, count, onClick, openModal, onDelete, t }) {
+  return (
+    <div>
+      <div className="todo-list-widget-component" onClick={onClick}>
+        <div className="list-item">
+          <span className="list-title">{title}</span>
+          <span className="list-count">({count})</span>
         </div>
+        <FontAwesomeIcon
+          className="icon-trash"
+          icon={faTrashAlt}
+          onClick={e => {
+            e.stopPropagation();
+            openModal({
+              type: CONFIRMATION,
+              title: t("todoListWidget.modal.title"),
+              text: t("todoListWidget.modal.text", { name: title }),
+              onConfirm: () => onDelete()
+            });
+          }}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default withTranslation()(TodoListWidget);
+export default withModal(withTranslation()(TodoListWidget));
