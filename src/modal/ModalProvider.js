@@ -3,6 +3,7 @@ import ConfirmationModal from "component/modal/ConfirmationModal";
 import SelectModal from "component/modal/SelectModal";
 import InputModal from "component/modal/InputModal";
 import { CONFIRMATION, SELECT, INPUT } from "modal/types";
+import { validateModalData } from "modal/validator";
 
 export const ModalContext = React.createContext();
 
@@ -12,11 +13,9 @@ class ModalProvider extends React.Component {
     visible: false
   };
 
-  openModal = ({ type = CONFIRMATION }) => {
-    this.setState({
-      type,
-      visible: true
-    });
+  openModal = modal => {
+    const modalData = validateModalData(modal);
+    this.setState(modalData);
   };
 
   closeModal = () => {
