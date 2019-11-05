@@ -1,26 +1,20 @@
 import React from "react";
 import "component/modal/ConfirmationModal.sass";
 import { withTranslation } from "react-i18next";
+import { withModal } from "modal/withModal";
 
-function ConfirmationModal({
-  title = "Title",
-  text = "Modal description text",
-  visible = false,
-  onClose = () => {},
-  onConfirm = () => {},
-  t
-}) {
-  return visible ? (
-    <div className="confirmation-modal-component" onClick={() => onClose()}>
+function ConfirmationModal({ t, modal, closeModal }) {
+  return modal.visible ? (
+    <div className="confirmation-modal-component" onClick={() => closeModal()}>
       <div className="modal-body" onClick={e => e.stopPropagation()}>
-        <h2 className="modal-title">{title}</h2>
-        <div className="modal-description">{text}</div>
+        <h2 className="modal-title">{modal.title}</h2>
+        <div className="modal-description">{modal.text}</div>
         <div className="modal-confirmation-button">
           <span
             className="confirmation-text"
             onClick={() => {
-              onConfirm();
-              onClose();
+              modal.onConfirm();
+              closeModal();
             }}
           >
             {t("modal.confirmation")}
@@ -31,4 +25,4 @@ function ConfirmationModal({
   ) : null;
 }
 
-export default withTranslation()(ConfirmationModal);
+export default withModal(withTranslation()(ConfirmationModal));
