@@ -1,28 +1,22 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
+import { withModal } from "modal/withModal";
 import "component/modal/InputModal.sass";
 
-function InputModal({
-  title = "Title",
-  text = "Input modal description text",
-  visible = false,
-  onClose = () => {},
-  onConfirm = () => {},
-  t
-}) {
+function InputModal({ t, modal, closeModal }) {
   const modalInput = React.createRef();
-  return visible ? (
-    <div className="confirmation-modal-component" onClick={() => onClose()}>
+  return modal.visible ? (
+    <div className="input-modal-component" onClick={() => closeModal()}>
       <div className="modal-body" onClick={e => e.stopPropagation()}>
-        <h2 className="modal-title">{title}</h2>
-        <div className="modal-description">{text}</div>
+        <h2 className="modal-title">{modal.title}</h2>
+        <div className="modal-description">{modal.text}</div>
         <input ref={modalInput} className="modal-input" autoFocus />
         <div className="modal-confirmation-button">
           <span
             className="confirmation-text"
             onClick={() => {
-              onConfirm(modalInput.current.value);
-              onClose();
+              modal.onConfirm(modalInput.current.value);
+              closeModal();
             }}
           >
             {t("modal.confirmation")}
@@ -33,4 +27,4 @@ function InputModal({
   ) : null;
 }
 
-export default withTranslation()(InputModal);
+export default withModal(withTranslation()(InputModal));
