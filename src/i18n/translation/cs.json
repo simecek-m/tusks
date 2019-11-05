@@ -29,10 +29,6 @@
         "text": "Zadejte název nového seznamu."
       }
     },
-    "localization": {
-      "english": "en",
-      "czech": "cs"
-    },
     "addTask": {
       "new": "přidat"
     },
@@ -40,6 +36,18 @@
       "modal": {
         "title": "Odstranit",
         "text": "Určitě chcete odstranit \"{{name}}\" seznam? Tato akce je trvalá!"
+      }
+    },
+    "settings": {
+      "localization": {
+        "modal": {
+          "title": "Jazyk",
+          "text": "Zvolte si Váš preferovaný jazyk:",
+          "language": {
+            "english": "english",
+            "czech": "česky"
+          }
+        }
       }
     },
     "modal": {

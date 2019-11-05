@@ -29,10 +29,6 @@
         "text": "Enter name of the new list."
       }
     },
-    "localization": {
-      "english": "en",
-      "czech": "cs"
-    },
     "addTask": {
       "new": "add"
     },
@@ -40,6 +36,18 @@
       "modal": {
         "title": "Delete",
         "text": "Are you sure you want to delete \"{{name}}\" todo list? This action is permanent!"
+      }
+    },
+    "settings": {
+      "localization": {
+        "modal": {
+          "title": "Language",
+          "text": "Choose your preferred language:",
+          "language": {
+            "english": "english",
+            "czech": "česky"
+          }
+        }
       }
     },
     "modal": {

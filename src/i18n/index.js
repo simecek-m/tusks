@@ -2,8 +2,8 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import store from "store/index";
 
-import cs from "i18n/locale/cs.json";
-import en from "i18n/locale/en.json";
+import cs from "i18n/translation/cs.json";
+import en from "i18n/translation/en.json";
 
 export const DEFAULT_LOCALE = process.env.REACT_APP_DEFAULT_LOCALE;
 
