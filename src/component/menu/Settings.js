@@ -48,6 +48,7 @@ class Settings extends React.Component {
 
   render() {
     const settingsIcon = this.state.expanded ? faTimes : faCog;
+    const divider = this.props.children ? <hr /> : null;
     return (
       <div
         className={`settings-component ${
@@ -70,7 +71,7 @@ class Settings extends React.Component {
               onClick={() => this.openChangeLanguageModal()}
             />
           </div>
-          <hr />
+          {divider}
           <div className="component-actions">{this.props.children}</div>
         </div>
       </div>
