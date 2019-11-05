@@ -3,7 +3,6 @@ import "component/todo/TodoListWidget.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { withTranslation } from "react-i18next";
-import ConfirmationModal from "component/modal/ConfirmationModal";
 
 class TodoListWidget extends React.Component {
   state = {
@@ -17,7 +16,7 @@ class TodoListWidget extends React.Component {
   }
 
   render() {
-    const { title, count, onClick, onDelete, t } = this.props;
+    const { title, count, onClick } = this.props;
     return (
       <div>
         <div className="todo-list-widget-component" onClick={onClick}>
@@ -34,13 +33,6 @@ class TodoListWidget extends React.Component {
             }}
           />
         </div>
-        <ConfirmationModal
-          title={t("todoListWidget.modal.title")}
-          text={t("todoListWidget.modal.text", { name: title })}
-          visible={this.state.visibleModal}
-          onClose={() => this.setModalVisibility(false)}
-          onConfirm={() => onDelete()}
-        />
       </div>
     );
   }

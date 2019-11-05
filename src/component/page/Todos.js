@@ -11,7 +11,6 @@ import Title from "component/common/Title";
 import Button from "component/button/Button";
 import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/animation/Loading";
-import InputModal from "component/modal/InputModal";
 import Settings from "component/menu/Settings";
 import SettingsItem from "component/menu/SettingsItem";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -21,8 +20,7 @@ class Todos extends React.Component {
   state = {
     loading: true,
     error: false,
-    list: [],
-    modalVisible: false
+    list: []
   };
 
   componentDidMount() {
@@ -64,12 +62,6 @@ class Todos extends React.Component {
           error.response.status
         )
       );
-  }
-
-  setModalVisibility(visibility) {
-    this.setState({
-      modalVisible: visibility
-    });
   }
 
   addTodoList = title => {
@@ -124,7 +116,7 @@ class Todos extends React.Component {
         <Button
           icon={faPlus}
           text={t("todos.create")}
-          onClick={() => this.setModalVisibility(true)}
+          onClick={() => console.warn("Not supported feature!")}
         />
       </div>
     );
@@ -140,13 +132,6 @@ class Todos extends React.Component {
         <Title text={t("todos.title")} />
         <Loading loading={this.state.loading} error={this.state.error}>
           {content}
-          <InputModal
-            title={t("todos.modalTitle")}
-            text={t("todos.modalDescription")}
-            visible={this.state.modalVisible}
-            onClose={() => this.setModalVisibility(false)}
-            onConfirm={this.addTodoList}
-          />
         </Loading>
       </div>
     );
