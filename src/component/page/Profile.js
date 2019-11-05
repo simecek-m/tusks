@@ -8,12 +8,14 @@ import { logout } from "store/actions";
 import Title from "component/common/Title";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
+import Settings from "component/menu/Settings";
 import "component/page/Profile.sass";
 
 function Profile({ user, logout, t }) {
   const userInfo = jsonwebtoken.decode(user);
   return (
     <div>
+      <Settings />
       <Back />
       <Title text={t("profile.title")} icon={faUserCircle} />
       <div id="profile-info">
