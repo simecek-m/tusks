@@ -13,8 +13,10 @@ import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/animation/Loading";
 import Settings from "component/menu/Settings";
 import SettingsItem from "component/menu/SettingsItem";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { redirect } from "helper/router";
+import { withModal } from "modal/withModal";
+import { INPUT } from "modal/types";
 
 class Todos extends React.Component {
   state = {
@@ -84,6 +86,16 @@ class Todos extends React.Component {
       );
   };
 
+  openNewTodoListModal() {
+    const { t, openModal } = this.props;
+    openModal({
+      type: INPUT,
+      title: t("todos.modal.title"),
+      text: t("todos.modal.text"),
+      onConfirm: this.addTodoList
+    });
+  }
+
   render() {
     const { t } = this.props;
     const items = this.state.list.map((item, index) => (
@@ -116,7 +128,7 @@ class Todos extends React.Component {
         <Button
           icon={faPlus}
           text={t("todos.create")}
-          onClick={() => console.warn("Not supported feature!")}
+          onClick={() => this.openNewTodoListModal()}
         />
       </div>
     );
@@ -127,6 +139,11 @@ class Todos extends React.Component {
           <SettingsItem
             icon={faUserCircle}
             onClick={() => redirect("/profile")}
+          />
+          <hr />
+          <SettingsItem
+            icon={faPlusCircle}
+            onClick={() => this.openNewTodoListModal()}
           />
         </Settings>
         <Title text={t("todos.title")} />
@@ -144,4 +161,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(withTranslation()(connect(mapStateToProps)(Todos)));
+export default withModal(
+  withRouter(withTranslation()(connect(mapStateToProps)(Todos)))
+);
