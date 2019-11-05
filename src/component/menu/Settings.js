@@ -2,6 +2,15 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { SELECT } from "modal/types";
+import csFlag from "assets/image/flag/cs.png";
+import enFlag from "assets/image/flag/en.png";
+import i18n from "i18n";
+import { withModal } from "modal/withModal";
+import { withTranslation } from "react-i18next";
+import SettingsItem from "component/menu/SettingsItem";
+import { faUserCircle, faFlagUsa } from "@fortawesome/free-solid-svg-icons";
+import { redirect } from "helper/router";
 import "component/menu/Settings.sass";
 
 class Settings extends React.Component {
@@ -13,6 +22,27 @@ class Settings extends React.Component {
     const expanded = this.state.expanded;
     this.setState({
       expanded: !expanded
+    });
+  }
+
+  openChangeLanguageModal() {
+    const { t, openModal } = this.props;
+    openModal({
+      type: SELECT,
+      title: t("settings.localization.modal.title"),
+      text: t("settings.localization.modal.text"),
+      options: [
+        {
+          image: enFlag,
+          text: t("settings.localization.modal.language.english"),
+          onClick: () => i18n.changeLanguage("en")
+        },
+        {
+          image: csFlag,
+          text: t("settings.localization.modal.language.czech"),
+          onClick: () => i18n.changeLanguage("cs")
+        }
+      ]
     });
   }
 
@@ -29,10 +59,23 @@ class Settings extends React.Component {
           icon={settingsIcon}
           onClick={() => this.switchExpanded()}
         />
-        <div className="settings-component-panel">{this.props.children}</div>
+        <div className="settings-component-sidebar">
+          <div className="common-actions">
+            <SettingsItem
+              icon={faUserCircle}
+              onClick={() => redirect("/profile")}
+            />
+            <SettingsItem
+              icon={faFlagUsa}
+              onClick={() => this.openChangeLanguageModal()}
+            />
+          </div>
+          <hr />
+          <div className="component-actions">{this.props.children}</div>
+        </div>
       </div>
     );
   }
 }
 
-export default Settings;
+export default withModal(withTranslation()(Settings));

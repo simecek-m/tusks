@@ -13,7 +13,7 @@ import TodoListWidget from "component/todo/TodoListWidget";
 import Loading from "component/animation/Loading";
 import Settings from "component/menu/Settings";
 import SettingsItem from "component/menu/SettingsItem";
-import { faUserCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { redirect } from "helper/router";
 import { withModal } from "modal/withModal";
 import { INPUT } from "modal/types";
@@ -136,11 +136,6 @@ class Todos extends React.Component {
     return (
       <div>
         <Settings>
-          <SettingsItem
-            icon={faUserCircle}
-            onClick={() => redirect("/profile")}
-          />
-          <hr />
           <SettingsItem
             icon={faPlusCircle}
             onClick={() => this.openNewTodoListModal()}
