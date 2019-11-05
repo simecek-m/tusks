@@ -24,8 +24,10 @@
       "title": "to-do",
       "create": "create",
       "createFirstList": "Create your first to-do list:",
-      "modalTitle": "New list",
-      "modalDescription": "Enter name of the new list."
+      "modal": {
+        "title": "New list",
+        "text": "Enter name of the new list."
+      }
     },
     "localization": {
       "english": "en",

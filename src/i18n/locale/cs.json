@@ -24,8 +24,10 @@
       "title": "to-do",
       "create": "vytvořit",
       "createFirstList": "Vytvořte Váš první to-do list:",
-      "modalTitle": "Nový seznam",
-      "modalDescription": "Zadejte název nového seznamu."
+      "modal": {
+        "title": "Nový seznam",
+        "text": "Zadejte název nového seznamu."
+      }
     },
     "localization": {
       "english": "en",
