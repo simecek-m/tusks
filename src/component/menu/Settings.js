@@ -9,7 +9,12 @@ import i18n from "i18n";
 import { withModal } from "modal/withModal";
 import { withTranslation } from "react-i18next";
 import SettingsItem from "component/menu/SettingsItem";
-import { faUserCircle, faFlagUsa } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHome,
+  faUser,
+  faFlagUsa,
+  faInfo
+} from "@fortawesome/free-solid-svg-icons";
 import { redirect } from "helper/router";
 import "component/menu/Settings.sass";
 
@@ -62,14 +67,13 @@ class Settings extends React.Component {
         />
         <div className="settings-component-sidebar">
           <div className="common-actions">
-            <SettingsItem
-              icon={faUserCircle}
-              onClick={() => redirect("/profile")}
-            />
+            <SettingsItem icon={faHome} onClick={() => redirect("/")} />
+            <SettingsItem icon={faUser} onClick={() => redirect("/profile")} />
             <SettingsItem
               icon={faFlagUsa}
               onClick={() => this.openChangeLanguageModal()}
             />
+            <SettingsItem icon={faInfo} onClick={() => redirect("/about")} />
           </div>
           {divider}
           <div className="component-actions">{this.props.children}</div>
