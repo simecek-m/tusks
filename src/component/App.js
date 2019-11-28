@@ -5,6 +5,7 @@ import Error from "component/error/Error";
 import Login from "component/page/Login";
 import Profile from "component/page/Profile";
 import TodoList from "component/page/TodoList";
+import About from "component/page/About";
 import "component/App.sass";
 import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
@@ -19,6 +20,7 @@ function App() {
         <ProtectedRoute exact path="/" component={Todos} />
         <ProtectedRoute path="/profile" component={Profile} />
         <ProtectedRoute path="/todos/:id" component={TodoList} />
+        <ProtectedRoute path="/about" component={About} />
         <Route component={Error} />
       </Switch>
     </Router>
