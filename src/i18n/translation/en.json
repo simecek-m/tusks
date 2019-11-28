@@ -50,6 +50,12 @@
         }
       }
     },
+    "about": {
+      "title": "about application",
+      "author": "author",
+      "animations": "animations",
+      "animationDescription": "{{name}} by {{author}}"
+    },
     "modal": {
       "confirmation": "OK"
     },
