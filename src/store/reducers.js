@@ -4,9 +4,9 @@ import {
   ACTION_TYPE_LOCALE
 } from "store/actions";
 
-const DEFAULT_LOCALE = process.env.REACT_APP_DEFAULT_LOCALE;
+export const DEFAULT_LOCALE = process.env.REACT_APP_DEFAULT_LOCALE;
 
-const initialState = {
+export const initialState = {
   user: null,
   locale: DEFAULT_LOCALE
 };
