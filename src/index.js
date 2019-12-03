@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "component/App";
 import * as serviceWorker from "serviceWorker";
-import store, { persistor } from "store";
+import { createPersistor, getStore } from "store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { I18nextProvider } from "react-i18next";
@@ -10,6 +10,9 @@ import ModalProvider from "modal/ModalProvider";
 import * as i18nModule from "i18n/index";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+
+const persistor = createPersistor();
+const store = getStore();
 
 ReactDOM.render(
   <Provider store={store}>

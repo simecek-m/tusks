@@ -1,12 +1,19 @@
 import i18next from "i18next";
 import i18n, * as i18nModule from "i18n";
 import { initReactI18next } from "react-i18next";
-import store from "store";
+import { createPersistor, getStore } from "store";
 
 import cs from "i18n/translation/cs.json";
 import en from "i18n/translation/en.json";
 
 describe("i18n", () => {
+  let store = null;
+
+  beforeAll(() => {
+    createPersistor();
+    store = getStore();
+  });
+
   test("should return default locale", () => {
     expect(i18nModule.DEFAULT_LOCALE).toBe(
       process.env.REACT_APP_DEFAULT_LOCALE
