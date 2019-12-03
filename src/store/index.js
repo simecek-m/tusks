@@ -6,11 +6,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 let store = null;
 
+export const persistConfig = {
+  key: "root",
+  storage
+};
+
 export function createPersistor() {
-  const persistConfig = {
-    key: "root",
-    storage
-  };
   const persistedReducer = persistReducer(persistConfig, reducers);
   store = createStore(persistedReducer, composeWithDevTools());
   return persistStore(store);
