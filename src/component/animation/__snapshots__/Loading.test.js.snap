@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component should render Loading in progress 1`] = `
+<div
+  aria-label="animation"
+  onClick={[Function]}
+  role="button"
+  style={
+    Object {
+      "height": "400px",
+      "margin": "0 auto",
+      "marginTop": "100px",
+      "outline": "none",
+      "overflow": "hidden",
+      "width": "400px",
+    }
+  }
+  tabIndex="0"
+  title=""
+/>
+`;
+
+exports[`Loading component should render Loading with error 1`] = `
+<div
+  aria-label="animation"
+  onClick={[Function]}
+  role="button"
+  style={
+    Object {
+      "height": "300px",
+      "margin": "0 auto",
+      "marginTop": "100px",
+      "outline": "none",
+      "overflow": "hidden",
+      "width": "400px",
+    }
+  }
+  tabIndex="0"
+  title=""
+/>
+`;
+
+exports[`Loading component should render completed Loading 1`] = `
+<div
+  className="loading-component complete"
+>
+  <div>
+    LOADING COMPLETED
+  </div>
+</div>
+`;
