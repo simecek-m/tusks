@@ -8,10 +8,17 @@ import { validateModalData } from "modal/validator";
 export const ModalContext = React.createContext();
 
 class ModalProvider extends React.Component {
-  state = {
-    type: CONFIRMATION,
-    visible: false
-  };
+  constructor(props) {
+    super(props);
+    const { visible = false, type = CONFIRMATION, ...rest } = this.props.init
+      ? this.props.init
+      : {};
+    this.state = {
+      visible,
+      type,
+      ...rest
+    };
+  }
 
   openModal = modal => {
     const modalData = validateModalData(modal);
