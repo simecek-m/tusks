@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select modal should render input modal 1`] = `
+<div
+  className="input-modal-component"
+  onClick={[Function]}
+>
+  <div
+    className="modal-body"
+    onClick={[Function]}
+  >
+    <h2
+      className="modal-title"
+    >
+      New list
+    </h2>
+    <div
+      className="modal-description"
+    >
+      Choose name for your new todo list:
+    </div>
+    <input
+      autoFocus={true}
+      className="modal-input"
+    />
+    <div
+      className="modal-confirmation-button"
+    >
+      <span
+        className="confirmation-text"
+        onClick={[Function]}
+      >
+        modal.confirmation
+      </span>
+    </div>
+  </div>
+</div>
+`;
