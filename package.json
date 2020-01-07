@@ -35,7 +35,8 @@
     "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix",
     "format": "prettier --write \"**/*.{js,jsx}\"",
     "sass-lint": "sass-lint -v -q",
-    "sass-lint:fix": "sass-lint-auto-fix"
+    "sass-lint:fix": "sass-lint-auto-fix",
+    "test:coverage": "react-scripts test --env=jsdom-fourteen --coverage && codecov"
   },
   "eslintConfig": {
     "extends": [
@@ -73,6 +74,7 @@
   },
   "devDependencies": {
     "canvas": "^2.6.0",
+    "codecov": "^3.6.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.5",
