@@ -116,7 +116,7 @@ class TodoList extends React.Component {
         />
       ));
     return (
-      <div className="todo-list-component">
+      <div className="todo-list-component animated fadeIn">
         <Back />
         <Loading loading={this.state.loading} error={this.state.error}>
           <Title

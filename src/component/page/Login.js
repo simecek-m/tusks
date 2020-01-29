@@ -26,7 +26,7 @@ function Login({ login, setLocale, t }) {
   };
 
   return (
-    <div>
+    <div className="animated fadeIn">
       <Title text={t("login.title")} icon={faUserShield} />
       <h2 className="sub-title">{t("login.description")}</h2>
       <div className="login-methods">

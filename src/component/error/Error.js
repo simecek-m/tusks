@@ -7,7 +7,7 @@ import { withTranslation } from "react-i18next";
 
 function Error({ t }) {
   return (
-    <div>
+    <div className="animated fadeIn">
       <Title text={t("error.title")} icon={faBug} />
       <img src={errorImg} alt="error" />
       <p className="text-primary">{t("error.primary")}</p>

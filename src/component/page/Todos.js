@@ -134,7 +134,7 @@ class Todos extends React.Component {
     );
     const content = items.length > 0 ? items : writeFirstTodoAnimation;
     return (
-      <div>
+      <div class="animated fadeIn">
         <Settings>
           <SettingsItem
             icon={faPlusCircle}

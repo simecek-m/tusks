@@ -42,7 +42,7 @@ function About({ t }) {
   };
 
   return (
-    <div id="about-component">
+    <div id="about-component" className="animated fadeIn">
       <Settings />
       <Back />
       <Title text={t("about.title")} icon={faInfoCircle} />

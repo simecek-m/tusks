@@ -14,7 +14,7 @@ import "component/page/Profile.sass";
 function Profile({ user, logout, t }) {
   const userInfo = jsonwebtoken.decode(user);
   return (
-    <div>
+    <div class="animated fadeIn">
       <Settings />
       <Back />
       <Title text={t("profile.title")} icon={faUserCircle} />
