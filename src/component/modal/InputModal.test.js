@@ -5,6 +5,13 @@ import csFlag from "assets/image/flag/cs.png";
 import enFlag from "assets/image/flag/en.png";
 import { INPUT } from "modal/types";
 
+jest.mock("react-i18next", () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: key => key };
+    return Component;
+  }
+}));
+
 const TEST_MODAL_INPUT = {
   type: INPUT,
   visible: true,

@@ -3,6 +3,13 @@ import ModalProvider from "modal/ModalProvider";
 import renderer from "react-test-renderer";
 import { CONFIRMATION } from "modal/types";
 
+jest.mock("react-i18next", () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: key => key };
+    return Component;
+  }
+}));
+
 const TEST_MODAL_CONFIRMATION = {
   type: CONFIRMATION,
   visible: true,

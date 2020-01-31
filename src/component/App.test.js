@@ -4,6 +4,13 @@ import App from "component/App";
 import { Provider } from "react-redux";
 import { createPersistor, getStore } from "store";
 
+jest.mock("react-i18next", () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: key => key };
+    return Component;
+  }
+}));
+
 createPersistor();
 const store = getStore();
 
