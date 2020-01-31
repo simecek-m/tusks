@@ -2,7 +2,7 @@
 
 exports[`Select modal should render input modal 1`] = `
 <div
-  className="input-modal-component"
+  className="select-modal-component"
   onClick={[Function]}
 >
   <div
@@ -18,20 +18,6 @@ exports[`Select modal should render input modal 1`] = `
       className="modal-description"
     >
       Choose name for your new todo list:
-    </div>
-    <input
-      autoFocus={true}
-      className="modal-input"
-    />
-    <div
-      className="modal-confirmation-button"
-    >
-      <span
-        className="confirmation-text"
-        onClick={[Function]}
-      >
-        modal.confirmation
-      </span>
     </div>
   </div>
 </div>
