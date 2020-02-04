@@ -3,8 +3,8 @@
     "login": {
       "title": "přihlášení",
       "description": "Přihlašte se do naší todo aplikace pomocí Vašeho Google účtu.",
-      "loginFailed": "Přihlášení selhalo! Zkuste to prosím znovu později.",
-      "loginFailedNoJwt": "Přihlášení selhalo! Identifikační autorita nezaslala žádný JWT."
+      "loginFailedTitle": "Přihlášení selhalo!",
+      "loginFailedMessage": "Zkuste to prosím znovu později."
     },
     "error": {
       "title": "Oooooooops!",
@@ -61,7 +61,9 @@
     },
     "notification": {
       "unsupportedFeature": "Nepodporovaná funkce",
-      "unsupportedFeatureDescription": "Tato funkce ještě není podporována."
+      "unsupportedFeatureDescription": "Tato funkce ještě není podporována.",
+      "somethingWentWrong": "Něco se pokazilo",
+      "tryAgainLater": "Zkuste to znovu později."
     }
   }
 }

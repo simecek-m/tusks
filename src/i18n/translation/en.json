@@ -3,8 +3,8 @@
     "login": {
       "title": "login",
       "description": "Login into our todo app through your Google account.",
-      "loginFailed": "Login failed! Please try again later.",
-      "loginFailedNoJwt": "Login failed! Identity authority didn't send any JWT."
+      "loginFailedTitle": "Login failed!",
+      "loginFailedMessage": "Try again later"
     },
     "error": {
       "title": "Oooooooops!",
@@ -61,7 +61,9 @@
     },
     "notification": {
       "unsupportedFeature": "Unsupported feature",
-      "unsupportedFeatureDescription": "This feature is not yet supported."
+      "unsupportedFeatureDescription": "This feature is not yet supported.",
+      "somethingWentWrong": "Something went wrong",
+      "tryAgainLater": "Try again later."
     }
   }
 }

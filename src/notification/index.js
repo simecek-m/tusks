@@ -34,3 +34,23 @@ export function showUnsupportedFeatureNotification() {
     }
   });
 }
+
+export function showDangerNotification(
+  title = i18n.t("notification.somethingWentWrong"),
+  message = i18n.t("notification.tryAgainLater")
+) {
+  store.addNotification({
+    title: title,
+    message: message,
+    type: "danger",
+    container: "bottom-right",
+    animationIn: ["animated", "bounceIn"],
+    animationOut: ["animated", "bounceOut"],
+    dismiss: {
+      duration: 5000,
+      click: true,
+      pauseOnHover: true,
+      waitForAnimation: true
+    }
+  });
+}

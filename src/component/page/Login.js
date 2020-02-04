@@ -9,20 +9,27 @@ import Title from "component/common/Title";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
 import jsonwebtoken from "jsonwebtoken";
+import { showDangerNotification } from "notification";
 
 function Login({ login, setLocale, t }) {
   const loginSuccessCallback = response => {
     const jwt = jsonwebtoken.decode(response.tokenId);
-    if (jwt) {
+    if (!jwt) {
       setLocale(jwt.locale);
       login(response.tokenId);
     } else {
-      // TODO: show notification: login.loginFailedNoJwt
+      showDangerNotification(
+        t("login.loginFailedTitle"),
+        t("login.loginFailedMessage")
+      );
     }
   };
 
   const loginFailCallback = () => {
-    // TODO: show notification: login.loginFailed
+    showDangerNotification(
+      t("login.loginFailedTitle"),
+      t("login.loginFailedMessage")
+    );
   };
 
   return (
