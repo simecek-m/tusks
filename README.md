@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.com/simecek-m/todo-react.svg?branch=master)](https://travis-ci.com/simecek-m/todo-react)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6a9c8c3873ab4421a7f310bb057b09e9)](https://www.codacy.com/manual/simecek-m/todo-react?utm_source=github.com&utm_medium=referral&utm_content=simecek-m/todo-react&utm_campaign=Badge_Grade)
-[![codecov](https://codecov.io/gh/simecek-m/todo-react/branch/master/graph/badge.svg)](https://codecov.io/gh/simecek-m/todo-react)
+[![Build Status](https://travis-ci.com/simecek-m/todo-web.svg?branch=master)](https://travis-ci.com/simecek-m/todo-web)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/20d14ce2206c4333aca147836069a2b8)](https://www.codacy.com/manual/simecek-m/todo-web?utm_source=github.com&utm_medium=referral&utm_content=simecek-m/todo-web&utm_campaign=Badge_Grade)
+[![codecov](https://codecov.io/gh/simecek-m/todo-web/branch/master/graph/badge.svg)](https://codecov.io/gh/simecek-m/todo-web)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
