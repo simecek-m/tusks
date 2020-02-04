@@ -14,7 +14,7 @@ import { showDangerNotification } from "notification";
 function Login({ login, setLocale, t }) {
   const loginSuccessCallback = response => {
     const jwt = jsonwebtoken.decode(response.tokenId);
-    if (!jwt) {
+    if (jwt) {
       setLocale(jwt.locale);
       login(response.tokenId);
     } else {
