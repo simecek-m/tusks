@@ -9,9 +9,12 @@ function Button({
   type = "default",
   onClick = null
 }) {
+  const buttonIcon = icon ? (
+    <FontAwesomeIcon className="button-component-icon" icon={icon} />
+  ) : null;
   return (
     <span className={`button-component ${type}`} onClick={onClick}>
-      <FontAwesomeIcon className="button-component-icon" icon={icon} />
+      {buttonIcon}
       <span className="text">{text.toUpperCase()}</span>
     </span>
   );
