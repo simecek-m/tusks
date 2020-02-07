@@ -5,7 +5,7 @@ import Title from "component/common/Title";
 import { faBug } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
 
-function Error({ t }) {
+export function Error({ t }) {
   return (
     <div className="animated fadeIn">
       <Title text={t("error.title")} icon={faBug} />

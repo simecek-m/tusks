@@ -1,6 +1,6 @@
 import React from "react";
-import Error from "component/error/Error";
-import renderer from "react-test-renderer";
+import { Error } from "component/error/Error";
+import { shallow } from "enzyme";
 
 jest.mock("react-i18next", () => ({
   withTranslation: () => Component => {
@@ -11,7 +11,7 @@ jest.mock("react-i18next", () => ({
 
 describe("Error component", () => {
   test("should render Error", () => {
-    const component = renderer.create(<Error />).toJSON();
-    expect(component).toMatchSnapshot();
+    const wrapper = shallow(<Error />);
+    expect(wrapper).toMatchSnapshot();
   });
 });
