@@ -1,24 +1,17 @@
 import React from "react";
-import Settings from "component/menu/Settings";
-import renderer from "react-test-renderer";
-import ModalProvider from "modal/ModalProvider";
-
-jest.mock("react-i18next", () => ({
-  withTranslation: () => Component => {
-    Component.defaultProps = { ...Component.defaultProps, t: key => key };
-    return Component;
-  }
-}));
+import { Settings } from "component/menu/Settings";
+import { shallow } from "enzyme";
 
 describe("Settings component", () => {
-  test("should render Settings", () => {
-    const component = renderer
-      .create(
-        <ModalProvider>
-          <Settings />
-        </ModalProvider>
-      )
-      .toJSON();
-    expect(component).toMatchSnapshot();
+  test("should render default Settings", () => {
+    const wrapper = shallow(<Settings />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test("should render Settings after expand", () => {
+    const wrapper = shallow(<Settings />);
+    const icon = wrapper.find(".settings-component-button");
+    icon.simulate("click");
+    expect(wrapper).toMatchSnapshot();
   });
 });

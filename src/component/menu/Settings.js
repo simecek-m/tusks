@@ -18,7 +18,7 @@ import {
 import { redirect } from "helper/router";
 import "component/menu/Settings.sass";
 
-class Settings extends React.Component {
+export class Settings extends React.Component {
   state = {
     expanded: false
   };
