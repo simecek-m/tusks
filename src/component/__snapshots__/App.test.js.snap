@@ -1,67 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App component should render App 1`] = `
-<div
-  className="animated fadeIn"
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
 >
-  <h1
-    className="title"
-  >
-    <svg
-      aria-hidden="true"
-      className="svg-inline--fa fa-user-shield fa-w-20 "
-      data-icon="user-shield"
-      data-prefix="fas"
-      focusable="false"
-      role="img"
-      style={Object {}}
-      viewBox="0 0 640 512"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M622.3 271.1l-115.2-45c-4.1-1.6-12.6-3.7-22.2 0l-115.2 45c-10.7 4.2-17.7 14-17.7 24.9 0 111.6 68.7 188.8 132.9 213.9 9.6 3.7 18 1.6 22.2 0C558.4 489.9 640 420.5 640 296c0-10.9-7-20.7-17.7-24.9zM496 462.4V273.3l95.5 37.3c-5.6 87.1-60.9 135.4-95.5 151.8zM224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm96 40c0-2.5.8-4.8 1.1-7.2-2.5-.1-4.9-.8-7.5-.8h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c6.8 0 13.3-1.5 19.2-4-54-42.9-99.2-116.7-99.2-212z"
-        fill="currentColor"
-        style={Object {}}
-      />
-    </svg>
-     
-    login.title
-  </h1>
-  <h2
-    className="sub-title"
-  >
-    login.description
-  </h2>
-  <div
-    className="login-methods"
-  >
-    <div
-      className="login-method"
-      onClick={[Function]}
-    >
-      <svg
-        aria-hidden="true"
-        className="svg-inline--fa fa-google fa-w-16 icon"
-        data-icon="google"
-        data-prefix="fab"
-        focusable="false"
-        role="img"
-        style={Object {}}
-        viewBox="0 0 488 512"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-          fill="currentColor"
-          style={Object {}}
-        />
-      </svg>
-      <span
-        className="authority"
-      >
-        Google
-      </span>
-    </div>
-  </div>
-</div>
+  <Switch>
+    <Connect(AnonymousRoute)
+      component={[Function]}
+      path="/login"
+    />
+    <Connect(ProtectedRoute)
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Connect(ProtectedRoute)
+      component={[Function]}
+      path="/profile"
+    />
+    <Connect(ProtectedRoute)
+      component={[Function]}
+      path="/todos/:id"
+    />
+    <Connect(ProtectedRoute)
+      component={[Function]}
+      path="/about"
+    />
+    <Route
+      component={[Function]}
+    />
+  </Switch>
+</Router>
 `;
