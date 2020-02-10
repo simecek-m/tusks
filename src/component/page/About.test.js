@@ -1,8 +1,6 @@
 import React from "react";
-import About from "component/page/About";
-import renderer from "react-test-renderer";
-import ModalProvider from "modal/ModalProvider";
-import { MemoryRouter } from "react-router-dom";
+import { About } from "component/page/About";
+import { shallow } from "enzyme";
 
 jest.mock("react-i18next", () => ({
   withTranslation: () => Component => {
@@ -13,15 +11,7 @@ jest.mock("react-i18next", () => ({
 
 describe("About component", () => {
   test("should render About page component", () => {
-    const component = renderer
-      .create(
-        <MemoryRouter>
-          <ModalProvider>
-            <About />
-          </ModalProvider>
-        </MemoryRouter>
-      )
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const wrapper = shallow(<About />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

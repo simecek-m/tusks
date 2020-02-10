@@ -13,7 +13,7 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import "component/page/About.sass";
 
-function About({ t }) {
+export function About({ t }) {
   const loadingAnimationOptions = {
     loop: true,
     autoplay: true,
