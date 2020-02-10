@@ -5,7 +5,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "component/navigation/Back.sass";
 import ReactTooltip from "react-tooltip";
 
-function Back({ history }) {
+export function Back({ history }) {
   const goBack = () => {
     history.goBack();
   };
