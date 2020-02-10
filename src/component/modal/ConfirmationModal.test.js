@@ -1,7 +1,7 @@
 import React from "react";
-import ModalProvider from "modal/ModalProvider";
-import renderer from "react-test-renderer";
+import { ConfirmationModal } from "component/modal/ConfirmationModal";
 import { CONFIRMATION } from "modal/types";
+import { shallow } from "enzyme";
 
 jest.mock("react-i18next", () => ({
   withTranslation: () => Component => {
@@ -14,19 +14,20 @@ const TEST_MODAL_CONFIRMATION = {
   type: CONFIRMATION,
   visible: true,
   title: "Delete",
-  text: "This action will permanently delete 'TEST' todo list! Are you sure?"
+  text: "This action will permanently delete 'TEST' todo list! Are you sure?",
+  onConfirm: () => {}
 };
 
 describe("Confirmation modal", () => {
-  test("should render default modal", () => {
-    const component = renderer.create(<ModalProvider />).toJSON();
-    expect(component).toMatchSnapshot();
+  test("should not render modal", () => {
+    const wrapper = shallow(<ConfirmationModal />);
+    expect(wrapper).toMatchSnapshot();
   });
 
-  test("should render confirmation modal", () => {
-    const component = renderer
-      .create(<ModalProvider init={TEST_MODAL_CONFIRMATION}></ModalProvider>)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+  test("should render modal", () => {
+    const wrapper = shallow(
+      <ConfirmationModal modal={TEST_MODAL_CONFIRMATION} />
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 });

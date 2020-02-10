@@ -1,20 +1,35 @@
 import React from "react";
-import ModalProvider from "modal/ModalProvider";
-import renderer from "react-test-renderer";
+import { SelectModal } from "component/modal/SelectModal";
 import { SELECT } from "modal/types";
+import csFlag from "assets/image/flag/cs.png";
+import enFlag from "assets/image/flag/en.png";
+import { shallow } from "enzyme";
 
 const TEST_MODAL_SELECT = {
   type: SELECT,
   visible: true,
-  title: "New list",
-  text: "Choose name for your new todo list:"
+  title: "Select Language",
+  text: "Choose your preferred language:",
+  options: [
+    {
+      text: "czech",
+      image: csFlag
+    },
+    {
+      text: "english",
+      image: enFlag
+    }
+  ]
 };
 
 describe("Select modal", () => {
-  test("should render input modal", () => {
-    const component = renderer
-      .create(<ModalProvider init={TEST_MODAL_SELECT} />)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+  test("should not render modal", () => {
+    const wrapper = shallow(<SelectModal />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test("should render modal", () => {
+    const wrapper = shallow(<SelectModal modal={TEST_MODAL_SELECT} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

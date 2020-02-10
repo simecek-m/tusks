@@ -1,9 +1,7 @@
 import React from "react";
-import ModalProvider from "modal/ModalProvider";
-import renderer from "react-test-renderer";
-import csFlag from "assets/image/flag/cs.png";
-import enFlag from "assets/image/flag/en.png";
+import { InputModal } from "component/modal/InputModal";
 import { INPUT } from "modal/types";
+import { shallow } from "enzyme";
 
 jest.mock("react-i18next", () => ({
   withTranslation: () => Component => {
@@ -15,25 +13,18 @@ jest.mock("react-i18next", () => ({
 const TEST_MODAL_INPUT = {
   type: INPUT,
   visible: true,
-  title: "Select Language",
-  text: "Choose your preferred language:",
-  options: [
-    {
-      text: "czech",
-      image: csFlag
-    },
-    {
-      text: "english",
-      image: enFlag
-    }
-  ]
+  title: "New list",
+  text: "Choose name for your new todo list:"
 };
 
 describe("Input modal", () => {
-  test("should render select modal", () => {
-    const component = renderer
-      .create(<ModalProvider init={TEST_MODAL_INPUT} />)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+  test("should not render modal", () => {
+    const wrapper = shallow(<InputModal />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test("should render modal", () => {
+    const wrapper = shallow(<InputModal modal={TEST_MODAL_INPUT} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

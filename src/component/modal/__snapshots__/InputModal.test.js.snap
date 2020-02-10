@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input modal should render select modal 1`] = `
+exports[`Input modal should not render modal 1`] = `""`;
+
+exports[`Input modal should render modal 1`] = `
 <div
   className="input-modal-component"
   onClick={[Function]}
@@ -12,12 +14,12 @@ exports[`Input modal should render select modal 1`] = `
     <h2
       className="modal-title"
     >
-      Select Language
+      New list
     </h2>
     <div
       className="modal-description"
     >
-      Choose your preferred language:
+      Choose name for your new todo list:
     </div>
     <input
       autoFocus={true}

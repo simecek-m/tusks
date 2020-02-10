@@ -3,7 +3,7 @@ import "component/modal/ConfirmationModal.sass";
 import { withTranslation } from "react-i18next";
 import { withModal } from "modal/withModal";
 
-function ConfirmationModal({ t, modal, closeModal }) {
+export function ConfirmationModal({ t, modal = {}, closeModal = () => {} }) {
   return modal.visible ? (
     <div className="confirmation-modal-component" onClick={() => closeModal()}>
       <div className="modal-body" onClick={e => e.stopPropagation()}>

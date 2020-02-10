@@ -3,7 +3,7 @@ import { withTranslation } from "react-i18next";
 import { withModal } from "modal/withModal";
 import "component/modal/InputModal.sass";
 
-function InputModal({ t, modal, closeModal }) {
+export function InputModal({ t, modal = {}, closeModal }) {
   const modalInput = React.createRef();
   return modal.visible ? (
     <div className="input-modal-component" onClick={() => closeModal()}>

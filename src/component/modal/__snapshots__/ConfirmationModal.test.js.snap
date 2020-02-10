@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Confirmation modal should render confirmation modal 1`] = `
+exports[`Confirmation modal should not render modal 1`] = `""`;
+
+exports[`Confirmation modal should render modal 1`] = `
 <div
   className="confirmation-modal-component"
   onClick={[Function]}
@@ -32,5 +34,3 @@ exports[`Confirmation modal should render confirmation modal 1`] = `
   </div>
 </div>
 `;
-
-exports[`Confirmation modal should render default modal 1`] = `null`;
