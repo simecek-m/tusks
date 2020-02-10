@@ -6,7 +6,14 @@ import { withModal } from "modal/withModal";
 import { CONFIRMATION } from "modal/types";
 import "component/todo/TodoListWidget.sass";
 
-function TodoListWidget({ title, count, onClick, openModal, onDelete, t }) {
+export function TodoListWidget({
+  title = "Unknown",
+  count = "undefined",
+  onClick,
+  openModal,
+  onDelete,
+  t
+}) {
   return (
     <div>
       <div className="todo-list-widget-component" onClick={onClick}>
