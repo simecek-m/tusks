@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "component/task/AddTask.sass";
 
-class AddTask extends React.Component {
+export class AddTask extends React.Component {
   state = {
     active: false
   };
@@ -48,7 +48,10 @@ class AddTask extends React.Component {
         onKeyDown={e => this.keyDown(e.keyCode)}
       />
     ) : (
-      <span onClick={() => this.setState({ active: true })}>
+      <span
+        className="add-task-text"
+        onClick={() => this.setState({ active: true })}
+      >
         {t("addTask.new")}
       </span>
     );
