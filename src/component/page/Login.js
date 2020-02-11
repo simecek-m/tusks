@@ -11,7 +11,7 @@ import { withTranslation } from "react-i18next";
 import jsonwebtoken from "jsonwebtoken";
 import { showDangerNotification } from "notification";
 
-function Login({ login, setLocale, t }) {
+export function Login({ login, setLocale, t }) {
   const loginSuccessCallback = response => {
     const jwt = jsonwebtoken.decode(response.tokenId);
     if (jwt) {
@@ -53,9 +53,7 @@ function Login({ login, setLocale, t }) {
   );
 }
 
-export default withTranslation()(
-  connect(
-    null,
-    { login, setLocale }
-  )(Login)
-);
+export default connect(
+  null,
+  { login, setLocale }
+)(withTranslation()(Login));
