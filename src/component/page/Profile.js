@@ -11,7 +11,7 @@ import { withTranslation } from "react-i18next";
 import Settings from "component/menu/Settings";
 import "component/page/Profile.sass";
 
-function Profile({ user, logout, t }) {
+export function Profile({ user, logout, t }) {
   const userInfo = jsonwebtoken.decode(user);
   return (
     <div className="animated fadeIn">
@@ -61,9 +61,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default withTranslation()(
-  connect(
-    mapStateToProps,
-    { logout }
-  )(Profile)
-);
+export default connect(
+  mapStateToProps,
+  { logout }
+)(withTranslation()(Profile));

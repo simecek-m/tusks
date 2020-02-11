@@ -1,12 +1,7 @@
 import React from "react";
-import Profile from "component/page/Profile";
-import renderer from "react-test-renderer";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducers from "store/reducers";
+import { Profile } from "component/page/Profile";
 import jsonwebtoken from "jsonwebtoken";
-import ModalProvider from "modal/ModalProvider";
-import { MemoryRouter } from "react-router-dom";
+import { shallow } from "enzyme";
 
 jest.mock("react-i18next", () => ({
   withTranslation: () => Component => {
@@ -23,25 +18,11 @@ const TEST_USER = {
   authority: "accounts.google.com"
 };
 
-const INITIAL_STATE = {
-  user: jsonwebtoken.sign(TEST_USER, "secret")
-};
-
-const store = createStore(reducers, INITIAL_STATE);
+const JWT_USER = jsonwebtoken.sign(TEST_USER, "secret");
 
 describe("Profile component", () => {
   test("should render Profile page component", () => {
-    const component = renderer
-      .create(
-        <Provider store={store}>
-          <MemoryRouter>
-            <ModalProvider>
-              <Profile />
-            </ModalProvider>
-          </MemoryRouter>
-        </Provider>
-      )
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const wrapper = shallow(<Profile user={JWT_USER} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });
