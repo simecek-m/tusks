@@ -10,7 +10,7 @@ import Task from "component/task/Task";
 import AddTask from "component/task/AddTask";
 import "component/page/TodoList.sass";
 
-class TodoList extends React.Component {
+export class TodoList extends React.Component {
   state = {
     todoList: null,
     loading: true,
@@ -28,10 +28,7 @@ class TodoList extends React.Component {
           loading: false
         })
       )
-      .catch(error => {
-        console.error(error);
-        this.setState({ loading: false, error: true });
-      });
+      .catch(() => this.setState({ loading: false, error: true }));
   }
 
   updateTask(index) {
