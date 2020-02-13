@@ -18,7 +18,7 @@ import { redirect } from "helper/router";
 import { withModal } from "modal/withModal";
 import { INPUT } from "modal/types";
 
-class Todos extends React.Component {
+export class Todos extends React.Component {
   state = {
     loading: true,
     error: false,
@@ -157,5 +157,5 @@ const mapStateToProps = state => {
 };
 
 export default withModal(
-  withRouter(withTranslation()(connect(mapStateToProps)(Todos)))
+  withRouter(connect(mapStateToProps)(withTranslation()(Todos)))
 );
