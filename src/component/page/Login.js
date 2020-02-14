@@ -11,8 +11,9 @@ import { withTranslation } from "react-i18next";
 import jsonwebtoken from "jsonwebtoken";
 import { showDangerNotification } from "notification";
 
-export function Login({ login, setLocale, t }) {
-  const loginSuccessCallback = response => {
+export class Login extends React.Component {
+  loginSuccessCallback(response) {
+    const { t, setLocale, login } = this.props;
     const jwt = jsonwebtoken.decode(response.tokenId);
     if (jwt) {
       setLocale(jwt.locale);
@@ -23,34 +24,38 @@ export function Login({ login, setLocale, t }) {
         t("login.loginFailedMessage")
       );
     }
-  };
+  }
 
-  const loginFailCallback = () => {
+  loginFailCallback(error) {
+    const { t } = this.props;
     showDangerNotification(
       t("login.loginFailedTitle"),
       t("login.loginFailedMessage")
     );
-  };
+  }
 
-  return (
-    <div className="animated fadeIn">
-      <Title text={t("login.title")} icon={faUserShield} />
-      <h2 className="sub-title">{t("login.description")}</h2>
-      <div className="login-methods">
-        <GoogleLogin
-          clientId={process.env.REACT_APP_GOOGLE_API_CLIENT_ID}
-          onSuccess={loginSuccessCallback}
-          onFailure={loginFailCallback}
-          render={renderProps => (
-            <div onClick={renderProps.onClick} className="login-method">
-              <FontAwesomeIcon className="icon" icon={faGoogle} />
-              <span className="authority">Google</span>
-            </div>
-          )}
-        />
+  render() {
+    const { t } = this.props;
+    return (
+      <div className="animated fadeIn">
+        <Title text={t("login.title")} icon={faUserShield} />
+        <h2 className="sub-title">{t("login.description")}</h2>
+        <div className="login-methods">
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLE_API_CLIENT_ID}
+            onSuccess={response => this.loginSuccessCallback(response)}
+            onFailure={error => this.loginFailCallback(error)}
+            render={renderProps => (
+              <div onClick={renderProps.onClick} className="login-method">
+                <FontAwesomeIcon className="icon" icon={faGoogle} />
+                <span className="authority">Google</span>
+              </div>
+            )}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default connect(
