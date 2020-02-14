@@ -61,19 +61,32 @@ export class Settings extends React.Component {
         }`}
       >
         <FontAwesomeIcon
-          className="settings-component-button"
+          className="settings-component-switch"
           icon={settingsIcon}
           onClick={() => this.switchExpanded()}
         />
         <div className="settings-component-sidebar">
           <div className="common-actions">
-            <SettingsItem icon={faHome} onClick={() => redirect("/")} />
-            <SettingsItem icon={faUser} onClick={() => redirect("/profile")} />
             <SettingsItem
+              id="settings-item-home"
+              icon={faHome}
+              onClick={() => redirect("/")}
+            />
+            <SettingsItem
+              id="settings-item-profile"
+              icon={faUser}
+              onClick={() => redirect("/profile")}
+            />
+            <SettingsItem
+              id="settings-item-language"
               icon={faFlagUsa}
               onClick={() => this.openChangeLanguageModal()}
             />
-            <SettingsItem icon={faInfo} onClick={() => redirect("/about")} />
+            <SettingsItem
+              id="settings-item-about"
+              icon={faInfo}
+              onClick={() => redirect("/about")}
+            />
           </div>
           {divider}
           <div className="component-actions">{this.props.children}</div>

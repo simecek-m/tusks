@@ -5,7 +5,7 @@ exports[`Settings component should render Settings after expand 1`] = `
   className="settings-component expanded"
 >
   <FontAwesomeIcon
-    className="settings-component-button"
+    className="settings-component-switch"
     icon={
       Object {
         "icon": Array [
@@ -41,6 +41,7 @@ exports[`Settings component should render Settings after expand 1`] = `
             "prefix": "fas",
           }
         }
+        id="settings-item-home"
         onClick={[Function]}
       />
       <SettingsItem
@@ -57,6 +58,7 @@ exports[`Settings component should render Settings after expand 1`] = `
             "prefix": "fas",
           }
         }
+        id="settings-item-profile"
         onClick={[Function]}
       />
       <SettingsItem
@@ -73,6 +75,7 @@ exports[`Settings component should render Settings after expand 1`] = `
             "prefix": "fas",
           }
         }
+        id="settings-item-language"
         onClick={[Function]}
       />
       <SettingsItem
@@ -89,6 +92,7 @@ exports[`Settings component should render Settings after expand 1`] = `
             "prefix": "fas",
           }
         }
+        id="settings-item-about"
         onClick={[Function]}
       />
     </div>
@@ -104,7 +108,7 @@ exports[`Settings component should render default Settings 1`] = `
   className="settings-component "
 >
   <FontAwesomeIcon
-    className="settings-component-button"
+    className="settings-component-switch"
     icon={
       Object {
         "icon": Array [
@@ -140,6 +144,7 @@ exports[`Settings component should render default Settings 1`] = `
             "prefix": "fas",
           }
         }
+        id="settings-item-home"
         onClick={[Function]}
       />
       <SettingsItem
@@ -156,6 +161,7 @@ exports[`Settings component should render default Settings 1`] = `
             "prefix": "fas",
           }
         }
+        id="settings-item-profile"
         onClick={[Function]}
       />
       <SettingsItem
@@ -172,6 +178,7 @@ exports[`Settings component should render default Settings 1`] = `
             "prefix": "fas",
           }
         }
+        id="settings-item-language"
         onClick={[Function]}
       />
       <SettingsItem
@@ -188,6 +195,7 @@ exports[`Settings component should render default Settings 1`] = `
             "prefix": "fas",
           }
         }
+        id="settings-item-about"
         onClick={[Function]}
       />
     </div>
