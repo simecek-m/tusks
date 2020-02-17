@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withModal HOC wrapper should return component with modal props 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "closeModal": [Function],
+      "modal": Object {
+        "type": "confirmation",
+        "visible": false,
+      },
+      "openModal": [Function],
+    }
+  }
+>
+  <Wrapper />
+  <ContextConsumer>
+    <Component />
+  </ContextConsumer>
+</ContextProvider>
+`;
