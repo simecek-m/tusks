@@ -3,28 +3,48 @@ import { withTranslation } from "react-i18next";
 import { withModal } from "modal/withModal";
 import "component/modal/InputModal.sass";
 
-export function InputModal({ t, modal = {}, closeModal }) {
-  const modalInput = React.createRef();
-  return modal.visible ? (
-    <div className="input-modal-component" onClick={() => closeModal()}>
-      <div className="modal-body" onClick={e => e.stopPropagation()}>
-        <h2 className="modal-title">{modal.title}</h2>
-        <div className="modal-description">{modal.text}</div>
-        <input ref={modalInput} className="modal-input" autoFocus />
-        <div className="modal-confirmation-button">
-          <span
-            className="confirmation-text"
-            onClick={() => {
-              modal.onConfirm(modalInput.current.value);
-              closeModal();
-            }}
-          >
-            {t("modal.confirmation")}
-          </span>
+export class InputModal extends React.Component {
+  state = {
+    value: ""
+  };
+
+  submitForm(event) {
+    const { modal, closeModal } = this.props;
+    event.preventDefault();
+    const data = this.state.value;
+    modal.onConfirm(data);
+    closeModal();
+  }
+
+  changeValue(event) {
+    const newValue = event.target.value;
+    this.setState({ value: newValue });
+  }
+
+  render() {
+    const { modal = {}, closeModal, t } = this.props;
+    return modal.visible ? (
+      <div className="input-modal-component" onClick={() => closeModal()}>
+        <div className="modal-body" onClick={e => e.stopPropagation()}>
+          <h2 className="modal-title">{modal.title}</h2>
+          <div className="modal-description">{modal.text}</div>
+          <form onSubmit={e => this.submitForm(e)}>
+            <input
+              name="value"
+              value={this.state.value}
+              onChange={e => this.changeValue(e)}
+              type="text"
+              className="modal-input"
+              autoFocus
+            />
+            <button className="modal-confirmation-button" type="submit">
+              {t("modal.confirmation")}
+            </button>
+          </form>
         </div>
       </div>
-    </div>
-  ) : null;
+    ) : null;
+  }
 }
 
 export default withModal(withTranslation()(InputModal));
