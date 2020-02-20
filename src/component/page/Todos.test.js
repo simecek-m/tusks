@@ -2,6 +2,7 @@ import React from "react";
 import { Todos } from "component/page/Todos";
 import { shallow } from "enzyme";
 import api from "api";
+import * as notification from "notification";
 
 jest.mock("react-i18next", () => ({
   withTranslation: () => Component => {
@@ -63,16 +64,25 @@ const TEST_TODOS_ORIGINAL = [
   }
 ];
 
+const ERROR_MESSAGE = "Error occured during fetching data!";
+const ERROR_STATUS = 404;
+
 const apiGetSpy = jest.spyOn(api, "get");
 const apiPostSpy = jest.spyOn(api, "post");
 const apiPutSpy = jest.spyOn(api, "put");
 const apiDeleteSpy = jest.spyOn(api, "delete");
+
+const notificationSpy = jest.spyOn(
+  notification,
+  "showDangerNotificationWithStatus"
+);
 
 afterEach(() => {
   apiGetSpy.mockReset();
   apiPostSpy.mockReset();
   apiPutSpy.mockReset();
   apiDeleteSpy.mockReset();
+  notificationSpy.mockReset();
 });
 
 describe("TodoList component", () => {
@@ -99,6 +109,31 @@ describe("TodoList component", () => {
     expect(state.loading).toBeFalsy();
     expect(state.list).toEqual(TEST_TODOS);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  test("should display error notification after fail fetch data ", async () => {
+    apiGetSpy.mockRejectedValue({
+      status: ERROR_STATUS,
+      response: {
+        status: ERROR_STATUS,
+        data: { message: ERROR_MESSAGE }
+      }
+    });
+    const wrapper = shallow(<Todos user={TEST_USER_JWT} />, {
+      disableLifecycleMethods: true
+    });
+    await wrapper.instance().componentDidMount();
+    expect(apiGetSpy).toHaveBeenCalledTimes(1);
+    expect(apiGetSpy).toHaveBeenCalledWith("/todos", {
+      headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
+    });
+    await wrapper.update();
+    expect(notificationSpy).toHaveBeenCalledTimes(1);
+    expect(notificationSpy).toHaveBeenCalledWith(ERROR_MESSAGE, ERROR_STATUS);
+    const state = wrapper.state();
+    expect(state.error).toBeTruthy();
+    expect(state.loading).toBeFalsy();
+    expect(state.list).toEqual([]);
   });
 
   test("should open new TodoList modal", () => {
@@ -144,6 +179,30 @@ describe("TodoList component", () => {
     expect(state.list).toEqual([TEST_CREATED_TODO_LIST]);
   });
 
+  test("should show error notification after fail add new list", async () => {
+    const TEST_CREATED_TODO_LIST = { _id: 1, title: "New List" };
+    apiGetSpy.mockResolvedValue({ data: [] });
+    apiPostSpy.mockRejectedValue({
+      status: ERROR_STATUS,
+      response: {
+        status: ERROR_STATUS,
+        data: { message: ERROR_MESSAGE }
+      }
+    });
+    const wrapper = await shallow(<Todos user={TEST_USER_JWT} />);
+    const instance = wrapper.instance();
+    await instance.addTodoList(TEST_CREATED_TODO_LIST.title);
+    await wrapper.update();
+    expect(apiPostSpy).toHaveBeenCalledTimes(1);
+    expect(apiPostSpy).toHaveBeenCalledWith(
+      "/todos",
+      { title: TEST_CREATED_TODO_LIST.title },
+      { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
+    );
+    expect(notificationSpy).toHaveBeenCalledTimes(1);
+    expect(notificationSpy).toHaveBeenCalledWith(ERROR_MESSAGE, ERROR_STATUS);
+  });
+
   test("should delete TodoList", async () => {
     const TODO_LIST_INDEX = 0;
     const TEST_TODOS = JSON.parse(JSON.stringify(TEST_TODOS_ORIGINAL));
@@ -164,5 +223,28 @@ describe("TodoList component", () => {
     });
     state = wrapper.state();
     expect(state.list).toHaveLength(1);
+  });
+
+  test("should display error notification after fail delete list", async () => {
+    const ID = 0;
+    const INDEX = 0;
+    apiGetSpy.mockResolvedValue({ data: [] });
+    apiDeleteSpy.mockRejectedValue({
+      status: ERROR_STATUS,
+      response: {
+        status: ERROR_STATUS,
+        data: { message: ERROR_MESSAGE }
+      }
+    });
+    const wrapper = await shallow(<Todos user={TEST_USER_JWT} />);
+    const instance = wrapper.instance();
+    await instance.deleteTodoList(ID, INDEX);
+    await wrapper.update();
+    expect(apiDeleteSpy).toHaveBeenCalledTimes(1);
+    expect(apiDeleteSpy).toHaveBeenCalledWith(`/todos/${ID}`, {
+      headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
+    });
+    expect(notificationSpy).toHaveBeenCalledTimes(1);
+    expect(notificationSpy).toHaveBeenCalledWith(ERROR_MESSAGE, ERROR_STATUS);
   });
 });
