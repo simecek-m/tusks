@@ -21,20 +21,24 @@ exports[`Input modal should render modal 1`] = `
     >
       Choose name for your new todo list:
     </div>
-    <input
-      autoFocus={true}
-      className="modal-input"
-    />
-    <div
-      className="modal-confirmation-button"
+    <form
+      onSubmit={[Function]}
     >
-      <span
-        className="confirmation-text"
-        onClick={[Function]}
+      <input
+        autoFocus={true}
+        className="modal-input"
+        name="value"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        className="modal-confirmation-button"
+        type="submit"
       >
         modal.confirmation
-      </span>
-    </div>
+      </button>
+    </form>
   </div>
 </div>
 `;
