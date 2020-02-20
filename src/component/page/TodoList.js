@@ -8,6 +8,7 @@ import Loading from "component/animation/Loading";
 import Back from "component/navigation/Back";
 import Task from "component/task/Task";
 import AddTask from "component/task/AddTask";
+import { showDangerNotificationWithStatus } from "notification";
 import "component/page/TodoList.sass";
 
 export class TodoList extends React.Component {
@@ -28,7 +29,13 @@ export class TodoList extends React.Component {
           loading: false
         })
       )
-      .catch(() => this.setState({ loading: false, error: true }));
+      .catch(error => {
+        this.setState({ loading: false, error: true });
+        showDangerNotificationWithStatus(
+          error.response.data.message,
+          error.response.status
+        );
+      });
   }
 
   updateTask(index) {
@@ -44,18 +51,15 @@ export class TodoList extends React.Component {
     api
       .put(`/todos/${id}/tasks/${task._id}`, task, setAuthorizationHeader(user))
       .catch(error => {
-        this.showNotification(error);
+        showDangerNotificationWithStatus(
+          error.response.data.message,
+          error.response.status
+        );
         todoList.tasks[index].completed = !todoList.tasks[index].completed;
         this.setState({
           todoList
         });
       });
-  }
-
-  showNotification(error) {
-    if (error.response) {
-      // TODO: show notification
-    }
   }
 
   deleteTask(taskId, index) {
@@ -70,10 +74,12 @@ export class TodoList extends React.Component {
           todoList
         });
       })
-      .catch(error => {
-        console.error(error);
-        // TODO: show notification
-      });
+      .catch(error =>
+        showDangerNotificationWithStatus(
+          error.response.data.message,
+          error.response.status
+        )
+      );
   }
 
   addTask = text => {
@@ -90,10 +96,12 @@ export class TodoList extends React.Component {
             todoList
           });
         })
-        .catch(error => {
-          console.error(error);
-          // TODO: show notification
-        });
+        .catch(error =>
+          showDangerNotificationWithStatus(
+            error.response.data.message,
+            error.response.status
+          )
+        );
     }
   };
 
