@@ -32,4 +32,26 @@ describe("Select modal", () => {
     const wrapper = shallow(<SelectModal modal={TEST_MODAL_SELECT} />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  test("should close modal", () => {
+    const closeModalMock = jest.fn();
+    const wrapper = shallow(
+      <SelectModal modal={TEST_MODAL_SELECT} closeModal={closeModalMock} />
+    );
+    const elem = wrapper.find(".select-modal-component");
+    expect(elem).not.toBeNull();
+    elem.simulate("click");
+    expect(closeModalMock).toHaveBeenCalledTimes(1);
+    closeModalMock.mockRestore();
+  });
+
+  test("should stop propagate close modal click event on body element", () => {
+    const stopPropagationMock = jest.fn();
+    const wrapper = shallow(<SelectModal modal={TEST_MODAL_SELECT} />);
+    const elem = wrapper.find(".modal-body");
+    expect(elem).not.toBeNull();
+    elem.simulate("click", { stopPropagation: stopPropagationMock });
+    expect(stopPropagationMock).toHaveBeenCalledTimes(1);
+    stopPropagationMock.mockRestore();
+  });
 });

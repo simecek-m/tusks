@@ -3,7 +3,7 @@ import { withModal } from "modal/withModal";
 import SelectItem from "component/modal/component/SelectItem";
 import "component/modal/SelectModal.sass";
 
-export function SelectModal({ modal = {}, closeModal }) {
+export function SelectModal({ modal = {}, closeModal = () => {} }) {
   const options = modal.options
     ? modal.options.map((option, index) => (
         <SelectItem
