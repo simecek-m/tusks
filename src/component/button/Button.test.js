@@ -25,4 +25,13 @@ describe("Button component", () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
+
+  test("should call onClick function", () => {
+    const onClickMock = jest.fn();
+    const wrapper = shallow(<Button onClick={onClickMock} />);
+    expect(onClickMock).not.toHaveBeenCalled();
+    const button = wrapper.find(".button-component");
+    button.simulate("click");
+    expect(onClickMock).toHaveBeenCalledTimes(1);
+  });
 });
