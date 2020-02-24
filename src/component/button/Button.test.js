@@ -33,5 +33,6 @@ describe("Button component", () => {
     const button = wrapper.find(".button-component");
     button.simulate("click");
     expect(onClickMock).toHaveBeenCalledTimes(1);
+    onClickMock.mockRestore();
   });
 });
