@@ -6,8 +6,6 @@ const mockHistory = {
   goBack: () => {}
 };
 
-const spy = jest.spyOn(mockHistory, "goBack");
-
 describe("Back component", () => {
   test("should render back", () => {
     const wrapper = shallow(<Back />);
@@ -15,8 +13,10 @@ describe("Back component", () => {
   });
 
   test("should return to previous page", () => {
+    const historySpy = jest.spyOn(mockHistory, "goBack");
     const wrapper = shallow(<Back history={mockHistory} />);
     wrapper.find("#back-component").simulate("click");
-    expect(spy).toBeCalledTimes(1);
+    expect(historySpy).toBeCalledTimes(1);
+    historySpy.mockRestore();
   });
 });
