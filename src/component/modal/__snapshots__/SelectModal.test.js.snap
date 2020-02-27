@@ -22,12 +22,14 @@ exports[`Select modal should render modal 1`] = `
       Choose your preferred language:
     </div>
     <SelectItem
+      id="select-item-0"
       image="cs.png"
       key="0"
       onClick={[Function]}
       text="czech"
     />
     <SelectItem
+      id="select-item-1"
       image="en.png"
       key="1"
       onClick={[Function]}

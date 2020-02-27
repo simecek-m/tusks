@@ -5,6 +5,8 @@ import csFlag from "assets/image/flag/cs.png";
 import enFlag from "assets/image/flag/en.png";
 import { shallow } from "enzyme";
 
+const optionOnClickMock = jest.fn();
+
 const TEST_MODAL_SELECT = {
   type: SELECT,
   visible: true,
@@ -13,7 +15,8 @@ const TEST_MODAL_SELECT = {
   options: [
     {
       text: "czech",
-      image: csFlag
+      image: csFlag,
+      onClick: optionOnClickMock
     },
     {
       text: "english",
@@ -53,5 +56,20 @@ describe("Select modal", () => {
     elem.simulate("click", { stopPropagation: stopPropagationMock });
     expect(stopPropagationMock).toHaveBeenCalledTimes(1);
     stopPropagationMock.mockRestore();
+  });
+
+  test("should call option onClick function", () => {
+    const closeModalMock = jest.fn();
+    const INDEX = 0;
+    const wrapper = shallow(
+      <SelectModal modal={TEST_MODAL_SELECT} closeModal={closeModalMock} />
+    );
+    const item = wrapper.find(`#select-item-${INDEX}`);
+    expect(item).not.toBeNull();
+    expect(optionOnClickMock).not.toHaveBeenCalled();
+    item.simulate("click");
+    expect(optionOnClickMock).toHaveBeenCalledTimes(1);
+    expect(closeModalMock).toHaveBeenCalledTimes(1);
+    closeModalMock.mockRestore();
   });
 });

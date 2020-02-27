@@ -8,6 +8,7 @@ export function SelectModal({ modal = {}, closeModal = () => {} }) {
     ? modal.options.map((option, index) => (
         <SelectItem
           key={index}
+          id={`select-item-${index}`}
           image={option.image}
           text={option.text}
           onClick={() => {
