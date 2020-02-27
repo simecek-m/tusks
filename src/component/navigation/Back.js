@@ -6,16 +6,13 @@ import "component/navigation/Back.sass";
 import ReactTooltip from "react-tooltip";
 
 export function Back({ history }) {
-  const goBack = () => {
-    history.goBack();
-  };
   return (
     <span>
       <FontAwesomeIcon
         data-for="tooltip-back"
         data-tip="Go Back"
         id="back-component"
-        onClick={() => goBack()}
+        onClick={() => history.goBack()}
         icon={faChevronLeft}
       />
       <ReactTooltip
