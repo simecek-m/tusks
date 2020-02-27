@@ -45,6 +45,7 @@ export function Profile({ user, logout, t }) {
         </div>
         <div className="row single">
           <Button
+            id="logout-button"
             icon={faDoorOpen}
             text={t("profile.logout")}
             onClick={() => logout()}

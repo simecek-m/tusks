@@ -110,6 +110,7 @@ exports[`Profile component should render Profile page component 1`] = `
             "prefix": "fas",
           }
         }
+        id="logout-button"
         onClick={[Function]}
         text="profile.logout"
       />

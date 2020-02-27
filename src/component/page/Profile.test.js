@@ -25,4 +25,15 @@ describe("Profile component", () => {
     const wrapper = shallow(<Profile user={JWT_USER} />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  test("should logout user after click LOGOUT button", () => {
+    const logoutMock = jest.fn();
+    const wrapper = shallow(<Profile user={JWT_USER} logout={logoutMock} />);
+    const button = wrapper.find("#logout-button");
+    expect(button).not.toBeNull();
+    expect(logoutMock).not.toHaveBeenCalled();
+    button.simulate("click");
+    expect(logoutMock).toHaveBeenCalledTimes(1);
+    expect(logoutMock).toHaveBeenCalledWith();
+  });
 });
