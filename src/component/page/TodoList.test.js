@@ -79,7 +79,7 @@ describe("TodoList component", () => {
     );
     await wrapper.instance().componentDidMount();
     expect(apiGetSpy).toHaveBeenCalledTimes(1);
-    expect(apiGetSpy).toHaveBeenCalledWith(`/todos/${MOCK_ROUTER.params.id}`, {
+    expect(apiGetSpy).toHaveBeenCalledWith(`/lists/${MOCK_ROUTER.params.id}`, {
       headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
     });
     const state = wrapper.state();
@@ -99,7 +99,7 @@ describe("TodoList component", () => {
     );
     await wrapper.instance().componentDidMount();
     expect(apiGetSpy).toHaveBeenCalledTimes(1);
-    expect(apiGetSpy).toHaveBeenCalledWith(`/todos/${MOCK_ROUTER.params.id}`, {
+    expect(apiGetSpy).toHaveBeenCalledWith(`/lists/${MOCK_ROUTER.params.id}`, {
       headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
     });
     await wrapper.update();
@@ -122,7 +122,7 @@ describe("TodoList component", () => {
     await wrapper.instance().addTask(NEW_TASK.text);
     expect(apiPostSpy).toHaveBeenCalledTimes(1);
     expect(apiPostSpy).toHaveBeenCalledWith(
-      `/todos/${MOCK_ROUTER.params.id}/tasks`,
+      `/lists/${MOCK_ROUTER.params.id}/tasks`,
       { text: NEW_TASK.text, completed: false },
       { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
     );
@@ -148,8 +148,10 @@ describe("TodoList component", () => {
     expect(state.todoList.tasks).toEqual(TEST_TODO_LIST_ORIGINAL.tasks);
     await wrapper.instance().updateTask(UPDATED_TASK_INDEX);
     expect(apiPutSpy).toHaveBeenCalledTimes(1);
-    expect(apiPutSpy).toHaveBeenCalledWith(
-      `/todos/${MOCK_ROUTER.params.id}/tasks/${TEST_TODO_LIST.tasks[UPDATED_TASK_INDEX]._id}`,
+    expect(
+      apiPutSpy
+    ).toHaveBeenCalledWith(
+      `/lists/${MOCK_ROUTER.params.id}/tasks/${TEST_TODO_LIST.tasks[UPDATED_TASK_INDEX]._id}`,
       UPDATED_TODO_LIST.tasks[UPDATED_TASK_INDEX],
       { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
     );
@@ -173,8 +175,10 @@ describe("TodoList component", () => {
     expect(state.todoList).toEqual(TODO_LIST);
     await wrapper.instance().deleteTask(TASK._id, 0);
     expect(apiDeleteSpy).toHaveBeenCalledTimes(1);
-    expect(apiDeleteSpy).toHaveBeenCalledWith(
-      `/todos/${MOCK_ROUTER.params.id}/tasks/${TASK._id}`,
+    expect(
+      apiDeleteSpy
+    ).toHaveBeenCalledWith(
+      `/lists/${MOCK_ROUTER.params.id}/tasks/${TASK._id}`,
       { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
     );
     expect(state.todoList.tasks).toEqual([]);
@@ -197,7 +201,7 @@ describe("TodoList component", () => {
     );
     await wrapper.instance().componentDidMount();
     expect(apiGetSpy).toHaveBeenCalledTimes(1);
-    expect(apiGetSpy).toHaveBeenCalledWith(`/todos/${MOCK_ROUTER.params.id}`, {
+    expect(apiGetSpy).toHaveBeenCalledWith(`/lists/${MOCK_ROUTER.params.id}`, {
       headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
     });
     await wrapper.update();
@@ -226,7 +230,7 @@ describe("TodoList component", () => {
     await instance.addTask(NEW_TASK_TEXT);
     expect(apiPostSpy).toHaveBeenCalledTimes(1);
     expect(apiPostSpy).toHaveBeenCalledWith(
-      `/todos/${MOCK_ROUTER.params.id}/tasks`,
+      `/lists/${MOCK_ROUTER.params.id}/tasks`,
       { text: NEW_TASK_TEXT, completed: false },
       { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
     );
@@ -256,8 +260,10 @@ describe("TodoList component", () => {
     await instance.deleteTask(MOCK_ID, MOCK_INDEX);
     expect(apiDeleteSpy).toHaveBeenCalledTimes(1);
     expect(apiDeleteSpy).toHaveBeenCalledWith(
-      `/todos/${MOCK_ROUTER.params.id}/tasks/${MOCK_ID}`,
-      { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
+      `/lists/${MOCK_ROUTER.params.id}/tasks/${MOCK_ID}`,
+      {
+        headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
+      }
     );
     await wrapper.update();
     expect(notificationSpy).toHaveBeenCalledTimes(1);
@@ -284,8 +290,10 @@ describe("TodoList component", () => {
     const instance = wrapper.instance();
     await instance.updateTask(UPDATED_TASK_INDEX);
     expect(apiPutSpy).toHaveBeenCalledTimes(1);
-    expect(apiPutSpy).toHaveBeenCalledWith(
-      `/todos/${MOCK_ROUTER.params.id}/tasks/${TEST_TODO_LIST.tasks[UPDATED_TASK_INDEX]._id}`,
+    expect(
+      apiPutSpy
+    ).toHaveBeenCalledWith(
+      `/lists/${MOCK_ROUTER.params.id}/tasks/${TEST_TODO_LIST.tasks[UPDATED_TASK_INDEX]._id}`,
       UPDATED_TODO_LIST.tasks[UPDATED_TASK_INDEX],
       { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
     );

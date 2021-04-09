@@ -55,7 +55,7 @@ exports[`App component should render App 1`] = `
     />
     <Connect(ProtectedRoute)
       component={[Function]}
-      path="/todos/:id"
+      path="/lists/:id"
     />
     <Connect(ProtectedRoute)
       component={[Function]}

@@ -19,7 +19,7 @@ function App() {
         <AnonymousRoute path="/login" component={Login} />
         <ProtectedRoute exact path="/" component={Todos} />
         <ProtectedRoute path="/profile" component={Profile} />
-        <ProtectedRoute path="/todos/:id" component={TodoList} />
+        <ProtectedRoute path="/lists/:id" component={TodoList} />
         <ProtectedRoute path="/about" component={About} />
         <Route component={Error} />
       </Switch>

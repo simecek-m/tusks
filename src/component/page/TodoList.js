@@ -22,7 +22,7 @@ export class TodoList extends React.Component {
     const { user, match } = this.props;
     const id = match.params.id;
     api
-      .get(`/todos/${id}`, setAuthorizationHeader(user))
+      .get(`/lists/${id}`, setAuthorizationHeader(user))
       .then(response =>
         this.setState({
           todoList: response.data,
@@ -49,7 +49,7 @@ export class TodoList extends React.Component {
     const { match, user } = this.props;
     const id = match.params.id;
     api
-      .put(`/todos/${id}/tasks/${task._id}`, task, setAuthorizationHeader(user))
+      .put(`/lists/${id}/tasks/${task._id}`, task, setAuthorizationHeader(user))
       .catch(error => {
         showDangerNotificationWithStatus(
           error.response.data.message,
@@ -66,7 +66,7 @@ export class TodoList extends React.Component {
     const { match, user } = this.props;
     const id = match.params.id;
     api
-      .delete(`/todos/${id}/tasks/${taskId}`, setAuthorizationHeader(user))
+      .delete(`/lists/${id}/tasks/${taskId}`, setAuthorizationHeader(user))
       .then(() => {
         const todoList = this.state.todoList;
         todoList.tasks.splice(index, 1);
@@ -88,7 +88,7 @@ export class TodoList extends React.Component {
       const id = match.params.id;
       const task = { text, completed: false };
       api
-        .post(`/todos/${id}/tasks`, task, setAuthorizationHeader(user))
+        .post(`/lists/${id}/tasks`, task, setAuthorizationHeader(user))
         .then(response => {
           const todoList = this.state.todoList;
           todoList.tasks.push(response.data);

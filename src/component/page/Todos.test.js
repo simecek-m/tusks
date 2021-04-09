@@ -1,5 +1,5 @@
 import React from "react";
-import { Todos } from "component/page/Todos";
+import { Todos } from "component/page/todos";
 import { shallow } from "enzyme";
 import api from "api";
 import * as notification from "notification";
@@ -101,7 +101,7 @@ describe("TodoList component", () => {
     });
     await wrapper.instance().componentDidMount();
     expect(apiGetSpy).toHaveBeenCalledTimes(1);
-    expect(apiGetSpy).toHaveBeenCalledWith("/todos", {
+    expect(apiGetSpy).toHaveBeenCalledWith("/lists", {
       headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
     });
     const state = wrapper.state();
@@ -124,7 +124,7 @@ describe("TodoList component", () => {
     });
     await wrapper.instance().componentDidMount();
     expect(apiGetSpy).toHaveBeenCalledTimes(1);
-    expect(apiGetSpy).toHaveBeenCalledWith("/todos", {
+    expect(apiGetSpy).toHaveBeenCalledWith("/lists", {
       headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
     });
     await wrapper.update();
@@ -171,7 +171,7 @@ describe("TodoList component", () => {
     await instance.addTodoList(TEST_CREATED_TODO_LIST.title);
     expect(apiPostSpy).toHaveBeenCalledTimes(1);
     expect(apiPostSpy).toHaveBeenCalledWith(
-      "/todos",
+      "/lists",
       { title: TEST_CREATED_TODO_LIST_COPY.title },
       { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
     );
@@ -195,7 +195,7 @@ describe("TodoList component", () => {
     await wrapper.update();
     expect(apiPostSpy).toHaveBeenCalledTimes(1);
     expect(apiPostSpy).toHaveBeenCalledWith(
-      "/todos",
+      "/lists",
       { title: TEST_CREATED_TODO_LIST.title },
       { headers: { Authorization: `Bearer ${TEST_USER_JWT}` } }
     );
@@ -218,7 +218,7 @@ describe("TodoList component", () => {
     const ID = state.list[TODO_LIST_INDEX]._id;
     await instance.deleteTodoList(ID, TODO_LIST_INDEX);
     expect(apiDeleteSpy).toHaveBeenCalledTimes(1);
-    expect(apiDeleteSpy).toHaveBeenCalledWith(`/todos/${ID}`, {
+    expect(apiDeleteSpy).toHaveBeenCalledWith(`/lists/${ID}`, {
       headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
     });
     state = wrapper.state();
@@ -241,7 +241,7 @@ describe("TodoList component", () => {
     await instance.deleteTodoList(ID, INDEX);
     await wrapper.update();
     expect(apiDeleteSpy).toHaveBeenCalledTimes(1);
-    expect(apiDeleteSpy).toHaveBeenCalledWith(`/todos/${ID}`, {
+    expect(apiDeleteSpy).toHaveBeenCalledWith(`/lists/${ID}`, {
       headers: { Authorization: `Bearer ${TEST_USER_JWT}` }
     });
     expect(notificationSpy).toHaveBeenCalledTimes(1);

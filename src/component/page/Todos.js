@@ -28,7 +28,7 @@ export class Todos extends React.Component {
   componentDidMount() {
     const { user } = this.props;
     api
-      .get("/todos", setAuthorizationHeader(user))
+      .get("/lists", setAuthorizationHeader(user))
       .then(response =>
         this.setState({
           list: response.data,
@@ -50,7 +50,7 @@ export class Todos extends React.Component {
   deleteTodoList(id, index) {
     const { user } = this.props;
     api
-      .delete(`/todos/${id}`, setAuthorizationHeader(user))
+      .delete(`/lists/${id}`, setAuthorizationHeader(user))
       .then(() => {
         const list = this.state.list;
         list.splice(index, 1);
@@ -70,7 +70,7 @@ export class Todos extends React.Component {
     const { user } = this.props;
     const todoList = { title };
     api
-      .post(`/todos`, todoList, setAuthorizationHeader(user))
+      .post(`/lists`, todoList, setAuthorizationHeader(user))
       .then(response => {
         const list = this.state.list;
         list.push(response.data);
@@ -100,7 +100,7 @@ export class Todos extends React.Component {
     const { t } = this.props;
     const items = this.state.list.map((item, index) => (
       <TodoListWidget
-        onClick={() => redirect(`/todos/${item._id}`)}
+        onClick={() => redirect(`/lists/${item._id}`)}
         onDelete={() => this.deleteTodoList(item._id, index)}
         key={item._id}
         title={item.title}
