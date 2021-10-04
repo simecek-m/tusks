@@ -1,5 +1,5 @@
 import React from "react";
-import { Todos } from "component/page/todos";
+import { Todos } from "component/page/Todos";
 import { shallow } from "enzyme";
 import api from "api";
 import * as notification from "notification";

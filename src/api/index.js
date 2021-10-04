@@ -18,16 +18,12 @@ export function setAuthorizationHeader(token) {
 const api = axios.create(config);
 api.interceptors.response.use(
   function(response) {
-    console.log(response);
     return response;
   },
   function(error) {
-    console.log("error: ", error);
-    console.log("error response: ", error.response);
     if (error.response === undefined) {
       error.response = DEFAULT_FALLBACK_RESPONSE;
     }
-    console.log("finished error: ", error);
     return Promise.reject(error);
   }
 );
