@@ -58,7 +58,4 @@ export class Login extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { login, setLocale }
-)(withTranslation()(Login));
+export default connect(null, { login, setLocale })(withTranslation()(Login));

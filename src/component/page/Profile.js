@@ -62,7 +62,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(withTranslation()(Profile));
+export default connect(mapStateToProps, { logout })(withTranslation()(Profile));
