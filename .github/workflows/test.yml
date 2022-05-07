@@ -3,6 +3,11 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_GOOGLE_API_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_API_CLIENT_ID }}
+      REACT_APP_TODO_BACKEND_HOST: ${{ secrets.REACT_APP_TODO_BACKEND_HOST }}
+      REACT_APP_TODO_BACKEND_PORT: ${{ secrets.REACT_APP_TODO_BACKEND_PORT }}
+      REACT_APP_DEFAULT_LOCALE: ${{ secrets.REACT_APP_DEFAULT_LOCALE }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js
@@ -13,8 +18,3 @@ jobs:
         run: yarn install
       - run: yarn build --if-present
       - run: yarn test
-          env:
-            REACT_APP_GOOGLE_API_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_API_CLIENT_ID }}
-            REACT_APP_TODO_BACKEND_HOST: ${{ secrets.REACT_APP_TODO_BACKEND_HOST }}
-            REACT_APP_TODO_BACKEND_PORT: ${{ secrets.REACT_APP_TODO_BACKEND_PORT }}
-            REACT_APP_DEFAULT_LOCALE: ${{ secrets.REACT_APP_DEFAULT_LOCALE }}
