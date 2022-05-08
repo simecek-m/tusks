@@ -14,16 +14,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 12.13.0
-      - name: Install dependencies
+      - name: install dependencies
         run: yarn install
       - name: build
         run: yarn build --if-present
-      - name: tests with coverage
+      - name: run tests (with coverage)
         run: yarn test:coverage
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
       - name: codacy coverage report
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
