@@ -15,11 +15,11 @@ jobs:
         with:
           node-version: 12.13.0
       - name: install dependencies
-        run: yarn install
+        run: npm ci
       - name: build
-        run: yarn build --if-present
+        run: npm run build --if-present
       - name: run tests (with coverage)
-        run: yarn test:coverage
+        run: npm run test:coverage
       - name: codacy coverage report
         uses: codacy/codacy-coverage-reporter-action@v1
         with:

@@ -55,8 +55,8 @@
       "git add"
     ],
     "*.{sass}": [
-      "yarn sass-lint:fix",
-      "yarn sass-lint",
+      "npm run sass-lint:fix",
+      "npm run sass-lint",
       "git add"
     ]
   },
@@ -91,6 +91,6 @@
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.51.0",
     "sass-lint": "^1.13.1",
-    "sass-lint-auto-fix": "^0.17.0"
+    "sass-lint-auto-fix": "^0.19.0"
   }
 }
