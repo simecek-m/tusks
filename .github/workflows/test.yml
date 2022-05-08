@@ -1,0 +1,22 @@
+name: Node.js CI
+on: [push]
+env:
+  REACT_APP_GOOGLE_API_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_API_CLIENT_ID }}
+  REACT_APP_TODO_BACKEND_HOST: ${{ secrets.REACT_APP_TODO_BACKEND_HOST }}
+  REACT_APP_TODO_BACKEND_PORT: ${{ secrets.REACT_APP_TODO_BACKEND_PORT }}
+  REACT_APP_DEFAULT_LOCALE: ${{ secrets.REACT_APP_DEFAULT_LOCALE }}
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Install dependencies
+        run: yarn install
+      - name: build
+        run: yarn build --if-present
+      - name: test
+        run: yarn test
