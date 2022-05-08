@@ -87,7 +87,9 @@ afterEach(() => {
 
 describe("TodoList component", () => {
   test("should render default Todos", () => {
-    const wrapper = shallow(<Todos />);
+    const wrapper = shallow(<Todos />, {
+      disableLifecycleMethods: true
+    });
     expect(wrapper).toMatchSnapshot();
     const state = wrapper.state();
     expect(state).toEqual(INIT_STATE);
