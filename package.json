@@ -36,7 +36,7 @@
     "format": "prettier --write \"**/*.{js,jsx}\"",
     "sass-lint": "sass-lint -v -q",
     "sass-lint:fix": "sass-lint-auto-fix",
-    "test:coverage": "react-scripts test --env=jsdom-fourteen --coverage && codecov"
+    "test:coverage": "react-scripts test --coverage"
   },
   "eslintConfig": {
     "extends": [
