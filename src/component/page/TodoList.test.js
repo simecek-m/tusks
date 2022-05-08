@@ -62,7 +62,9 @@ afterEach(() => {
 
 describe("TodoList component", () => {
   test("should render default TodoList", () => {
-    const wrapper = shallow(<TodoList match={MOCK_ROUTER} />);
+    const wrapper = shallow(<TodoList match={MOCK_ROUTER} />, {
+      disableLifecycleMethods: true
+    });
     expect(wrapper).toMatchSnapshot();
     const state = wrapper.state();
     expect(state).toEqual(INIT_STATE);
