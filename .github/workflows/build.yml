@@ -1,4 +1,4 @@
-name: Build
+name: build and test
 on: [push]
 env:
   REACT_APP_GOOGLE_API_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_API_CLIENT_ID }}
