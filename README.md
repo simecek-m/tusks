@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/40e89a64a71a490e9122116a21acf260)](https://app.codacy.com/gh/simecek-m/todo-web?utm_source=github.com&utm_medium=referral&utm_content=simecek-m/todo-web&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/20d14ce2206c4333aca147836069a2b8)](https://www.codacy.com/gh/simecek-m/todo-web/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=simecek-m/todo-web&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/simecek-m/todo-web/branch/master/graph/badge.svg)](https://codecov.io/gh/simecek-m/todo-web)
 
