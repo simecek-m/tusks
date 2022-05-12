@@ -1,7 +1,8 @@
 import api, { setAuthorizationHeader } from "api";
 import { config, DEFAULT_FALLBACK_RESPONSE } from "api";
+import { TODO_BACKEND_HOST, TODO_BACKEND_PORT } from "conf";
 
-const DEFAULT_URL = `${process.env.REACT_APP_TODO_BACKEND_HOST}:${process.env.REACT_APP_TODO_BACKEND_PORT}/api`;
+const DEFAULT_URL = `${TODO_BACKEND_HOST}:${TODO_BACKEND_PORT}/api`;
 const TEST_TOKEN = "TEST_TOKEN";
 
 const TEST_FULFILLED_RESPONSE = {

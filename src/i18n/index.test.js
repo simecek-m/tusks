@@ -5,6 +5,7 @@ import { createPersistor, getStore } from "store";
 
 import cs from "i18n/translation/cs.json";
 import en from "i18n/translation/en.json";
+import { DEFAULT_LOCALE } from "conf";
 
 describe("i18n", () => {
   let store = null;
@@ -12,12 +13,6 @@ describe("i18n", () => {
   beforeAll(() => {
     createPersistor();
     store = getStore();
-  });
-
-  test("should return default locale", () => {
-    expect(i18nModule.DEFAULT_LOCALE).toBe(
-      process.env.REACT_APP_DEFAULT_LOCALE
-    );
   });
 
   test("should subscribe to stored language in redux", () => {
@@ -37,8 +32,8 @@ describe("i18n", () => {
     expect(i18nextUseSpy).toHaveBeenCalledWith(initReactI18next);
     expect(i18nextInitSpy).toHaveBeenCalledTimes(1);
     expect(i18nextInitSpy).toHaveBeenCalledWith({
-      fallbackLng: [i18nModule.DEFAULT_LOCALE],
-      lng: i18nModule.DEFAULT_LOCALE,
+      fallbackLng: [DEFAULT_LOCALE],
+      lng: DEFAULT_LOCALE,
       debug: false,
       interpolation: {
         escapeValue: false
@@ -54,8 +49,8 @@ describe("i18n", () => {
   });
 
   test("should return initialized i18n object", () => {
-    expect(i18n.options.fallbackLng).toEqual([i18nModule.DEFAULT_LOCALE]);
-    expect(i18n.options.lng).toEqual(i18nModule.DEFAULT_LOCALE);
+    expect(i18n.options.fallbackLng).toEqual([DEFAULT_LOCALE]);
+    expect(i18n.options.lng).toEqual(DEFAULT_LOCALE);
     expect(i18n.options.interpolation).toEqual({ escapeValue: false });
     expect(i18n.options.react).toEqual({ wait: true });
     expect(i18n.options.resources).toEqual({ cs, en });

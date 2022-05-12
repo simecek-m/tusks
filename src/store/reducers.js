@@ -4,7 +4,7 @@ import {
   ACTION_TYPE_LOCALE
 } from "store/actions";
 
-export const DEFAULT_LOCALE = process.env.REACT_APP_DEFAULT_LOCALE;
+import { DEFAULT_LOCALE } from "conf";
 
 export const initialState = {
   user: null,
