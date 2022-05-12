@@ -1,4 +1,5 @@
 import axios from "axios";
+import { TODO_BACKEND_HOST, TODO_BACKEND_PORT } from "conf";
 
 export const DEFAULT_FALLBACK_RESPONSE = {
   data: {
@@ -8,7 +9,7 @@ export const DEFAULT_FALLBACK_RESPONSE = {
 };
 
 export const config = {
-  baseURL: `${process.env.REACT_APP_TODO_BACKEND_HOST}:${process.env.REACT_APP_TODO_BACKEND_PORT}/api`
+  baseURL: `${TODO_BACKEND_HOST}:${TODO_BACKEND_PORT}/api`
 };
 
 export function setAuthorizationHeader(token) {

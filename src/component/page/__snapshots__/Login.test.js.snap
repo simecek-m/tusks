@@ -29,7 +29,7 @@ exports[`Login component should render Login page component 1`] = `
     className="login-methods"
   >
     <y
-      clientId="161826254174-9f65jmji96bjtmrqqc2q27h929ole3lr.apps.googleusercontent.com"
+      clientId="test.apps.googleusercontent.com"
       onFailure={[Function]}
       onSuccess={[Function]}
       render={[Function]}

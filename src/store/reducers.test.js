@@ -1,9 +1,10 @@
+import { DEFAULT_LOCALE } from "conf";
 import {
   ACTION_TYPE_LOGIN,
   ACTION_TYPE_LOGOUT,
   ACTION_TYPE_LOCALE
 } from "store/actions";
-import reducer, { DEFAULT_LOCALE, initialState } from "store/reducers";
+import reducer, { initialState } from "store/reducers";
 
 const TEST_USER = {
   name: "Mike Smith",
@@ -13,7 +14,7 @@ const TEST_USER = {
 
 const TEST_INITIAL_STATE = {
   user: null,
-  locale: process.env.REACT_APP_DEFAULT_LOCALE
+  locale: DEFAULT_LOCALE
 };
 
 const TEST_CS_LOCALE = "cs";
@@ -34,7 +35,7 @@ const TEST_LOCALE_ACTION = {
 
 describe("Redux store reducers", () => {
   test("should return default locale", () => {
-    expect(DEFAULT_LOCALE).toEqual(process.env.REACT_APP_DEFAULT_LOCALE);
+    expect(DEFAULT_LOCALE).toEqual(DEFAULT_LOCALE);
   });
 
   test("should return Redux initial state", () => {

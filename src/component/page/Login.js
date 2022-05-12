@@ -10,6 +10,7 @@ import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
 import jsonwebtoken from "jsonwebtoken";
 import { showDangerNotification } from "notification";
+import { GOOGLE_API_CLIENT_ID } from "conf";
 
 export class Login extends React.Component {
   loginSuccessCallback(response) {
@@ -42,7 +43,7 @@ export class Login extends React.Component {
         <h2 className="sub-title">{t("login.description")}</h2>
         <div className="login-methods">
           <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLE_API_CLIENT_ID}
+            clientId={GOOGLE_API_CLIENT_ID}
             onSuccess={response => this.loginSuccessCallback(response)}
             onFailure={error => this.loginFailCallback(error)}
             render={renderProps => (

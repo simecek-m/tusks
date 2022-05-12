@@ -1,11 +1,10 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import { getStore } from "store/index";
+import { DEFAULT_LOCALE } from "conf";
 
 import cs from "i18n/translation/cs.json";
 import en from "i18n/translation/en.json";
-
-export const DEFAULT_LOCALE = process.env.REACT_APP_DEFAULT_LOCALE;
 
 export function loadStoredLocale() {
   const store = getStore();
