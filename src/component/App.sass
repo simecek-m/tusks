@@ -1,14 +1,19 @@
-@import "colors.sass"
-
 body
   margin: 0
   font-family: "Segoe UI"
+  --brand: #6FEA65
+  --dark-gray: #0a0a0a
 
-.title
-  color: $brand-color
-  text-align: center
-  font-size: 50px
+.theme-dark
+  --bg-color: black
+  --color: white
 
-.sub-title
-  color: $text-primary
-  text-align: center
+.theme-light
+  --bg-color: white
+  --color: black
+
+.fullpage
+  background-color: var(--bg-color)
+  color: var(--color)
+  height: 100vh
+  width: 100vw
