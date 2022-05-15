@@ -1,6 +1,6 @@
 import React from "react";
 import "animate.css";
-import { HomePage } from "./page/Home";
+import HomePage from "page/Home";
 import { connect } from "react-redux";
 import "component/App.sass";
 

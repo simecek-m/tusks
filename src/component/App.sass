@@ -3,17 +3,20 @@ body
   font-family: "Segoe UI"
   --brand: #6FEA65
   --dark-gray: #0a0a0a
+  --light-gray: #f0f0f0
 
 .theme-dark
-  --bg-color: black
+  --background: black
   --color: white
+  --surface: var(--dark-gray)
 
 .theme-light
-  --bg-color: white
+  --background: white
   --color: black
+  --surface: var(--light-gray)
 
 .fullpage
-  background-color: var(--bg-color)
+  background-color: var(--background)
   color: var(--color)
   height: 100vh
   width: 100vw
