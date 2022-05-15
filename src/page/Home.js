@@ -13,13 +13,17 @@ export default function HomePage() {
 
 function Login() {
   return (
-    <div className="login-box">
+    <LoginSidePanel>
       <h1 className="title">to-do</h1>
       <div>
         Create your own tasks, organize them into lists and don’t forget to
         finish them ever again.
       </div>
       <Button>login</Button>
-    </div>
+    </LoginSidePanel>
   );
+}
+
+function LoginSidePanel({ children }) {
+  return <div className="login-side-panel">{children}</div>;
 }
