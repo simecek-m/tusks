@@ -1,7 +1,7 @@
 import React from "react";
-import ConfirmationModal from "component/modal/ConfirmationModal";
-import SelectModal from "component/modal/SelectModal";
-import InputModal from "component/modal/InputModal";
+import ConfirmationModal from "component/old/modal/ConfirmationModal";
+import SelectModal from "component/old/modal/SelectModal";
+import InputModal from "component/old/modal/InputModal";
 import { CONFIRMATION, SELECT, INPUT } from "modal/types";
 import { validateModalData } from "modal/validator";
 

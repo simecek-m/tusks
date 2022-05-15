@@ -1,0 +1,69 @@
+@import "colors.sass"
+
+.button-component
+  display: inline-block
+  color: $text-primary
+  border: 2px solid $text-primary
+  background: none
+  padding: 10px 30px
+  border-radius: 5px
+  user-select: none
+  cursor: pointer
+  transition: 0.3s ease all
+  font-size: 20px
+  font-weight: bold
+  margin: 20px 0
+
+  .button-component-icon
+    display: inline-block
+    margin-right: 20px
+
+  &:hover
+    color: $background-primary
+    border: 2px solid $text-primary
+    background: $text-primary
+
+  &.primary
+    color: $brand-color
+    border-color: $brand-color
+
+    &:hover
+      color: $background-primary
+      border: 2px solid $brand-color
+      background: $brand-color
+
+  &.info
+    color: $info-color
+    border-color: $info-color
+
+    &:hover
+      color: $background-primary
+      border: 2px solid $info-color
+      background: $info-color
+
+  &.success
+    color: $success-color
+    border-color: $success-color
+
+    &:hover
+      color: $background-primary
+      border: 2px solid $success-color
+      background: $success-color
+
+  &.warn
+    color: $warn-color
+    border-color: $warn-color
+
+    &:hover
+      color: $background-primary
+      border: 2px solid $warn-color
+      background: $warn-color
+
+  &.error
+    color: $error-color
+    border-color: $error-color
+
+    &:hover
+      color: $background-primary
+      border: 2px solid $error-color
+      background: $error-color
