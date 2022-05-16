@@ -1,11 +1,13 @@
 .button
-  background: var(--brand)
   padding: 15px 30px
   color: var(--on-brand)
   outline: none
   border: none
-  border-radius: 10px
   font-size: 1.2rem
-  text-transform: capitalize
+  text-transform: lowercase
   font-weight: bold
   cursor: pointer
+  transition: .5s ease all
+  box-shadow: 0.3em 0.3em 0 0 var(--brand), inset 0.3em 0.3em 0 0 var(--brand)
+  &:hover
+    box-shadow: 0 0 0 0 var(--brand), inset 6em 3.5em 0 0 var(--brand)
