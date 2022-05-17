@@ -3,7 +3,11 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 export function AnonymousRoute({ component, user, ...rest }) {
-  return user ? <Redirect to="/" /> : <Route {...rest} component={component} />;
+  return user ? (
+    <Redirect to="/lists" />
+  ) : (
+    <Route {...rest} component={component} />
+  );
 }
 
 const mapStateToProps = state => {
