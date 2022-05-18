@@ -1,8 +1,14 @@
+.home-layout
+  display: flex
+  flex-direction: row
+  height: 100vh
+  
 .login-side-panel
   background: var(--surface)
-  height: 100%
-  width: 500px
+  color: var(--color)
   padding: 40px
+  width: 400px
+  height: 100%
   display: flex
   justify-content: center
   align-items: center
@@ -11,5 +17,10 @@
   box-sizing: border-box
   gap: 20px
 
-.title
-  margin: 0
+.content
+  margin-top: var(--topbar-height)
+  display: flex
+  flex: 1
+  padding: 10px
+  background: var(--background)
+  color: var(--color)

@@ -1,30 +1,32 @@
 import Button from "component/button/Button";
-import Topbar from "component/layout/Topbar";
-import "page/Home.sass";
 import GoogleLogin from "react-google-login";
 import { GOOGLE_API_CLIENT_ID } from "conf";
 import { connect } from "react-redux";
 import { login, logout } from "store/actions";
+import PageWithHeader from "../component/layout/PageWithHeader";
+import "page/Home.sass";
 
 export function HomePage({ login }) {
   return (
-    <div className="fullpage">
-      <Topbar />
-      <Login login={login} />
-    </div>
+    <PageWithHeader>
+      <div className="home-layout">
+        <LoginSidePanel login={login} />
+        <div className="content">Content</div>
+      </div>
+    </PageWithHeader>
   );
 }
 
-function Login({ login }) {
+function LoginSidePanel({ login }) {
   const onSuccess = response => {
-    console.log(response);
     login(response.tokenId);
   };
   const onFailure = error => {
-    console.log(error);
+    // TODO: show error toast instead of logging to console
+    console.warn(error);
   };
   return (
-    <LoginSidePanel>
+    <div className="login-side-panel">
       <h1 className="title">to-do</h1>
       <div>
         Create your own tasks, organize them into lists and don’t forget to
@@ -34,16 +36,13 @@ function Login({ login }) {
         clientId={GOOGLE_API_CLIENT_ID}
         onSuccess={onSuccess}
         onFailure={onFailure}
+        prompt="select_account"
         render={renderProps => (
           <Button onClick={renderProps.onClick}>login</Button>
         )}
       />
-    </LoginSidePanel>
+    </div>
   );
 }
 
 export default connect(null, { login, logout })(HomePage);
-
-function LoginSidePanel({ children }) {
-  return <div className="login-side-panel">{children}</div>;
-}
