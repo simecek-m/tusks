@@ -19,7 +19,13 @@ export function HomePage({ login }) {
 
 function LoginSidePanel({ login }) {
   const onSuccess = response => {
-    login(response.tokenId);
+    const user = {
+      name: response.profileObj.name,
+      photo: response.profileObj.imageUrl,
+      email: response.profileObj.email,
+      tokenId: response.tokenId
+    };
+    login(user);
   };
   const onFailure = error => {
     // TODO: show error toast instead of logging to console

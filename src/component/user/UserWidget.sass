@@ -1,0 +1,40 @@
+.user-widget
+  display: flex
+  flex-direction: row
+  position: absolute
+  background: var(--surface)
+  color: var(--color)
+  top: var(--topbar-height)
+  right: 0
+  margin: 10px
+  border-radius: 5px
+  gap: 10px
+  box-shadow: 0 0 10px #0000004D
+
+#user-photo
+  width: 80px
+  height: 80px
+  object-fit: cover
+  border-radius: 10px
+  padding: 5px
+
+.user-texts
+  display: flex
+  flex-direction: column
+  justify-content: center
+  h3  
+    margin: 0
+
+.logout-icon
+  display: flex
+  flex-direction: row
+  align-items: center
+  padding: 20px
+  cursor: pointer
+  justify-content: center
+  text-align: center
+  &:hover
+    color: red
+  .icon
+    margin: 0
+      

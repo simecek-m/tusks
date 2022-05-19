@@ -1,13 +1,17 @@
 import Button from "component/button/Button";
+import PageWithHeader from "component/layout/PageWithHeader";
 import { connect } from "react-redux";
 import { logout } from "store/actions";
+import "page/Lists.sass";
 
 function ListsPage({ logout }) {
   return (
-    <div>
-      <h1>List</h1>
-      <Button onClick={logout}>logout</Button>
-    </div>
+    <PageWithHeader>
+      <div className="lists-layout">
+        <h1>List</h1>
+        <Button onClick={logout}>logout</Button>
+      </div>
+    </PageWithHeader>
   );
 }
 
