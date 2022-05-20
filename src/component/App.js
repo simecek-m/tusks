@@ -8,7 +8,7 @@ import { Switch } from "react-router-dom";
 import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
 import HomePage from "page/Home";
-import ListsPage from "page/Lists";
+import ListPage from "page/List";
 
 function App({ theme }) {
   return (
@@ -16,7 +16,7 @@ function App({ theme }) {
       <Router history={history}>
         <Switch>
           <AnonymousRoute exact path="/" component={HomePage} />
-          <ProtectedRoute path="/lists" component={ListsPage} />
+          <ProtectedRoute path="/list" component={ListPage} />
         </Switch>
       </Router>
     </div>

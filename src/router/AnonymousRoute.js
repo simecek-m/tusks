@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 export function AnonymousRoute({ component, user, ...rest }) {
   return user ? (
-    <Redirect to="/lists" />
+    <Redirect to="/list" />
   ) : (
     <Route {...rest} component={component} />
   );

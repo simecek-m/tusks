@@ -2,7 +2,7 @@ import Button from "component/button/Button";
 import PageWithHeader from "component/layout/PageWithHeader";
 import { connect } from "react-redux";
 import { logout } from "store/actions";
-import "page/Lists.sass";
+import "page/List.sass";
 
 function ListsPage({ logout }) {
   return (
