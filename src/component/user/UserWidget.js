@@ -4,9 +4,9 @@ import { logout } from "store/actions";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import "component/user/UserWidget.sass";
 
-function UserWidget({ user, logout }) {
+function UserWidget({ user, logout, innerRef }) {
   return (
-    <div className="user-widget">
+    <div className="user-widget" ref={innerRef}>
       <img id="user-photo" src={user.photo} alt="user" />
       <div className="user-texts">
         <h3>{user.name}</h3>

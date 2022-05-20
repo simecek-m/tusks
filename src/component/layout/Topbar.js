@@ -4,10 +4,23 @@ import { connect } from "react-redux";
 import { switchTheme } from "store/actions";
 import "component/layout/Topbar.sass";
 import UserWidget from "component/user/UserWidget";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Topbar({ user, theme, switchTheme }) {
-  const [isUserWidgetVisible, switchUserWidgetVisibility] = useState(false);
+  const [isUserWidgetVisible, setUserWidgetVisibility] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const clickOutsideHandler = e => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setUserWidgetVisibility(false);
+      }
+    };
+    document.addEventListener("mousedown", clickOutsideHandler);
+    return () => {
+      document.removeEventListener("mousedown", clickOutsideHandler);
+    };
+  }, []);
   function getIcon(theme) {
     switch (theme) {
       case "light":
@@ -32,11 +45,11 @@ export function Topbar({ user, theme, switchTheme }) {
             icon={faUser}
             color="white"
             size="xl"
-            onClick={() => switchUserWidgetVisibility(!isUserWidgetVisible)}
+            onClick={() => setUserWidgetVisibility(!isUserWidgetVisible)}
           />
         )}
       </div>
-      {user && isUserWidgetVisible && <UserWidget />}
+      {user && isUserWidgetVisible && <UserWidget innerRef={ref} />}
     </>
   );
 }
