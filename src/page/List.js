@@ -1,18 +1,26 @@
-import Button from "component/button/Button";
 import PageWithHeader from "component/layout/PageWithHeader";
-import { connect } from "react-redux";
-import { logout } from "store/actions";
 import "page/List.sass";
+import List from "component/todo/List";
+import {
+  faCode,
+  faShoppingBasket,
+  faCoins
+} from "@fortawesome/free-solid-svg-icons";
 
-function ListsPage({ logout }) {
+export default function ListPage() {
   return (
     <PageWithHeader>
       <div className="lists-layout">
-        <h1>List</h1>
-        <Button onClick={logout}>logout</Button>
+        <ListPanel>
+          <List name="Work" icon={faCode} />
+          <List name="Shopping" icon={faShoppingBasket} />
+          <List name="Finance" icon={faCoins} />
+        </ListPanel>
       </div>
     </PageWithHeader>
   );
 }
 
-export default connect(null, { logout })(ListsPage);
+function ListPanel({ children }) {
+  return <div className="list-panel">{children}</div>;
+}
