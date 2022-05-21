@@ -5,14 +5,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix",
     "format": "prettier --write \"**/*.{js,jsx}\"",
     "sass-lint": "sass-lint -v -q",
-    "sass-lint:fix": "sass-lint-auto-fix",
-    "test:coverage": "react-scripts test --coverage"
+    "sass-lint:fix": "sass-lint-auto-fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -35,7 +35,6 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
@@ -48,7 +47,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "plugin:prettier/recommended"
+      "prettier"
     ]
   },
   "husky": {
@@ -58,6 +57,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
+      "prettier --write",
       "eslint --fix",
       "git add"
     ],
