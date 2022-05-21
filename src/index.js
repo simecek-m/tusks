@@ -7,9 +7,13 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { I18nextProvider } from "react-i18next";
 import * as i18nModule from "i18n/index";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 const persistor = createPersistor();
 const store = getStore();
+
+library.add(fas);
 
 ReactDOM.render(
   <Provider store={store}>

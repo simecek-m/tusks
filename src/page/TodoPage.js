@@ -1,20 +1,16 @@
 import PageWithHeader from "component/layout/PageWithHeader";
 import "page/TodoPage.sass";
 import List from "component/todo/List";
-import {
-  faCode,
-  faShoppingBasket,
-  faCoins
-} from "@fortawesome/free-solid-svg-icons";
 
 export default function ListPage() {
   return (
     <PageWithHeader>
       <div className="lists-layout">
         <ListPanel>
-          <List name="Work" icon={faCode} />
-          <List name="Shopping" icon={faShoppingBasket} />
-          <List name="Finance" icon={faCoins} />
+          <List name="Testovací" />
+          <List name="Work" icon="code" />
+          <List name="Shopping" icon="shopping-basket" />
+          <List name="Finance" icon="coins" />
         </ListPanel>
       </div>
     </PageWithHeader>

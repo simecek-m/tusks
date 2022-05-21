@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSun, faUser } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { switchTheme } from "store/actions";
 import "component/layout/Topbar.sass";
@@ -21,20 +20,12 @@ export function Topbar({ user, theme, switchTheme }) {
       document.removeEventListener("mousedown", clickOutsideHandler);
     };
   }, []);
-  function getIcon(theme) {
-    switch (theme) {
-      case "light":
-        return faMoon;
-      default:
-        return faSun;
-    }
-  }
   return (
     <>
       <div id="topbar-component">
         <FontAwesomeIcon
           className="icon"
-          icon={getIcon(theme)}
+          icon={theme === "dark" ? "sun" : "moon"}
           color="white"
           size="xl"
           onClick={() => switchTheme()}
@@ -42,7 +33,7 @@ export function Topbar({ user, theme, switchTheme }) {
         {user && (
           <FontAwesomeIcon
             className="icon"
-            icon={faUser}
+            icon="user"
             color="white"
             size="xl"
             onClick={() => setUserWidgetVisibility(!isUserWidgetVisible)}

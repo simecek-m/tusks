@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import { logout } from "store/actions";
-import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import "component/user/UserWidget.sass";
 
 function UserWidget({ user, logout, innerRef }) {
@@ -13,7 +12,7 @@ function UserWidget({ user, logout, innerRef }) {
         <div>{user.email}</div>
       </div>
       <div className="logout-icon" onClick={logout}>
-        <FontAwesomeIcon className="icon" icon={faSignOut} size="xl" />
+        <FontAwesomeIcon className="icon" icon="sign-out" size="xl" />
       </div>
     </div>
   );
