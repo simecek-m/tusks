@@ -2,7 +2,7 @@
 
 exports[`AnonymousRoute component should render Redirect component 1`] = `
 <Redirect
-  to="/"
+  to="/list"
 />
 `;
 

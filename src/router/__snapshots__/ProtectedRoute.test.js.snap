@@ -2,7 +2,7 @@
 
 exports[`ProtectedRoute component should render Redirect component 1`] = `
 <Redirect
-  to="/login"
+  to="/"
 />
 `;
 

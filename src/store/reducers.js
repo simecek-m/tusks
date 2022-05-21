@@ -5,12 +5,12 @@ import {
   ACTION_SWITCH_THEME
 } from "store/actions";
 
-import { DEFAULT_LOCALE } from "conf";
+import { DEFAULT_LOCALE, DEFAULT_THEME } from "conf";
 
 export const initialState = {
   user: null,
   locale: DEFAULT_LOCALE,
-  theme: "light"
+  theme: DEFAULT_THEME
 };
 
 function reducer(state = initialState, action) {

@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE } from "conf";
+import { DEFAULT_LOCALE, DEFAULT_THEME } from "conf";
 import {
   ACTION_TYPE_LOGIN,
   ACTION_TYPE_LOGOUT,
@@ -14,7 +14,8 @@ const TEST_USER = {
 
 const TEST_INITIAL_STATE = {
   user: null,
-  locale: DEFAULT_LOCALE
+  locale: DEFAULT_LOCALE,
+  theme: DEFAULT_THEME
 };
 
 const TEST_CS_LOCALE = "cs";
