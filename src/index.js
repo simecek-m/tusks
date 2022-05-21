@@ -7,8 +7,6 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { I18nextProvider } from "react-i18next";
 import * as i18nModule from "i18n/index";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
 
 const persistor = createPersistor();
 const store = getStore();
@@ -17,7 +15,6 @@ ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <I18nextProvider i18n={i18nModule.init()}>
-        <ReactNotification />
         <App />
       </I18nextProvider>
     </PersistGate>
