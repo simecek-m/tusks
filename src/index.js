@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import App from "component/App";
 import * as serviceWorker from "serviceWorker";
 import { createPersistor, getStore } from "store";
@@ -15,15 +15,15 @@ const store = getStore();
 
 library.add(fas);
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <I18nextProvider i18n={i18nModule.init()}>
         <App />
       </I18nextProvider>
     </PersistGate>
-  </Provider>,
-  document.getElementById("root")
+  </Provider>
 );
 
 // If you want your app to work offline and load faster, you can change
