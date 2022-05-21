@@ -8,7 +8,7 @@ let store = null;
 
 export const persistConfig = {
   key: "root",
-  storage
+  storage,
 };
 
 export function createPersistor() {

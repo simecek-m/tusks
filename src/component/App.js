@@ -22,9 +22,9 @@ function App({ theme }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    theme: state.theme
+    theme: state.theme,
   };
 };
 export default connect(mapStateToProps)(App);

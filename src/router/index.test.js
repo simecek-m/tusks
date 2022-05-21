@@ -9,7 +9,7 @@ describe("router", () => {
         location: expect.any(Object),
         push: expect.any(Function),
         go: expect.any(Function),
-        goBack: expect.any(Function)
+        goBack: expect.any(Function),
       })
     );
   });

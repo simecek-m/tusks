@@ -13,7 +13,7 @@ describe("redux store", () => {
     expect(result).toEqual(
       expect.objectContaining({
         getState: expect.any(Function),
-        subscribe: expect.any(Function)
+        subscribe: expect.any(Function),
       })
     );
   });
@@ -24,7 +24,7 @@ describe("redux store", () => {
       expect.objectContaining({
         getState: expect.any(Function),
         persist: expect.any(Function),
-        subscribe: expect.any(Function)
+        subscribe: expect.any(Function),
       })
     );
   });

@@ -10,7 +10,7 @@ export function Topbar({ user, theme, switchTheme }) {
   const ref = useRef();
 
   useEffect(() => {
-    const clickOutsideHandler = e => {
+    const clickOutsideHandler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setUserWidgetVisibility(false);
       }
@@ -45,10 +45,10 @@ export function Topbar({ user, theme, switchTheme }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     theme: state.theme,
-    user: state.user
+    user: state.user,
   };
 };
 

@@ -23,15 +23,15 @@ export function init() {
     lng: DEFAULT_LOCALE,
     debug: process.env.NODE_ENV === "development",
     interpolation: {
-      escapeValue: false
+      escapeValue: false,
     },
     react: {
-      wait: true
+      wait: true,
     },
     resources: {
       cs,
-      en
-    }
+      en,
+    },
   });
 }
 

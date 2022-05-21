@@ -10,9 +10,9 @@ export function AnonymousRoute({ component, user, ...rest }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 

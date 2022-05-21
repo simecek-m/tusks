@@ -18,16 +18,16 @@ export function HomePage({ login }) {
 }
 
 function LoginSidePanel({ login }) {
-  const onSuccess = response => {
+  const onSuccess = (response) => {
     const user = {
       name: response.profileObj.name,
       photo: response.profileObj.imageUrl,
       email: response.profileObj.email,
-      tokenId: response.tokenId
+      tokenId: response.tokenId,
     };
     login(user);
   };
-  const onFailure = error => {
+  const onFailure = (error) => {
     // TODO: show error toast instead of logging to console
     console.warn(error);
   };
@@ -43,7 +43,7 @@ function LoginSidePanel({ login }) {
         onSuccess={onSuccess}
         onFailure={onFailure}
         prompt="select_account"
-        render={renderProps => (
+        render={(renderProps) => (
           <Button onClick={renderProps.onClick}>login</Button>
         )}
       />

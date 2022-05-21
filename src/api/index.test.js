@@ -8,16 +8,16 @@ const TEST_TOKEN = "TEST_TOKEN";
 const TEST_FULFILLED_RESPONSE = {
   status: 200,
   data: {
-    message: "RESPONSE FULFILLED"
-  }
+    message: "RESPONSE FULFILLED",
+  },
 };
 
 const TEST_REJECTED_RESPONSE = {
   response: {
     data: {
-      message: "RESPONSE REJECTED"
-    }
-  }
+      message: "RESPONSE REJECTED",
+    },
+  },
 };
 
 describe("API", () => {
@@ -33,7 +33,7 @@ describe("API", () => {
   test("should create authorization header", () => {
     const header = setAuthorizationHeader(TEST_TOKEN);
     expect(header).toEqual({
-      headers: { Authorization: `Bearer ${TEST_TOKEN}` }
+      headers: { Authorization: `Bearer ${TEST_TOKEN}` },
     });
   });
 
@@ -48,19 +48,19 @@ describe("API", () => {
     expect(result).toEqual(TEST_FULFILLED_RESPONSE);
   });
 
-  test("should return rejected response", done => {
+  test("should return rejected response", (done) => {
     const result = api.interceptors.response.handlers[0].rejected(
       TEST_REJECTED_RESPONSE
     );
-    result.catch(error => {
+    result.catch((error) => {
       expect(error).toEqual(TEST_REJECTED_RESPONSE);
       done();
     });
   });
 
-  test("should return default rejected response", done => {
+  test("should return default rejected response", (done) => {
     const result = api.interceptors.response.handlers[0].rejected({});
-    result.catch(error => {
+    result.catch((error) => {
       expect(error.response).toEqual(DEFAULT_FALLBACK_RESPONSE);
       done();
     });

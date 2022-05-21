@@ -6,9 +6,9 @@ export function ProtectedRoute({ component, user, ...rest }) {
   return user ? <Route {...rest} component={component} /> : <Redirect to="/" />;
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 

@@ -3,7 +3,7 @@ const defaults = {
   TODO_BACKEND_HOST: "http://localhost",
   TODO_BACKEND_PORT: "8080",
   DEFAULT_LOCALE: "cs",
-  DEFAULT_THEME: "light"
+  DEFAULT_THEME: "light",
 };
 
 export const GOOGLE_API_CLIENT_ID =

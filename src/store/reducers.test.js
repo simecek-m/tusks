@@ -2,36 +2,36 @@ import { DEFAULT_LOCALE, DEFAULT_THEME } from "conf";
 import {
   ACTION_TYPE_LOGIN,
   ACTION_TYPE_LOGOUT,
-  ACTION_TYPE_LOCALE
+  ACTION_TYPE_LOCALE,
 } from "store/actions";
 import reducer, { initialState } from "store/reducers";
 
 const TEST_USER = {
   name: "Mike Smith",
   email: "smith@todo.com",
-  locale: "en"
+  locale: "en",
 };
 
 const TEST_INITIAL_STATE = {
   user: null,
   locale: DEFAULT_LOCALE,
-  theme: DEFAULT_THEME
+  theme: DEFAULT_THEME,
 };
 
 const TEST_CS_LOCALE = "cs";
 
 const TEST_LOGIN_ACTION = {
   type: ACTION_TYPE_LOGIN,
-  payload: TEST_USER
+  payload: TEST_USER,
 };
 
 const TEST_LOGOUT_ACTION = {
-  type: ACTION_TYPE_LOGOUT
+  type: ACTION_TYPE_LOGOUT,
 };
 
 const TEST_LOCALE_ACTION = {
   type: ACTION_TYPE_LOCALE,
-  payload: TEST_CS_LOCALE
+  payload: TEST_CS_LOCALE,
 };
 
 describe("Redux store reducers", () => {
@@ -47,7 +47,7 @@ describe("Redux store reducers", () => {
     const result = reducer(TEST_INITIAL_STATE, TEST_LOGIN_ACTION);
     expect(result).toEqual({
       ...TEST_INITIAL_STATE,
-      user: TEST_USER
+      user: TEST_USER,
     });
   });
 
@@ -60,7 +60,7 @@ describe("Redux store reducers", () => {
     const result = reducer(TEST_INITIAL_STATE, TEST_LOCALE_ACTION);
     expect(result).toEqual({
       ...TEST_INITIAL_STATE,
-      locale: TEST_CS_LOCALE
+      locale: TEST_CS_LOCALE,
     });
   });
 });

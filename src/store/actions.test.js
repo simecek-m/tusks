@@ -4,7 +4,7 @@ import {
   setLocale,
   ACTION_TYPE_LOGIN,
   ACTION_TYPE_LOGOUT,
-  ACTION_TYPE_LOCALE
+  ACTION_TYPE_LOCALE,
 } from "store/actions";
 
 const TEST_LOCALE = "en";
@@ -12,7 +12,7 @@ const TEST_LOCALE = "en";
 const TEST_USER = {
   name: "Mike Smith",
   email: "smith@todo.com",
-  locale: "en"
+  locale: "en",
 };
 
 describe("Redux store actions", () => {
@@ -20,14 +20,14 @@ describe("Redux store actions", () => {
     const result = login(TEST_USER);
     expect(result).toEqual({
       type: ACTION_TYPE_LOGIN,
-      payload: TEST_USER
+      payload: TEST_USER,
     });
   });
 
   test("should return logout action", () => {
     const result = logout(TEST_USER);
     expect(result).toEqual({
-      type: ACTION_TYPE_LOGOUT
+      type: ACTION_TYPE_LOGOUT,
     });
   });
 
@@ -35,7 +35,7 @@ describe("Redux store actions", () => {
     const result = setLocale(TEST_LOCALE);
     expect(result).toEqual({
       type: ACTION_TYPE_LOCALE,
-      payload: TEST_LOCALE
+      payload: TEST_LOCALE,
     });
   });
 });

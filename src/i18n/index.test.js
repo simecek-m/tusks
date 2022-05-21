@@ -36,15 +36,15 @@ describe("i18n", () => {
       lng: DEFAULT_LOCALE,
       debug: false,
       interpolation: {
-        escapeValue: false
+        escapeValue: false,
       },
       react: {
-        wait: true
+        wait: true,
       },
       resources: {
         cs,
-        en
-      }
+        en,
+      },
     });
   });
 
