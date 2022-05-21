@@ -7,8 +7,8 @@ import { history } from "router";
 import { Switch } from "react-router-dom";
 import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
-import HomePage from "page/Home";
-import ListPage from "page/List";
+import HomePage from "page/HomePage";
+import ListPage from "page/TodoPage";
 
 function App({ theme }) {
   return (

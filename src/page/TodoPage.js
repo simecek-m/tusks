@@ -1,5 +1,5 @@
 import PageWithHeader from "component/layout/PageWithHeader";
-import "page/List.sass";
+import "page/TodoPage.sass";
 import List from "component/todo/List";
 import {
   faCode,

@@ -4,7 +4,7 @@ import { GOOGLE_API_CLIENT_ID } from "conf";
 import { connect } from "react-redux";
 import { login, logout } from "store/actions";
 import PageWithHeader from "../component/layout/PageWithHeader";
-import "page/Home.sass";
+import "page/HomePage.sass";
 
 export function HomePage({ login }) {
   return (

@@ -14,7 +14,6 @@ export const initialState = {
 };
 
 function reducer(state = initialState, action) {
-  console.log(`new action: ${action.type}`);
   switch (action.type) {
     case ACTION_TYPE_LOGIN:
       return {
