@@ -8,11 +8,6 @@
     "eject": "react-scripts eject",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage",
-    "lint": "eslint \"src/**/*.{js,jsx,json}\"",
-    "lint:fix": "eslint \"src/**/*.{js,jsx,json}\" --fix",
-    "format": "prettier --write \"**/*.{js,jsx}\"",
-    "sass-lint": "sass-lint -v -q",
-    "sass-lint:fix": "sass-lint-auto-fix",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
   },
@@ -43,8 +38,7 @@
     "react-test-renderer": "16.8.6",
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.52.1",
-    "sass-lint": "^1.13.1",
-    "sass-lint-auto-fix": "^0.21.2"
+    "sass-lint": "^1.13.1"
   },
   "eslintConfig": {
     "extends": [
@@ -58,9 +52,8 @@
       "eslint",
       "git add"
     ],
-    "*.{sass}": [
-      "npm run sass-lint:fix",
-      "npm run sass-lint",
+    "*.sass": [
+      "sass-lint -v -q",
       "git add"
     ]
   },
