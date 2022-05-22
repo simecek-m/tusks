@@ -8,6 +8,7 @@ import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
 import HomePage from "page/HomePage";
 import ListPage from "page/TodoPage";
+import { Toaster } from "react-hot-toast";
 
 function App({ theme }) {
   return (
@@ -18,6 +19,7 @@ function App({ theme }) {
           <ProtectedRoute path="/list" component={ListPage} />
         </Switch>
       </Router>
+      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 }
