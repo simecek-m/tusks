@@ -1,19 +1,13 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 
-export function AnonymousRoute({ component, user, ...rest }) {
+export default function AnonymousRoute({ component, ...rest }) {
+  // TODO: inject authentication
+  const user = null;
+
   return user ? (
     <Redirect to="/list" />
   ) : (
     <Route {...rest} component={component} />
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(AnonymousRoute);

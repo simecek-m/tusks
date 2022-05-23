@@ -1,9 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { connect } from "react-redux";
-import { logout } from "store/actions";
 import "component/user/UserWidget.sass";
 
-function UserWidget({ user, logout, innerRef }) {
+export default function UserWidget({ innerRef }) {
+  // TODO: inject authentication
+  const user = null;
+  const logout = null;
+
   return (
     <div className="user-widget" ref={innerRef}>
       <img id="user-photo" src={user.photo} alt="user" />
@@ -17,11 +19,3 @@ function UserWidget({ user, logout, innerRef }) {
     </div>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps, { logout })(UserWidget);

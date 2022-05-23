@@ -2,26 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "component/App";
 import * as serviceWorker from "serviceWorker";
-import { createPersistor, getStore } from "store";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/lib/integration/react";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import ThemeProvider from "provider/theme";
-
-const persistor = createPersistor();
-const store = getStore();
 
 library.add(fas);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
+    <App />
   </ThemeProvider>
 );
 

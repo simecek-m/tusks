@@ -1,12 +1,13 @@
 import Button from "component/button/Button";
 import GoogleLogin from "react-google-login";
 import { GOOGLE_API_CLIENT_ID } from "conf";
-import { connect } from "react-redux";
-import { login, logout } from "store/actions";
 import PageWithHeader from "../component/layout/PageWithHeader";
 import "page/HomePage.sass";
 
-export function HomePage({ login }) {
+export default function HomePage() {
+  // TODO: inject authentication
+  const login = null;
+
   return (
     <PageWithHeader>
       <div className="home-layout">
@@ -50,5 +51,3 @@ function LoginSidePanel({ login }) {
     </div>
   );
 }
-
-export default connect(null, { login, logout })(HomePage);

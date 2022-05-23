@@ -3,9 +3,11 @@ import "component/layout/Topbar.sass";
 import UserWidget from "component/user/UserWidget";
 import { useTheme } from "provider/theme";
 import { useEffect, useRef, useState } from "react";
-import { connect } from "react-redux";
 
-function Topbar({ user }) {
+export default function Topbar() {
+  // TODO: inject authentication
+  const user = null;
+
   const [isUserWidgetVisible, setUserWidgetVisibility] = useState(false);
   const ref = useRef();
   const { theme, switchTheme } = useTheme();
@@ -45,11 +47,3 @@ function Topbar({ user }) {
     </>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(Topbar);
