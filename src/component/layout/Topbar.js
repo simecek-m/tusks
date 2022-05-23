@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "component/layout/Topbar.sass";
 import UserWidget from "component/user/UserWidget";
@@ -5,12 +6,10 @@ import { useTheme } from "provider/theme";
 import { useEffect, useRef, useState } from "react";
 
 export default function Topbar() {
-  // TODO: inject authentication
-  const user = null;
-
+  const { user } = useAuth0();
+  const { theme, switchTheme } = useTheme();
   const [isUserWidgetVisible, setUserWidgetVisibility] = useState(false);
   const ref = useRef();
-  const { theme, switchTheme } = useTheme();
 
   useEffect(() => {
     const clickOutsideHandler = (e) => {
@@ -23,6 +22,7 @@ export default function Topbar() {
       document.removeEventListener("mousedown", clickOutsideHandler);
     };
   }, []);
+
   return (
     <>
       <div id="topbar-component">

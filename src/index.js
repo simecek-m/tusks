@@ -5,13 +5,20 @@ import * as serviceWorker from "serviceWorker";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import ThemeProvider from "provider/theme";
-
+import { Auth0Provider } from "@auth0/auth0-react";
+import { AUTH_DOMAIN, AUTH_CLIENT_ID } from "conf";
 library.add(fas);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider>
-    <App />
+    <Auth0Provider
+      domain={AUTH_DOMAIN}
+      clientId={AUTH_CLIENT_ID}
+      redirectUri={window.location.origin}
+    >
+      <App />
+    </Auth0Provider>
   </ThemeProvider>
 );
 

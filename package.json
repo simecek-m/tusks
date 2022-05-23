@@ -12,13 +12,13 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.10.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "axios": "^0.27.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-google-login": "^5.2.2",
     "react-hot-toast": "^2.2.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^5.0.1"

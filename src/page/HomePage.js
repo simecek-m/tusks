@@ -1,37 +1,21 @@
-import Button from "component/button/Button";
-import GoogleLogin from "react-google-login";
-import { GOOGLE_API_CLIENT_ID } from "conf";
 import PageWithHeader from "../component/layout/PageWithHeader";
 import "page/HomePage.sass";
+import { useAuth0 } from "@auth0/auth0-react";
+import Button from "component/button/Button";
 
 export default function HomePage() {
-  // TODO: inject authentication
-  const login = null;
-
   return (
     <PageWithHeader>
       <div className="home-layout">
-        <LoginSidePanel login={login} />
+        <LoginSidePanel />
         <div className="content">Content</div>
       </div>
     </PageWithHeader>
   );
 }
 
-function LoginSidePanel({ login }) {
-  const onSuccess = (response) => {
-    const user = {
-      name: response.profileObj.name,
-      photo: response.profileObj.imageUrl,
-      email: response.profileObj.email,
-      tokenId: response.tokenId,
-    };
-    login(user);
-  };
-  const onFailure = (error) => {
-    // TODO: show error toast instead of logging to console
-    console.warn(error);
-  };
+function LoginSidePanel() {
+  const { loginWithRedirect } = useAuth0();
   return (
     <div className="login-side-panel">
       <h1 className="title">to-do</h1>
@@ -39,15 +23,7 @@ function LoginSidePanel({ login }) {
         Create your own tasks, organize them into lists and don’t forget to
         finish them ever again.
       </div>
-      <GoogleLogin
-        clientId={GOOGLE_API_CLIENT_ID}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        prompt="select_account"
-        render={(renderProps) => (
-          <Button onClick={renderProps.onClick}>login</Button>
-        )}
-      />
+      <Button onClick={loginWithRedirect}>Login</Button>
     </div>
   );
 }
