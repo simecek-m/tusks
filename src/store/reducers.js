@@ -1,14 +1,7 @@
-import {
-  ACTION_TYPE_LOGIN,
-  ACTION_TYPE_LOGOUT,
-  ACTION_TYPE_LOCALE,
-} from "store/actions";
-
-import { DEFAULT_LOCALE } from "conf";
+import { ACTION_TYPE_LOGIN, ACTION_TYPE_LOGOUT } from "store/actions";
 
 export const initialState = {
   user: null,
-  locale: DEFAULT_LOCALE,
 };
 
 function reducer(state = initialState, action) {
@@ -21,13 +14,7 @@ function reducer(state = initialState, action) {
     case ACTION_TYPE_LOGOUT:
       return {
         ...state,
-        locale: DEFAULT_LOCALE,
         user: null,
-      };
-    case ACTION_TYPE_LOCALE:
-      return {
-        ...state,
-        locale: action.payload,
       };
     default:
       return state;

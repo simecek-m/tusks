@@ -5,8 +5,6 @@ import * as serviceWorker from "serviceWorker";
 import { createPersistor, getStore } from "store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
-import { I18nextProvider } from "react-i18next";
-import * as i18nModule from "i18n/index";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import ThemeProvider from "provider/theme";
@@ -21,9 +19,7 @@ root.render(
   <ThemeProvider>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <I18nextProvider i18n={i18nModule.init()}>
-          <App />
-        </I18nextProvider>
+        <App />
       </PersistGate>
     </Provider>
   </ThemeProvider>
