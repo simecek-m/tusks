@@ -8,6 +8,7 @@ import ProtectedRoute from "router/ProtectedRoute";
 import HomePage from "page/HomePage";
 import ListPage from "page/TodoPage";
 import { useTheme } from "provider/theme";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   const { theme } = useTheme();
@@ -19,6 +20,7 @@ export default function App() {
           <ProtectedRoute path="/list" component={ListPage} />
         </Switch>
       </Router>
+      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 }
