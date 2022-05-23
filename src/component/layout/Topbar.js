@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { connect } from "react-redux";
-import { switchTheme } from "store/actions";
 import "component/layout/Topbar.sass";
 import UserWidget from "component/user/UserWidget";
+import { useTheme } from "provider/theme";
 import { useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
 
-export function Topbar({ user, theme, switchTheme }) {
+function Topbar({ user }) {
   const [isUserWidgetVisible, setUserWidgetVisibility] = useState(false);
   const ref = useRef();
+  const { theme, switchTheme } = useTheme();
 
   useEffect(() => {
     const clickOutsideHandler = (e) => {
@@ -28,7 +29,7 @@ export function Topbar({ user, theme, switchTheme }) {
           icon={theme === "dark" ? "sun" : "moon"}
           color="white"
           size="xl"
-          onClick={() => switchTheme()}
+          onClick={switchTheme}
         />
         {user && (
           <FontAwesomeIcon
@@ -47,9 +48,8 @@ export function Topbar({ user, theme, switchTheme }) {
 
 const mapStateToProps = (state) => {
   return {
-    theme: state.theme,
     user: state.user,
   };
 };
 
-export default connect(mapStateToProps, { switchTheme })(Topbar);
+export default connect(mapStateToProps)(Topbar);

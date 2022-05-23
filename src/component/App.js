@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import "component/App.sass";
 import { Router } from "react-router-dom";
 import { history } from "router";
@@ -8,8 +7,10 @@ import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
 import HomePage from "page/HomePage";
 import ListPage from "page/TodoPage";
+import { useTheme } from "provider/theme";
 
-function App({ theme }) {
+export default function App() {
+  const { theme } = useTheme();
   return (
     <div className={`theme-${theme}`}>
       <Router history={history}>
@@ -21,10 +22,3 @@ function App({ theme }) {
     </div>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    theme: state.theme,
-  };
-};
-export default connect(mapStateToProps)(App);

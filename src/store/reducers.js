@@ -2,15 +2,13 @@ import {
   ACTION_TYPE_LOGIN,
   ACTION_TYPE_LOGOUT,
   ACTION_TYPE_LOCALE,
-  ACTION_SWITCH_THEME,
 } from "store/actions";
 
-import { DEFAULT_LOCALE, DEFAULT_THEME } from "conf";
+import { DEFAULT_LOCALE } from "conf";
 
 export const initialState = {
   user: null,
   locale: DEFAULT_LOCALE,
-  theme: DEFAULT_THEME,
 };
 
 function reducer(state = initialState, action) {
@@ -31,23 +29,8 @@ function reducer(state = initialState, action) {
         ...state,
         locale: action.payload,
       };
-    case ACTION_SWITCH_THEME:
-      const theme = switchTheme(state.theme);
-      return {
-        ...state,
-        theme: theme,
-      };
     default:
       return state;
-  }
-}
-
-function switchTheme(theme) {
-  switch (theme) {
-    case "light":
-      return "dark";
-    default:
-      return "light";
   }
 }
 
