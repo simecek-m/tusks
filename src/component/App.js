@@ -6,7 +6,7 @@ import { Switch } from "react-router-dom";
 import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
 import HomePage from "page/HomePage";
-import ListPage from "page/TodoPage";
+import ListPage from "page/ListPage";
 import { useTheme } from "provider/theme";
 import { Toaster } from "react-hot-toast";
 
