@@ -1,15 +1,15 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import LoadingPage from "page/LoadingPage";
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-export default function AnonymousRoute({ component, ...rest }) {
+export default function AnonymousRoute() {
   const { user, isLoading } = useAuth0();
   if (isLoading) {
     return <LoadingPage />;
   }
   if (user) {
-    return <Redirect to="/list" />;
+    return <Navigate to="/list" replace />;
   }
-  return <Route {...rest} component={component} />;
+  return <Outlet />;
 }

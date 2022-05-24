@@ -1,16 +1,13 @@
-import PageWithHeader from "../component/layout/PageWithHeader";
 import "page/HomePage.sass";
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "component/button/Button";
 
 export default function HomePage() {
   return (
-    <PageWithHeader>
-      <div className="home-layout">
-        <LoginSidePanel />
-        <div className="content">Content</div>
-      </div>
-    </PageWithHeader>
+    <div className="home-layout">
+      <LoginSidePanel />
+      <div className="content">Content</div>
+    </div>
   );
 }
 

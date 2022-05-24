@@ -1,7 +1,7 @@
 .home-layout
   display: flex
   flex-direction: row
-  height: 100vh
+  height: calc(100vh - var(--topbar-height))
 
 .login-side-panel
   background: var(--surface)
@@ -18,9 +18,6 @@
   gap: 20px
 
 .content
-  margin-top: var(--topbar-height)
   display: flex
   flex: 1
   padding: 10px
-  background: var(--background)
-  color: var(--color)

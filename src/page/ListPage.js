@@ -1,4 +1,3 @@
-import PageWithHeader from "component/layout/PageWithHeader";
 import "page/ListPage.sass";
 import List from "component/todo/List";
 
@@ -19,15 +18,13 @@ const LISTS = [
 
 export default function ListPage() {
   return (
-    <PageWithHeader>
-      <div className="lists-layout">
-        <ListPanel>
-          {LISTS.map((list, key) => (
-            <List name={list.name} icon={list.icon} key={key} />
-          ))}
-        </ListPanel>
-      </div>
-    </PageWithHeader>
+    <div className="lists-layout">
+      <ListPanel>
+        {LISTS.map((list, key) => (
+          <List name={list.name} icon={list.icon} key={key} />
+        ))}
+      </ListPanel>
+    </div>
   );
 }
 
