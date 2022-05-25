@@ -8,6 +8,9 @@ import Page from "page/Page";
 import ListPage from "page/ListPage";
 import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
+import NewListPage from "page/NewListPage";
+import ListDetailPage from "page/ListDetailPage";
+import NoneListSelectedPage from "page/NoneListSelectedPage";
 
 export default function App() {
   const { theme } = useTheme();
@@ -20,7 +23,11 @@ export default function App() {
               <Route index element={<HomePage />} />
             </Route>
             <Route path="list" element={<ProtectedRoute />}>
-              <Route index element={<ListPage />} />
+              <Route element={<ListPage />}>
+                <Route index element={<NoneListSelectedPage />} />
+                <Route path="new" element={<NewListPage />} />
+                <Route path=":id" element={<ListDetailPage />} />
+              </Route>
             </Route>
           </Route>
         </Routes>
