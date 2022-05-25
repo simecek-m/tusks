@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "component/todo/List.sass";
+import { func } from "prop-types";
+import { string } from "prop-types";
 
 export default function List({ name, icon, onClick }) {
   return (
@@ -9,3 +11,9 @@ export default function List({ name, icon, onClick }) {
     </div>
   );
 }
+
+List.propTypes = {
+  name: string.isRequired,
+  icon: string.isRequired,
+  onClick: func.isRequired,
+};

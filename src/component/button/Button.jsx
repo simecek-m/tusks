@@ -1,3 +1,4 @@
+import { func } from "prop-types";
 import "component/button/Button.sass";
 
 export default function Button({ onClick, children }) {
@@ -7,3 +8,7 @@ export default function Button({ onClick, children }) {
     </button>
   );
 }
+
+Button.propTypes = {
+  onClick: func.isRequired,
+};

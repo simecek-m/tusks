@@ -3,6 +3,7 @@ import List from "component/todo/List";
 import { Outlet, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "page/ListPage.sass";
+import { func } from "prop-types";
 
 const LISTS = [
   {
@@ -71,6 +72,10 @@ function ListPanel({ onClick, children }) {
   );
 }
 
+ListPanel.propTypes = {
+  onClick: func.isRequired,
+};
+
 function NewList({ onClick }) {
   return (
     <div className="new-list" onClick={onClick}>
@@ -78,3 +83,7 @@ function NewList({ onClick }) {
     </div>
   );
 }
+
+NewList.propTypes = {
+  onClick: func.isRequired,
+};
