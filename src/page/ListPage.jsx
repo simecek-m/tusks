@@ -1,30 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import List from "component/todo/List";
 import { Outlet, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "page/ListPage.sass";
 import { func } from "prop-types";
-
-const LISTS = [
-  {
-    id: 1,
-    name: "Work",
-    icon: "code",
-  },
-  {
-    id: 2,
-    name: "Shopping",
-    icon: "shopping-basket",
-  },
-  {
-    id: 3,
-    name: "Finance",
-    icon: "coins",
-  },
-];
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ListPage() {
   const navigate = useNavigate();
+  const [list, setList] = useState([]);
+  const { getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const accessToken = await getAccessTokenSilently();
+      fetch(`${process.env.REACT_APP_TODO_API_URL}/lists`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => setList(data));
+    };
+    fetchTodos();
+  }, [getAccessTokenSilently]);
 
   useEffect(() => {
     const onKeyDown = (e) => {
@@ -41,14 +40,14 @@ export default function ListPage() {
   return (
     <div className="lists-layout">
       <ListPanel onClick={() => navigate("..")}>
-        {LISTS.map((list) => (
+        {list.map((list) => (
           <List
-            name={list.name}
-            icon={list.icon}
-            key={list.id}
+            name={list.title}
+            icon={list.icon ?? "list-check"}
+            key={list._id}
             onClick={(e) => {
               e.stopPropagation();
-              navigate(`../${list.id}`);
+              navigate(`../${list._id}`);
             }}
           />
         ))}
