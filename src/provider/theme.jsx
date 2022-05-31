@@ -1,13 +1,12 @@
 import { createContext, useContext, useState } from "react";
-import { DEFAULT_THEME } from "conf";
 
-const ThemeContext = createContext(DEFAULT_THEME);
+const ThemeContext = createContext(process.env.REACT_APP_DEFAULT_THEME);
 export const useTheme = () => useContext(ThemeContext);
 
 const THEME_KEY = "theme";
 
 export default function ThemeProvider({
-  defaulValue = DEFAULT_THEME,
+  defaulValue = process.env.REACT_APP_DEFAULT_THEME,
   children,
 }) {
   const persistTheme = (theme) => {

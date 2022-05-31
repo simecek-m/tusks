@@ -6,15 +6,15 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import ThemeProvider from "provider/theme";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { AUTH_DOMAIN, AUTH_CLIENT_ID } from "conf";
+
 library.add(fas);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider>
     <Auth0Provider
-      domain={AUTH_DOMAIN}
-      clientId={AUTH_CLIENT_ID}
+      domain={process.env.REACT_APP_AUTH_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
       redirectUri={window.location.origin}
     >
       <App />
