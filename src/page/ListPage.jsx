@@ -44,10 +44,10 @@ export default function ListPage() {
           <List
             name={list.title}
             icon={list.icon ?? "list-check"}
-            key={list._id}
+            key={list.id}
             onClick={(e) => {
               e.stopPropagation();
-              navigate(`../${list._id}`);
+              navigate(`../${list.id}`);
             }}
           />
         ))}
