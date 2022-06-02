@@ -30,7 +30,6 @@ export default function Topbar() {
           className="icon"
           icon={theme === "dark" ? "sun" : "moon"}
           color="white"
-          size="xl"
           onClick={switchTheme}
         />
         {user && (
@@ -38,7 +37,6 @@ export default function Topbar() {
             className="icon"
             icon="user"
             color="white"
-            size="xl"
             onClick={() => setUserWidgetVisibility(!isUserWidgetVisible)}
           />
         )}
