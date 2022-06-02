@@ -78,7 +78,7 @@ ListPanel.propTypes = {
 function NewList({ onClick }) {
   return (
     <div className="new-list" onClick={onClick}>
-      <FontAwesomeIcon icon="plus" size="2xl" />
+      <FontAwesomeIcon icon="plus" size="lg" />
     </div>
   );
 }
