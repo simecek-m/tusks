@@ -1,29 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import List from "component/todo/List";
 import { Outlet, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "page/ListPage.sass";
 import { func } from "prop-types";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useQuery } from "react-query";
 
 export default function ListPage() {
   const navigate = useNavigate();
-  const [list, setList] = useState([]);
   const { getAccessTokenSilently } = useAuth0();
 
-  useEffect(() => {
-    const fetchTodos = async () => {
-      const accessToken = await getAccessTokenSilently();
-      fetch(`${process.env.REACT_APP_TODO_API_URL}/lists`, {
+  const { data, error, isLoading } = useQuery("todos", async () => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${process.env.REACT_APP_TODO_API_URL}/lists`,
+      {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      })
-        .then((response) => response.json())
-        .then((data) => setList(data));
-    };
-    fetchTodos();
-  }, [getAccessTokenSilently]);
+      }
+    );
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+    return await response.json();
+  });
 
   useEffect(() => {
     const onKeyDown = (e) => {
@@ -37,20 +39,24 @@ export default function ListPage() {
     };
   }, [navigate]);
 
+  if (isLoading) return <div>loading</div>;
+  if (error) return <div>error</div>;
+
   return (
     <div className="lists-layout">
       <ListPanel onClick={() => navigate("..")}>
-        {list.map((list) => (
-          <List
-            name={list.title}
-            icon={list.icon ?? "list-check"}
-            key={list.id}
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate(`../${list.id}`);
-            }}
-          />
-        ))}
+        {data &&
+          data.map((list) => (
+            <List
+              name={list.title}
+              icon={list.icon ?? "list-check"}
+              key={list.id}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`../${list.id}`);
+              }}
+            />
+          ))}
         <NewList
           onClick={(e) => {
             e.stopPropagation();

@@ -6,20 +6,24 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import ThemeProvider from "provider/theme";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 library.add(fas);
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider>
-    <Auth0Provider
-      audience="todo-server"
-      domain={process.env.REACT_APP_AUTH_DOMAIN}
-      clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
-      redirectUri={window.location.origin}
-    >
-      <App />
-    </Auth0Provider>
+    <QueryClientProvider client={queryClient}>
+      <Auth0Provider
+        audience="todo-server"
+        domain={process.env.REACT_APP_AUTH_DOMAIN}
+        clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
+        redirectUri={window.location.origin}
+      >
+        <App />
+      </Auth0Provider>
+    </QueryClientProvider>
   </ThemeProvider>
 );
 
