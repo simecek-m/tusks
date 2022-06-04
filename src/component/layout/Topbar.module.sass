@@ -1,4 +1,4 @@
-#topbar-component
+#topbar
   position: fixed
   top: 0
   display: flex
@@ -8,12 +8,12 @@
   width: 100vw
   color: white
   height: var(--topbar-height)
-  border-bottom: 4px solid var(--brand)
+  border-bottom: var(--topbar-decoration-line-height) solid var(--brand)
   flex: 0
   gap: 20px
 
-.icon
-  cursor: pointer
+  .icon
+    cursor: pointer
 
-  &:last-child
-    margin-right: 20px
+    &:last-child
+      margin-right: 20px

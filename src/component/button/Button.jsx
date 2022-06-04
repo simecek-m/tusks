@@ -1,9 +1,9 @@
 import { func } from "prop-types";
-import "component/button/Button.sass";
+import styles from "component/button/Button.module.sass";
 
 export default function Button({ onClick, children }) {
   return (
-    <button onClick={onClick} className="button">
+    <button onClick={onClick} className={styles.button}>
       {children}
     </button>
   );

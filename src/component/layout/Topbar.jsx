@@ -1,9 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "component/layout/Topbar.sass";
 import UserWidget from "component/user/UserWidget";
 import { useTheme } from "provider/theme";
 import { useEffect, useRef, useState } from "react";
+import styles from "component/layout/Topbar.module.sass";
 
 export default function Topbar() {
   const { user } = useAuth0();
@@ -25,16 +25,16 @@ export default function Topbar() {
 
   return (
     <>
-      <div id="topbar-component">
+      <div id={styles.topbar}>
         <FontAwesomeIcon
-          className="icon"
+          className={styles.icon}
           icon={theme === "dark" ? "sun" : "moon"}
           color="white"
           onClick={switchTheme}
         />
         {user && (
           <FontAwesomeIcon
-            className="icon"
+            className={styles.icon}
             icon="user"
             color="white"
             onClick={() => setUserWidgetVisibility(!isUserWidgetVisible)}

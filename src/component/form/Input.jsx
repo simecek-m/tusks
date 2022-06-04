@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { string, oneOf } from "prop-types";
 import AVAILABLE_ICONS from "constants/icons";
-import "component/form/Input.sass";
+import styles from "component/form/Input.module.sass";
 
 export default function Input({
   type = "text",
@@ -12,8 +12,8 @@ export default function Input({
 }) {
   return (
     <div>
-      {label && <div className="label">{label}</div>}
-      <div className="body">
+      {label && <div className={styles.label}>{label}</div>}
+      <div className={styles.body}>
         {icon && <FontAwesomeIcon icon={icon} size="xl" />}
         <input
           type={type}

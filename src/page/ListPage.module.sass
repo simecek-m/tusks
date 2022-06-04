@@ -1,16 +1,16 @@
-.lists-layout
+#layout
   display: flex
   flex-direction: row
-  height: calc(100vh - var(--topbar-height))
+  height: calc(100vh - var(--topbar-height) - var(--topbar-decoration-line-height))
 
-  .list-panel
+  #list-panel
     display: flex
     gap: 10px
     flex-direction: column
     background: var(--surface)
     padding: 20px
 
-  .new-list
+  #new
     display: flex
     justify-content: center
     align-items: center

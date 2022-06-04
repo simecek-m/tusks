@@ -1,15 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AVAILABLE_ICONS from "constants/icons";
-import "page/NewListPage.sass";
+import Input from "component/form/Input";
+import styles from "page/NewListPage.module.sass";
 
 export default function NewListPage() {
   return (
-    <div className="page-layout-new-list">
+    <div id={styles.layout}>
+      <FontAwesomeIcon icon="rocket" />
       <h1>Icon</h1>
-      <div className="icon-picker">
-        {AVAILABLE_ICONS.map((icon, index) => (
-          <FontAwesomeIcon icon={icon} className="icon" key={index} />
-        ))}
+      <div id={styles["icon-picker"]}>
+        <Input label="name" icon="a" />
       </div>
     </div>
   );

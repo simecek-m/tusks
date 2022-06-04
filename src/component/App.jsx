@@ -1,5 +1,4 @@
 import React from "react";
-import "component/App.sass";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "page/HomePage";
 import { useTheme } from "provider/theme";
@@ -11,6 +10,7 @@ import ProtectedRoute from "router/ProtectedRoute";
 import NewListPage from "page/NewListPage";
 import ListDetailPage from "page/ListDetailPage";
 import NoneListSelectedPage from "page/NoneListSelectedPage";
+import "component/App.sass";
 
 export default function App() {
   const { theme } = useTheme();

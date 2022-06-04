@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import List from "component/todo/List";
+import TodoListItem from "component/todo/TodoListItem";
 import { Outlet, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "page/ListPage.sass";
 import { func } from "prop-types";
 import { useQuery } from "react-query";
 import { useTodoApi } from "hooks/api";
+import styles from "page/ListPage.module.sass";
 
 export default function ListPage() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function ListPage() {
   }, [navigate]);
 
   return (
-    <div className="lists-layout">
+    <div id={styles.layout}>
       <ListPanel onClick={() => navigate("..")} />
       <Outlet />
     </div>
@@ -40,10 +40,10 @@ function ListPanel({ onClick }) {
   if (error) return <div>error</div>;
 
   return (
-    <div className="list-panel" onClick={onClick}>
+    <div id={styles["list-panel"]} onClick={onClick}>
       {data &&
         data.map((list) => (
-          <List
+          <TodoListItem
             name={list.title}
             icon={list.icon ?? "list-check"}
             key={list.id}
@@ -69,7 +69,7 @@ ListPanel.propTypes = {
 
 function NewList({ onClick }) {
   return (
-    <div className="new-list" onClick={onClick}>
+    <div id={styles.new} onClick={onClick}>
       <FontAwesomeIcon icon="plus" size="lg" />
     </div>
   );
