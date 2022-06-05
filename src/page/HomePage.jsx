@@ -1,12 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "component/button/Button";
+import FlexibleContent from "component/layout/FlexibleContent";
 import styles from "page/HomePage.module.sass";
 
 export default function HomePage() {
   return (
     <div id={styles.layout}>
       <LoginSidePanel />
-      <div id={styles.content}>Content</div>
+      <FlexibleContent>Content</FlexibleContent>
     </div>
   );
 }
