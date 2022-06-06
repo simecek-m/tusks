@@ -24,13 +24,13 @@ export default function ListPage() {
 
   return (
     <div id={styles.layout}>
-      <ListPanel onClick={() => navigate("..")} />
+      <ListPanel />
       <Outlet />
     </div>
   );
 }
 
-function ListPanel({ onClick }) {
+function ListPanel() {
   const { fetchTodos } = useTodoApi();
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ function ListPanel({ onClick }) {
   if (error) return <div>error</div>;
 
   return (
-    <div id={styles["list-panel"]} onClick={onClick}>
+    <div id={styles["list-panel"]}>
       {data &&
         data.map((list) => (
           <TodoListItem
@@ -48,24 +48,18 @@ function ListPanel({ onClick }) {
             icon={list.icon ?? "list-check"}
             key={list.id}
             onClick={(e) => {
-              e.stopPropagation();
               navigate(`../${list.id}`);
             }}
           />
         ))}
       <NewList
         onClick={(e) => {
-          e.stopPropagation();
           navigate("../new");
         }}
       />
     </div>
   );
 }
-
-ListPanel.propTypes = {
-  onClick: func.isRequired,
-};
 
 function NewList({ onClick }) {
   return (

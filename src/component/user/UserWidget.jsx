@@ -12,7 +12,10 @@ export default function UserWidget({ innerRef }) {
         <div>{user.email}</div>
       </div>
       <div id={styles.logout} onClick={logout}>
-        <FontAwesomeIcon icon="sign-out" size="xl" />
+        <FontAwesomeIcon
+          icon="person-walking-dashed-line-arrow-right"
+          size="xl"
+        />
       </div>
     </div>
   );

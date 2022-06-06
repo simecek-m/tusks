@@ -17,9 +17,9 @@ export default function Topbar() {
         setUserWidgetVisibility(false);
       }
     };
-    document.addEventListener("mousedown", clickOutsideHandler);
+    document.addEventListener("click", clickOutsideHandler);
     return () => {
-      document.removeEventListener("mousedown", clickOutsideHandler);
+      document.removeEventListener("click", clickOutsideHandler);
     };
   }, []);
 
@@ -37,7 +37,10 @@ export default function Topbar() {
             className={styles.icon}
             icon="user"
             color="white"
-            onClick={() => setUserWidgetVisibility(!isUserWidgetVisible)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setUserWidgetVisibility(!isUserWidgetVisible);
+            }}
           />
         )}
       </div>
