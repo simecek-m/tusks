@@ -9,7 +9,24 @@
   truck-fast
 */
 
-const AVAILABLE_ICONS = [
+export const FAVOURITE_ICONS = [
+  "basket-shopping",
+  "book",
+  "marker",
+  "graduation-cap",
+  "music",
+  "heart",
+  "glasses",
+  "person-hiking",
+  "baseball-bat-ball",
+  "piggy-bank",
+  "signs-post",
+  "route",
+  "code",
+  "couch",
+];
+
+export const AVAILABLE_ICONS = [
   "0",
   "1",
   "2",
@@ -1396,5 +1413,3 @@ const AVAILABLE_ICONS = [
   "yin-yang",
   "z",
 ];
-
-export default AVAILABLE_ICONS;

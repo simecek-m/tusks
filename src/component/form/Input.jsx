@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { string, oneOf } from "prop-types";
-import AVAILABLE_ICONS from "constants/icons";
+import { AVAILABLE_ICONS } from "constants/icons";
 import styles from "component/form/Input.module.sass";
 
 export default function Input({
@@ -9,6 +9,7 @@ export default function Input({
   label,
   placeholder,
   defaultValue,
+  onChange,
 }) {
   return (
     <div>
@@ -20,6 +21,7 @@ export default function Input({
           autoComplete="on"
           placeholder={placeholder}
           defaultValue={defaultValue}
+          onChange={onChange}
         />
       </div>
     </div>
