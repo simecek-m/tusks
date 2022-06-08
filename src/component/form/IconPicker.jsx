@@ -4,7 +4,7 @@ import { useState } from "react";
 import { debounce } from "debounce";
 import styles from "component/form/IconPicker.module.sass";
 
-export default function IconPicker({ onClick }) {
+export default function IconPicker({ onPick }) {
   const [icons, setIcons] = useState(FAVOURITE_ICONS);
   const filterIcons = debounce((text) => {
     if (text.length > 0) {
@@ -16,6 +16,7 @@ export default function IconPicker({ onClick }) {
       setIcons(FAVOURITE_ICONS);
     }
   }, 400);
+
   return (
     <div className={styles["icon-picker"]}>
       <input
@@ -29,7 +30,7 @@ export default function IconPicker({ onClick }) {
           <FontAwesomeIcon
             icon={iconName}
             key={index}
-            onClick={() => onClick(iconName)}
+            onClick={() => onPick(iconName)}
           />
         ))}
       </div>
