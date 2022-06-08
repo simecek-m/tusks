@@ -7,7 +7,6 @@ import Page from "page/Page";
 import ListPage from "page/ListPage";
 import AnonymousRoute from "router/AnonymousRoute";
 import ProtectedRoute from "router/ProtectedRoute";
-import NewListPage from "page/NewListPage";
 import ListDetailPage from "page/ListDetailPage";
 import NoneListSelectedPage from "page/NoneListSelectedPage";
 import "component/App.sass";
@@ -25,7 +24,6 @@ export default function App() {
             <Route path="list" element={<ProtectedRoute />}>
               <Route element={<ListPage />}>
                 <Route index element={<NoneListSelectedPage />} />
-                <Route path="new" element={<NewListPage />} />
                 <Route path=":id" element={<ListDetailPage />} />
               </Route>
             </Route>

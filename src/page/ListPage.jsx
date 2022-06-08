@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import TodoListItem from "component/todo/TodoListItem";
 import { Outlet, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { func } from "prop-types";
 import { useQuery } from "react-query";
 import { useTodoApi } from "hooks/api";
+import NewList from "component/button/NewList";
 import styles from "page/ListPage.module.sass";
 
 export default function ListPage() {
@@ -53,22 +52,10 @@ function ListPanel() {
           />
         ))}
       <NewList
-        onClick={(e) => {
+        onClick={() => {
           navigate("../new");
         }}
       />
     </div>
   );
 }
-
-function NewList({ onClick }) {
-  return (
-    <div id={styles.new} onClick={onClick}>
-      <FontAwesomeIcon icon="plus" size="lg" />
-    </div>
-  );
-}
-
-NewList.propTypes = {
-  onClick: func.isRequired,
-};

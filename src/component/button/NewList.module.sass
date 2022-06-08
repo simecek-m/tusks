@@ -1,0 +1,73 @@
+#button
+  display: flex
+  justify-content: center
+  align-items: center
+  background: var(--background)
+  width: 320px
+  padding: 15px 0
+  border-radius: 10px
+  cursor: pointer
+
+form
+  width: 320px
+  display: flex
+  flex-direction: column
+  gap: 10px
+  position: relative
+
+  .todo-list-item
+    display: flex
+    flex-direction: row
+    width: 320px
+    background: var(--background)
+    border-radius: 10px
+    gap: 5px
+    box-sizing: border-box
+    cursor: pointer
+    position: relative
+    padding: 5px 5px 5px 15px
+
+    input
+      display: flex
+      flex: 1
+      align-items: center
+      font-weight: bold
+      font-size: 1.1rem
+      border: none
+      width: 100px
+      outline: none
+      box-sizing: border-box
+      background: none
+      color: var(--color)
+
+    .icon
+      margin: 0
+      background: var(--color)
+      color: var(--background)
+      width: 20px
+      height: 20px
+      padding: 15px
+      border-radius: 10px
+
+  .icon-picker
+    position: absolute
+    top: -10px
+    left: 330px
+
+  .buttons
+    display: flex
+    gap: 5px
+
+    button
+      display: flex
+      justify-content: center
+      align-items: center
+      flex: 1
+      gap: 10px
+      font-size: 1.2rem
+      border: none
+      border-radius: 10px
+      cursor: pointer
+      padding: 10px
+      background: var(--background)
+      color: var(--text)
