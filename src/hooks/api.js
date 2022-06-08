@@ -10,7 +10,27 @@ export function useTodoApi() {
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
         },
+      }
+    );
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+    return await response.json();
+  };
+
+  const createTodo = async (todoList) => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${process.env.REACT_APP_TODO_API_URL}/lists`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(todoList),
       }
     );
     if (!response.ok) {
@@ -21,5 +41,6 @@ export function useTodoApi() {
 
   return {
     fetchTodos,
+    createTodo,
   };
 }

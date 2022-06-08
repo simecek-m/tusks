@@ -40,6 +40,7 @@ function ListPanel() {
 
   return (
     <div id={styles["list-panel"]}>
+      <NewList />
       {data &&
         data.map((list) => (
           <TodoListItem
@@ -51,11 +52,6 @@ function ListPanel() {
             }}
           />
         ))}
-      <NewList
-        onClick={() => {
-          navigate("../new");
-        }}
-      />
     </div>
   );
 }

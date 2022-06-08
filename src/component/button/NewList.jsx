@@ -3,6 +3,9 @@ import propTypes from "prop-types";
 import styles from "component/button/NewList.module.sass";
 import { useState } from "react";
 import IconPicker from "component/form/IconPicker";
+import { useTodoApi } from "hooks/api";
+import { useMutation, useQueryClient } from "react-query";
+import { toast } from "react-hot-toast";
 
 export default function NewList() {
   const [isExpanded, setExpanded] = useState(false);
@@ -28,12 +31,32 @@ function NewListButton({ onClick }) {
 }
 
 function NewListForm({ onClose }) {
+  const queryClient = useQueryClient();
   const [isIconPickerVisible, setIconPickerVisible] = useState(false);
   const [pickedIcon, setPickedIcon] = useState("list-check");
+  const [name, setName] = useState("");
+  const { createTodo } = useTodoApi();
+  const { mutate } = useMutation(createTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+      onClose();
+    },
+    onError: async (response) => {
+      toast.error(
+        <div>
+          {response.statusText} (status: {response.status})
+        </div>
+      );
+    },
+  });
   return (
     <form>
       <div className={styles["todo-list-item"]}>
-        <input placeholder="name" />
+        <input
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <FontAwesomeIcon
           icon={pickedIcon}
           className={styles.icon}
@@ -55,7 +78,10 @@ function NewListForm({ onClose }) {
           <FontAwesomeIcon icon="xmark" />
           close
         </button>
-        <button onClick={() => console.log("save")} type="button">
+        <button
+          onClick={() => mutate({ title: name, icon: pickedIcon })}
+          type="button"
+        >
           <FontAwesomeIcon icon="check" />
           save
         </button>
