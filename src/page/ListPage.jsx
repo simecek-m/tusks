@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { useTodoApi } from "hooks/api";
 import NewList from "component/button/NewList";
 import styles from "page/ListPage.module.sass";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ListPage() {
   const navigate = useNavigate();
@@ -35,11 +36,27 @@ function ListPanel() {
 
   const { data, error, isLoading } = useQuery("todos", fetchTodos);
 
-  if (isLoading) return <div>loading</div>;
-  if (error) return <div>error</div>;
+  if (isLoading)
+    return (
+      <SidePanel>
+        <div className={styles.centered}>
+          <FontAwesomeIcon icon="spinner" size="xl" />
+          <span>Loading</span>
+        </div>
+      </SidePanel>
+    );
+  if (error)
+    return (
+      <SidePanel>
+        <div className={styles.centered}>
+          <FontAwesomeIcon icon="triangle-exclamation" size="xl" />
+          <span>Error</span>
+        </div>
+      </SidePanel>
+    );
 
   return (
-    <div id={styles["list-panel"]}>
+    <SidePanel>
       <NewList />
       {data &&
         data.map((list) => (
@@ -47,11 +64,15 @@ function ListPanel() {
             name={list.title}
             icon={list.icon ?? "list-check"}
             key={list.id}
-            onClick={(e) => {
+            onClick={() => {
               navigate(`../${list.id}`);
             }}
           />
         ))}
-    </div>
+    </SidePanel>
   );
+}
+
+function SidePanel({ children }) {
+  return <div id={styles["side-panel"]}>{children}</div>;
 }

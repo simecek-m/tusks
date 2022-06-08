@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import propTypes from "prop-types";
 import styles from "component/button/NewList.module.sass";
 import { useState } from "react";
 import IconPicker from "component/form/IconPicker";
@@ -17,10 +16,6 @@ export default function NewList() {
     </>
   );
 }
-
-NewList.propTypes = {
-  onClick: propTypes.func.isRequired,
-};
 
 function NewListButton({ onClick }) {
   return (
