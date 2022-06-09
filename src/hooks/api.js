@@ -39,8 +39,27 @@ export function useTodoApi() {
     return await response.json();
   };
 
+  const deleteTodo = async (listId) => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${process.env.REACT_APP_TODO_API_URL}/lists/${listId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+    return await response.json();
+  };
+
   return {
     fetchTodos,
     createTodo,
+    deleteTodo,
   };
 }
