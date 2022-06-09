@@ -2,16 +2,19 @@
   display: flex
   flex-direction: column
   padding: 5px
-  box-shadow: 0 0 4px rgb(0 0 0 / 30%)
   border-radius: 10px
   width: 250px
   gap: 10px
   background: var(--background)
-  color: var(--color)
+  color: var(--on-background)
+  box-shadow: 0 0 5px rgb(0 0 0 / 25%)
+
+  &.dark
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%)
 
   input
     background: var(--surface)
-    color: var(--color)
+    color: var(--on-surface)
     outline: none
     border: none
     text-align: center

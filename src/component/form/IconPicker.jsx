@@ -3,9 +3,11 @@ import { AVAILABLE_ICONS, FAVOURITE_ICONS } from "constants/icons";
 import { useState } from "react";
 import { debounce } from "debounce";
 import styles from "component/form/IconPicker.module.sass";
+import { useTheme } from "provider/theme";
 
 export default function IconPicker({ onPick }) {
   const [icons, setIcons] = useState(FAVOURITE_ICONS);
+  const { theme } = useTheme();
   const filterIcons = debounce((text) => {
     if (text.length > 0) {
       const filteredIcons = AVAILABLE_ICONS.filter((iconName) =>
@@ -16,9 +18,12 @@ export default function IconPicker({ onPick }) {
       setIcons(FAVOURITE_ICONS);
     }
   }, 400);
-
   return (
-    <div className={styles["icon-picker"]}>
+    <div
+      className={`${styles["icon-picker"]} ${
+        theme === "dark" ? styles.dark : ""
+      }`}
+    >
       <input
         className={styles.input}
         placeholder="search"

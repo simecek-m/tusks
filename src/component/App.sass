@@ -2,25 +2,24 @@
   --transparent: rgb(0 0 0 / 0%)
   --brand: rgb(111 234 101)
   --on-brand: black
-  --dark-gray: rgb(21 21 21)
-  --light-gray: rgb(243 243 243)
+  --gray-50: rgb(249 249 249)
+  --gray-600: rgb(60 60 60)
+  --gray-700: rgb(40 40 40)
+  --gray-800: rgb(30 30 30)
   --topbar-height: 40px
-  --topbar-decoration-line-height: 4px
 
 body
   margin: 0
   font-family: "Segoe UI", sans-serif
 
 .theme-dark
-  --background: black
-  --color: white
-  --surface: var(--dark-gray)
+  --background: var(--gray-700)
+  --on-background: white
+  --surface: var(--gray-800)
   --on-surface: white
-  --widget-background: var(--dark-gray)
 
 .theme-light
   --background: white
-  --color: black
-  --surface: var(--light-gray)
+  --on-background: black
+  --surface: var(--gray-50)
   --on-surface: black
-  --widget-background: white
