@@ -4,6 +4,7 @@ import { useState } from "react";
 import { debounce } from "debounce";
 import styles from "component/form/IconPicker.module.sass";
 import { useTheme } from "provider/theme";
+import { motion } from "framer-motion";
 
 export default function IconPicker({ onPick }) {
   const [icons, setIcons] = useState(FAVOURITE_ICONS);
@@ -18,8 +19,25 @@ export default function IconPicker({ onPick }) {
       setIcons(FAVOURITE_ICONS);
     }
   }, 400);
+  const container = {
+    hidden: { opacity: 0, x: -100 },
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
+  const listItem = {
+    hidden: { opacity: 0, x: -50 },
+    show: { opacity: 1, x: 0 },
+  };
   return (
-    <div
+    <motion.div
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: 100, opacity: 0 }}
       className={`${styles["icon-picker"]} ${
         theme === "dark" ? styles.dark : ""
       }`}
@@ -29,16 +47,23 @@ export default function IconPicker({ onPick }) {
         placeholder="search"
         onChange={(e) => filterIcons(e.target.value)}
       />
-      <div className={styles.icons}>
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className={styles.icons}
+      >
         {icons.length === 0 && <span>can't find any</span>}
         {icons.map((iconName, index) => (
-          <FontAwesomeIcon
-            icon={iconName}
-            key={index}
-            onClick={() => onPick(iconName)}
-          />
+          <motion.div variants={listItem}>
+            <FontAwesomeIcon
+              icon={iconName}
+              key={index}
+              onClick={() => onPick(iconName)}
+            />
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

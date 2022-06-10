@@ -4,6 +4,7 @@ import UserWidget from "component/user/UserWidget";
 import { useTheme } from "provider/theme";
 import { useEffect, useRef, useState } from "react";
 import styles from "component/layout/Topbar.module.sass";
+import { AnimatePresence } from "framer-motion";
 
 export default function Topbar() {
   const { user } = useAuth0();
@@ -44,7 +45,9 @@ export default function Topbar() {
           />
         )}
       </div>
-      {user && isUserWidgetVisible && <UserWidget innerRef={ref} />}
+      <AnimatePresence>
+        {user && isUserWidgetVisible && <UserWidget innerRef={ref} />}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import styles from "component/layout/FlexibleContent.module.sass";
 import { bool, oneOf } from "prop-types";
+import { motion } from "framer-motion";
 
 export default function FlexibleContent({
   flexDirection = "row",
@@ -7,7 +8,9 @@ export default function FlexibleContent({
   children,
 }) {
   return (
-    <div
+    <motion.div
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
       id={styles.layout}
       className={`
         ${flexDirection === "column" ? styles["direction-column"] : null} 
@@ -15,7 +18,7 @@ export default function FlexibleContent({
       `}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 

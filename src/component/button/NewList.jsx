@@ -5,6 +5,7 @@ import IconPicker from "component/form/IconPicker";
 import { useTodoApi } from "hooks/api";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-hot-toast";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function NewList() {
   const [isExpanded, setExpanded] = useState(false);
@@ -19,9 +20,14 @@ export default function NewList() {
 
 function NewListButton({ onClick }) {
   return (
-    <div id={styles.button} onClick={onClick}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      id={styles.button}
+      onClick={onClick}
+    >
       <FontAwesomeIcon icon="plus" size="lg" />
-    </div>
+    </motion.div>
   );
 }
 
@@ -44,8 +50,14 @@ function NewListForm({ onClose }) {
       );
     },
   });
+
+  const variants = {
+    hidden: { opacity: 0, x: -100 },
+    show: { opacity: 1, x: 0 },
+  };
+
   return (
-    <form>
+    <motion.form variants={variants}>
       <div className={styles["todo-list-item"]}>
         <input
           placeholder="name"
@@ -58,17 +70,23 @@ function NewListForm({ onClose }) {
           onClick={() => setIconPickerVisible(!isIconPickerVisible)}
         />
       </div>
-      {isIconPickerVisible && (
-        <div className={styles["icon-picker"]}>
-          <IconPicker
-            onPick={(iconName) => {
-              setPickedIcon(iconName);
-              setIconPickerVisible(!isIconPickerVisible);
-            }}
-          />
-        </div>
-      )}
-      <div className={styles.buttons}>
+      <AnimatePresence>
+        {isIconPickerVisible && (
+          <div className={styles["icon-picker"]}>
+            <IconPicker
+              onPick={(iconName) => {
+                setPickedIcon(iconName);
+                setIconPickerVisible(!isIconPickerVisible);
+              }}
+            />
+          </div>
+        )}
+      </AnimatePresence>
+      <motion.div
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className={styles.buttons}
+      >
         <button onClick={onClose} type="button">
           <FontAwesomeIcon icon="xmark" />
           close
@@ -80,7 +98,7 @@ function NewListForm({ onClose }) {
           <FontAwesomeIcon icon="check" />
           save
         </button>
-      </div>
-    </form>
+      </motion.div>
+    </motion.form>
   );
 }

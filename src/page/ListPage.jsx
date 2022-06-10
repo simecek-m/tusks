@@ -6,6 +6,7 @@ import { useTodoApi } from "hooks/api";
 import NewList from "component/button/NewList";
 import styles from "page/ListPage.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 
 export default function ListPage() {
   const navigate = useNavigate();
@@ -40,7 +41,13 @@ function ListPanel() {
     return (
       <SidePanel>
         <div className={styles.centered}>
-          <FontAwesomeIcon icon="spinner" size="xl" />
+          <motion.div
+            initial={{ rotate: 0 }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <FontAwesomeIcon icon="spinner" size="xl" />
+          </motion.div>
           <span>Loading</span>
         </div>
       </SidePanel>
@@ -56,7 +63,7 @@ function ListPanel() {
     );
 
   return (
-    <SidePanel>
+    <AnimatedSidePanel>
       <NewList />
       {data &&
         data.map((list) => (
@@ -69,10 +76,30 @@ function ListPanel() {
             }}
           />
         ))}
-    </SidePanel>
+    </AnimatedSidePanel>
   );
 }
 
+const AnimatedSidePanel = motion(SidePanel);
 function SidePanel({ children }) {
-  return <div id={styles["side-panel"]}>{children}</div>;
+  const container = {
+    hidden: { opacity: 0, x: -100 },
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+  return (
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate="show"
+      id={styles["side-panel"]}
+    >
+      {children}
+    </motion.div>
+  );
 }

@@ -2,12 +2,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "component/user/UserWidget.module.sass";
 import { useTheme } from "provider/theme";
+import { motion } from "framer-motion";
 
 export default function UserWidget({ innerRef }) {
   const { user, logout } = useAuth0();
   const { theme } = useTheme();
   return (
-    <div
+    <motion.div
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: 100, opacity: 0 }}
       id={styles.widget}
       className={`${theme === "dark" ? styles.dark : ""}`}
       ref={innerRef}
@@ -23,6 +27,6 @@ export default function UserWidget({ innerRef }) {
           size="xl"
         />
       </div>
-    </div>
+    </motion.div>
   );
 }

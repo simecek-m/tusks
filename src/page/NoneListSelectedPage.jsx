@@ -1,3 +1,4 @@
+import Button from "component/button/Button";
 import FlexibleContent from "component/layout/FlexibleContent";
 
 export default function NoneListSelectedPage() {
