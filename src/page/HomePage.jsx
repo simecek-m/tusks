@@ -17,8 +17,11 @@ function LoginSidePanel() {
   const { loginWithRedirect } = useAuth0();
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{
+        default: { duration: 1, type: "spring" },
+      }}
       id={styles["login-side-panel"]}
     >
       <h1>to-do</h1>

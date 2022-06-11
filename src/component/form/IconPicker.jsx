@@ -37,7 +37,7 @@ export default function IconPicker({ onPick }) {
     <motion.div
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 100, opacity: 0 }}
+      exit={{ opacity: 0 }}
       className={`${styles["icon-picker"]} ${
         theme === "dark" ? styles.dark : ""
       }`}
@@ -55,12 +55,8 @@ export default function IconPicker({ onPick }) {
       >
         {icons.length === 0 && <span>can't find any</span>}
         {icons.map((iconName, index) => (
-          <motion.div variants={listItem}>
-            <FontAwesomeIcon
-              icon={iconName}
-              key={index}
-              onClick={() => onPick(iconName)}
-            />
+          <motion.div variants={listItem} key={index}>
+            <FontAwesomeIcon icon={iconName} onClick={() => onPick(iconName)} />
           </motion.div>
         ))}
       </motion.div>

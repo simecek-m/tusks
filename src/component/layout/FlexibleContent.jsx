@@ -11,6 +11,9 @@ export default function FlexibleContent({
     <motion.div
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
+      transition={{
+        default: { duration: 1, type: "spring" },
+      }}
       id={styles.layout}
       className={`
         ${flexDirection === "column" ? styles["direction-column"] : null} 

@@ -51,13 +51,8 @@ function NewListForm({ onClose }) {
     },
   });
 
-  const variants = {
-    hidden: { opacity: 0, x: -100 },
-    show: { opacity: 1, x: 0 },
-  };
-
   return (
-    <motion.form variants={variants}>
+    <form>
       <div className={styles["todo-list-item"]}>
         <input
           placeholder="name"
@@ -99,6 +94,6 @@ function NewListForm({ onClose }) {
           save
         </button>
       </motion.div>
-    </motion.form>
+    </form>
   );
 }

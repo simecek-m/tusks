@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import TodoListItem from "component/todo/TodoListItem";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -80,8 +80,7 @@ function ListPanel() {
   );
 }
 
-const AnimatedSidePanel = motion(SidePanel);
-function SidePanel({ children }) {
+function SidePanel({ ref, children }) {
   const container = {
     hidden: { opacity: 0, x: -100 },
     show: {
@@ -94,6 +93,7 @@ function SidePanel({ children }) {
   };
   return (
     <motion.div
+      ref={ref}
       variants={container}
       initial="hidden"
       animate="show"
@@ -103,3 +103,7 @@ function SidePanel({ children }) {
     </motion.div>
   );
 }
+
+const AnimatedSidePanel = React.forwardRef((props, ref) => {
+  return <SidePanel ref={ref} {...props} />;
+});

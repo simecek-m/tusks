@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FlexibleContent from "component/layout/FlexibleContent";
 import { useTodoApi } from "hooks/api";
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
@@ -23,9 +24,9 @@ export default function ListDetailPage() {
     },
   });
   return (
-    <div>
+    <FlexibleContent>
       <h1>List Detail Page - {id}</h1>
       <FontAwesomeIcon icon="trash" onClick={() => mutate(id)} />
-    </div>
+    </FlexibleContent>
   );
 }
