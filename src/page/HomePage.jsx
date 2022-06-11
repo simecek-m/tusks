@@ -26,7 +26,9 @@ function LoginSidePanel() {
         Create your own tasks, organize them into lists and don’t forget to
         finish them ever again.
       </div>
-      <Button onClick={loginWithRedirect}>Login</Button>
+      <Button icon="arrow-right-to-bracket" onClick={loginWithRedirect}>
+        Login
+      </Button>
     </motion.div>
   );
 }
