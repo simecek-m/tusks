@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import TodoListItem from "component/todo/TodoListItem";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -11,9 +11,7 @@ import { useKeyPress } from "hooks/interaction";
 
 export default function ListPage() {
   const navigate = useNavigate();
-  const navigateUp = useCallback(() => {
-    navigate("..");
-  }, [navigate]);
+  const navigateUp = () => navigate("..");
   const { addOnKeyDownEvent, removeOnKeyDownEvent } = useKeyPress(
     "Escape",
     navigateUp
