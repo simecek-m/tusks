@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import TodoListItem from "component/todo/TodoListItem";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -7,21 +7,24 @@ import NewList from "component/button/NewList";
 import styles from "page/ListPage.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
+import { useKeyPress } from "hooks/interaction";
 
 export default function ListPage() {
   const navigate = useNavigate();
+  const navigateUp = useCallback(() => {
+    navigate("..");
+  }, [navigate]);
+  const { addOnKeyDownEvent, removeOnKeyDownEvent } = useKeyPress(
+    "Escape",
+    navigateUp
+  );
 
   useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") {
-        navigate("..");
-      }
-    };
-    document.addEventListener("keydown", onKeyDown);
+    addOnKeyDownEvent();
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
+      removeOnKeyDownEvent();
     };
-  }, [navigate]);
+  }, [addOnKeyDownEvent, removeOnKeyDownEvent]);
 
   return (
     <div id={styles.layout}>
