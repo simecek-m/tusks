@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "component/button/NewList.module.sass";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import IconPicker from "component/form/IconPicker";
 import { useTodoApi } from "hooks/api";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-hot-toast";
 import { AnimatePresence, motion } from "framer-motion";
+import { useClickOutside, useKeyPress } from "hooks/interaction";
 
 export default function NewList() {
   const [isExpanded, setExpanded] = useState(false);
@@ -51,6 +52,33 @@ function NewListForm({ onClose }) {
     },
   });
 
+  const hideIconPicker = () => setIconPickerVisible(false);
+  const ref = useRef();
+  const { addClickOutsideEvent, removeClickOutsideEvent } = useClickOutside(
+    ref,
+    hideIconPicker
+  );
+
+  const { addOnKeyDownEvent, removeOnKeyDownEvent } = useKeyPress(
+    "Escape",
+    hideIconPicker
+  );
+
+  useEffect(() => {
+    if (isIconPickerVisible) {
+      addClickOutsideEvent();
+      addOnKeyDownEvent();
+    } else {
+      removeClickOutsideEvent();
+      removeOnKeyDownEvent();
+    }
+  }, [
+    isIconPickerVisible,
+    addClickOutsideEvent,
+    removeClickOutsideEvent,
+    addOnKeyDownEvent,
+    removeOnKeyDownEvent,
+  ]);
   return (
     <form>
       <div className={styles["todo-list-item"]}>
@@ -62,12 +90,15 @@ function NewListForm({ onClose }) {
         <FontAwesomeIcon
           icon={pickedIcon}
           className={styles.icon}
-          onClick={() => setIconPickerVisible(!isIconPickerVisible)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIconPickerVisible(!isIconPickerVisible);
+          }}
         />
       </div>
       <AnimatePresence>
         {isIconPickerVisible && (
-          <div className={styles["icon-picker"]}>
+          <div className={styles["icon-picker"]} ref={ref}>
             <IconPicker
               onPick={(iconName) => {
                 setPickedIcon(iconName);
