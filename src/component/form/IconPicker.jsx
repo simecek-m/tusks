@@ -2,11 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AVAILABLE_ICONS, FAVOURITE_ICONS } from "constants/icons";
 import { useState } from "react";
 import { debounce } from "debounce";
-import styles from "component/form/IconPicker.module.sass";
 import { useTheme } from "provider/theme";
 import { motion } from "framer-motion";
+import styles from "component/form/IconPicker.module.sass";
+import Popup from "component/layout/Popup";
 
-export default function IconPicker({ onPick }) {
+export default function IconPicker({ onPick, hide }) {
   const [icons, setIcons] = useState(FAVOURITE_ICONS);
   const { theme } = useTheme();
   const filterIcons = debounce((text) => {
@@ -25,7 +26,8 @@ export default function IconPicker({ onPick }) {
       x: 0,
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        delayChildren: 0.3,
+        staggerChildren: 0.08,
       },
     },
   };
@@ -34,32 +36,37 @@ export default function IconPicker({ onPick }) {
     show: { opacity: 1, x: 0 },
   };
   return (
-    <motion.div
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className={`${styles["icon-picker"]} ${
-        theme === "dark" ? styles.dark : ""
-      }`}
-    >
-      <input
-        className={styles.input}
-        placeholder="search"
-        onChange={(e) => filterIcons(e.target.value)}
-      />
+    <Popup hide={hide}>
       <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className={styles.icons}
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: 100, opacity: 0 }}
+        className={`${styles["icon-picker"]} ${
+          theme === "dark" ? styles.dark : ""
+        }`}
       >
-        {icons.length === 0 && <span>can't find any</span>}
-        {icons.map((iconName, index) => (
-          <motion.div variants={listItem} key={index}>
-            <FontAwesomeIcon icon={iconName} onClick={() => onPick(iconName)} />
-          </motion.div>
-        ))}
+        <input
+          className={styles.input}
+          placeholder="search"
+          onChange={(e) => filterIcons(e.target.value)}
+        />
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className={styles.icons}
+        >
+          {icons.length === 0 && <span>can't find any</span>}
+          {icons.map((iconName, index) => (
+            <motion.div variants={listItem} key={index}>
+              <FontAwesomeIcon
+                icon={iconName}
+                onClick={() => onPick(iconName)}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </Popup>
   );
 }
