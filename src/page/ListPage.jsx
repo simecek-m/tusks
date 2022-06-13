@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TodoListItem from "component/todo/TodoListItem";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -7,23 +7,8 @@ import NewList from "component/button/NewList";
 import styles from "page/ListPage.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
-import { useKeyPress } from "hooks/interaction";
 
 export default function ListPage() {
-  const navigate = useNavigate();
-  const navigateUp = () => navigate("..");
-  const { addOnKeyDownEvent, removeOnKeyDownEvent } = useKeyPress(
-    "Escape",
-    navigateUp
-  );
-
-  useEffect(() => {
-    addOnKeyDownEvent();
-    return () => {
-      removeOnKeyDownEvent();
-    };
-  }, [addOnKeyDownEvent, removeOnKeyDownEvent]);
-
   return (
     <div id={styles.layout}>
       <ListPanel />
@@ -31,7 +16,6 @@ export default function ListPage() {
     </div>
   );
 }
-
 function ListPanel() {
   const { fetchTodos } = useTodoApi();
   const navigate = useNavigate();

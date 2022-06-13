@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FlexibleContent from "component/layout/FlexibleContent";
 import { useTodoApi } from "hooks/api";
+import { useKeyPress } from "hooks/interaction";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -23,6 +25,20 @@ export default function ListDetailPage() {
       );
     },
   });
+
+  const navigateUp = () => navigate("..");
+  const { addOnKeyDownEvent, removeOnKeyDownEvent } = useKeyPress(
+    "Escape",
+    navigateUp
+  );
+
+  useEffect(() => {
+    addOnKeyDownEvent();
+    return () => {
+      removeOnKeyDownEvent();
+    };
+  }, [addOnKeyDownEvent, removeOnKeyDownEvent]);
+
   return (
     <FlexibleContent>
       <h1>List Detail Page - {id}</h1>
