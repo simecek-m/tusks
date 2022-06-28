@@ -1,6 +1,6 @@
 import React from "react";
 import TodoListItem from "component/todo/TodoListItem";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useTodoApi } from "hooks/api";
 import NewList from "component/button/NewList";
@@ -19,6 +19,7 @@ export default function ListPage() {
 function ListPanel() {
   const { fetchTodos } = useTodoApi();
   const navigate = useNavigate();
+  const { id: activeListId } = useParams();
 
   const { data, error, isLoading } = useQuery("todos", fetchTodos);
 
@@ -53,6 +54,7 @@ function ListPanel() {
       {data &&
         data.map((list) => (
           <TodoListItem
+            active={list.id === activeListId}
             name={list.title}
             icon={list.icon ?? "list-check"}
             key={list.id}

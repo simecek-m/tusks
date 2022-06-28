@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "component/todo/TodoListItem.module.sass";
-import { func } from "prop-types";
+import { bool, func } from "prop-types";
 import { string } from "prop-types";
 import { motion } from "framer-motion";
 
-export default function TodoListItem({ name, icon, onClick }) {
+export default function TodoListItem({ active, name, icon, onClick }) {
   const listItem = {
     hidden: { opacity: 0, x: -50 },
     show: { opacity: 1, x: 0 },
@@ -12,7 +12,7 @@ export default function TodoListItem({ name, icon, onClick }) {
   return (
     <motion.div
       variants={listItem}
-      className={styles["todo-list-item"]}
+      className={`${styles["todo-list-item"]} ${active ? styles.active : ""}`}
       onClick={onClick}
     >
       <div className={styles.name}>{name}</div>
@@ -22,6 +22,7 @@ export default function TodoListItem({ name, icon, onClick }) {
 }
 
 TodoListItem.propTypes = {
+  active: bool.isRequired,
   name: string.isRequired,
   icon: string.isRequired,
   onClick: func.isRequired,
