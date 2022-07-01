@@ -10,6 +10,7 @@ import ProtectedRoute from "router/ProtectedRoute";
 import ListDetailPage from "page/ListDetailPage";
 import NoneListSelectedPage from "page/NoneListSelectedPage";
 import "component/App.sass";
+import NotFound from "page/NotFound";
 
 export default function App() {
   const { theme } = useTheme();
@@ -28,6 +29,7 @@ export default function App() {
               </Route>
             </Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="bottom-right" reverseOrder={false} />
