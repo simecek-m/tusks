@@ -1,0 +1,41 @@
+span.checkbox
+  display: flex
+  align-items: center
+  gap: 5px
+
+  label
+    font-size: 1.2em
+    font-weight: bold
+
+  input[type="checkbox"]
+    appearance: none
+    margin: 0
+    font: inherit
+    color: black
+    width: 1.5em
+    height: 1.5em
+    border: 0.2em solid var(--on-background)
+    display: grid
+    place-content: center
+    border-radius: 0.4em
+
+    &::before
+      content: ""
+      width: 0.65em
+      height: 0.65em
+      opacity: 0
+      transition: 120ms transform ease-in-out
+      box-shadow: inset 1em 1em var(--background)
+      transform-origin: bottom left
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)
+
+    &:checked
+      background: var(--gray)
+      border-color: var(--gray)
+
+      + label
+        color: var(--gray)
+        text-decoration: line-through
+
+      &::before
+        opacity: 1
