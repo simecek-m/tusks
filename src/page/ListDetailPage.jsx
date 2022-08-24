@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FlexibleContent from "component/layout/FlexibleContent";
+import Task from "component/task/Task";
 import { useTodoApi } from "hooks/api";
 import { useKeyPress } from "hooks/interaction";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import styles from "page/ListDetailPage.module.sass";
 
 export default function ListDetailPage() {
   let { id } = useParams();
@@ -40,9 +42,14 @@ export default function ListDetailPage() {
   }, [addOnKeyDownEvent, removeOnKeyDownEvent]);
 
   return (
-    <FlexibleContent>
+    <FlexibleContent flexDirection="column">
       <h1>List Detail Page - {id}</h1>
-      <FontAwesomeIcon icon="trash" onClick={() => mutate(id)} />
+      <div id={styles["delete-button"]}>
+        <FontAwesomeIcon icon="trash" onClick={() => mutate(id)} />
+      </div>
+      <div>
+        <Task text="go outside with pet" id="afw54" isComplete={false} />
+      </div>
     </FlexibleContent>
   );
 }
