@@ -1,7 +1,8 @@
+import { ReactComponent as NotFundIllustration } from "assets/illustration/not-found.svg";
 import Button from "component/button/Button";
+import ThemeSwitch from "component/control/ThemeSwitch";
 import styles from "page/NotFound.module.sass";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as NotFundIllustration } from "assets/illustration/not-found.svg";
 
 export default function NotFound() {
   const navigate = useNavigate();
@@ -10,6 +11,9 @@ export default function NotFound() {
   };
   return (
     <div id={styles["not-found-page"]}>
+      <div className={styles.control}>
+        <ThemeSwitch className={styles.icon} />
+      </div>
       <div className={styles["horizontal-stack"]}>
         <div>
           <h1>Not Found</h1>
