@@ -14,7 +14,7 @@ export default function Topbar() {
   return (
     <>
       <div id={styles.topbar}>
-        <ThemeSwitch />
+        <ThemeSwitch className={styles.icon} />
         {user && (
           <FontAwesomeIcon
             className={styles.icon}
