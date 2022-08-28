@@ -16,9 +16,14 @@ export default function NotFound() {
       </div>
       <div className={styles["horizontal-stack"]}>
         <div>
-          <h1>Not Found</h1>
-          <p>404</p>
-          <Button icon="home" onClick={navigateHome}>
+          <h3>Not Found</h3>
+          <h1>404</h1>
+          <Button
+            icon="home"
+            onClick={navigateHome}
+            color="var(--error)"
+            onColor="var(--on-error)"
+          >
             home
           </Button>
         </div>
