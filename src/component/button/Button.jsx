@@ -3,21 +3,26 @@ import "component/button/Button.module.sass";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Button({ icon, onClick, children }) {
+export default function Button({
+  color = "var(--brand)",
+  onColor = "var(--on-brand)",
+  icon,
+  onClick,
+  children,
+}) {
   return (
     <motion.button
       onClick={onClick}
       initial={{
-        background: "var(--brand)",
-        scale: 1,
-        color: "var(--on-brand)",
+        color,
+        background: "var(--transparent)",
+        border: `2px solid ${color}`,
       }}
       whileHover={{
-        background: "var(--brand-variant)",
-        scale: 1.1,
+        color: onColor,
+        background: color,
       }}
-      transition={{ scale: { type: "spring", stiffness: 300 } }}
-      whileTap={{ background: "var(--gray-400)", scale: 0.95 }}
+      whileTap={{ scale: 0.95 }}
     >
       {icon && <FontAwesomeIcon icon={icon} />}
       {children}
