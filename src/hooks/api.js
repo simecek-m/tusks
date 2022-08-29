@@ -34,10 +34,7 @@ export function useTodoApi() {
     if (!response.ok) {
       return Promise.reject(response);
     }
-    console.log(response);
-    const result = await response.json();
-    console.log(result);
-    return result;
+    return await response.json();
   };
 
   const createTodo = async (todoList) => {
