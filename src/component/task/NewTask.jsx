@@ -30,6 +30,7 @@ export default function NewTask({ onCreate = () => null, onFocus, onBlur }) {
       value={text}
       onChange={(e) => setText(e.target.value)}
       placeholder="What do you need to remind?"
+      autoComplete="off"
     />
   );
 }
