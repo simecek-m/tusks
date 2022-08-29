@@ -3,7 +3,7 @@ import FlexibleContent from "component/layout/FlexibleContent";
 import Task from "component/task/Task";
 import { useTodoApi } from "hooks/api";
 import { useKeyPress } from "hooks/interaction";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,11 +16,28 @@ export default function ListDetailPage() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
+  const [finishedTasks, setFinishedTasks] = useState([]);
+  const [unFinishedTasks, setUnfinishedTasks] = useState([]);
+
   const {
     data: list,
     error,
     isLoading,
-  } = useQuery(["todos", id], () => fetchTodoById(id));
+  } = useQuery(["todos", id], () => fetchTodoById(id), {
+    onSuccess: (data) => {
+      const completedTasks = [];
+      const inCompleteTasks = [];
+      data.tasks.forEach((task) => {
+        if (task.completed) {
+          completedTasks.push(task);
+        } else {
+          inCompleteTasks.push(task);
+        }
+      });
+      setFinishedTasks(completedTasks);
+      setUnfinishedTasks(inCompleteTasks);
+    },
+  });
 
   const createNewTaskMutation = useMutation(createTask, {
     onSuccess: () => {
@@ -94,7 +111,30 @@ export default function ListDetailPage() {
         onCreate={(task) => createNewTaskMutation.mutate({ listId: id, task })}
       />
       <div id={styles.tasks}>
-        {list.tasks.map((task, index) => (
+        <h2>
+          Active
+          <span>
+            ({unFinishedTasks.length} / {list.tasks.length})
+          </span>
+        </h2>
+        {unFinishedTasks.map((task, index) => (
+          <Task
+            key={index}
+            text={task.text}
+            id={task.id}
+            completed={task.completed}
+            onDelete={(taskId) =>
+              deleteTaskMutation.mutate({ listId: id, taskId })
+            }
+          />
+        ))}
+        <h2>
+          Finished
+          <span>
+            ({finishedTasks.length} / {list.tasks.length})
+          </span>
+        </h2>
+        {finishedTasks.map((task, index) => (
           <Task
             key={index}
             text={task.text}
