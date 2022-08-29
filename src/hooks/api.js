@@ -20,6 +20,26 @@ export function useTodoApi() {
     return await response.json();
   };
 
+  const fetchTodoById = async (id) => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${process.env.REACT_APP_TODO_API_URL}/lists/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+    console.log(response);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  };
+
   const createTodo = async (todoList) => {
     const accessToken = await getAccessTokenSilently();
     const response = await fetch(
@@ -57,9 +77,49 @@ export function useTodoApi() {
     return await response.json();
   };
 
+  const createTask = async ({ listId, task }) => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${process.env.REACT_APP_TODO_API_URL}/lists/${listId}/tasks`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    );
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+    return await response.json();
+  };
+
+  const deleteTask = async ({ listId, taskId }) => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${process.env.REACT_APP_TODO_API_URL}/lists/${listId}/tasks/${taskId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+    return await response.json();
+  };
+
   return {
     fetchTodos,
     createTodo,
     deleteTodo,
+    fetchTodoById,
+    createTask,
+    deleteTask,
   };
 }
