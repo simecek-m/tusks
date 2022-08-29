@@ -1,41 +1,65 @@
 span.checkbox
   display: flex
   align-items: center
-  gap: 5px
+  cursor: pointer
+  padding: 10px
+  border-radius: 10px
+  margin: 5px 0
 
   label
-    font-size: 1.2em
-    font-weight: bold
+    display: flex
+    gap: 5px
+    cursor: pointer
+    flex-grow: 1
 
-  input[type="checkbox"]
-    appearance: none
-    margin: 0
-    font: inherit
-    color: black
-    width: 1.5em
-    height: 1.5em
-    border: 0.2em solid var(--on-background)
-    display: grid
-    place-content: center
-    border-radius: 0.4em
+    span
+      font-size: 1.2em
+      cursor: pointer
+      user-select: none
 
-    &::before
-      content: ""
-      width: 0.65em
-      height: 0.65em
-      opacity: 0
-      transition: 120ms transform ease-in-out
-      box-shadow: inset 1em 1em var(--background)
-      transform-origin: bottom left
-      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)
-
-    &:checked
-      background: var(--gray)
-      border-color: var(--gray)
-
-      + label
-        color: var(--gray)
-        text-decoration: line-through
+    input[type="checkbox"]
+      appearance: none
+      margin: 0
+      font: inherit
+      color: black
+      width: 1.4em
+      height: 1.4em
+      border: 0.18em solid var(--on-background)
+      display: grid
+      place-content: center
+      border-radius: 0.4em
+      cursor: pointer
 
       &::before
-        opacity: 1
+        content: ""
+        width: 0.65em
+        height: 0.65em
+        opacity: 0
+        transition: 120ms transform ease-in-out
+        box-shadow: inset 1em 1em var(--background)
+        transform-origin: bottom left
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)
+
+      &:checked
+        background: var(--gray)
+        border-color: var(--gray)
+
+        + span
+          color: var(--gray)
+          text-decoration: line-through
+
+        &::before
+          opacity: 1
+
+  &:hover
+    background: var(--surface)
+
+    .close-icon
+      opacity: 1
+
+  svg.close-icon
+    opacity: 0
+    padding: 5px
+
+    &:hover
+      color: var(--error)
