@@ -111,6 +111,27 @@ export function useTodoApi() {
     return await response.json();
   };
 
+  const updateTask = async ({ listId, taskId, completed }) => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${process.env.REACT_APP_TODO_API_URL}/lists/${listId}/tasks/${taskId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          completed,
+        }),
+      }
+    );
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+    return await response.json();
+  };
+
   return {
     fetchTodos,
     createTodo,
@@ -118,5 +139,6 @@ export function useTodoApi() {
     fetchTodoById,
     createTask,
     deleteTask,
+    updateTask,
   };
 }

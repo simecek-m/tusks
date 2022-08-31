@@ -12,7 +12,8 @@ import NewTask from "component/task/NewTask";
 
 export default function ListDetailPage() {
   let { id } = useParams();
-  const { deleteTodo, createTask, deleteTask, fetchTodoById } = useTodoApi();
+  const { deleteTodo, createTask, deleteTask, fetchTodoById, updateTask } =
+    useTodoApi();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -34,12 +35,25 @@ export default function ListDetailPage() {
           inCompleteTasks.push(task);
         }
       });
-      setFinishedTasks(completedTasks);
       setUnfinishedTasks(inCompleteTasks);
+      setFinishedTasks(completedTasks);
     },
   });
 
   const createNewTaskMutation = useMutation(createTask, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["todos", id]);
+    },
+    onError: (response) => {
+      toast.error(
+        <div>
+          {response.statusText} (status: {response.status})
+        </div>
+      );
+    },
+  });
+
+  const updateTaskMutation = useMutation(updateTask, {
     onSuccess: () => {
       queryClient.invalidateQueries(["todos", id]);
     },
@@ -117,12 +131,19 @@ export default function ListDetailPage() {
             ({unFinishedTasks.length} / {list.tasks.length})
           </span>
         </h2>
-        {unFinishedTasks.map((task, index) => (
+        {unFinishedTasks.map((task) => (
           <Task
-            key={index}
+            key={task.id}
             text={task.text}
             id={task.id}
-            completed={task.completed}
+            completed={false}
+            onStateChanged={(completed) =>
+              updateTaskMutation.mutate({
+                listId: id,
+                taskId: task.id,
+                completed,
+              })
+            }
             onDelete={(taskId) =>
               deleteTaskMutation.mutate({ listId: id, taskId })
             }
@@ -134,12 +155,19 @@ export default function ListDetailPage() {
             ({finishedTasks.length} / {list.tasks.length})
           </span>
         </h2>
-        {finishedTasks.map((task, index) => (
+        {finishedTasks.map((task) => (
           <Task
-            key={index}
+            key={task.id}
             text={task.text}
             id={task.id}
-            completed={task.completed}
+            completed={true}
+            onStateChanged={(completed) =>
+              updateTaskMutation.mutate({
+                listId: id,
+                taskId: task.id,
+                completed,
+              })
+            }
             onDelete={(taskId) =>
               deleteTaskMutation.mutate({ listId: id, taskId })
             }

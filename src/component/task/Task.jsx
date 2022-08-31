@@ -1,19 +1,27 @@
-import { bool, string } from "prop-types";
-import { useState } from "react";
-import styles from "component/task/Task.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from "component/task/Task.module.sass";
+import { useState } from "react";
 
-export default function Task({ completed, id, text, onDelete }) {
+export default function Task({
+  completed,
+  id,
+  text,
+  onDelete,
+  onStateChanged = () => null,
+}) {
   const [checked, setChecked] = useState(completed);
+
   return (
     <span className={styles.checkbox}>
       <label htmlFor={id}>
         <input
-          className="taskcheckbox"
           type="checkbox"
           id={id}
           checked={checked}
-          onChange={() => setChecked(!checked)}
+          onChange={() => {
+            onStateChanged(!checked);
+            setChecked(!checked);
+          }}
         />
         <span>{text}</span>
       </label>
@@ -25,9 +33,3 @@ export default function Task({ completed, id, text, onDelete }) {
     </span>
   );
 }
-
-Task.propTypes = {
-  isCompplete: bool,
-  id: string,
-  name: string,
-};
