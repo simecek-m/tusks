@@ -12,17 +12,16 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^1.10.1",
+    "@auth0/auth0-react": "^2.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-query": "^3.39.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.1",
-    "lint-staged": "^12.4.2",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.6.2"
   },
   "eslintConfig": {
