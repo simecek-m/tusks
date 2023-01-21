@@ -1,6 +1,6 @@
 {
-  "name": "todo_react",
-  "version": "0.1.0",
+  "name": "memo",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
