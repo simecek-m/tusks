@@ -1,6 +1,6 @@
 {
-  "name": "todo_react",
-  "version": "0.1.0",
+  "name": "memo",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -12,30 +12,17 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^1.10.1",
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
-    "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "@fortawesome/react-fontawesome": "^0.1.18",
-    "debounce": "^1.2.1",
-    "framer-motion": "^6.3.11",
-    "prop-types": "^15.8.1",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-hot-toast": "^2.2.0",
-    "react-query": "^3.39.1",
-    "react-router-dom": "^6.3.0",
+    "@auth0/auth0-react": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.7.0",
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.1",
-    "lint-staged": "^12.4.2",
-    "postcss-sass": "^0.5.0",
-    "prettier": "^2.6.2",
-    "sass": "^1.52.1",
-    "stylelint": "^14.8.5",
-    "stylelint-color-format": "^1.1.0",
-    "stylelint-config-standard": "^25.0.0"
+    "eslint-config-prettier": "^8.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3"
   },
   "eslintConfig": {
     "extends": [
@@ -47,10 +34,6 @@
     "*.{js,jsx}": [
       "prettier --write",
       "eslint",
-      "git add"
-    ],
-    "*.{sass}": [
-      "stylelint",
       "git add"
     ]
   },
