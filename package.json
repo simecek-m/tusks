@@ -36,10 +36,6 @@
       "prettier --write",
       "eslint",
       "git add"
-    ],
-    "*.{sass}": [
-      "stylelint",
-      "git add"
     ]
   },
   "browserslist": {

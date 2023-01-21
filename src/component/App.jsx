@@ -1,4 +1,3 @@
-import "component/App.sass";
 import Home from "page/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
