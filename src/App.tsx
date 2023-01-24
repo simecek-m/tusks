@@ -5,10 +5,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 const App = () => {
   return (
     <Auth0Provider
-      audience="todo-server"
       domain={process.env.REACT_APP_AUTH_DOMAIN}
       clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
-      redirectUri={window.location.origin}
+      authorizationParams={{
+        audience: process.env.REACT_APP_AUTH_AUDIENCE,
+        redirect_uri: window.location.origin,
+      }}
     >
       <BrowserRouter>
         <Routes>
