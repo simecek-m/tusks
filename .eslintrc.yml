@@ -15,10 +15,10 @@ parserOptions:
   sourceType: module
 settings:
   react:
-    version: '18.2'
+    version: "18.2"
 plugins:
   - react
   - "@typescript-eslint"
-rules: {}
+rules: { "@typescript-eslint/explicit-module-boundary-types": "warn" }
 ignorePatterns:
   - build
