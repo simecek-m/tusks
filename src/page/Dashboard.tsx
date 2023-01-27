@@ -1,9 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "component/Button";
 import { HOME_PATH } from "constant";
+import { FC } from "react";
 import { Navigate } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard: FC = () => {
   const { isLoading, isAuthenticated, logout } = useAuth0();
 
   if (isLoading) {

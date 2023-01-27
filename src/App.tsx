@@ -3,9 +3,10 @@ import { HOME_PATH, INDEX_PATH } from "constant";
 import Dashboard from "page/Dashboard";
 import Home from "page/Home";
 import ProtectedRoute from "page/ProtectedRoute";
+import { FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const App = () => {
+const App: FC = () => {
   return (
     <Auth0Provider
       domain={process.env.REACT_APP_AUTH_DOMAIN}
