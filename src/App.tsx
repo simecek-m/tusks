@@ -1,5 +1,7 @@
 import { Auth0Provider } from "@auth0/auth0-react";
+import Dashboard from "page/Dashboard";
 import Home from "page/Home";
+import ProtectedRoute from "page/ProtectedRoute";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
@@ -14,7 +16,10 @@ const App = () => {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route index element={<Dashboard />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </Auth0Provider>
