@@ -4,7 +4,7 @@ import { INDEX_PATH } from "constant";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { loginWithRedirect, isLoading, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isLoading, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -24,7 +24,17 @@ const Home = () => {
           onClick={() => navigate(INDEX_PATH)}
         />
       ) : (
-        <Button text="login" className="mt-5" onClick={loginWithRedirect} />
+        <Button
+          text="login"
+          className="mt-5"
+          onClick={() =>
+            loginWithPopup({
+              authorizationParams: {
+                prompt: "login",
+              },
+            })
+          }
+        />
       )}
     </div>
   );
