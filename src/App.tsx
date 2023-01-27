@@ -1,4 +1,5 @@
 import { Auth0Provider } from "@auth0/auth0-react";
+import { HOME_PATH, INDEX_PATH } from "constant";
 import Dashboard from "page/Dashboard";
 import Home from "page/Home";
 import ProtectedRoute from "page/ProtectedRoute";
@@ -16,8 +17,8 @@ const App = () => {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<ProtectedRoute />}>
+          <Route path={HOME_PATH} element={<Home />} />
+          <Route path={INDEX_PATH} element={<ProtectedRoute />}>
             <Route index element={<Dashboard />} />
           </Route>
         </Routes>

@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "component/Button";
+import { INDEX_PATH } from "constant";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -20,7 +21,7 @@ const Home = () => {
         <Button
           text="continue"
           className="mt-5"
-          onClick={() => navigate("/")}
+          onClick={() => navigate(INDEX_PATH)}
         />
       ) : (
         <Button text="login" className="mt-5" onClick={loginWithRedirect} />

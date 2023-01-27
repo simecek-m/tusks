@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "component/Button";
+import { HOME_PATH } from "constant";
 import { Navigate } from "react-router-dom";
 
 const Dashboard = () => {
@@ -10,7 +11,7 @@ const Dashboard = () => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate replace to="/home" />;
+    return <Navigate replace to={HOME_PATH} />;
   }
 
   return (

@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { HOME_PATH } from "constant";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
@@ -8,7 +9,7 @@ const ProtectedRoute = () => {
   if (isAuthenticated) {
     return <Outlet />;
   } else {
-    return <Navigate replace to="/home" />;
+    return <Navigate replace to={HOME_PATH} />;
   }
 };
 
