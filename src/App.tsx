@@ -1,8 +1,9 @@
 import { Auth0Provider } from "@auth0/auth0-react";
-import { HOME_PATH, INDEX_PATH } from "constant";
+import { HOME_PATH, INDEX_PATH, REGISTRATION_PATH } from "constant";
 import Dashboard from "page/Dashboard";
 import Home from "page/Home";
 import ProtectedRoute from "page/ProtectedRoute";
+import Registration from "page/Registration";
 import { FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -21,6 +22,7 @@ const App: FC = () => {
           <Route path={HOME_PATH} element={<Home />} />
           <Route path={INDEX_PATH} element={<ProtectedRoute />}>
             <Route index element={<Dashboard />} />
+            <Route path={REGISTRATION_PATH} element={<Registration />} />
           </Route>
         </Routes>
       </BrowserRouter>
