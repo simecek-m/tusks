@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "component/Button";
-import { HOME_PATH } from "constant";
+import { HOME_PATH } from "constant/paths";
 import { FC } from "react";
 import { Navigate } from "react-router-dom";
 
