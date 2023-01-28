@@ -1,8 +1,6 @@
 name: Publish on Netlify
-on:
-  push:
-    branches:
-      - master
+on: push
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -14,6 +12,4 @@ jobs:
       uses: netlify/actions/build@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NETLIFY_BASE: site
-        NETLIFY_CMD: npm run build
-        NETLIFY_DIR: site/build
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
