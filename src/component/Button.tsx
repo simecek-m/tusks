@@ -2,7 +2,7 @@ import { FC } from "react";
 
 interface ButtonProps {
   text: string;
-  className: string;
+  className?: string;
   onClick: () => void;
 }
 
