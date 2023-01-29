@@ -19,13 +19,13 @@ const Input: FC<InputProps> = ({
 }) => {
   return (
     <div className="my-2 flex flex-col">
-      <p className="disabled">{placeholder}</p>
+      <p className="text-sm">{placeholder}</p>
       <input
         name={name}
         type={type}
         defaultValue={defaultValue}
         disabled={disabled}
-        className={`${className} rounded-lg bg-gray-200 px-5 py-2 disabled:cursor-not-allowed disabled:opacity-50`}
+        className={`${className} rounded-lg bg-gray-200 px-5 py-2 font-medium disabled:cursor-not-allowed disabled:opacity-50`}
       />
     </div>
   );
