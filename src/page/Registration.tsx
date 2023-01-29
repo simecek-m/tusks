@@ -2,6 +2,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Button from "component/Button";
 import IconButton from "component/IconButton";
 import Input from "component/Input";
+import Title from "component/Title";
+import { AVATAR_IMG } from "constant/assets";
 import { FC } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
@@ -16,16 +18,16 @@ const Registration: FC = () => {
         onClick={logout}
       />
       <div className="m-auto mt-[10vh] flex h-full w-full flex-col p-5 sm:w-[50vw]">
-        <h1 className="w-full text-3xl font-bold">First time here?</h1>
+        <Title text="First time here?" className="text-3xl" />
         <p className="mb-5">
           Before you continue to app, please check your personal data and
           register new tusks account:
         </p>
         <div className="flex w-full flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
           <img
-            src={user?.picture}
+            src={user?.picture ?? AVATAR_IMG}
             alt="profile picture"
-            className="w-1/2 rounded-lg"
+            className="w-1/2 rounded-2xl drop-shadow-xl"
           />
           <form className="flex w-full flex-col">
             <Input
@@ -49,14 +51,8 @@ const Registration: FC = () => {
               type="email"
               defaultValue={user?.email}
             />
-            <Input
-              placeholder="id"
-              name="id"
-              defaultValue={user?.sub}
-              disabled
-            />
             <Button
-              text="submit"
+              text="continue"
               onClick={() => console.log("submitted")}
               className="mt-4 min-w-full"
             />
