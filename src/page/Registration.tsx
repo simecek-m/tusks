@@ -1,17 +1,29 @@
 import { useAuth0 } from "@auth0/auth0-react";
+// import { useMutation } from "@tanstack/react-query";
 import Button from "component/Button";
 import Card from "component/Card";
 import IconButton from "component/IconButton";
 import Input from "component/Input";
 import Title from "component/Title";
 import { AVATAR_IMG } from "constant/assets";
+// import useTusksApi from "hook/api";
 import { FC } from "react";
+import { useForm } from "react-hook-form";
 import { CgClose } from "react-icons/cg";
+import { IProfile } from "type";
 
 const Registration: FC = () => {
   const { user, logout } = useAuth0();
+  // const { postRegistration } = useTusksApi();
+  // const { mutate } = useMutation(postRegistration);
+  const { handleSubmit, register } = useForm<IProfile>();
+  const submit = (profile: IProfile) => {
+    console.log(profile);
+    // TODO: mutate data -> send POST request
+  };
+
   return (
-    <div className="flex h-max w-screen justify-center bg-gradient-to-br from-brand-400 to-brand-900 sm:h-screen">
+    <div className="flex h-max w-screen justify-center bg-gradient-to-br from-brand-400 to-brand-900 md:h-screen">
       <Card className="relative">
         <>
           <IconButton
@@ -34,34 +46,44 @@ const Registration: FC = () => {
               <img
                 src={user?.picture ?? AVATAR_IMG}
                 alt="profile picture"
-                className="aspect-square w-1/3 rounded-3xl object-cover drop-shadow-xl"
+                className="aspect-square w-1/2 rounded-3xl object-cover drop-shadow-xl"
               />
-              <form className="flex w-full flex-col">
+              <form
+                onSubmit={handleSubmit(submit)}
+                className="flex w-full flex-col"
+              >
                 <Input
-                  placeholder="username"
-                  name="username"
+                  label="username"
                   defaultValue={user?.nickname}
+                  {...register("username")}
                 />
                 <Input
-                  placeholder="first name"
-                  name="firstName"
+                  label="first name"
                   defaultValue={user?.given_name}
+                  {...register("firstName")}
                 />
                 <Input
-                  placeholder="last name"
-                  name="lastname"
+                  label="last name"
                   defaultValue={user?.family_name}
+                  {...register("lastName")}
                 />
                 <Input
-                  placeholder="e-mail"
-                  name="email"
+                  label="e-mail"
                   type="email"
                   defaultValue={user?.email}
+                  {...register("email")}
                 />
                 <Button
                   text="continue"
-                  onClick={() => console.log("submitted")}
+                  type="submit"
                   className="mt-4 min-w-full"
+                />
+                <input value={user?.sub} hidden readOnly {...register("id")} />
+                <input
+                  value={user?.picture}
+                  hidden
+                  readOnly
+                  {...register("picture")}
                 />
               </form>
             </div>

@@ -1,27 +1,47 @@
-import { FC, HTMLInputTypeAttribute } from "react";
+import React, {
+  ChangeEventHandler,
+  FocusEventHandler,
+  HTMLInputTypeAttribute,
+  LegacyRef,
+} from "react";
 
 interface InputProps {
   name: string;
-  placeholder?: string;
+  label?: string;
+  onChange: ChangeEventHandler;
+  onBlur: FocusEventHandler;
   type?: HTMLInputTypeAttribute;
   className?: string;
   defaultValue?: string;
   disabled?: boolean;
 }
 
-const Input: FC<InputProps> = ({
-  name,
-  placeholder,
-  type = "text",
-  defaultValue,
-  disabled = false,
-  className,
-}) => {
+const Input = (
+  {
+    name,
+    onChange,
+    onBlur,
+    label,
+    type = "text",
+    defaultValue,
+    disabled = false,
+    className,
+  }: InputProps,
+  ref: LegacyRef<HTMLInputElement>
+) => {
   return (
     <div className="my-2 flex flex-col">
-      <p className="text-sm">{placeholder}</p>
+      {label && (
+        <label htmlFor={name} className="text-sm">
+          {label}
+        </label>
+      )}
       <input
+        id={name}
         name={name}
+        ref={ref}
+        onChange={onChange}
+        onBlur={onBlur}
         type={type}
         defaultValue={defaultValue}
         disabled={disabled}
@@ -31,4 +51,4 @@ const Input: FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default React.forwardRef<HTMLInputElement, InputProps>(Input);
