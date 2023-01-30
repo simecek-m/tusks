@@ -20,12 +20,12 @@ const useTusksApi = (): TuskApiFunctions => {
     });
   };
 
-  const fetchMyProfile = async () => {
+  const fetchMyProfile = async (): Promise<AxiosResponse<IProfile>> => {
     const client = await getTusksApiClient();
     return client.get<IProfile>("/profiles/me");
   };
 
-  const postRegistration = async () => {
+  const postRegistration = async (): Promise<AxiosResponse<IProfile>> => {
     const client = await getTusksApiClient();
     return client.post<IProfile>("/profiles");
   };

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";
 import Registration from "page/Registration";
@@ -27,7 +27,7 @@ const UserProfileProvider = ({
   const { fetchMyProfile } = useTusksApi();
   const [profile, setProfile] = useState<IProfile>();
 
-  const { isLoading, error } = useQuery(
+  const { isLoading, error } = useQuery<AxiosResponse<IProfile>, AxiosError>(
     [PROFILES_ME_QUERY_KEY],
     fetchMyProfile,
     {
@@ -37,8 +37,17 @@ const UserProfileProvider = ({
 
   if (isLoading) return <div>loading</div>;
 
-  if (error && (error as AxiosError).response?.status === 404) {
-    return <Registration />;
+  if (error) {
+    const message = error.message;
+    const status = error.response?.status;
+    switch (status) {
+      case 404:
+        return <Registration />;
+      default:
+        return (
+          <div>Ooops, error while signin in user occured! ({message})</div>
+        );
+    }
   }
 
   return (
