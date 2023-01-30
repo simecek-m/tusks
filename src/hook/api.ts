@@ -4,6 +4,7 @@ import { IProfile } from "type";
 
 interface TuskApiFunctions {
   fetchMyProfile: () => Promise<AxiosResponse<IProfile>>;
+  postRegistration: () => Promise<AxiosResponse<IProfile>>;
 }
 
 const useTusksApi = (): TuskApiFunctions => {
@@ -24,8 +25,14 @@ const useTusksApi = (): TuskApiFunctions => {
     return client.get<IProfile>("/profiles/me");
   };
 
+  const postRegistration = async () => {
+    const client = await getTusksApiClient();
+    return client.post<IProfile>("/profiles");
+  };
+
   return {
     fetchMyProfile,
+    postRegistration,
   };
 };
 
