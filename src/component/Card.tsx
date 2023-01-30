@@ -8,7 +8,7 @@ interface CardProps {
 export const Card: FC<CardProps> = ({ children, className }) => {
   return (
     <div
-      className={`${className} m-auto h-fit w-fit bg-white py-10 px-20 sm:rounded-3xl`}
+      className={`${className} m-auto h-fit w-fit bg-white p-10 sm:rounded-3xl`}
     >
       {children}
     </div>
