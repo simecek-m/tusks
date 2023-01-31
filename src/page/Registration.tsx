@@ -23,6 +23,7 @@ const Registration: FC = () => {
     formState: { errors, isValid },
   } = useForm<IProfile>({
     resolver: yupResolver(PROFILE_SCHEMA),
+    mode: "onChange",
   });
   const submit = (profile: IProfile) => {
     console.log(profile);
@@ -61,8 +62,12 @@ const Registration: FC = () => {
               >
                 <Input
                   label="username"
-                  defaultValue={user?.nickname}
+                  defaultValue={user?.family_name
+                    ?.toLocaleLowerCase()
+                    .normalize("NFD")
+                    .replace(/\p{Diacritic}/gu, "")}
                   error={errors.username}
+                  prefix="@"
                   {...register("username")}
                 />
                 <Input
