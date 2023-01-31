@@ -30,7 +30,7 @@ const Input = (
   ref: LegacyRef<HTMLInputElement>
 ) => {
   return (
-    <div className="my-2 flex flex-col">
+    <div className="my-2 flex w-full flex-col">
       {label && (
         <label htmlFor={name} className="text-sm">
           {label}

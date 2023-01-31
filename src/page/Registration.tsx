@@ -23,7 +23,7 @@ const Registration: FC = () => {
   };
 
   return (
-    <div className="flex h-max w-screen justify-center bg-gradient-to-br from-brand-400 to-brand-900 md:h-screen">
+    <div className="flex h-screen w-screen justify-center overflow-auto bg-gradient-to-br from-brand-400 to-brand-900 p-5 md:p-10">
       <Card className="relative">
         <>
           <IconButton
@@ -31,8 +31,8 @@ const Registration: FC = () => {
             icon={<CgClose />}
             className="absolute top-0 right-0 h-10 w-10 rounded-full p-0"
           />
-          <div className="flex-col p-5 sm:w-[50vw]">
-            <div className="flex w-full flex-col items-center">
+          <div className="flex-col">
+            <div className="flex flex-col items-center">
               <Title
                 text="Welcome"
                 className="mb-2 text-4xl text-gray-900"
@@ -42,7 +42,7 @@ const Registration: FC = () => {
                 before you continue please checkout your personal data
               </p>
             </div>
-            <div className="flex w-full flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
+            <div className="flex flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
               <img
                 src={user?.picture ?? AVATAR_IMG}
                 alt="profile picture"
