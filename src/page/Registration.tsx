@@ -11,12 +11,19 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { CgClose } from "react-icons/cg";
 import { IProfile } from "type";
-
+import { yupResolver } from "@hookform/resolvers/yup";
+import { PROFILE_SCHEMA } from "validation";
 const Registration: FC = () => {
   const { user, logout } = useAuth0();
   // const { postRegistration } = useTusksApi();
   // const { mutate } = useMutation(postRegistration);
-  const { handleSubmit, register } = useForm<IProfile>();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+  } = useForm<IProfile>({
+    resolver: yupResolver(PROFILE_SCHEMA),
+  });
   const submit = (profile: IProfile) => {
     console.log(profile);
     // TODO: mutate data -> send POST request
@@ -55,27 +62,32 @@ const Registration: FC = () => {
                 <Input
                   label="username"
                   defaultValue={user?.nickname}
+                  error={errors.username}
                   {...register("username")}
                 />
                 <Input
                   label="first name"
                   defaultValue={user?.given_name}
+                  error={errors.firstName}
                   {...register("firstName")}
                 />
                 <Input
                   label="last name"
                   defaultValue={user?.family_name}
+                  error={errors.lastName}
                   {...register("lastName")}
                 />
                 <Input
                   label="e-mail"
                   type="email"
                   defaultValue={user?.email}
+                  error={errors.email}
                   {...register("email")}
                 />
                 <Button
                   text="continue"
                   type="submit"
+                  disabled={!isValid}
                   className="mt-4 min-w-full"
                 />
                 <input value={user?.sub} hidden readOnly {...register("id")} />
