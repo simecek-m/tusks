@@ -1,33 +1,60 @@
 import { useAuth0 } from "@auth0/auth0-react";
-// import { useMutation } from "@tanstack/react-query";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AxiosError, AxiosResponse } from "axios";
 import Button from "component/Button";
 import Card from "component/Card";
 import IconButton from "component/IconButton";
 import Input from "component/Input";
 import Title from "component/Title";
 import { AVATAR_IMG } from "constant/assets";
-// import useTusksApi from "hook/api";
-import { FC } from "react";
+import { PROFILES_ME_QUERY_KEY } from "constant/queries";
+import useTusksApi from "hook/api";
+import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { CgClose } from "react-icons/cg";
 import { IProfile } from "type";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { PROFILE_SCHEMA } from "validation";
+
 const Registration: FC = () => {
+  const queryClient = useQueryClient();
   const { user, logout } = useAuth0();
-  // const { postRegistration } = useTusksApi();
-  // const { mutate } = useMutation(postRegistration);
+  const { postRegistration } = useTusksApi();
+
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid },
+    setError,
+    formState: { errors, isValid, isSubmitting },
   } = useForm<IProfile>({
     resolver: yupResolver(PROFILE_SCHEMA),
     mode: "onChange",
   });
+
+  const usernameInputRef = useRef<HTMLInputElement | null>();
+  const { ref, ...rest } = register("username");
+
+  const { mutate } = useMutation<AxiosResponse<IProfile>, AxiosError, IProfile>(
+    (profile: IProfile) => postRegistration(profile)
+  );
+
   const submit = (profile: IProfile) => {
-    console.log(profile);
-    // TODO: mutate data -> send POST request
+    mutate(profile, {
+      onSuccess: (response: AxiosResponse<IProfile>) => {
+        queryClient.setQueryData([PROFILES_ME_QUERY_KEY], response.data);
+      },
+      onError: (error) => {
+        if (error.response?.status === 409) {
+          setError("username", { message: "Username already taken!" });
+          usernameInputRef.current?.focus();
+        } else {
+          toast.error(
+            `Something went wrong, ${error?.response?.status ?? error.message}!`
+          );
+        }
+      },
+    });
   };
 
   return (
@@ -68,7 +95,11 @@ const Registration: FC = () => {
                     .replace(/\p{Diacritic}/gu, "")}
                   error={errors.username}
                   prefix="@"
-                  {...register("username")}
+                  ref={(e) => {
+                    ref(e);
+                    usernameInputRef.current = e;
+                  }}
+                  {...rest}
                 />
                 <Input
                   label="first name"
@@ -93,6 +124,7 @@ const Registration: FC = () => {
                   text="continue"
                   type="submit"
                   disabled={!isValid}
+                  isSubmitting={isSubmitting}
                   className="mt-4 min-w-full"
                 />
                 <input value={user?.sub} hidden readOnly {...register("id")} />
