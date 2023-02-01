@@ -5,6 +5,7 @@ import Dashboard from "page/Dashboard";
 import Home from "page/Home";
 import ProtectedRoute from "page/ProtectedRoute";
 import { FC } from "react";
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const queryClient = new QueryClient({
@@ -36,6 +37,7 @@ const App: FC = () => {
           </Routes>
         </BrowserRouter>
       </Auth0Provider>
+      <Toaster position="bottom-right" />
     </QueryClientProvider>
   );
 };
