@@ -62,7 +62,9 @@ const Registration: FC = () => {
       <Card className="relative">
         <>
           <IconButton
-            onClick={logout}
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
             icon={<CgClose />}
             className="absolute top-0 right-0 h-10 w-10 rounded-full p-0"
           />

@@ -21,7 +21,13 @@ const Dashboard: FC = () => {
         Dashboard
       </h1>
       <p>user statistics</p>
-      <Button text="logout" className="mt-5" onClick={logout} />
+      <Button
+        text="logout"
+        className="mt-5"
+        onClick={() =>
+          logout({ logoutParams: { returnTo: window.location.origin } })
+        }
+      />
     </div>
   );
 };
