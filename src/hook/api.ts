@@ -13,7 +13,7 @@ const useTusksApi = (): TuskApiFunctions => {
   const getTusksApiClient: () => Promise<AxiosInstance> = async () => {
     const accessToken = await getAccessTokenSilently();
     return axios.create({
-      baseURL: process.env.REACT_APP_TODO_API_URL,
+      baseURL: process.env.REACT_APP_BACKEND_API_URL,
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
