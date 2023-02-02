@@ -21,8 +21,8 @@ const App: FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Auth0Provider
-        domain={process.env.REACT_APP_AUTH_DOMAIN}
-        clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
+        domain={process.env.REACT_APP_AUTH_DOMAIN ?? ""}
+        clientId={process.env.REACT_APP_AUTH_CLIENT_ID ?? ""}
         authorizationParams={{
           audience: process.env.REACT_APP_AUTH_AUDIENCE,
           redirect_uri: window.location.origin,
