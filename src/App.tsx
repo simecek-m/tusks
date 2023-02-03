@@ -7,6 +7,10 @@ import ProtectedRoute from "page/ProtectedRoute";
 import { FC } from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fas);
 
 const queryClient = new QueryClient({
   defaultOptions: {

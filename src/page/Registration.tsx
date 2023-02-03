@@ -13,7 +13,6 @@ import useTusksApi from "hook/api";
 import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { CgClose } from "react-icons/cg";
 import { IProfile } from "type";
 import { PROFILE_SCHEMA } from "validation";
 
@@ -65,7 +64,7 @@ const Registration: FC = () => {
             onClick={() =>
               logout({ logoutParams: { returnTo: window.location.origin } })
             }
-            icon={<CgClose />}
+            icon="close"
             className="absolute top-0 right-0 h-10 w-10 rounded-full p-0"
           />
           <div className="flex-col">
