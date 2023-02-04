@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        brand: ["Coiny", "cursive"],
+      },
       colors: {
         brand: {
           50: "#B0FFD9",
