@@ -69,12 +69,8 @@ const Registration: FC = () => {
           />
           <div className="flex-col">
             <div className="flex flex-col items-center">
-              <Title
-                text="Welcome"
-                className="mb-2 text-4xl text-gray-900"
-                type="color"
-              />
-              <p className="mb-5 text-center">
+              <Title className="text-gray-900">Welcome</Title>
+              <p className="mb-5 text-center font-light">
                 before you continue please checkout your personal data
               </p>
             </div>
