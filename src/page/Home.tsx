@@ -19,22 +19,18 @@ const Home: FC = () => {
       <p>not everyone has the memory of an elephant</p>
       {isAuthenticated ? (
         <Button
-          text="continue"
-          className="mt-5"
+          icon="right-long"
+          hoverIcon="door-open"
           onClick={() => navigate(INDEX_PATH)}
-        />
+        >
+          continue
+        </Button>
       ) : (
-        <Button
-          text="login"
-          className="mt-5"
-          onClick={() =>
-            loginWithPopup({
-              authorizationParams: {
-                prompt: "login",
-              },
-            })
-          }
-        />
+        <div className="mt-10 flex w-full flex-col items-center gap-2">
+          <Button icon="lock" hoverIcon="key" onClick={loginWithPopup}>
+            login
+          </Button>
+        </div>
       )}
     </div>
   );

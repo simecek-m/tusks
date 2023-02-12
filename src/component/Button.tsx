@@ -1,32 +1,60 @@
 import { FC, ButtonHTMLAttributes } from "react";
+import clsx from "clsx";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ButtonProps {
-  text: string;
-  className?: string;
-  onClick?: () => void;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   disabled?: boolean;
   isSubmitting?: boolean;
+  onClick?: () => void;
+  children: string;
+  icon: IconProp;
+  hoverIcon: IconProp;
 }
 
 const Button: FC<ButtonProps> = ({
-  text,
   onClick,
   type = "button",
   disabled = false,
   isSubmitting = false,
-  className = "",
+  icon,
+  hoverIcon,
+  children,
 }) => {
   return (
     <button
       onClick={onClick}
       type={type}
       disabled={disabled}
-      className={`${className} ${
-        isSubmitting ? "cursor-wait from-gray-500 to-gray-500" : ""
-      } w-full rounded-md bg-gradient-to-br from-brand-400 to-brand-900 px-5 py-2 font-bold text-white disabled:from-gray-500 disabled:to-gray-500 sm:w-1/2 lg:max-w-sm`}
+      className={clsx(
+        { "cursor-wait": isSubmitting },
+        "group flex w-full flex-row items-center justify-center gap-2 overflow-hidden rounded-full bg-brand-700 py-2 px-2 pr-5 font-bold text-white disabled:cursor-not-allowed disabled:opacity-40 sm:w-fit"
+      )}
     >
-      {isSubmitting ? "sending" : text}
+      {!disabled && (
+        <div className="relative flex">
+          {icon && (
+            <FontAwesomeIcon
+              icon={icon}
+              className="h-4 w-4 translate-y-0 rounded-full bg-brand-600 p-2 text-white transition duration-500 ease-in-out group-hover:-translate-y-10"
+            />
+          )}
+          {hoverIcon && (
+            <FontAwesomeIcon
+              icon={hoverIcon}
+              className="absolute h-4 w-4 translate-y-10 rounded-full bg-brand-600 p-2 text-white transition duration-500 ease-in-out group-hover:translate-y-0"
+            />
+          )}
+        </div>
+      )}
+      {disabled && (
+        <FontAwesomeIcon
+          icon="xmark"
+          className="h-4 w-4 rounded-full bg-brand-600 p-2 text-white"
+        />
+      )}
+      <span className="">{isSubmitting ? "processing" : children}</span>
     </button>
   );
 };

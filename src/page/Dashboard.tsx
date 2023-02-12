@@ -21,12 +21,14 @@ const Dashboard: FC = () => {
       <Title>Dashboard</Title>
       <p>user statistics</p>
       <Button
-        text="logout"
-        className="mt-5"
+        icon="user"
+        hoverIcon="door-open"
         onClick={() =>
           logout({ logoutParams: { returnTo: window.location.origin } })
         }
-      />
+      >
+        logout
+      </Button>
     </div>
   );
 };
