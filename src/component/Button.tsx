@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-interface ButtonProps {
+export interface ButtonProps {
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   disabled?: boolean;
   isSubmitting?: boolean;
