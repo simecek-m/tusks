@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        brand: ["Coiny", "cursive"],
+        heading: ["Coiny", "cursive"],
       },
       colors: {
-        brand: {
+        primary: {
           50: "#edfcf7",
           100: "#d4f7e9",
           200: "#aceed7",

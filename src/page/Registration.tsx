@@ -57,7 +57,7 @@ const Registration: FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen justify-center overflow-auto bg-gradient-to-br from-brand-400 to-brand-900 p-5 md:p-10">
+    <div className="flex h-screen w-screen justify-center overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 p-5 md:p-10">
       <Card className="relative">
         <>
           <IconButton

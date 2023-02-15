@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 type ButtonVariant = "primary" | "destructive";
 
 const ButtonVariants: Record<ButtonVariant, string> = {
-  primary: "bg-brand-700",
+  primary: "bg-primary-700",
   destructive: "bg-red-600",
 };
 
