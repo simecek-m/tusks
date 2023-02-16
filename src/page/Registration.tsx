@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
-import Button from "component/Button";
+import Button from "component/button/Button";
 import Card from "component/Card";
 import IconButton from "component/IconButton";
 import Input from "component/Input";

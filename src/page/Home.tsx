@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import Button from "component/Button";
+import Button from "component/button/Button";
 import Title from "component/Title";
 import { INDEX_PATH } from "constant/paths";
 import { FC } from "react";
@@ -23,12 +23,12 @@ const Home: FC = () => {
           hoverIcon="door-open"
           onClick={() => navigate(INDEX_PATH)}
         >
-          continue
+          Continue
         </Button>
       ) : (
         <div className="mt-10 flex w-full flex-col items-center gap-2">
           <Button icon="lock" hoverIcon="key" onClick={loginWithPopup}>
-            login
+            Sign In
           </Button>
         </div>
       )}
