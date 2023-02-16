@@ -15,7 +15,7 @@ const Home: FC = () => {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center p-4">
-      <Title className="text-6xl">Tusks</Title>
+      <Title>Tusks</Title>
       <p>not everyone has the memory of an elephant</p>
       {isAuthenticated ? (
         <Button

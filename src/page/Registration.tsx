@@ -64,7 +64,7 @@ const Registration: FC = () => {
       >
         <div className="flex flex-col">
           <div className="flex flex-col items-center">
-            <Title className="text-gray-900">Welcome</Title>
+            <Title>Welcome</Title>
             <p className="mb-5 text-center font-light">
               before you continue please checkout your personal data
             </p>
