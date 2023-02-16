@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import Button from "component/Button";
+import Button from "component/button/Button";
 import Title from "component/Title";
 import { INDEX_PATH } from "constant/paths";
 import { FC } from "react";
@@ -19,22 +19,18 @@ const Home: FC = () => {
       <p>not everyone has the memory of an elephant</p>
       {isAuthenticated ? (
         <Button
-          text="continue"
-          className="mt-5"
+          icon="right-long"
+          hoverIcon="door-open"
           onClick={() => navigate(INDEX_PATH)}
-        />
+        >
+          Continue
+        </Button>
       ) : (
-        <Button
-          text="login"
-          className="mt-5"
-          onClick={() =>
-            loginWithPopup({
-              authorizationParams: {
-                prompt: "login",
-              },
-            })
-          }
-        />
+        <div className="mt-10 flex w-full flex-col items-center gap-2">
+          <Button icon="lock" hoverIcon="key" onClick={loginWithPopup}>
+            Sign In
+          </Button>
+        </div>
       )}
     </div>
   );

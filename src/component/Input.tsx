@@ -35,11 +35,13 @@ const Input = (
   ref: LegacyRef<HTMLInputElement>
 ) => {
   return (
-    <label className="my-2 flex w-full cursor-text flex-col">
-      <span className={` ${error ? `font-bold text-red-500` : ""} text-sm`}>
+    <label className="mt-2 flex w-full cursor-text flex-col">
+      <span
+        className={` ${error ? `font-bold text-red-500` : ""} ml-5 text-sm`}
+      >
         {error?.message ?? label}
       </span>
-      <span className="flex flex-row items-center rounded-lg bg-gray-200 px-5 py-2 font-medium focus-within:outline">
+      <span className="flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline">
         <p>{prefix}</p>
         <input
           id={name}

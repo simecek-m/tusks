@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import Button from "component/Button";
+import Button from "component/button/Button";
 import Title from "component/Title";
 import { HOME_PATH } from "constant/paths";
 import { FC } from "react";
@@ -21,12 +21,14 @@ const Dashboard: FC = () => {
       <Title>Dashboard</Title>
       <p>user statistics</p>
       <Button
-        text="logout"
-        className="mt-5"
+        icon="user"
+        hoverIcon="door-open"
         onClick={() =>
           logout({ logoutParams: { returnTo: window.location.origin } })
         }
-      />
+      >
+        logout
+      </Button>
     </div>
   );
 };

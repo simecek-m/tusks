@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
-import Button from "component/Button";
+import Button from "component/button/Button";
 import Card from "component/Card";
 import IconButton from "component/IconButton";
 import Input from "component/Input";
@@ -57,7 +57,7 @@ const Registration: FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen justify-center overflow-auto bg-gradient-to-br from-brand-400 to-brand-900 p-5 md:p-10">
+    <div className="flex h-screen w-screen justify-center overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 p-5 md:p-10">
       <Card className="relative">
         <>
           <IconButton
@@ -65,7 +65,7 @@ const Registration: FC = () => {
               logout({ logoutParams: { returnTo: window.location.origin } })
             }
             icon="close"
-            className="absolute top-0 right-0 h-10 w-10 rounded-full p-0"
+            className="absolute top-0 right-0 h-10 w-10 rounded-full"
           />
           <div className="flex-col">
             <div className="flex flex-col items-center">
@@ -74,65 +74,74 @@ const Registration: FC = () => {
                 before you continue please checkout your personal data
               </p>
             </div>
-            <div className="flex flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
-              <img
-                src={user?.picture ?? AVATAR_IMG}
-                alt="profile picture"
-                className="aspect-square w-1/2 rounded-3xl object-cover drop-shadow-xl"
-              />
-              <form
-                onSubmit={handleSubmit(submit)}
-                className="flex w-full flex-col"
+            <form
+              onSubmit={handleSubmit(submit)}
+              className="flex flex-col items-end gap-5"
+            >
+              <div className="flex w-full flex-col items-center justify-center gap-5 sm:flex-row">
+                <img
+                  src={user?.picture ?? AVATAR_IMG}
+                  alt="profile picture"
+                  className="aspect-square w-1/2 rounded-3xl object-cover shadow-2xl"
+                />
+                <div className="flex w-full flex-col">
+                  <Input
+                    label="username"
+                    defaultValue={user?.family_name
+                      ?.toLocaleLowerCase()
+                      .normalize("NFD")
+                      .replace(/\p{Diacritic}/gu, "")}
+                    error={errors.username}
+                    prefix="@"
+                    ref={(e) => {
+                      ref(e);
+                      usernameInputRef.current = e;
+                    }}
+                    {...rest}
+                  />
+                  <Input
+                    label="first name"
+                    defaultValue={user?.given_name}
+                    error={errors.firstName}
+                    {...register("firstName")}
+                  />
+                  <Input
+                    label="last name"
+                    defaultValue={user?.family_name}
+                    error={errors.lastName}
+                    {...register("lastName")}
+                  />
+                  <Input
+                    label="e-mail"
+                    type="email"
+                    defaultValue={user?.email}
+                    error={errors.email}
+                    {...register("email")}
+                  />
+                  <input
+                    value={user?.sub}
+                    hidden
+                    readOnly
+                    {...register("id")}
+                  />
+                  <input
+                    value={user?.picture}
+                    hidden
+                    readOnly
+                    {...register("picture")}
+                  />
+                </div>
+              </div>
+              <Button
+                icon="arrow-right"
+                hoverIcon="check"
+                type="submit"
+                disabled={!isValid}
+                isSubmitting={isSubmitting}
               >
-                <Input
-                  label="username"
-                  defaultValue={user?.family_name
-                    ?.toLocaleLowerCase()
-                    .normalize("NFD")
-                    .replace(/\p{Diacritic}/gu, "")}
-                  error={errors.username}
-                  prefix="@"
-                  ref={(e) => {
-                    ref(e);
-                    usernameInputRef.current = e;
-                  }}
-                  {...rest}
-                />
-                <Input
-                  label="first name"
-                  defaultValue={user?.given_name}
-                  error={errors.firstName}
-                  {...register("firstName")}
-                />
-                <Input
-                  label="last name"
-                  defaultValue={user?.family_name}
-                  error={errors.lastName}
-                  {...register("lastName")}
-                />
-                <Input
-                  label="e-mail"
-                  type="email"
-                  defaultValue={user?.email}
-                  error={errors.email}
-                  {...register("email")}
-                />
-                <Button
-                  text="continue"
-                  type="submit"
-                  disabled={!isValid}
-                  isSubmitting={isSubmitting}
-                  className="mt-4 min-w-full"
-                />
-                <input value={user?.sub} hidden readOnly {...register("id")} />
-                <input
-                  value={user?.picture}
-                  hidden
-                  readOnly
-                  {...register("picture")}
-                />
-              </form>
-            </div>
+                continue
+              </Button>
+            </form>
           </div>
         </>
       </Card>
