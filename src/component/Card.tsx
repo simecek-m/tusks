@@ -1,15 +1,20 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, ReactElement } from "react";
 
-interface CardProps {
+export interface CardProps {
   children: ReactElement;
-  className?: string;
+  onClose?: () => void;
 }
 
-export const Card: FC<CardProps> = ({ children, className }) => {
+export const Card: FC<CardProps> = ({ children, onClose }) => {
   return (
-    <div
-      className={`${className} m-auto w-full max-w-4xl rounded-3xl bg-white px-5 py-10 md:px-20 md:py-20`}
-    >
+    <div className="relative m-auto w-full max-w-4xl rounded-3xl bg-white p-10 shadow-lg">
+      <button
+        className="absolute top-0 right-0 m-1 flex h-10 w-10 items-center justify-center gap-2 rounded-full bg-gray-900 text-white transition duration-300 hover:bg-primary-600"
+        onClick={onClose}
+      >
+        <FontAwesomeIcon icon="close" />
+      </button>
       {children}
     </div>
   );

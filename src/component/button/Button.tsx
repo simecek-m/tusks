@@ -1,6 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import clsx from "clsx";
-import IconButton from "component/button/ButtonIcon";
+import ButtonIcon from "component/button/ButtonIcon";
 import { ButtonHTMLAttributes, FC } from "react";
 
 type ButtonVariant = "primary" | "destructive";
@@ -42,7 +42,7 @@ const Button: FC<ButtonProps> = ({
         ButtonVariants[variant]
       )}
     >
-      <IconButton
+      <ButtonIcon
         icon={icon}
         hoverIcon={hoverIcon}
         isDisabled={isDisabled}
