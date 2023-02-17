@@ -13,7 +13,6 @@ const ButtonVariants: Record<ButtonVariant, string> = {
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: IconProp;
   hoverIcon?: IconProp;
-  children: string;
   variant?: ButtonVariant;
   isDisabled?: boolean;
   isSubmitting?: boolean;

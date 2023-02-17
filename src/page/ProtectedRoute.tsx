@@ -5,17 +5,11 @@ import { FC } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute: FC = () => {
-  const {
-    isLoading: isAuthLoading,
-    error: authError,
-    isAuthenticated,
-  } = useAuth0();
+  const { isLoading, error, isAuthenticated } = useAuth0();
 
-  if (isAuthLoading) return <div>authenticating...</div>;
-  if (authError)
-    return (
-      <div>Oooooops, authentication error occured: {authError.message}</div>
-    );
+  if (isLoading) return <div>authenticating...</div>;
+  if (error)
+    return <div>Oooooops, authentication error occured: {error.message}</div>;
 
   if (isAuthenticated) {
     return (

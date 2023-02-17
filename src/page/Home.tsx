@@ -15,7 +15,7 @@ const Home: FC = () => {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center p-4">
-      <Title className="text-6xl">Tusks</Title>
+      <Title>Tusks</Title>
       <p>not everyone has the memory of an elephant</p>
       {isAuthenticated ? (
         <Button
@@ -27,7 +27,15 @@ const Home: FC = () => {
         </Button>
       ) : (
         <div className="mt-10 flex w-full flex-col items-center gap-2">
-          <Button icon="lock" hoverIcon="key" onClick={loginWithPopup}>
+          <Button
+            icon="lock"
+            hoverIcon="key"
+            onClick={() =>
+              loginWithPopup({
+                authorizationParams: { prompt: "select_account" },
+              })
+            }
+          >
             Sign In
           </Button>
         </div>
