@@ -1,74 +1,49 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import clsx from "clsx";
 import Button from "component/button/Button";
+import Menu, { IMenuListItem } from "component/menu/Menu";
 import Title from "component/Title";
 import { INDEX_PATH } from "constant/paths";
 import { useTheme } from "provider/ThemeProvider";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home: FC = () => {
   const { loginWithPopup, isLoading, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const [isExpanded, setExpand] = useState<boolean>(false);
   const { changeTheme } = useTheme();
+
+  const themeItems: IMenuListItem[] = [
+    {
+      icon: "sun",
+      text: "light",
+      onClick: () => changeTheme("light"),
+    },
+    {
+      icon: "moon",
+      text: "dark",
+      onClick: () => changeTheme("dark"),
+    },
+    {
+      icon: "palette",
+      text: "system",
+      onClick: () => changeTheme("system"),
+    },
+  ];
 
   if (isLoading) {
     return <div>loading</div>;
   }
 
-  // TODO: encapsulate the theme switcher into its own component
   return (
     <div className="flex h-screen flex-col items-center justify-center p-4">
       <div className="absolute top-2 right-2 flex select-none flex-col items-end gap-1">
-        <FontAwesomeIcon
-          icon="brush"
-          onClick={() => setExpand(!isExpanded)}
-          className="cursor h-4 w-4 cursor-pointer rounded-full bg-white p-2 shadow-lg transition duration-300 hover:bg-slate-200 dark:bg-slate-700"
-        />
-        <div
-          className={clsx(
-            "z-10 flex-col gap-1 rounded-xl bg-white p-1 shadow-lg transition duration-300 dark:bg-slate-700",
-            {
-              flex: isExpanded,
-            },
-            {
-              hidden: !isExpanded,
-            }
-          )}
-        >
-          <div
-            className="flex cursor-pointer flex-row items-center gap-2 rounded-xl px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800"
-            onClick={() => {
-              setExpand(false);
-              changeTheme("light");
-            }}
-          >
-            <FontAwesomeIcon icon="lightbulb" />
-            <span>light</span>
-          </div>
-          <div
-            className="flex cursor-pointer flex-row items-center gap-2 rounded-xl px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800"
-            onClick={() => {
-              setExpand(false);
-              changeTheme("dark");
-            }}
-          >
-            <FontAwesomeIcon icon="moon" />
-            <span>dark</span>
-          </div>
-          <div
-            className="flex cursor-pointer flex-row items-center gap-2 rounded-xl px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800"
-            onClick={() => {
-              setExpand(false);
-              changeTheme("system");
-            }}
-          >
-            <FontAwesomeIcon icon="palette" />
-            <span>system</span>
-          </div>
-        </div>
+        <Menu items={themeItems}>
+          <FontAwesomeIcon
+            icon="brush"
+            className="cursor h-4 w-4 cursor-pointer rounded-full bg-white p-2 shadow-lg transition duration-300 hover:bg-slate-200 dark:bg-slate-700"
+          />
+        </Menu>
       </div>
       <Title>Tusks</Title>
       <p>not everyone has the memory of an elephant</p>
