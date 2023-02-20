@@ -1,7 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import MenuList from "component/menu/MenuList";
 import MenuListItem from "component/menu/MenuListItem";
-import { FC, useState } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 export interface IMenuListItem {
   icon: IconProp;
@@ -16,8 +16,25 @@ interface MenuProps {
 
 const Menu: FC<MenuProps> = ({ children, items }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = useCallback((e: MouseEvent) => {
+    if (ref.current && !ref.current.contains(e.target as HTMLElement)) {
+      setOpen(false);
+    }
+  }, []);
+
+  // encapsulate to useClickOutside hook
+  useEffect(() => {
+    isOpen
+      ? document.addEventListener("click", handleClickOutside)
+      : document.removeEventListener("click", handleClickOutside);
+    return () =>
+      document.removeEventListener("click", handleClickOutside, true);
+  }, [isOpen, handleClickOutside]);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       <button onClick={() => setOpen(!isOpen)}>{children}</button>
       <MenuList visible={isOpen}>
         {items.map((item, index) => (
