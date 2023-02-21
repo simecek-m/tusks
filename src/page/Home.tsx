@@ -1,12 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "component/button/Button";
-import Menu, { IMenuListItem } from "component/menu/Menu";
+import Menu from "component/menu/Menu";
 import Title from "component/Title";
 import { INDEX_PATH } from "constant/paths";
 import { useTheme } from "provider/ThemeProvider";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { IMenuListItem } from "type";
 
 const Home: FC = () => {
   const { loginWithPopup, isLoading, isAuthenticated } = useAuth0();
