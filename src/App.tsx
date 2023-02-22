@@ -1,14 +1,15 @@
 import { Auth0Provider } from "@auth0/auth0-react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HOME_PATH, INDEX_PATH } from "constant/paths";
 import Dashboard from "page/Dashboard";
 import Home from "page/Home";
 import ProtectedRoute from "page/ProtectedRoute";
+import ThemeProvider from "provider/ThemeProvider";
 import { FC } from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fas);
 
@@ -23,26 +24,28 @@ const queryClient = new QueryClient({
 
 const App: FC = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Auth0Provider
-        domain={process.env.REACT_APP_AUTH_DOMAIN ?? ""}
-        clientId={process.env.REACT_APP_AUTH_CLIENT_ID ?? ""}
-        authorizationParams={{
-          audience: process.env.REACT_APP_AUTH_AUDIENCE,
-          redirect_uri: window.location.origin,
-        }}
-      >
-        <BrowserRouter>
-          <Routes>
-            <Route path={HOME_PATH} element={<Home />} />
-            <Route path={INDEX_PATH} element={<ProtectedRoute />}>
-              <Route index element={<Dashboard />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </Auth0Provider>
-      <Toaster position="bottom-right" />
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <Auth0Provider
+          domain={process.env.REACT_APP_AUTH_DOMAIN ?? ""}
+          clientId={process.env.REACT_APP_AUTH_CLIENT_ID ?? ""}
+          authorizationParams={{
+            audience: process.env.REACT_APP_AUTH_AUDIENCE,
+            redirect_uri: window.location.origin,
+          }}
+        >
+          <BrowserRouter>
+            <Routes>
+              <Route path={HOME_PATH} element={<Home />} />
+              <Route path={INDEX_PATH} element={<ProtectedRoute />}>
+                <Route index element={<Dashboard />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </Auth0Provider>
+        <Toaster position="bottom-right" />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 };
 

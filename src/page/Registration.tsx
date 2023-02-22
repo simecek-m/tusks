@@ -5,6 +5,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import Button from "component/button/Button";
 import Card from "component/Card";
 import Input from "component/Input";
+import ThemeSwitcher from "component/ThemeSwitcher";
 import Title from "component/Title";
 import { AVATAR_IMG } from "constant/assets";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
@@ -56,7 +57,8 @@ const Registration: FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 p-5">
+    <div className="flex h-screen w-screen overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 p-5 dark:from-slate-700 dark:to-slate-800">
+      <ThemeSwitcher />
       <Card
         onClose={() =>
           logout({ logoutParams: { returnTo: window.location.origin } })

@@ -1,3 +1,5 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
 export interface IProfile {
   id: string;
   username: string;
@@ -10,3 +12,11 @@ export interface IProfile {
 export interface IUserProfileContext {
   profile: IProfile | undefined;
 }
+
+export interface IMenuListItem {
+  icon: IconProp;
+  text: string;
+  onClick: () => void;
+}
+
+export type ActionType = "primary" | "error";

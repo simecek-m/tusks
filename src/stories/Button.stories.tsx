@@ -29,7 +29,7 @@ Destructive.args = {
   children: "Remove",
   icon: "trash-alt",
   hoverIcon: "user-xmark",
-  variant: "destructive",
+  variant: "error",
 };
 
 PrimaryWithoutHoverIcon.args = {

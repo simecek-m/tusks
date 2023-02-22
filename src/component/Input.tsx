@@ -15,12 +15,17 @@ const Input = (
     <label className="mt-2 flex w-full cursor-text flex-col">
       <span
         className={clsx("ml-5 text-sm", {
-          "`font-bold text-red-500`": !!error,
+          "font-bold text-red-500 dark:text-red-300": !!error,
         })}
       >
         {error?.message ?? label}
       </span>
-      <span className="flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline">
+      <span
+        className={clsx(
+          "flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline dark:bg-slate-700",
+          { "border-2 border-red-500 dark:border-red-300": !!error }
+        )}
+      >
         {!!prefix && <p>{prefix}</p>}
         <input
           ref={ref}
