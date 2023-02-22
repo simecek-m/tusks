@@ -20,7 +20,7 @@ const Input = (
       >
         {error?.message ?? label}
       </span>
-      <span className="flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline">
+      <span className="flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline dark:bg-slate-700">
         {!!prefix && <p>{prefix}</p>}
         <input
           ref={ref}
