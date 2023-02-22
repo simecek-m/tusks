@@ -76,9 +76,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, changeTheme }}>
-      <div className="bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-100">
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   );
 };
