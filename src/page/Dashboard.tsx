@@ -22,14 +22,14 @@ const Dashboard: FC = () => {
       <ThemeSwitcher />
       <Title>Dashboard</Title>
       <p>user statistics</p>
-      <div className="flex max-w-xl flex-col gap-0">
+      <div className="mb-5 flex max-w-xl flex-col gap-0">
         <h6>Current user:</h6>
         <pre className="overflow-auto rounded-xl bg-gray-900 p-5 text-white shadow-lg">
           {JSON.stringify(user, null, 2)}
         </pre>
       </div>
       <Button
-        variant="destructive"
+        variant="error"
         icon="user"
         hoverIcon="door-open"
         onClick={() =>

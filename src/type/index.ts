@@ -18,3 +18,5 @@ export interface IMenuListItem {
   text: string;
   onClick: () => void;
 }
+
+export type ActionType = "primary" | "error";

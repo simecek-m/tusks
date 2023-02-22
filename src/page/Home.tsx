@@ -19,16 +19,16 @@ const Home: FC = () => {
       <ThemeSwitcher />
       <Title>Tusks</Title>
       <p>not everyone has the memory of an elephant</p>
-      {isAuthenticated ? (
-        <Button
-          icon="right-long"
-          hoverIcon="door-open"
-          onClick={() => navigate(INDEX_PATH)}
-        >
-          Continue
-        </Button>
-      ) : (
-        <div className="mt-10 flex w-full flex-col items-center gap-2">
+      <div className="mt-10 flex w-full flex-col items-center">
+        {isAuthenticated ? (
+          <Button
+            icon="right-long"
+            hoverIcon="door-open"
+            onClick={() => navigate(INDEX_PATH)}
+          >
+            Continue
+          </Button>
+        ) : (
           <Button
             icon="lock"
             hoverIcon="key"
@@ -40,8 +40,8 @@ const Home: FC = () => {
           >
             Sign In
           </Button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
