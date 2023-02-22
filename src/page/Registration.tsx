@@ -57,7 +57,7 @@ const Registration: FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 p-5 dark:from-primary-900 dark:to-slate-700">
+    <div className="flex h-screen w-screen overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 p-5 dark:from-slate-700 dark:to-slate-800">
       <ThemeSwitcher />
       <Card
         onClose={() =>
