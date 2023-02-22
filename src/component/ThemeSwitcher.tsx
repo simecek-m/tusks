@@ -26,11 +26,11 @@ const ThemeSwitcher: FC = () => {
   ];
 
   return (
-    <div className="absolute top-2 right-2 select-none items-end gap-1">
+    <div className="absolute top-2 right-2 select-none items-end">
       <Menu items={themeVariants}>
         <FontAwesomeIcon
           icon="brush"
-          className="cursor h-4 w-4 cursor-pointer rounded-full bg-white p-2 shadow-lg transition duration-300 hover:bg-slate-200 dark:bg-slate-700"
+          className="cursor h-4 w-4 cursor-pointer rounded-full bg-white p-2 shadow-lg transition duration-300 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-900"
         />
       </Menu>
     </div>
