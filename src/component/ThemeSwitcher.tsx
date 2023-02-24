@@ -5,23 +5,23 @@ import { FC } from "react";
 import { IMenuListItem } from "type";
 
 const ThemeSwitcher: FC = () => {
-  const { changeTheme } = useTheme();
+  const { setThemePreference } = useTheme();
 
   const themeVariants: IMenuListItem[] = [
     {
       icon: "sun",
       text: "light",
-      onClick: () => changeTheme("light"),
+      onClick: () => setThemePreference("light"),
     },
     {
       icon: "moon",
       text: "dark",
-      onClick: () => changeTheme("dark"),
+      onClick: () => setThemePreference("dark"),
     },
     {
       icon: "palette",
       text: "system",
-      onClick: () => changeTheme("system"),
+      onClick: () => setThemePreference("system"),
     },
   ];
 
