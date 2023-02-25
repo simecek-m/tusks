@@ -1,97 +1,98 @@
 import { DARK_MODE_MEDIA_QUERY } from "constant/theme";
 import {
-  getSystemPreference,
-  loadPreferenceFromStorage,
-  savePreferenceToStorage,
-  setDocumentClass,
-} from "helper/theme";
-import {
   createContext,
   FC,
+  PropsWithChildren,
   Reducer,
   useContext,
   useEffect,
   useReducer,
 } from "react";
 
-export type ThemeSystemPreference = "light" | "dark";
-export type ThemeUserPreference = "light" | "dark" | "system";
+export type UserThemePreference = "light" | "dark" | "system";
+export type SystemTheme = "light" | "dark";
+
+type ThemeState = {
+  userPreference: UserThemePreference;
+  system: SystemTheme;
+};
 
 interface IThemeContext {
   theme: ThemeState;
-  setThemePreference: (preference: ThemeUserPreference) => void;
+  setThemePreference: (preference: UserThemePreference) => void;
 }
 
-const ThemeContext = createContext<IThemeContext>({
-  theme: {
-    preference: "system",
-    system: "dark",
-  },
-  setThemePreference: () => null,
-});
+const ThemeContext = createContext<IThemeContext | null>(null);
 
 export const useTheme = (): IThemeContext => {
-  return useContext(ThemeContext);
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw Error(
+      "You are trying to access Theme Context outside of its provider!"
+    );
+  } else {
+    return context;
+  }
 };
 
-interface ThemeProviderProps {
-  children: React.ReactNode;
-}
+export type ThemeAction =
+  | { type: "change_user_preference"; userPreference: UserThemePreference }
+  | { type: "change_system_theme"; system: SystemTheme };
 
-type ThemeState = {
-  preference: ThemeUserPreference;
-  system: ThemeSystemPreference;
-};
+const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
+  const getSystemTheme = (): SystemTheme => {
+    return window.matchMedia(DARK_MODE_MEDIA_QUERY).matches ? "dark" : "light";
+  };
 
-export type ChangeThemeAction =
-  | { type: "change_user_preference"; preference: ThemeUserPreference }
-  | { type: "change_system_preference" };
-
-// optimize listeners
-const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, dispatch] = useReducer<Reducer<ThemeState, ChangeThemeAction>>(
-    (state, action) => {
-      switch (action.type) {
-        case "change_user_preference": {
-          savePreferenceToStorage(action.preference);
-          return {
-            ...state,
-            preference: action.preference,
-          };
-        }
-        case "change_system_preference": {
-          return {
-            ...state,
-            system: getSystemPreference(),
-          };
-        }
+  const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
+    switch (action.type) {
+      case "change_user_preference": {
+        localStorage.theme = action.userPreference;
+        return {
+          ...state,
+          userPreference: action.userPreference,
+        };
       }
-    },
+      case "change_system_theme": {
+        return {
+          ...state,
+          system: action.system,
+        };
+      }
+    }
+  };
+
+  const [theme, dispatch] = useReducer<Reducer<ThemeState, ThemeAction>>(
+    themeReducer,
     {
-      preference: loadPreferenceFromStorage(),
-      system: getSystemPreference(),
+      userPreference: localStorage.theme ?? "system",
+      system: getSystemTheme(),
     }
   );
 
+  // listener to update system theme state when system theme was changed
   useEffect(() => {
-    window
-      .matchMedia(DARK_MODE_MEDIA_QUERY)
-      .addEventListener("change", () =>
-        dispatch({ type: "change_system_preference" })
-      );
+    const darkModeQuery = window.matchMedia(DARK_MODE_MEDIA_QUERY);
+    const systemThemeChangeListener = (event: MediaQueryListEvent) => {
+      dispatch({
+        type: "change_system_theme",
+        system: event.matches ? "dark" : "light",
+      });
+    };
+    darkModeQuery.addEventListener("change", systemThemeChangeListener);
+    return () =>
+      darkModeQuery.removeEventListener("change", systemThemeChangeListener);
   }, []);
 
+  // change document class [dark / light] when theme state was changed
   useEffect(() => {
-    if (theme.preference === "system") {
-      setDocumentClass(theme.system);
-    } else {
-      setDocumentClass(theme.preference);
-    }
+    document.documentElement.className =
+      theme.userPreference === "system" ? theme.system : theme.userPreference;
   }, [theme]);
 
-  const setThemePreference = (preference: ThemeUserPreference) => {
-    if (preference !== theme.preference) {
-      dispatch({ type: "change_user_preference", preference });
+  const setThemePreference = (userPreference: UserThemePreference) => {
+    if (userPreference !== theme.userPreference) {
+      dispatch({ type: "change_user_preference", userPreference });
     }
   };
 
