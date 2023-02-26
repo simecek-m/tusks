@@ -35,7 +35,7 @@ const Button: FC<ButtonProps> = ({
       type={type}
       disabled={isDisabled || isSubmitting}
       className={clsx(
-        "group flex w-full flex-row items-center justify-center gap-2 overflow-hidden rounded-full border-4 bg-transparent py-2 px-2 pr-5 font-bold sm:w-fit",
+        "group flex w-full shrink-0 flex-row items-center justify-center gap-2 overflow-hidden rounded-full border-4 bg-transparent py-2 px-2 pr-5 font-bold sm:w-fit",
         { "cursor-wait": isSubmitting },
         { "cursor-not-allowed opacity-60": isDisabled },
         ButtonVariants[variant]
