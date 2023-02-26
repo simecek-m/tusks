@@ -27,10 +27,10 @@ const App: FC = () => {
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <Auth0Provider
-          domain={process.env.REACT_APP_AUTH_DOMAIN ?? ""}
-          clientId={process.env.REACT_APP_AUTH_CLIENT_ID ?? ""}
+          domain={import.meta.env.VITE_AUTH_DOMAIN ?? ""}
+          clientId={import.meta.env.VITE_AUTH_CLIENT_ID ?? ""}
           authorizationParams={{
-            audience: process.env.REACT_APP_AUTH_AUDIENCE,
+            audience: import.meta.env.VITE_AUTH_AUDIENCE,
             redirect_uri: window.location.origin,
           }}
         >
