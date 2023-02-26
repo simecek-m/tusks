@@ -9,7 +9,8 @@
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.0.0",
