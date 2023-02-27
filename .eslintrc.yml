@@ -23,6 +23,6 @@ settings:
 plugins:
   - react
   - "@typescript-eslint"
-rules: { "@typescript-eslint/explicit-module-boundary-types": "warn" }
 ignorePatterns:
   - build
+  - "!.storybook"
