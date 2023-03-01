@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";
+import Loading from "page/Loading";
 import Registration from "page/Registration";
 import { createContext, ReactElement, useContext, useState } from "react";
 import { IProfile, IUserProfileContext } from "type";
+import AuthenticationError from "page/AuthenticationError";
 
 const DEFAULT_CONTEXT_VALUE: IUserProfileContext = {
   profile: undefined,
@@ -35,7 +37,7 @@ const UserProfileProvider = ({
     }
   );
 
-  if (isLoading) return <div>loading</div>;
+  if (isLoading) return <Loading />;
 
   if (error) {
     const message = error.message;
@@ -44,9 +46,7 @@ const UserProfileProvider = ({
       case 404:
         return <Registration />;
       default:
-        return (
-          <div>Ooops, error while signin in user occured! ({message})</div>
-        );
+        return <AuthenticationError message={message} />;
     }
   }
 
