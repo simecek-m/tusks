@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HOME_PATH, INDEX_PATH } from "constant/paths";
 import Dashboard from "page/Dashboard";
 import Home from "page/Home";
+import NotFound from "page/NotFound";
 import ProtectedRoute from "page/ProtectedRoute";
 import ThemeProvider from "provider/ThemeProvider";
 import { FC } from "react";
@@ -40,6 +41,7 @@ const App: FC = () => {
               <Route path={INDEX_PATH} element={<ProtectedRoute />}>
                 <Route index element={<Dashboard />} />
               </Route>
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
         </Auth0Provider>

@@ -7,12 +7,8 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home: FC = () => {
-  const { loginWithPopup, isLoading, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-
-  if (isLoading) {
-    return <div>loading</div>;
-  }
 
   return (
     <PageLayout>

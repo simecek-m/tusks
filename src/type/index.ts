@@ -11,6 +11,7 @@ export interface IProfile {
 
 export interface IUserProfileContext {
   profile: IProfile | undefined;
+  setProfile: (profile: IProfile) => void;
 }
 
 export interface IMenuListItem {

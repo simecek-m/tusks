@@ -16,7 +16,11 @@ import toast from "react-hot-toast";
 import { IProfile } from "type";
 import { PROFILE_SCHEMA } from "validation";
 
-const Registration: FC = () => {
+interface RegistrationProps {
+  onRegister: (profile: IProfile) => void;
+}
+
+const Registration: FC<RegistrationProps> = ({ onRegister }) => {
   const queryClient = useQueryClient();
   const { user, logout } = useAuth0();
   const { postRegistration } = useTusksApi();
@@ -41,6 +45,7 @@ const Registration: FC = () => {
   const submit = (profile: IProfile) => {
     mutate(profile, {
       onSuccess: (response: AxiosResponse<IProfile>) => {
+        onRegister(response.data);
         queryClient.setQueryData([PROFILES_ME_QUERY_KEY], response.data);
       },
       onError: (error) => {

@@ -2,24 +2,28 @@ import { useQuery } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";
+import Loading from "page/Loading";
 import Registration from "page/Registration";
 import { createContext, ReactElement, useContext, useState } from "react";
 import { IProfile, IUserProfileContext } from "type";
+import AuthenticationError from "page/AuthenticationError";
 
-const DEFAULT_CONTEXT_VALUE: IUserProfileContext = {
-  profile: undefined,
-};
-
-const UserProfileContext = createContext<IUserProfileContext>(
-  DEFAULT_CONTEXT_VALUE
-);
+const UserProfileContext = createContext<IUserProfileContext | null>(null);
 
 interface UserProfileProviderProps {
   children: React.ReactNode;
 }
 
-export const useUserProfile = (): IUserProfileContext =>
-  useContext(UserProfileContext);
+export const useUserProfile = (): IUserProfileContext => {
+  const context = useContext(UserProfileContext);
+  if (!context) {
+    throw Error(
+      "You are trying to access UserProfile context out of its Provider!"
+    );
+  } else {
+    return context;
+  }
+};
 
 const UserProfileProvider = ({
   children,
@@ -35,23 +39,21 @@ const UserProfileProvider = ({
     }
   );
 
-  if (isLoading) return <div>loading</div>;
+  if (isLoading) return <Loading />;
 
   if (error) {
     const message = error.message;
     const status = error.response?.status;
     switch (status) {
       case 404:
-        return <Registration />;
+        return <Registration onRegister={setProfile} />;
       default:
-        return (
-          <div>Ooops, error while signin in user occured! ({message})</div>
-        );
+        return <AuthenticationError message={message} />;
     }
   }
 
   return (
-    <UserProfileContext.Provider value={{ profile }}>
+    <UserProfileContext.Provider value={{ profile, setProfile }}>
       {children}
     </UserProfileContext.Provider>
   );
