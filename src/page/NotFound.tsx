@@ -1,8 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "component/button/Button";
 import PageLayout from "component/layout/PageLayout";
+import { INDEX_PATH } from "constant/paths";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
+  const navigate = useNavigate();
   return (
     <PageLayout>
       <div className="flex h-screen w-screen flex-col items-center justify-center">
@@ -13,7 +16,11 @@ const NotFound = () => {
             <span>404: This page could not be found!</span>
           </div>
         </div>
-        <Button icon="home" hoverIcon="arrow-right">
+        <Button
+          icon="home"
+          hoverIcon="arrow-right"
+          onClick={() => navigate(INDEX_PATH)}
+        >
           home
         </Button>
       </div>
