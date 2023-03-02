@@ -8,20 +8,22 @@ import { createContext, ReactElement, useContext, useState } from "react";
 import { IProfile, IUserProfileContext } from "type";
 import AuthenticationError from "page/AuthenticationError";
 
-const DEFAULT_CONTEXT_VALUE: IUserProfileContext = {
-  profile: undefined,
-};
-
-const UserProfileContext = createContext<IUserProfileContext>(
-  DEFAULT_CONTEXT_VALUE
-);
+const UserProfileContext = createContext<IUserProfileContext | null>(null);
 
 interface UserProfileProviderProps {
   children: React.ReactNode;
 }
 
-export const useUserProfile = (): IUserProfileContext =>
-  useContext(UserProfileContext);
+export const useUserProfile = (): IUserProfileContext => {
+  const context = useContext(UserProfileContext);
+  if (!context) {
+    throw Error(
+      "You are trying to access UserProfile context out of its Provider!"
+    );
+  } else {
+    return context;
+  }
+};
 
 const UserProfileProvider = ({
   children,
@@ -44,14 +46,14 @@ const UserProfileProvider = ({
     const status = error.response?.status;
     switch (status) {
       case 404:
-        return <Registration />;
+        return <Registration onRegister={setProfile} />;
       default:
         return <AuthenticationError message={message} />;
     }
   }
 
   return (
-    <UserProfileContext.Provider value={{ profile }}>
+    <UserProfileContext.Provider value={{ profile, setProfile }}>
       {children}
     </UserProfileContext.Provider>
   );

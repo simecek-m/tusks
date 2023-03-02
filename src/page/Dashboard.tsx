@@ -2,21 +2,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Button from "component/button/Button";
 import PageLayout from "component/layout/PageLayout";
 import Title from "component/Title";
-import { HOME_PATH } from "constant/paths";
+import { useUserProfile } from "provider/UserProfileProvider";
 import { FC } from "react";
-import { Navigate } from "react-router-dom";
 
 const Dashboard: FC = () => {
-  const { isLoading, isAuthenticated, user, logout } = useAuth0();
-
-  if (isLoading) {
-    return <div>loading</div>;
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate replace to={HOME_PATH} />;
-  }
-
+  const { logout } = useAuth0();
+  const { profile } = useUserProfile();
   return (
     <PageLayout>
       <div className="flex h-screen flex-col items-center justify-center gap-2 p-4">
@@ -25,7 +16,7 @@ const Dashboard: FC = () => {
         <div className="mb-5 flex max-w-xl flex-col gap-0">
           <h6>Current user:</h6>
           <pre className="overflow-auto rounded-xl bg-gray-900 p-5 text-white shadow-lg">
-            {JSON.stringify(user, null, 2)}
+            {JSON.stringify(profile, null, 2)}
           </pre>
         </div>
         <Button
