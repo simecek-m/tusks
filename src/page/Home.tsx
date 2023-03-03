@@ -5,7 +5,7 @@ import Title from "component/Title";
 import { INDEX_PATH } from "constant/paths";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as Logo } from "../../public/logo.svg";
+import { ReactComponent as Logo } from "assets/logo.svg";
 import { motion } from "framer-motion";
 
 const Home: FC = () => {
