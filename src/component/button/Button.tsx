@@ -5,9 +5,8 @@ import { ButtonHTMLAttributes, FC } from "react";
 import { ActionType } from "type";
 
 const ButtonVariants: Record<ActionType, string> = {
-  primary:
-    "border-primary-700 dark:border-primary-300 text-primary-700 dark:text-primary-300",
-  error: "border-red-700 dark:border-red-300 text-red-700 dark:text-red-300",
+  primary: "bg-primary-700 dark:bg-primary-400",
+  error: "bg-red-700 dark:bg-red-400",
 };
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -35,7 +34,7 @@ const Button: FC<ButtonProps> = ({
       type={type}
       disabled={isDisabled || isSubmitting}
       className={clsx(
-        "group flex w-full shrink-0 flex-row items-center justify-center gap-2 overflow-hidden rounded-full border-4 bg-transparent py-2 px-2 pr-5 font-bold sm:w-fit",
+        "group flex w-full shrink-0 flex-row items-center justify-center gap-2 overflow-hidden rounded-full py-2 px-2 pr-5 font-bold text-slate-100 dark:text-slate-800 sm:w-fit",
         { "cursor-wait": isSubmitting },
         { "cursor-not-allowed opacity-60": isDisabled },
         ButtonVariants[variant]
@@ -43,7 +42,6 @@ const Button: FC<ButtonProps> = ({
     >
       <ButtonIcon
         icon={icon}
-        variant={variant}
         hoverIcon={hoverIcon}
         isDisabled={isDisabled}
         isSubmitting={isSubmitting}
