@@ -5,6 +5,8 @@ import Title from "component/Title";
 import { INDEX_PATH } from "constant/paths";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as Logo } from "assets/logo.svg";
+import { motion } from "framer-motion";
 
 const Home: FC = () => {
   const { loginWithPopup, isAuthenticated } = useAuth0();
@@ -13,6 +15,13 @@ const Home: FC = () => {
   return (
     <PageLayout>
       <div className="flex h-screen flex-col items-center justify-center p-4">
+        <motion.div
+          initial={{ scale: 0.7 }}
+          whileHover={{ scale: 1 }}
+          transition={{ type: "spring", bounce: 0.5 }}
+        >
+          <Logo height="30vh" width="auto" />
+        </motion.div>
         <Title>Tusks</Title>
         <p>not everyone has the memory of an elephant</p>
         <div className="mt-10 flex w-full flex-col items-center">
