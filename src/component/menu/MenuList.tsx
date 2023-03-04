@@ -10,7 +10,7 @@ const MenuList: FC<MenuListProps> = ({ visible, children }) => {
   return (
     <div
       className={clsx(
-        "absolute top-full right-0 z-10 flex-col gap-1 rounded-xl bg-white p-1 shadow-lg transition duration-300 dark:bg-slate-700",
+        "absolute top-full right-0 z-10 mt-2 flex-col gap-1 rounded-3xl bg-white p-1 shadow-lg transition duration-300 dark:bg-slate-700",
         {
           hidden: !visible,
         }

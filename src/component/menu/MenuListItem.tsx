@@ -12,7 +12,7 @@ const MenuListItem: FC<MenuListItemProps> = ({ icon, children, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="flex w-full cursor-pointer flex-row items-center gap-2 rounded-xl px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800"
+      className="flex w-full cursor-pointer flex-row items-center gap-2 rounded-full px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800"
     >
       <FontAwesomeIcon icon={icon} />
       <span>{children}</span>

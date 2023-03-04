@@ -8,21 +8,17 @@ import { createContext, ReactElement, useContext, useState } from "react";
 import { IProfile, IUserProfileContext } from "type";
 import AuthenticationError from "page/AuthenticationError";
 
-const UserProfileContext = createContext<IUserProfileContext | null>(null);
+const UserProfileContext = createContext<IUserProfileContext>({
+  profile: undefined,
+  setProfile: () => null,
+});
 
 interface UserProfileProviderProps {
   children: React.ReactNode;
 }
 
 export const useUserProfile = (): IUserProfileContext => {
-  const context = useContext(UserProfileContext);
-  if (!context) {
-    throw Error(
-      "You are trying to access UserProfile context out of its Provider!"
-    );
-  } else {
-    return context;
-  }
+  return useContext(UserProfileContext);
 };
 
 const UserProfileProvider = ({

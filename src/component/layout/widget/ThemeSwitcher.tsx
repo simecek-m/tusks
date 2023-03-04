@@ -32,14 +32,11 @@ const ThemeSwitcher: FC = () => {
     )?.icon ?? themeVariants[2].icon;
 
   return (
-    <div className="absolute top-2 right-2 select-none items-end">
-      <Menu items={themeVariants}>
-        <FontAwesomeIcon
-          icon={currentIcon}
-          className="cursor h-4 w-4 cursor-pointer rounded-full bg-white p-2 shadow-lg transition duration-300 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-900"
-        />
-      </Menu>
-    </div>
+    <Menu items={themeVariants}>
+      <div className="flex items-center justify-center p-2 hover:text-primary-600 dark:hover:text-primary-400">
+        <FontAwesomeIcon icon={currentIcon} />
+      </div>
+    </Menu>
   );
 };
 
