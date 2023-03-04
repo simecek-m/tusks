@@ -2,13 +2,13 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { FC } from "react";
+import { motion } from "framer-motion";
 
-const buttonIconStyle =
-  "h-4 w-4 rounded-full p-2 dark:text-slate-700 text-white bg-white bg-opacity-20 dark:bg-slate-700 dark:bg-opacity-30";
+const buttonIconStyle = "h-4 w-4 p-2 dark:text-slate-900 text-white";
 
 interface ButtonIconProps {
   icon: IconProp;
-  hoverIcon?: IconProp;
+  hoverIcon: IconProp;
   isSubmitting?: boolean;
   isDisabled?: boolean;
 }
@@ -19,28 +19,23 @@ const ButtonIcon: FC<ButtonIconProps> = ({
   isSubmitting = false,
   isDisabled = false,
 }) => {
+  const MotionIcon = motion(FontAwesomeIcon);
   return (
     <div className="relative flex">
-      <FontAwesomeIcon
+      <MotionIcon
+        initial={{ scale: 1 }}
+        variants={{ hover: { scale: 0 } }}
         icon={isDisabled ? "xmark" : isSubmitting ? "circle-notch" : icon}
-        className={clsx(
-          buttonIconStyle,
-          {
-            "translate-y-0 transition duration-500 ease-in-out group-hover:-translate-y-10":
-              !!hoverIcon && !isSubmitting && !isDisabled,
-          },
-          { "animate-spin": !!isSubmitting && !isDisabled }
-        )}
+        className={clsx(buttonIconStyle, {
+          "animate-spin": !!isSubmitting && !isDisabled,
+        })}
       />
-      {hoverIcon && !isSubmitting && !isDisabled && (
-        <FontAwesomeIcon
-          icon={hoverIcon}
-          className={clsx(
-            buttonIconStyle,
-            "absolute translate-y-10 transition duration-500 ease-in-out group-hover:translate-y-0"
-          )}
-        />
-      )}
+      <MotionIcon
+        icon={hoverIcon}
+        initial={{ scale: 0 }}
+        variants={{ hover: { scale: 1 } }}
+        className={clsx(buttonIconStyle, "absolute")}
+      />
     </div>
   );
 };
