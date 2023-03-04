@@ -20,7 +20,7 @@ const Home: FC = () => {
           whileHover={{ scale: 1 }}
           transition={{ type: "spring", bounce: 0.5 }}
         >
-          <Logo height="30vh" width="auto" />
+          <Logo height="30vh" width="100%" />
         </motion.div>
         <Title>Tusks</Title>
         <p>not everyone has the memory of an elephant</p>
