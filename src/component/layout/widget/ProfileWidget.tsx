@@ -1,8 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Menu from "component/menu/Menu";
+import { useUserProfile } from "provider/UserProfileProvider";
 import { IMenuListItem } from "type";
 
 const ProfileWidget = () => {
+  const { profile } = useUserProfile();
   const profileMenuList: IMenuListItem[] = [
     {
       icon: "user",
@@ -20,11 +21,15 @@ const ProfileWidget = () => {
     },
   ];
   return (
-    <Menu items={profileMenuList}>
-      <div className="flex items-center justify-center p-2 hover:text-primary-600 dark:hover:text-primary-400">
-        <FontAwesomeIcon icon="user" />
-      </div>
-    </Menu>
+    <>
+      {profile && (
+        <Menu items={profileMenuList}>
+          <div className="flex items-center justify-center hover:text-primary-600 dark:hover:text-primary-400">
+            <img src={profile?.picture} className="h-7 w-7 rounded-full" />
+          </div>
+        </Menu>
+      )}
+    </>
   );
 };
 

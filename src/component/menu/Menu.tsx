@@ -16,7 +16,7 @@ const Menu: FC<MenuProps> = ({ children, items }) => {
   const ref = useClickOutside(onClickOutside, isOpen);
 
   return (
-    <div className="relative" ref={ref}>
+    <div className="relative flex" ref={ref}>
       <button onClick={() => setOpen(!isOpen)}>{children}</button>
       <MenuList visible={isOpen}>
         {items.map((item, index) => (
