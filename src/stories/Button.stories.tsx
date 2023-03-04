@@ -10,8 +10,7 @@ export default {
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
-export const Destructive = Template.bind({});
-export const PrimaryWithoutHoverIcon = Template.bind({});
+export const Error = Template.bind({});
 export const PrimarySubmitting = Template.bind({});
 export const PrimaryInvalid = Template.bind({});
 
@@ -24,17 +23,12 @@ Primary.args = {
   variant: "primary",
 };
 
-Destructive.args = {
+Error.args = {
   ...Primary.args,
   children: "Remove",
   icon: "trash-alt",
   hoverIcon: "user-xmark",
   variant: "error",
-};
-
-PrimaryWithoutHoverIcon.args = {
-  ...Primary.args,
-  hoverIcon: undefined,
 };
 
 PrimarySubmitting.args = {
