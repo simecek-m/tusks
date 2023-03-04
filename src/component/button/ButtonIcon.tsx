@@ -20,11 +20,12 @@ const ButtonIcon: FC<ButtonIconProps> = ({
   isDisabled = false,
 }) => {
   const MotionIcon = motion(FontAwesomeIcon);
+  const isActive = !isDisabled && !isSubmitting;
   return (
     <div className="relative flex">
       <MotionIcon
         initial={{ scale: 1 }}
-        variants={{ hover: { scale: 0 } }}
+        variants={isActive ? { hover: { scale: 0 } } : {}}
         icon={isDisabled ? "xmark" : isSubmitting ? "circle-notch" : icon}
         className={clsx(buttonIconStyle, {
           "animate-spin": !!isSubmitting && !isDisabled,
@@ -33,7 +34,7 @@ const ButtonIcon: FC<ButtonIconProps> = ({
       <MotionIcon
         icon={hoverIcon}
         initial={{ scale: 0 }}
-        variants={{ hover: { scale: 1 } }}
+        variants={isActive ? { hover: { scale: 1 } } : {}}
         className={clsx(buttonIconStyle, "absolute")}
       />
     </div>
