@@ -10,12 +10,12 @@ const ThemeSwitcher: FC = () => {
 
   const themeVariants: IMenuListItem[] = [
     {
-      icon: "sun",
+      icon: "lightbulb",
       text: "light",
       onClick: () => setThemePreference("light"),
     },
     {
-      icon: "moon",
+      icon: "cloud-moon",
       text: "dark",
       onClick: () => setThemePreference("dark"),
     },
