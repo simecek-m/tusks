@@ -2,10 +2,11 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HOME_PATH, INDEX_PATH } from "constant/paths";
+import { HOME_PATH, INDEX_PATH, MY_PROFILE_PATH } from "constant/paths";
 import Dashboard from "page/Dashboard";
 import Home from "page/Home";
 import NotFound from "page/NotFound";
+import Profile from "page/Profile";
 import ProtectedRoute from "page/ProtectedRoute";
 import ThemeProvider from "provider/ThemeProvider";
 import { FC } from "react";
@@ -40,6 +41,7 @@ const App: FC = () => {
               <Route path={HOME_PATH} element={<Home />} />
               <Route path={INDEX_PATH} element={<ProtectedRoute />}>
                 <Route index element={<Dashboard />} />
+                <Route path={MY_PROFILE_PATH} element={<Profile />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

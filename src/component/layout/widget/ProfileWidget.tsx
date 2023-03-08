@@ -1,23 +1,27 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import Menu from "component/menu/Menu";
+import { MY_PROFILE_PATH } from "constant/paths";
 import { useUserProfile } from "provider/UserProfileProvider";
+import { useNavigate } from "react-router-dom";
 import { IMenuListItem } from "type";
 
 const ProfileWidget = () => {
+  const { logout } = useAuth0();
   const { profile } = useUserProfile();
+  const navigate = useNavigate();
   const profileMenuList: IMenuListItem[] = [
     {
       icon: "user",
-      text: "profile",
+      text: "Profile",
       onClick: () => {
-        console.log("profile");
+        navigate(MY_PROFILE_PATH);
       },
     },
     {
-      icon: "gear",
-      text: "settings",
-      onClick: () => {
-        console.log("settings");
-      },
+      icon: "door-open",
+      text: "Exit",
+      onClick: () =>
+        logout({ logoutParams: { returnTo: window.location.origin } }),
     },
   ];
   return (
