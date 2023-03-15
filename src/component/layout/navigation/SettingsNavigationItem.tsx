@@ -20,8 +20,8 @@ const SettingsNavigationItem: FC<SettingsNavigationItemProps> = ({
       to={to}
       className={({ isActive }) =>
         clsx(
-          "flex cursor-pointer flex-row items-center gap-2 rounded-full py-3 px-4 hover:bg-gray-100 hover:dark:bg-slate-800",
-          { "text-primary-600 dark:text-primary-400": isActive }
+          "flex cursor-pointer flex-row items-center gap-2 overflow-hidden rounded-full py-3 px-4 hover:bg-gray-100 hover:dark:bg-slate-800",
+          { "font-bold text-primary-600 dark:text-primary-400": isActive }
         )
       }
     >

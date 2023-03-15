@@ -7,9 +7,7 @@ import {
 
 const SettingsNavigation = () => {
   return (
-    <nav className="m-5 flex flex-col rounded-2xl bg-white p-5 shadow-xl dark:bg-slate-700">
-      <h1 className="w-full text-center text-xl">Settings</h1>
-      <hr className="m-2 dark:opacity-20" />
+    <nav className="flex w-80 flex-col bg-white p-5 pt-20 shadow-xl dark:bg-gray-900">
       <SettingsNavigationItem
         to={PROFILE_PATH_NAME}
         icon="user"

@@ -5,9 +5,9 @@ import { Outlet } from "react-router-dom";
 const SettingsPageLayout = () => {
   return (
     <PageLayout>
-      <div className="h-sc flex h-screen flex-row">
+      <div className="flex h-screen flex-row">
         <SettingsNavigation />
-        <div className="my-5 flex w-full">
+        <div className="mx-8 mt-16 mb-8 flex w-full">
           <Outlet />
         </div>
       </div>
