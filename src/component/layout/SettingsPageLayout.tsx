@@ -7,7 +7,7 @@ const SettingsPageLayout = () => {
     <PageLayout>
       <div className="flex h-screen flex-row">
         <SettingsNavigation />
-        <div className="mx-8 mt-16 mb-8 flex w-full">
+        <div className="ml-8 mr-4 mt-16 flex w-full overflow-auto pr-4">
           <Outlet />
         </div>
       </div>
