@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Menu from "component/menu/Menu";
-import { SETTINGS_PATH } from "constant/paths";
+import { PROFILE_PATH } from "constant/paths";
 import { useUserProfile } from "provider/UserProfileProvider";
 import { useNavigate } from "react-router-dom";
 import { IMenuListItem } from "type";
@@ -14,7 +14,7 @@ const ProfileWidget = () => {
       icon: "gear",
       text: "Settings",
       onClick: () => {
-        navigate(SETTINGS_PATH);
+        navigate(PROFILE_PATH);
       },
     },
     {
