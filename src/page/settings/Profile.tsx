@@ -1,17 +1,51 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Button from "component/button/Button";
 import Heading from "component/Heading";
+import Modal from "component/modal/Modal";
+import { HOME_PATH } from "constant/paths";
+import { PROFILES_ME_QUERY_KEY } from "constant/queries";
+import useTusksApi from "hook/api";
+import { useModal } from "hook/modal";
 import { useUserProfile } from "provider/UserProfileProvider";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { IProfile } from "type";
+import toast from "react-hot-toast";
+import { AxiosError, AxiosResponse } from "axios";
 
 const Profile: FC = () => {
   const { profile } = useUserProfile();
+  const { isOpen, onClose, onOpen } = useModal();
+  const { deactivateProfile } = useTusksApi();
+  const navigate = useNavigate();
+  const client = useQueryClient();
+
+  const { mutateAsync, isLoading } = useMutation<
+    AxiosResponse<IProfile>,
+    AxiosError
+  >([PROFILES_ME_QUERY_KEY], deactivateProfile);
+
+  const deactivate = (): Promise<AxiosResponse<IProfile>> => {
+    return mutateAsync(undefined, {
+      onSuccess: () => {
+        client.removeQueries([PROFILES_ME_QUERY_KEY]);
+        navigate(HOME_PATH);
+      },
+      onError: (error) => {
+        toast.error(
+          `Something went wrong, ${error?.response?.status ?? error.message}!`
+        );
+      },
+    });
+  };
+
   return (
     <div className="flex w-full flex-col gap-5">
       <Heading
-        text={`Hi, ${profile?.firstName}`}
+        text="Profile"
         description="information about currently logged in user"
       />
-      <img src={profile?.picture} className="w-52 rounded-[30%] shadow-2xl" />
+      <img src={profile?.picture} className="w-52 rounded-[30%]" />
       <div className="grid w-fit flex-col gap-1 ">
         <div className="flex flex-row">
           <span className="w-52">username</span>
@@ -30,10 +64,34 @@ const Profile: FC = () => {
           <span className="text-lg font-bold">{profile?.email}</span>
         </div>
       </div>
-      {/* TODO: open confirmation modal for delete user profile */}
-      <Button icon="user" hoverIcon="user-slash" variant="error">
+      <Button
+        icon="user"
+        hoverIcon="user-slash"
+        variant="error"
+        onClick={onOpen}
+      >
         Deactivate
       </Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <div className="text-2xl font-black text-red-600 dark:text-red-400">
+          Deactivate
+        </div>
+        <div className="mt-2">
+          Are you sure you want to deactivate your account? You will permanently
+          lose all your data!
+        </div>
+        <div className="mt-4 flex w-full justify-end">
+          <Button
+            icon="user-slash"
+            hoverIcon="check"
+            variant="error"
+            onClick={deactivate}
+            isSubmitting={isLoading}
+          >
+            Confirm
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 };
