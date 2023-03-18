@@ -6,6 +6,7 @@ import { IProfile } from "type";
 interface TusksApiFunctions {
   fetchMyProfile: () => Promise<AxiosResponse<IProfile>>;
   postRegistration: (profile: IProfile) => Promise<AxiosResponse<IProfile>>;
+  deactivateProfile: () => Promise<AxiosResponse<IProfile>>;
 }
 
 const useTusksApi = (): TusksApiFunctions => {
@@ -31,9 +32,14 @@ const useTusksApi = (): TusksApiFunctions => {
     return client.post<IProfile>(PROFILES_ENDPOINT, profile);
   };
 
+  const deactivateProfile = (): Promise<AxiosResponse<IProfile>> => {
+    return client.delete<IProfile>(MY_PROFILE_ENDPOINT);
+  };
+
   return {
     fetchMyProfile,
     postRegistration,
+    deactivateProfile,
   };
 };
 
