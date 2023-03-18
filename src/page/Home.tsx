@@ -16,11 +16,12 @@ const Home: FC = () => {
     <PageLayout>
       <div className="flex h-screen flex-col items-center justify-center p-4">
         <motion.div
-          initial={{ scale: 0.7 }}
+          className="mb-5"
+          initial={{ scale: 0.8 }}
           whileHover={{ scale: 1 }}
           transition={{ type: "spring", bounce: 0.5 }}
         >
-          <Logo height="30vh" width="100%" />
+          <Logo height="20vh" width="100%" />
         </motion.div>
         <Title>Tusks</Title>
         <p>not everyone has the memory of an elephant</p>
