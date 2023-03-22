@@ -45,7 +45,7 @@ const Profile: FC = () => {
         text="Profile"
         description="information about currently logged in user"
       />
-      <img src={profile?.picture} className="w-52 rounded-[30%]" />
+      <img src={profile?.picture} className="w-52 rounded-squircle" />
       <div className="grid w-fit flex-col gap-1 ">
         <div className="flex flex-row">
           <span className="w-52">username</span>

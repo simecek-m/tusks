@@ -84,7 +84,7 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
                 <img
                   src={user?.picture ?? AVATAR_IMG}
                   alt="profile picture"
-                  className="aspect-square w-1/2 rounded-full object-cover shadow-2xl"
+                  className="aspect-square w-1/2 rounded-squircle object-cover shadow-2xl"
                 />
                 <div className="flex w-full flex-col">
                   <Input
