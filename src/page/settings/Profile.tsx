@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import Button from "component/button/Button";
 import Heading from "component/Heading";
 import Modal from "component/modal/Modal";
@@ -8,10 +9,9 @@ import useTusksApi from "hook/api";
 import { useModal } from "hook/modal";
 import { useUserProfile } from "provider/UserProfileProvider";
 import { FC } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { IProfile } from "type";
-import toast from "react-hot-toast";
-import { AxiosError, AxiosResponse } from "axios";
 
 const Profile: FC = () => {
   const { profile } = useUserProfile();
@@ -20,12 +20,12 @@ const Profile: FC = () => {
   const navigate = useNavigate();
   const client = useQueryClient();
 
-  const { mutateAsync, isLoading } = useMutation<
-    AxiosResponse<IProfile>,
-    AxiosError
-  >([PROFILES_ME_QUERY_KEY], deactivateProfile);
+  const { mutateAsync, isLoading } = useMutation<IProfile, AxiosError>(
+    [PROFILES_ME_QUERY_KEY],
+    deactivateProfile
+  );
 
-  const deactivate = (): Promise<AxiosResponse<IProfile>> => {
+  const deactivate = (): Promise<IProfile> => {
     return mutateAsync(undefined, {
       onSuccess: () => {
         client.removeQueries([PROFILES_ME_QUERY_KEY]);

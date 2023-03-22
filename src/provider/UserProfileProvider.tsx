@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";
+import AuthenticationError from "page/AuthenticationError";
 import Loading from "page/Loading";
 import Registration from "page/Registration";
 import { createContext, ReactElement, useContext, useState } from "react";
 import { IProfile, IUserProfileContext } from "type";
-import AuthenticationError from "page/AuthenticationError";
 
 const UserProfileContext = createContext<IUserProfileContext>({
   profile: undefined,
@@ -27,11 +27,11 @@ const UserProfileProvider = ({
   const { fetchMyProfile } = useTusksApi();
   const [profile, setProfile] = useState<IProfile>();
 
-  const { isLoading, error } = useQuery<AxiosResponse<IProfile>, AxiosError>(
+  const { isLoading, error } = useQuery<IProfile, AxiosError>(
     [PROFILES_ME_QUERY_KEY],
     fetchMyProfile,
     {
-      onSuccess: (response) => setProfile(response.data),
+      onSuccess: (profile) => setProfile(profile),
     }
   );
 
