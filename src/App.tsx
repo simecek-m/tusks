@@ -2,6 +2,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import SettingsPageLayout from "component/layout/SettingsPageLayout";
 import {
   HOME_PATH_NAME,
@@ -39,6 +40,7 @@ const App: FC = () => {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
         <Auth0Provider
           domain={import.meta.env.VITE_AUTH_DOMAIN ?? ""}
           clientId={import.meta.env.VITE_AUTH_CLIENT_ID ?? ""}
