@@ -21,6 +21,9 @@ module.exports = {
           900: "#0b4940",
         },
       },
+      borderRadius: {
+        squircle: "30%",
+      },
     },
   },
   plugins: [],

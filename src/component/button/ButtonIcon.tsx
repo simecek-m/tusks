@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { FC } from "react";
 import { motion } from "framer-motion";
 
-const buttonIconStyle = "h-4 w-4 p-2 dark:text-slate-900 text-white";
+const buttonIconStyle = "p-2 dark:text-slate-900 text-white";
 
 interface ButtonIconProps {
   icon: IconProp;

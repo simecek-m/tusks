@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 import Button from "component/button/Button";
 import Card from "component/Card";
 import Input from "component/Input";
@@ -38,15 +38,15 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
   const usernameInputRef = useRef<HTMLInputElement | null>();
   const { ref, ...rest } = register("username");
 
-  const { mutate } = useMutation<AxiosResponse<IProfile>, AxiosError, IProfile>(
+  const { mutateAsync } = useMutation<IProfile, AxiosError, IProfile>(
     (profile: IProfile) => postRegistration(profile)
   );
 
-  const submit = (profile: IProfile) => {
-    mutate(profile, {
-      onSuccess: (response: AxiosResponse<IProfile>) => {
-        onRegister(response.data);
-        queryClient.setQueryData([PROFILES_ME_QUERY_KEY], response.data);
+  const submit = (newProfile: IProfile): Promise<IProfile> => {
+    return mutateAsync(newProfile, {
+      onSuccess: (profile: IProfile) => {
+        onRegister(profile);
+        queryClient.setQueryData([PROFILES_ME_QUERY_KEY], profile);
       },
       onError: (error) => {
         if (error.response?.status === 409) {
@@ -73,7 +73,7 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
             <div className="flex flex-col items-center">
               <Title>Welcome</Title>
               <p className="mb-5 text-center font-light">
-                before you continue please checkout your personal data
+                checkout your personal data please
               </p>
             </div>
             <form
@@ -84,7 +84,7 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
                 <img
                   src={user?.picture ?? AVATAR_IMG}
                   alt="profile picture"
-                  className="aspect-square w-1/2 rounded-full object-cover shadow-2xl"
+                  className="aspect-square w-1/2 rounded-squircle object-cover shadow-2xl"
                 />
                 <div className="flex w-full flex-col">
                   <Input

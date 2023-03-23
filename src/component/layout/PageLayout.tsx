@@ -1,10 +1,10 @@
-import ThemeSwitcher from "component/ThemeSwitcher";
+import ControlWidget from "component/layout/widget/ControlWidget";
 import { FC, PropsWithChildren } from "react";
 
 const PageLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div>
-      <ThemeSwitcher />
+      <ControlWidget />
       {children}
     </div>
   );

@@ -10,7 +10,7 @@ export interface IProfile {
 }
 
 export interface IUserProfileContext {
-  profile: IProfile | undefined;
+  profile?: IProfile;
   setProfile: (profile: IProfile) => void;
 }
 
