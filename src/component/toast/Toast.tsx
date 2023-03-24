@@ -26,7 +26,7 @@ const Toast: FC<ToastProps> = ({
   type = "error",
 }) => {
   return (
-    <div className="flex w-fit flex-row gap-2 rounded-xl bg-white px-4 py-2 shadow-md dark:bg-slate-900">
+    <div className="flex w-fit flex-row gap-2 rounded-3xl bg-white px-4 py-2 shadow-md dark:bg-slate-900">
       <span className={clsx("flex items-center", TypeVariant[type])}>
         <FontAwesomeIcon icon={icon} />
       </span>
