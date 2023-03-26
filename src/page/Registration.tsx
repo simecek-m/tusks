@@ -10,9 +10,9 @@ import Title from "component/Title";
 import { AVATAR_IMG } from "constant/assets";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";
+import { useToast } from "provider/ToastProvider";
 import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { IProfile } from "type";
 import { PROFILE_SCHEMA } from "validation";
 
@@ -23,13 +23,14 @@ interface RegistrationProps {
 const Registration: FC<RegistrationProps> = ({ onRegister }) => {
   const queryClient = useQueryClient();
   const { user, logout } = useAuth0();
+  const { toast } = useToast();
   const { postRegistration } = useTusksApi();
 
   const {
     handleSubmit,
     register,
     setError,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isValid },
   } = useForm<IProfile>({
     resolver: yupResolver(PROFILE_SCHEMA),
     mode: "onChange",
@@ -38,9 +39,11 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
   const usernameInputRef = useRef<HTMLInputElement | null>();
   const { ref, ...rest } = register("username");
 
-  const { mutateAsync } = useMutation<IProfile, AxiosError, IProfile>(
-    (profile: IProfile) => postRegistration(profile)
-  );
+  const { mutateAsync, isLoading } = useMutation<
+    IProfile,
+    AxiosError,
+    IProfile
+  >((profile: IProfile) => postRegistration(profile));
 
   const submit = (newProfile: IProfile): Promise<IProfile> => {
     return mutateAsync(newProfile, {
@@ -53,9 +56,11 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
           setError("username", { message: "Username already taken!" });
           usernameInputRef.current?.focus();
         } else {
-          toast.error(
-            `Something went wrong, ${error?.response?.status ?? error.message}!`
-          );
+          toast({
+            icon: "warning",
+            title: "Hooops",
+            description: `${error?.response?.status ?? error.message}`,
+          });
         }
       },
     });
@@ -139,7 +144,7 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
                 hoverIcon="check"
                 type="submit"
                 isDisabled={!isValid}
-                isSubmitting={isSubmitting}
+                isSubmitting={isLoading}
               >
                 continue
               </Button>

@@ -21,8 +21,8 @@ import Profile from "page/settings/Profile";
 import Settings from "page/settings/Settings";
 import Teams from "page/settings/Teams";
 import ThemeProvider from "provider/ThemeProvider";
+import ToastProvider from "provider/ToastProvider";
 import { FC } from "react";
-import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 library.add(fas);
@@ -39,40 +39,41 @@ const queryClient = new QueryClient({
 const App: FC = () => {
   return (
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <Auth0Provider
-          domain={import.meta.env.VITE_AUTH_DOMAIN ?? ""}
-          clientId={import.meta.env.VITE_AUTH_CLIENT_ID ?? ""}
-          authorizationParams={{
-            audience: import.meta.env.VITE_AUTH_AUDIENCE,
-            redirect_uri: window.location.origin,
-          }}
-        >
-          <BrowserRouter>
-            <Routes>
-              <Route path={HOME_PATH_NAME} element={<Home />} />
-              <Route path={INDEX_PATH_NAME} element={<ProtectedRoute />}>
-                <Route index element={<Dashboard />} />
-                <Route
-                  path={SETTINGS_PATH_NAME}
-                  element={<SettingsPageLayout />}
-                >
-                  <Route index element={<Settings />} />
-                  <Route path={PROFILE_PATH_NAME} element={<Profile />} />
-                  <Route path={TEAMS_PATH_NAME} element={<Teams />} />
+      <ToastProvider>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <Auth0Provider
+            domain={import.meta.env.VITE_AUTH_DOMAIN ?? ""}
+            clientId={import.meta.env.VITE_AUTH_CLIENT_ID ?? ""}
+            authorizationParams={{
+              audience: import.meta.env.VITE_AUTH_AUDIENCE,
+              redirect_uri: window.location.origin,
+            }}
+          >
+            <BrowserRouter>
+              <Routes>
+                <Route path={HOME_PATH_NAME} element={<Home />} />
+                <Route path={INDEX_PATH_NAME} element={<ProtectedRoute />}>
+                  <Route index element={<Dashboard />} />
                   <Route
-                    path={NOTIFICATIONS_PATH_NAME}
-                    element={<Notifications />}
-                  />
+                    path={SETTINGS_PATH_NAME}
+                    element={<SettingsPageLayout />}
+                  >
+                    <Route index element={<Settings />} />
+                    <Route path={PROFILE_PATH_NAME} element={<Profile />} />
+                    <Route path={TEAMS_PATH_NAME} element={<Teams />} />
+                    <Route
+                      path={NOTIFICATIONS_PATH_NAME}
+                      element={<Notifications />}
+                    />
+                  </Route>
                 </Route>
-              </Route>
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </Auth0Provider>
-        <Toaster position="bottom-right" />
-      </QueryClientProvider>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </Auth0Provider>
+        </QueryClientProvider>
+      </ToastProvider>
     </ThemeProvider>
   );
 };
