@@ -61,7 +61,7 @@ const ToastProvider: FC<ToastProviderProp> = ({
   return (
     <ToastContext.Provider value={{ toast }}>
       {children}
-      <div className="absolute bottom-3 right-3 flex flex-col items-end gap-1">
+      <div className="absolute bottom-3 right-3 flex flex-col items-end gap-1 overflow-hidden pl-5">
         {toasts.map(({ icon, title, description, type }, key) => (
           <Toast
             type={type}

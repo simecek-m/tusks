@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { ToastType } from "provider/ToastProvider";
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 export interface ToastProps {
   title: string;
@@ -25,7 +26,11 @@ const Toast: FC<ToastProps> = ({
   type = "error",
 }) => {
   return (
-    <div className="flex w-fit flex-row gap-2 rounded-3xl bg-white px-4 py-2 shadow-md dark:bg-slate-900">
+    <motion.div
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      className="flex w-fit flex-row gap-2 rounded-3xl bg-white px-4 py-2 shadow-md dark:bg-slate-900"
+    >
       <span className={clsx("flex items-center", TypeVariant[type])}>
         <FontAwesomeIcon icon={icon} />
       </span>
@@ -33,7 +38,7 @@ const Toast: FC<ToastProps> = ({
         <span>{title}</span>
         <span className="text-sm font-light">{description}</span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
