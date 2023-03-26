@@ -1,11 +1,10 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
+import { ToastType } from "provider/ToastProvider";
 import { FC } from "react";
 
-export type ToastType = "info" | "success" | "warning" | "error";
-
-interface ToastProps {
+export interface ToastProps {
   title: string;
   icon: IconProp;
   type?: ToastType;
@@ -32,7 +31,7 @@ const Toast: FC<ToastProps> = ({
       </span>
       <div className="flex flex-col">
         <span>{title}</span>
-        <span className="text-base">{description}</span>
+        <span className="text-sm font-light">{description}</span>
       </div>
     </div>
   );
