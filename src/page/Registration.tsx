@@ -10,9 +10,9 @@ import Title from "component/Title";
 import { AVATAR_IMG } from "constant/assets";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";
+import { useToast } from "provider/ToastProvider";
 import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { IProfile } from "type";
 import { PROFILE_SCHEMA } from "validation";
 
@@ -23,6 +23,7 @@ interface RegistrationProps {
 const Registration: FC<RegistrationProps> = ({ onRegister }) => {
   const queryClient = useQueryClient();
   const { user, logout } = useAuth0();
+  const { toast } = useToast();
   const { postRegistration } = useTusksApi();
 
   const {
@@ -53,9 +54,11 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
           setError("username", { message: "Username already taken!" });
           usernameInputRef.current?.focus();
         } else {
-          toast.error(
-            `Something went wrong, ${error?.response?.status ?? error.message}!`
-          );
+          toast({
+            icon: "warning",
+            title: "Hooops",
+            description: `${error?.response?.status ?? error.message}`,
+          });
         }
       },
     });

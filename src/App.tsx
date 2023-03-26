@@ -23,7 +23,6 @@ import Teams from "page/settings/Teams";
 import ThemeProvider from "provider/ThemeProvider";
 import ToastProvider from "provider/ToastProvider";
 import { FC } from "react";
-import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 library.add(fas);
@@ -73,7 +72,6 @@ const App: FC = () => {
               </Routes>
             </BrowserRouter>
           </Auth0Provider>
-          <Toaster position="bottom-right" />
         </QueryClientProvider>
       </ToastProvider>
     </ThemeProvider>

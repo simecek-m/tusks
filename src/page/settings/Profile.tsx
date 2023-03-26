@@ -7,13 +7,14 @@ import { HOME_PATH } from "constant/paths";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";
 import { useModal } from "hook/modal";
+import { useToast } from "provider/ToastProvider";
 import { useUserProfile } from "provider/UserProfileProvider";
 import { FC } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { IProfile } from "type";
 
 const Profile: FC = () => {
+  const { toast } = useToast();
   const { profile } = useUserProfile();
   const { isOpen, onClose, onOpen } = useModal();
   const { deactivateProfile } = useTusksApi();
@@ -32,9 +33,11 @@ const Profile: FC = () => {
         navigate(HOME_PATH);
       },
       onError: (error) => {
-        toast.error(
-          `Something went wrong, ${error?.response?.status ?? error.message}!`
-        );
+        toast({
+          icon: "warning",
+          title: "Hooops",
+          description: `${error?.response?.status ?? error.message}`,
+        });
       },
     });
   };
