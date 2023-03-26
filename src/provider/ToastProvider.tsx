@@ -15,6 +15,7 @@ type IToast = {
   icon: IconProp;
   type?: ToastType;
   description?: string;
+  duration?: number;
 };
 
 type IToastWithId = IToast & {
@@ -25,13 +26,28 @@ interface IToastContext {
   toast: (toast: IToast) => void;
 }
 
+interface IToastConfig {
+  duration: number;
+}
+
+const DEFAULT_TOAST_CONFIG: IToastConfig = {
+  duration: 5000,
+};
+
 const ToastContext = createContext<IToastContext>({ toast: () => null });
 
 export const useToast = () => {
   return useContext(ToastContext);
 };
 
-const ToastProvider: FC<PropsWithChildren> = ({ children }) => {
+interface ToastProviderProp extends PropsWithChildren {
+  config?: IToastConfig;
+}
+
+const ToastProvider: FC<ToastProviderProp> = ({
+  children,
+  config = DEFAULT_TOAST_CONFIG,
+}) => {
   const [toasts, setToasts] = useState<IToastWithId[]>([]);
 
   const toast = (toast: IToast) => {
@@ -39,7 +55,7 @@ const ToastProvider: FC<PropsWithChildren> = ({ children }) => {
     setToasts([...toasts, { ...toast, id }]);
     setTimeout(() => {
       setToasts((state) => state.filter((toast) => toast.id !== id));
-    }, 5000);
+    }, toast.duration ?? config.duration);
   };
 
   return (
