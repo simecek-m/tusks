@@ -30,7 +30,7 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
     handleSubmit,
     register,
     setError,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isValid },
   } = useForm<IProfile>({
     resolver: yupResolver(PROFILE_SCHEMA),
     mode: "onChange",
@@ -39,9 +39,11 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
   const usernameInputRef = useRef<HTMLInputElement | null>();
   const { ref, ...rest } = register("username");
 
-  const { mutateAsync } = useMutation<IProfile, AxiosError, IProfile>(
-    (profile: IProfile) => postRegistration(profile)
-  );
+  const { mutateAsync, isLoading } = useMutation<
+    IProfile,
+    AxiosError,
+    IProfile
+  >((profile: IProfile) => postRegistration(profile));
 
   const submit = (newProfile: IProfile): Promise<IProfile> => {
     return mutateAsync(newProfile, {
@@ -142,7 +144,7 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
                 hoverIcon="check"
                 type="submit"
                 isDisabled={!isValid}
-                isSubmitting={isSubmitting}
+                isSubmitting={isLoading}
               >
                 continue
               </Button>
