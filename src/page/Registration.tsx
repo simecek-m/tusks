@@ -68,7 +68,7 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
 
   return (
     <PageLayout>
-      <div className="flex h-screen w-screen overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 p-5 dark:from-slate-700 dark:to-slate-800">
+      <div className="m-auto mt-2 flex h-full">
         <Card
           onClose={() =>
             logout({ logoutParams: { returnTo: window.location.origin } })

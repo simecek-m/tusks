@@ -8,7 +8,7 @@ const NotFound = () => {
   const navigate = useNavigate();
   return (
     <PageLayout>
-      <div className="flex h-screen w-screen flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col items-center justify-center">
         <div className="flex flex-row items-center justify-center gap-5">
           <FontAwesomeIcon icon="house-fire" size="4x" />
           <div className="mt-10 mb-5">

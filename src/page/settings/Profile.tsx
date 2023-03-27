@@ -43,7 +43,7 @@ const Profile: FC = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <Heading
         text="Profile"
         description="information about currently logged in user"
@@ -100,7 +100,7 @@ const Profile: FC = () => {
           </Button>
         </div>
       </Modal>
-    </>
+    </div>
   );
 };
 

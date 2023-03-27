@@ -14,7 +14,7 @@ const Home: FC = () => {
 
   return (
     <PageLayout>
-      <div className="flex h-screen flex-col items-center justify-center p-4">
+      <div className="flex h-full flex-col items-center justify-center">
         <motion.div
           className="mb-5"
           initial={{ scale: 0.8 }}
