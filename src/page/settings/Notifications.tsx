@@ -1,12 +1,15 @@
-import Title from "component/Title";
+import Heading from "component/Heading";
+import Page from "component/layout/Page";
 import { FC } from "react";
 
 const Notifications: FC = () => {
   return (
-    <div className="flex w-full flex-col items-center justify-center">
-      <Title>Notifications</Title>
-      <span>all notifications like invitations or system messages</span>
-    </div>
+    <Page>
+      <Heading
+        text="Notifications"
+        description="all notifications like invitations or system messages"
+      />
+    </Page>
   );
 };
 

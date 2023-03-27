@@ -43,26 +43,31 @@ const Profile: FC = () => {
   };
 
   return (
-    <div className="flex w-full flex-col gap-5">
+    <>
       <Heading
         text="Profile"
         description="information about currently logged in user"
       />
-      <img src={profile?.picture} className="w-52 rounded-squircle" />
-      <div className="grid w-fit flex-col gap-1 ">
-        <div className="flex flex-row">
+      <img
+        src={profile?.picture}
+        className="rounded-squircle"
+        width="200"
+        height="200"
+      />
+      <div className="grid w-fit flex-col gap-3 md:gap-2">
+        <div className="flex flex-col md:flex-row">
           <span className="w-52">username</span>
           <span className="text-lg font-bold">{profile?.username}</span>
         </div>
-        <div className="flex basis-auto flex-row">
+        <div className="flex flex-col md:flex-row">
           <span className="w-52">first name</span>
           <span className="text-lg font-bold">{profile?.firstName}</span>
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-col md:flex-row">
           <span className="w-52">last name</span>
           <span className="text-lg font-bold">{profile?.lastName}</span>
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-col md:flex-row">
           <span className="w-52">e-mail</span>
           <span className="text-lg font-bold">{profile?.email}</span>
         </div>
@@ -95,7 +100,7 @@ const Profile: FC = () => {
           </Button>
         </div>
       </Modal>
-    </div>
+    </>
   );
 };
 
