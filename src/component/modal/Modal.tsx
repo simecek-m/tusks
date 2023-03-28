@@ -15,7 +15,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute top-0 left-0 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
+          className="absolute top-0 left-0 z-40 flex h-screen w-screen items-center justify-center bg-black bg-opacity-70"
           onClick={onClose}
         >
           <motion.div

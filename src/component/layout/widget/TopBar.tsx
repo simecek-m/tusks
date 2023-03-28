@@ -3,8 +3,8 @@ import ThemeSwitcher from "component/layout/widget/ThemeSwitcher";
 
 const Topbar = () => {
   return (
-    <div className="flex w-full select-none justify-end md:pr-2 md:pt-2">
-      <div className="right-3 top-3 flex w-full flex-row items-center justify-end gap-2 bg-white py-2 px-3 shadow-lg dark:bg-slate-700 md:absolute md:w-fit md:rounded-full">
+    <div className="z-40 flex w-full select-none justify-end">
+      <div className="right-3 top-3 flex w-full flex-row items-center justify-end gap-2 bg-white py-3 px-2 shadow-sm dark:bg-gray-900 md:absolute md:w-fit md:rounded-full md:py-2">
         <ThemeSwitcher />
         <ProfileWidget />
       </div>
