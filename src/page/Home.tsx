@@ -1,12 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { ReactComponent as Logo } from "assets/logo.svg";
 import Button from "component/button/Button";
 import PageLayout from "component/layout/PageLayout";
 import Title from "component/Title";
 import { INDEX_PATH } from "constant/paths";
+import { motion } from "framer-motion";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as Logo } from "assets/logo.svg";
-import { motion } from "framer-motion";
 
 const Home: FC = () => {
   const { loginWithPopup, isAuthenticated } = useAuth0();

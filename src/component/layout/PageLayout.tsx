@@ -1,12 +1,11 @@
-import TopBar from "component/layout/widget/TopBar";
+import Topbar from "component/layout/widget/TopBar";
 import { FC, PropsWithChildren } from "react";
-import Page from "component/layout/Page";
 
 const PageLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="flex h-screen flex-col overflow-hidden">
-      <TopBar />
-      <Page>{children}</Page>
+    <div className="flex h-screen w-full flex-col overflow-hidden">
+      <Topbar />
+      <div className="flex grow flex-col overflow-auto">{children}</div>
     </div>
   );
 };

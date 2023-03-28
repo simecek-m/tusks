@@ -1,15 +1,15 @@
 import Heading from "component/Heading";
-import Page from "component/layout/Page";
+import PageLayout from "component/layout/PageLayout";
 import { FC } from "react";
 
 const Settings: FC = () => {
   return (
-    <Page>
+    <PageLayout>
       <Heading
         text="Settings"
         description="you can setup all of your preferences from here"
       />
-    </Page>
+    </PageLayout>
   );
 };
 

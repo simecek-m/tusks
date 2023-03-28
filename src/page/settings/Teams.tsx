@@ -1,12 +1,12 @@
 import Heading from "component/Heading";
-import Page from "component/layout/Page";
+import PageLayout from "component/layout/PageLayout";
 import { FC } from "react";
 
 const Teams: FC = () => {
   return (
-    <Page>
+    <PageLayout>
       <Heading text="Teams" description="all teams you are member of" />
-    </Page>
+    </PageLayout>
   );
 };
 
