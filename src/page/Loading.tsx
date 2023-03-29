@@ -1,13 +1,16 @@
 import PageLayout from "component/layout/PageLayout";
 import Spinner from "component/common/Spinner";
+import PageContent from "component/layout/PageContent";
 
 const Loading = () => {
   return (
     <PageLayout>
-      <div className="flex h-full flex-col items-center justify-center">
-        <span>loading</span>
-        <Spinner />
-      </div>
+      <PageContent>
+        <div className="flex h-full flex-col items-center justify-center">
+          <span>loading</span>
+          <Spinner />
+        </div>
+      </PageContent>
     </PageLayout>
   );
 };

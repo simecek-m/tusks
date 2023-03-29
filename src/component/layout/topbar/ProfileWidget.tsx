@@ -19,7 +19,7 @@ const ProfileWidget = () => {
     },
     {
       icon: "door-open",
-      text: "Exit",
+      text: "Logout",
       onClick: () =>
         logout({ logoutParams: { returnTo: window.location.origin } }),
     },
