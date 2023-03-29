@@ -1,4 +1,4 @@
-import Topbar from "component/layout/widget/TopBar";
+import Topbar from "component/layout/topbar/TopBar";
 import { FC, PropsWithChildren } from "react";
 
 const PageLayout: FC<PropsWithChildren> = ({ children }) => {

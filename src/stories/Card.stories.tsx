@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Card from "component/Card";
+import Card from "component/common/Card";
 
 export default {
   title: "Card",

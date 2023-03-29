@@ -1,4 +1,4 @@
-import Heading from "component/Heading";
+import Heading from "component/common/Heading";
 import PageLayout from "component/layout/PageLayout";
 import { FC } from "react";
 

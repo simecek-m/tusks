@@ -1,5 +1,5 @@
 import PageLayout from "component/layout/PageLayout";
-import Spinner from "component/Spinner";
+import Spinner from "component/common/Spinner";
 
 const Loading = () => {
   return (

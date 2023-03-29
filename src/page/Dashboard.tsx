@@ -1,5 +1,5 @@
 import PageLayout from "component/layout/PageLayout";
-import Title from "component/Title";
+import Title from "component/common/Title";
 import { FC } from "react";
 
 const Dashboard: FC = () => {

@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ReactComponent as Logo } from "assets/logo.svg";
 import Button from "component/button/Button";
 import PageLayout from "component/layout/PageLayout";
-import Title from "component/Title";
+import Title from "component/common/Title";
 import { INDEX_PATH } from "constant/paths";
 import { motion } from "framer-motion";
 import { FC } from "react";

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Button from "component/button/Button";
-import Heading from "component/Heading";
+import Heading from "component/common/Heading";
 import PageLayout from "component/layout/PageLayout";
 import Modal from "component/modal/Modal";
 import { HOME_PATH } from "constant/paths";

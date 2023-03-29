@@ -1,5 +1,5 @@
-import ProfileWidget from "component/layout/widget/ProfileWidget";
-import ThemeSwitcher from "component/layout/widget/ThemeSwitcher";
+import ProfileWidget from "component/layout/topbar/ProfileWidget";
+import ThemeSwitcher from "component/layout/topbar/ThemeSwitcher";
 
 const Topbar = () => {
   return (

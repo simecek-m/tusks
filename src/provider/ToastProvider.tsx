@@ -1,5 +1,5 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import Toast from "component/toast/Toast";
+import Toast from "component/common/Toast";
 import {
   createContext,
   FC,
