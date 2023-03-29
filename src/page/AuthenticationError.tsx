@@ -12,7 +12,7 @@ const AuthenticationError: FC<AuthenticationErrorProps> = ({ message }) => {
   return (
     <PageLayout>
       <PageContent>
-        <div className="flex h-screen w-screen flex-col items-center justify-center gap-2">
+        <div className="flex h-screen w-full flex-col items-center justify-center gap-2">
           <motion.div
             initial={{ y: -20, scale: 1 }}
             animate={{ y: 0, scale: 0.7 }}
