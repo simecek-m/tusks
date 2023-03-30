@@ -18,12 +18,11 @@ import NotFound from "page/NotFound";
 import ProtectedRoute from "page/ProtectedRoute";
 import Notifications from "page/settings/Notifications";
 import Profile from "page/settings/Profile";
-import Settings from "page/settings/Settings";
 import Teams from "page/settings/Teams";
 import ThemeProvider from "provider/ThemeProvider";
 import ToastProvider from "provider/ToastProvider";
 import { FC } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 library.add(fas);
 
@@ -59,7 +58,10 @@ const App: FC = () => {
                     path={SETTINGS_PATH_NAME}
                     element={<SettingsPageLayout />}
                   >
-                    <Route index element={<Settings />} />
+                    <Route
+                      index
+                      element={<Navigate to={PROFILE_PATH_NAME} />}
+                    />
                     <Route path={PROFILE_PATH_NAME} element={<Profile />} />
                     <Route path={TEAMS_PATH_NAME} element={<Teams />} />
                     <Route
