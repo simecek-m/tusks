@@ -17,7 +17,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ActionType;
   isDisabled?: boolean;
   isSubmitting?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -32,7 +32,10 @@ const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <motion.button
-      onClick={onClick}
+      onClick={(e) => {
+        onClick && onClick(e);
+        e.stopPropagation();
+      }}
       type={type}
       disabled={isDisabled || isSubmitting}
       whileHover="hover"
