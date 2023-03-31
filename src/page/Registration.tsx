@@ -1,12 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Button from "component/button/Button";
-import Card from "component/common/Card";
 import Input from "component/common/Input";
-import PageLayout from "component/layout/PageLayout";
 import Title from "component/common/Title";
+import PageContent from "component/layout/PageContent";
+import PageLayout from "component/layout/PageLayout";
 import { AVATAR_IMG } from "constant/assets";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";
@@ -15,7 +16,6 @@ import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { IProfile } from "type";
 import { PROFILE_SCHEMA } from "validation";
-import PageContent from "component/layout/PageContent";
 
 interface RegistrationProps {
   onRegister: (profile: IProfile) => void;
@@ -71,11 +71,15 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
     <PageLayout>
       <div className="flex w-full grow flex-col overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 dark:from-gray-800 dark:to-gray-800">
         <PageContent>
-          <Card
-            onClose={() =>
-              logout({ logoutParams: { returnTo: window.location.origin } })
-            }
-          >
+          <div className="relative m-auto w-full max-w-4xl rounded-3xl bg-white p-10 text-black shadow-lg dark:bg-gray-900 dark:text-white">
+            <button
+              className="absolute top-0 right-0 m-1 flex h-10 w-10 items-center justify-center gap-2 rounded-full bg-gray-700 text-white transition duration-300 hover:bg-primary-600 dark:hover:bg-primary-400 dark:hover:text-black"
+              onClick={() =>
+                logout({ logoutParams: { returnTo: window.location.origin } })
+              }
+            >
+              <FontAwesomeIcon icon="close" />
+            </button>
             <div className="flex flex-col">
               <div className="flex flex-col items-center">
                 <Title>Welcome</Title>
@@ -152,7 +156,7 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
                 </Button>
               </form>
             </div>
-          </Card>
+          </div>
         </PageContent>
       </div>
     </PageLayout>
