@@ -9,7 +9,6 @@ body {
   font-family: 'Sora', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scrollbar-color: theme("colors.gray.400") transparent;
 }
 
 /* global scrollbars */
@@ -18,9 +17,13 @@ body {
   width: 10px;
 }
 
-*:hover::-webkit-scrollbar-thumb {
+html *:hover::-webkit-scrollbar-thumb {
   background: theme("colors.gray.400");
   border-radius: 10px;
+}
+
+html.dark *:hover::-webkit-scrollbar-thumb {
+  background: theme("colors.gray.600");
 }
 
 *::-webkit-scrollbar-thumb {
