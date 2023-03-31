@@ -1,8 +1,9 @@
 import SettingsNavigationItem from "component/layout/navigation/SettingsNavigationItem";
 import {
   INDEX_PATH,
-  NOTIFICATIONS_PATH_NAME,
   PROFILE_PATH_NAME,
+  SHARE_PATH_NAME,
+  TAGS_PATH_NAME,
   TEAMS_PATH_NAME,
 } from "constant/paths";
 
@@ -24,10 +25,11 @@ const SettingsNavigation = () => {
         text="teams"
       />
       <SettingsNavigationItem
-        to={NOTIFICATIONS_PATH_NAME}
-        icon="bell"
-        text="notifications"
+        to={SHARE_PATH_NAME}
+        icon="share-nodes"
+        text="share"
       />
+      <SettingsNavigationItem to={TAGS_PATH_NAME} icon="tags" text="tags" />
     </nav>
   );
 };

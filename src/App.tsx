@@ -7,17 +7,19 @@ import SettingsPageLayout from "component/layout/SettingsPageLayout";
 import {
   HOME_PATH_NAME,
   INDEX_PATH_NAME,
-  NOTIFICATIONS_PATH_NAME,
   PROFILE_PATH_NAME,
   SETTINGS_PATH_NAME,
+  SHARE_PATH_NAME,
+  TAGS_PATH_NAME,
   TEAMS_PATH_NAME,
 } from "constant/paths";
 import Dashboard from "page/Dashboard";
 import Home from "page/Home";
 import NotFound from "page/NotFound";
 import ProtectedRoute from "page/ProtectedRoute";
-import Notifications from "page/settings/Notifications";
 import Profile from "page/settings/Profile";
+import Share from "page/settings/Share";
+import Tags from "page/settings/Tags";
 import Teams from "page/settings/Teams";
 import ThemeProvider from "provider/ThemeProvider";
 import ToastProvider from "provider/ToastProvider";
@@ -64,10 +66,8 @@ const App: FC = () => {
                     />
                     <Route path={PROFILE_PATH_NAME} element={<Profile />} />
                     <Route path={TEAMS_PATH_NAME} element={<Teams />} />
-                    <Route
-                      path={NOTIFICATIONS_PATH_NAME}
-                      element={<Notifications />}
-                    />
+                    <Route path={SHARE_PATH_NAME} element={<Share />} />
+                    <Route path={TAGS_PATH_NAME} element={<Tags />} />
                   </Route>
                 </Route>
                 <Route path="*" element={<NotFound />} />

@@ -3,17 +3,17 @@ import PageContent from "component/layout/PageContent";
 import PageLayout from "component/layout/PageLayout";
 import { FC } from "react";
 
-const Notifications: FC = () => {
+const Share: FC = () => {
   return (
     <PageLayout>
       <PageContent>
         <Heading
-          text="Notifications"
-          description="all notifications like invitations or system messages"
+          text="Share"
+          description="who do you share your projects with?"
         />
       </PageContent>
     </PageLayout>
   );
 };
 
-export default Notifications;
+export default Share;
