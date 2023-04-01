@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Button from "component/button/Button";
-import Input from "component/common/Input";
+import Input from "component/form/Input";
 import Title from "component/common/Title";
 import PageContent from "component/layout/PageContent";
 import PageLayout from "component/layout/PageLayout";

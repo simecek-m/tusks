@@ -22,7 +22,7 @@ const Input = (
       </span>
       <span
         className={clsx(
-          "flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline dark:bg-gray-800",
+          "flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline dark:bg-gray-700",
           { "border-2 border-red-500 dark:border-red-300": !!error }
         )}
       >

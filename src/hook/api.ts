@@ -1,15 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import axios, { AxiosInstance } from "axios";
-import { MY_PROFILE_ENDPOINT, PROFILES_ENDPOINT } from "constant/endpoints";
-import { IProfile } from "type";
+import {
+  MY_PROFILE_ENDPOINT,
+  PROFILES_ENDPOINT,
+  TAGS_ENDPOINT,
+} from "constant/endpoints";
+import { INewTag, IProfile, ITag } from "type";
 
-interface TusksApiFunctions {
-  fetchMyProfile: () => Promise<IProfile>;
-  postRegistration: (profile: IProfile) => Promise<IProfile>;
-  deactivateProfile: () => Promise<IProfile>;
-}
-
-const useTusksApi = (): TusksApiFunctions => {
+const useTusksApi = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   const client: AxiosInstance = axios.create({
@@ -38,10 +36,20 @@ const useTusksApi = (): TusksApiFunctions => {
     return client.delete<never, IProfile>(MY_PROFILE_ENDPOINT);
   };
 
+  const fetchAllTags = (): Promise<ITag[]> => {
+    return client.get<never, ITag[]>(TAGS_ENDPOINT);
+  };
+
+  const createNewTag = (tag: INewTag): Promise<ITag> => {
+    return client.post<never, ITag>(TAGS_ENDPOINT, tag);
+  };
+
   return {
     fetchMyProfile,
     postRegistration,
     deactivateProfile,
+    fetchAllTags,
+    createNewTag,
   };
 };
 

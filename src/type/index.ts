@@ -21,3 +21,18 @@ export interface IMenuListItem {
 }
 
 export type ActionType = "primary" | "error";
+
+export interface IColor {
+  light: string;
+  dark: string;
+}
+
+export interface INewTag {
+  owner: string;
+  label: string;
+  color: IColor;
+}
+
+export interface ITag extends INewTag {
+  id: string;
+}
