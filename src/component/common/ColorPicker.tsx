@@ -78,13 +78,13 @@ const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
         }}
       >
         <motion.div
+          className="h-5 w-5 rounded-full border-4 border-white"
           ref={hueSliderRef}
           drag="x"
           dragConstraints={hueBarRef}
           dragControls={hueSliderControls}
           dragMomentum={false}
           dragElastic={0}
-          className="h-5 w-5 rounded-full border-4 border-white"
         />
       </div>
       <div
@@ -107,13 +107,13 @@ const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
         <div className="absolute h-full w-full bg-gradient-to-r from-white to-transparent" />
         <div className="absolute h-full w-full bg-gradient-to-t from-black to-transparent" />
         <motion.div
-          drag
+          className="absolute top-0 right-0 h-5 w-5 rounded-full border-4 border-white"
           ref={saturationAndValueSliderRef}
+          drag={true}
           dragConstraints={saturationAndValueAreaRef}
           dragControls={saturationAndValueSliderControls}
           dragMomentum={false}
           dragElastic={0}
-          className="absolute top-0 right-0 h-5 w-5 rounded-full border-4 border-white"
         />
       </div>
       <div className="flex w-full flex-row gap-4">
@@ -122,6 +122,7 @@ const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
           style={{ background: hex }}
         />
         <button
+          type="button"
           className="flex flex-row items-center justify-center gap-2 rounded-full bg-primary-700 px-4 py-2 font-semibold text-white dark:bg-primary-400 dark:text-black"
           onClick={() => onConfirm(hex)}
         >
