@@ -13,7 +13,7 @@ interface ColorInputProps {
 const ColorInput = ({
   label,
   name,
-  defaultValue = "#ffffff",
+  defaultValue = "#adadad",
 }: ColorInputProps) => {
   const { isOpen, onOpen, onClose } = useModal();
   const [color, setColor] = useState<string>(defaultValue);

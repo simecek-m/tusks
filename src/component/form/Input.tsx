@@ -12,9 +12,9 @@ const Input = (
   ref: LegacyRef<HTMLInputElement>
 ) => {
   return (
-    <label className="mt-2 flex w-full cursor-text flex-col">
+    <label className="mt-2 flex w-full cursor-text flex-col gap-1">
       <span
-        className={clsx("ml-5 text-sm", {
+        className={clsx("text-sm", {
           "font-bold text-red-500 dark:text-red-300": !!error,
         })}
       >
