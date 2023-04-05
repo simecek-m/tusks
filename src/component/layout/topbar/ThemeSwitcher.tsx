@@ -6,7 +6,7 @@ import { FC } from "react";
 import { IMenuListItem } from "type";
 
 const ThemeSwitcher: FC = () => {
-  const { theme, setThemePreference } = useTheme();
+  const { themeSettings, setThemePreference } = useTheme();
 
   const themeVariants: IMenuListItem[] = [
     {
@@ -28,7 +28,7 @@ const ThemeSwitcher: FC = () => {
 
   const currentIcon: IconProp =
     themeVariants.find(
-      (variant) => variant.text === (theme.userPreference as string)
+      (variant) => variant.text === (themeSettings.userPreference as string)
     )?.icon ?? themeVariants[2].icon;
 
   return (
