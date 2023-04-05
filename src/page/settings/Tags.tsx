@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Button from "component/button/Button";
 import Heading from "component/common/Heading";
+import Tag from "component/common/Tag";
 import ColorInput from "component/form/ColorInput";
 import Input from "component/form/Input";
 import PageContent from "component/layout/PageContent";
@@ -16,7 +17,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { INewTag, ITag } from "type";
 
 const Tags: FC = () => {
-  const { fetchAllTags, createNewTag } = useTusksApi();
+  const { fetchAllTags, createNewTag, deleteTag } = useTusksApi();
   const { data, isLoading } = useQuery([TAGS_QUERY_KEY], fetchAllTags);
   const { isOpen, onClose, onOpen } = useModal();
   const methods = useForm<INewTag>();
@@ -24,14 +25,18 @@ const Tags: FC = () => {
   const { handleSubmit, register, reset } = methods;
   const queryClient = useQueryClient();
 
-  const { mutateAsync, isLoading: isMutating } = useMutation<
+  const { mutateAsync: updateAsync, isLoading: isUpdating } = useMutation<
     ITag,
     AxiosError,
     INewTag
   >((tag: INewTag) => createNewTag(tag));
 
+  const { mutateAsync: deleteAsync } = useMutation<ITag, AxiosError, string>(
+    (id: string) => deleteTag(id)
+  );
+
   const submit = async (tag: INewTag) => {
-    await mutateAsync(tag, {
+    await updateAsync(tag, {
       onSuccess: (data: ITag) => {
         queryClient.setQueryData<ITag[]>([TAGS_QUERY_KEY], (original) => {
           if (original) {
@@ -46,6 +51,28 @@ const Tags: FC = () => {
         toast({
           icon: "warning",
           title: "Hooops",
+          description: error.message,
+        });
+      },
+    });
+  };
+
+  const onDelete = (id: string) => {
+    deleteAsync(id, {
+      onSuccess: () => {
+        queryClient.setQueryData<ITag[]>([TAGS_QUERY_KEY], (original) => {
+          if (original) {
+            const tags = original.filter((tag) => tag.id !== id);
+            return [...tags];
+          } else {
+            return [];
+          }
+        });
+      },
+      onError: (error) => {
+        toast({
+          icon: "warning",
+          title: "Tag",
           description: error.message,
         });
       },
@@ -70,9 +97,15 @@ const Tags: FC = () => {
             new tag
           </button>
         </div>
-        <div className="mt-2">
+        <div className="mt-6 flex flex-col gap-2">
           {data?.map((tag) => (
-            <div key={tag.id}>{tag.label}</div>
+            <Tag
+              key={tag.id}
+              id={tag.id}
+              label={tag.label}
+              color={tag.color}
+              onClickIcon={(id) => onDelete(id)}
+            />
           ))}
           {data?.length === 0 && <div>You have no tags, yet.</div>}
         </div>
@@ -95,7 +128,7 @@ const Tags: FC = () => {
                 icon="tag"
                 hoverIcon="paper-plane"
                 type="submit"
-                isSubmitting={isMutating}
+                isSubmitting={isUpdating}
               >
                 submit
               </Button>

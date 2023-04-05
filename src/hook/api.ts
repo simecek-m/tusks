@@ -44,12 +44,17 @@ const useTusksApi = () => {
     return client.post<never, ITag>(TAGS_ENDPOINT, tag);
   };
 
+  const deleteTag = (id: string): Promise<ITag> => {
+    return client.delete<never, ITag>(`${TAGS_ENDPOINT}/${id}`);
+  };
+
   return {
     fetchMyProfile,
     postRegistration,
     deactivateProfile,
     fetchAllTags,
     createNewTag,
+    deleteTag,
   };
 };
 
