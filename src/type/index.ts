@@ -28,11 +28,11 @@ export interface IColor {
 }
 
 export interface INewTag {
-  owner: string;
   label: string;
   color: IColor;
 }
 
 export interface ITag extends INewTag {
   id: string;
+  owner: string;
 }

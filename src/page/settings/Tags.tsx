@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Button from "component/button/Button";
@@ -15,14 +16,25 @@ import { useToast } from "provider/ToastProvider";
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { INewTag, ITag } from "type";
+import { TAG_SCHEMA } from "validation";
 
 const Tags: FC = () => {
   const { fetchAllTags, createNewTag, deleteTag } = useTusksApi();
   const { data, isLoading } = useQuery([TAGS_QUERY_KEY], fetchAllTags);
   const { isOpen, onClose, onOpen } = useModal();
-  const methods = useForm<INewTag>();
+
+  const methods = useForm<INewTag>({
+    mode: "onChange",
+    resolver: yupResolver(TAG_SCHEMA),
+  });
+
   const { toast } = useToast();
-  const { handleSubmit, register, reset } = methods;
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors, isValid },
+  } = methods;
   const queryClient = useQueryClient();
 
   const { mutateAsync: updateAsync, isLoading: isUpdating } = useMutation<
@@ -117,21 +129,23 @@ const Tags: FC = () => {
             onSubmit={handleSubmit(submit)}
             className="mt-4 flex flex-col gap-2"
           >
-            <Input label="label" {...register("label")} />
+            <Input label="label" {...register("label")} error={errors?.label} />
             <span>color</span>
             <div className="ml-5 flex flex-row gap-3">
               <ColorInput label="light" name="color.light" />
               <ColorInput label="dark" name="color.dark" />
             </div>
-            <div className="flex w-full justify-end">
-              <Button
-                icon="tag"
-                hoverIcon="paper-plane"
-                type="submit"
-                isSubmitting={isUpdating}
-              >
-                submit
-              </Button>
+            <div className="mt-4 flex w-full justify-end">
+              {isValid && (
+                <Button
+                  icon="paper-plane"
+                  hoverIcon="check"
+                  type="submit"
+                  isSubmitting={isUpdating}
+                >
+                  submit
+                </Button>
+              )}
             </div>
           </form>
         </FormProvider>
