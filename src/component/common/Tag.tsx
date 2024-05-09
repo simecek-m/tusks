@@ -15,10 +15,8 @@ const Tag: FC<TagProps> = ({ id, label, color, onClickIcon }) => {
   const bg =
     theme === "dark" ? { background: color.dark } : { background: color.light };
   return (
-    <div
-      className="flex w-fit select-none flex-row items-center justify-center gap-1 rounded-full px-3 py-2 text-white dark:text-black"
-      style={bg}
-    >
+    <div className="flex w-fit select-none flex-row items-center justify-center gap-2 rounded-full bg-white px-3 py-2 text-black shadow-md dark:bg-gray-900 dark:text-white">
+      <span style={bg} className="h-5 w-5 rounded-full"></span>
       <span>{label}</span>
       <FontAwesomeIcon
         icon="xmark"
