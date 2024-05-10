@@ -20,6 +20,22 @@ module.exports = {
           800: "#0c594c",
           900: "#0b4940",
         },
+        brand: {
+          light: "#7a34eb",
+          dark: "#AD7CFC",
+        },
+        surface: {
+          light: "#F1F1F1",
+          dark: "#141414",
+        },
+        background: {
+          light: "#FFFFFF",
+          dark: "#000000",
+        },
+        error: {
+          light: "#D84747",
+          dark: "#FF6262",
+        },
       },
       borderRadius: {
         squircle: "30%",
