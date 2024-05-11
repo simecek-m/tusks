@@ -6,7 +6,7 @@ interface TitleProps {
 
 const Title: FC<TitleProps> = ({ children }) => {
   return (
-    <h1 className="inline-block bg-gradient-to-br from-primary-400 to-primary-900 bg-clip-text font-heading text-5xl font-black text-transparent dark:from-primary-200 dark:to-primary-600">
+    <h1 className="inline-block font-heading text-5xl font-black text-brand-light dark:text-brand-dark">
       {children}
     </h1>
   );

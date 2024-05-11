@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["Coiny", "cursive"],
+        heading: ["Ultra", "cursive"],
       },
       colors: {
         primary: {
@@ -25,11 +25,11 @@ module.exports = {
           dark: "#AD7CFC",
         },
         surface: {
-          light: "#F1F1F1",
+          light: "#FFFFFF",
           dark: "#141414",
         },
         background: {
-          light: "#FFFFFF",
+          light: "#F1F1F1",
           dark: "#000000",
         },
         error: {

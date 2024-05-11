@@ -33,7 +33,7 @@ const ThemeSwitcher: FC = () => {
 
   return (
     <Menu items={themeVariants}>
-      <div className="flex h-full items-center hover:text-primary-600 dark:hover:text-primary-400">
+      <div className="flex h-full items-center hover:text-brand-light dark:hover:text-brand-dark">
         <FontAwesomeIcon icon={currentIcon} size="lg" fixedWidth />
       </div>
     </Menu>
