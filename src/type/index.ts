@@ -36,3 +36,8 @@ export interface ITag extends INewTag {
   id: string;
   owner: string;
 }
+
+export type Todo = {
+  isCompleted: boolean;
+  label: string;
+};
