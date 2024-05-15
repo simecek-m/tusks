@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@auth0/auth0-react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import SettingsPageLayout from "component/layout/SettingsPageLayout";
@@ -26,7 +27,7 @@ import ToastProvider from "provider/ToastProvider";
 import { FC } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-library.add(fas);
+library.add(fas, far);
 
 const queryClient = new QueryClient({
   defaultOptions: {
