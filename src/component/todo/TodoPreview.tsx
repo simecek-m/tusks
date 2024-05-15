@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { FC } from "react";
 
@@ -13,15 +14,21 @@ export const TodoPreview: FC<TodoProps> = ({
   onChange,
 }) => {
   return (
-    <label className="block w-fit cursor-pointer select-none text-lg">
-      <input
-        type="checkbox"
-        checked={isCompleted}
-        onChange={() => onChange(!isCompleted)}
-      />
+    <span
+      className="block w-fit cursor-pointer select-none text-lg"
+      onClick={() => onChange(!isCompleted)}
+    >
+      {isCompleted ? (
+        <FontAwesomeIcon
+          icon={["fas", "circle-check"]}
+          className="text-brand-light dark:text-brand-dark"
+        />
+      ) : (
+        <FontAwesomeIcon icon={["far", "circle"]} />
+      )}
       <span className={clsx("ml-2", { "line-through": isCompleted })}>
         {label}
       </span>
-    </label>
+    </span>
   );
 };
