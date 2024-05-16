@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["Ultra", "cursive"],
+        heading: ["Poetsen One", "cursive"],
       },
       colors: {
         primary: {

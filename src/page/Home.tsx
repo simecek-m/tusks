@@ -1,14 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { ReactComponent as Logo } from "assets/logo.svg";
 import Button from "component/button/Button";
-import PageLayout from "component/layout/PageLayout";
 import Title from "component/common/Title";
+import PageContent from "component/layout/PageContent";
+import PageLayout from "component/layout/PageLayout";
+import { TodoListPreview } from "component/todo/TodoListPreview";
 import { INDEX_PATH } from "constant/paths";
-import { motion } from "framer-motion";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import PageContent from "component/layout/PageContent";
-import { TodoListPreview } from "component/todo/TodoListPreview";
 
 const Home: FC = () => {
   const { loginWithPopup, isAuthenticated } = useAuth0();
@@ -18,24 +16,18 @@ const Home: FC = () => {
     <PageLayout>
       <PageContent>
         <div className="flex h-full w-full flex-col items-center justify-around md:flex-row">
-          <div className="flex w-full flex-col items-center justify-center">
-            <Title>Tusks</Title>
-            <p>not everyone has the memory of an elephant</p>
-            <div className="mt-10 flex w-full flex-col items-center">
-              <motion.div
-                className="mb-5"
-                initial={{ scale: 0.8 }}
-                whileHover={{ scale: 1 }}
-                transition={{ type: "spring", bounce: 0.5 }}
-              >
-                <Logo height="20vh" width="100%" />
-              </motion.div>
-            </div>
+          <div className="flex w-full flex-col items-center justify-center gap-2">
+            <Title>Hashtag</Title>
+            <p>organize your notes and never forget your great ideas again</p>
+            <span className="font-heading text-8xl text-brand-light dark:text-brand-dark">
+              #
+            </span>
           </div>
           <div className="flex w-full justify-center">
             <div className="flex w-1/2 min-w-[300px] flex-col items-end gap-4">
               <TodoListPreview
-                title="Shop"
+                title="Groceries"
+                tag="shop"
                 todos={[
                   { isCompleted: false, label: "Eggs" },
                   { isCompleted: true, label: "Milk" },
