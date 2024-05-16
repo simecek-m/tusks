@@ -22,7 +22,11 @@ const AuthenticationError: FC<AuthenticationErrorProps> = ({ message }) => {
               duration: 0.5,
             }}
           >
-            <FontAwesomeIcon icon="circle-exclamation" size="4x" />
+            <FontAwesomeIcon
+              className="text-error-light dark:text-error-dark"
+              icon="circle-exclamation"
+              size="4x"
+            />
           </motion.div>
           <span>Oooooops, authentication error occured: {message}</span>
         </div>

@@ -11,7 +11,7 @@ const Spinner: FC = () => {
         repeatType: "reverse",
         duration: 0.5,
       }}
-      className="h-20 w-20 rounded-full bg-primary-600 dark:bg-primary-300"
+      className="h-20 w-20 rounded-full bg-brand-light dark:bg-brand-dark"
     ></motion.div>
   );
 };

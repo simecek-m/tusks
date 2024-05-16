@@ -36,6 +36,11 @@ module.exports = {
           light: "#D84747",
           dark: "#FF6262",
         },
+        gray: {
+          700: "#4f4f4f",
+          800: "#2e2e2e",
+          900: "#171717",
+        },
       },
       borderRadius: {
         squircle: "30%",

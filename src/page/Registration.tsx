@@ -69,11 +69,11 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
 
   return (
     <PageLayout>
-      <div className="flex w-full grow flex-col overflow-auto bg-gradient-to-br from-primary-400 to-primary-900 dark:from-gray-800 dark:to-gray-800">
+      <div className="flex w-full grow flex-col overflow-auto bg-background-light dark:bg-background-dark">
         <PageContent>
-          <div className="relative m-auto w-full max-w-4xl rounded-3xl bg-white p-10 text-black shadow-lg dark:bg-gray-900 dark:text-white">
+          <div className="relative m-auto w-full max-w-4xl rounded-3xl bg-surface-light p-10 text-black shadow-lg dark:bg-surface-dark dark:text-white">
             <button
-              className="absolute top-0 right-0 m-1 flex h-10 w-10 items-center justify-center gap-2 rounded-full bg-gray-700 text-white transition duration-300 hover:bg-primary-600 dark:hover:bg-primary-400 dark:hover:text-black"
+              className="absolute top-0 right-0 m-1 flex h-10 w-10 items-center justify-center gap-2 rounded-full bg-background-light text-black transition duration-300 hover:bg-brand-light hover:text-white dark:bg-background-dark dark:text-white dark:hover:bg-brand-dark dark:hover:text-black"
               onClick={() =>
                 logout({ logoutParams: { returnTo: window.location.origin } })
               }
