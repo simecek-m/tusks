@@ -6,7 +6,7 @@ import { ActionType } from "type";
 import { motion } from "framer-motion";
 
 const BASE_BUTTON_STYLE =
-  "bg-transparent hover:text-white dark:hover:text-black flex w-full shrink-0 flex-row items-center justify-center gap-2 overflow-hidden border-4 py-2 pl-2 pr-5 font-bold transition duration-300 sm:w-fit";
+  "bg-transparent hover:text-white dark:hover:text-black flex shrink-0 flex-row items-center justify-center gap-2 overflow-hidden border-4 py-2 pl-2 pr-5 font-bold transition duration-300";
 
 const ButtonVariants: Record<ActionType, string> = {
   primary:
@@ -22,6 +22,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isDisabled?: boolean;
   isSubmitting?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className?: string;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -32,6 +33,7 @@ const Button: FC<ButtonProps> = ({
   icon,
   variant = "primary",
   hoverIcon,
+  className,
   children,
 }) => {
   return (
@@ -44,6 +46,7 @@ const Button: FC<ButtonProps> = ({
       disabled={isDisabled || isSubmitting}
       whileHover="hover"
       className={clsx(
+        className,
         BASE_BUTTON_STYLE,
         { "cursor-wait": isSubmitting },
         { "cursor-not-allowed opacity-60": isDisabled },

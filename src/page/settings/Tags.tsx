@@ -123,30 +123,28 @@ const Tags: FC = () => {
         </div>
       </PageContent>
       <Modal isOpen={isOpen} onClose={onClose}>
-        <h1 className="text-lg font-black">Tag</h1>
+        <h1 className="text-lg font-black">Create tag</h1>
         <FormProvider {...methods}>
           <form
             onSubmit={handleSubmit(submit)}
             className="mt-4 flex flex-col gap-2"
           >
             <Input label="label" {...register("label")} error={errors?.label} />
-            <span>color</span>
-            <div className="ml-5 flex flex-row gap-3">
+            <span className="mt-4">color</span>
+            <div className="flex flex-row gap-3">
               <ColorInput label="light" name="color.light" />
               <ColorInput label="dark" name="color.dark" />
             </div>
-            <div className="mt-4 flex w-full justify-end">
-              {isValid && (
-                <Button
-                  icon="paper-plane"
-                  hoverIcon="check"
-                  type="submit"
-                  isSubmitting={isUpdating}
-                >
-                  submit
-                </Button>
-              )}
-            </div>
+            <Button
+              icon="tag"
+              hoverIcon="check"
+              type="submit"
+              className="mt-4"
+              isSubmitting={isUpdating}
+              isDisabled={!isValid}
+            >
+              Create
+            </Button>
           </form>
         </FormProvider>
       </Modal>

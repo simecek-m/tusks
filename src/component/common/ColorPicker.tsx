@@ -1,3 +1,4 @@
+import Button from "component/button/Button";
 import { motion, useDragControls } from "framer-motion";
 import {
   calculateHueFromElements,
@@ -56,9 +57,11 @@ const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
   }, []);
 
   return (
-    <div className="flex h-full w-full flex-col gap-3">
+    <div className="flex w-full flex-col gap-3">
+      <h1 className="text-xl font-bold">Pick a color</h1>
+      <h2>Hue:</h2>
       <div
-        className="flex h-6 w-full cursor-pointer items-center rounded-xl"
+        className="flex h-5 w-full cursor-pointer items-center rounded-xl"
         ref={hueBarRef}
         style={{
           background:
@@ -87,9 +90,10 @@ const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
           dragElastic={0}
         />
       </div>
+      <h2>Saturation:</h2>
       <div
         ref={saturationAndValueAreaRef}
-        className="relative h-full w-full overflow-hidden rounded-xl"
+        className="relative h-28 w-full overflow-hidden rounded-xl"
         style={{ background: `hsl(${hue} 100% 50%)` }}
         onPointerDown={(event) => {
           saturationAndValueSliderControls.start(event, { snapToCursor: true });
@@ -116,19 +120,9 @@ const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
           dragElastic={0}
         />
       </div>
-      <div className="flex w-full flex-row gap-4">
-        <div
-          className="h-10 w-full rounded-full "
-          style={{ background: hex }}
-        />
-        <button
-          type="button"
-          className="flex flex-row items-center justify-center gap-2 rounded-full bg-primary-700 px-4 py-2 font-semibold text-white dark:bg-primary-400 dark:text-black"
-          onClick={() => onConfirm(hex)}
-        >
-          OK
-        </button>
-      </div>
+      <Button icon="palette" hoverIcon="check" onClick={() => onConfirm(hex)}>
+        Pick
+      </Button>
     </div>
   );
 };

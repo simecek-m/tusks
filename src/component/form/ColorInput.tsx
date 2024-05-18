@@ -20,9 +20,9 @@ const ColorInput = ({
   const { register, setValue } = useFormContext();
 
   return (
-    <div>
+    <div className="w-full">
       <input
-        className="bg-gray-700 text-white"
+        className="bg-gray-500 text-white"
         {...register(name)}
         defaultValue={color}
         readOnly
@@ -30,7 +30,7 @@ const ColorInput = ({
       />
       <span>{label}</span>
       <div
-        className="h-10 w-10 cursor-pointer rounded-full"
+        className="h-10 w-full cursor-pointer"
         style={{ background: color }}
         onClick={(e) => {
           e.stopPropagation();
@@ -38,7 +38,7 @@ const ColorInput = ({
         }}
       />
       <Modal isOpen={isOpen} onClose={onClose}>
-        <div className="h-80 w-80">
+        <div className="h-auto w-80">
           <ColorPicker
             onConfirm={(hex) => {
               setColor(hex);

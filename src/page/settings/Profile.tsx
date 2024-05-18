@@ -81,6 +81,7 @@ const Profile: FC = () => {
             hoverIcon="user-slash"
             variant="error"
             onClick={onOpen}
+            className="w-fit"
           >
             Deactivate
           </Button>
