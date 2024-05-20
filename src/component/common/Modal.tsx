@@ -7,7 +7,7 @@ interface ModalProps extends PropsWithChildren {
   onClose: () => void;
 }
 
-const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   const modalBodyRef = useClickOutside(onClose, isOpen);
   return (
     <AnimatePresence>
@@ -32,5 +32,3 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
     </AnimatePresence>
   );
 };
-
-export default Modal;

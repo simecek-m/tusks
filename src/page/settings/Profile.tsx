@@ -4,7 +4,7 @@ import Button from "component/button/Button";
 import Heading from "component/common/Heading";
 import PageContent from "component/layout/PageContent";
 import PageLayout from "component/layout/PageLayout";
-import Modal from "component/modal/Modal";
+import { Modal } from "component/common/Modal";
 import { HOME_PATH } from "constant/paths";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import useTusksApi from "hook/api";

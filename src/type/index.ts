@@ -41,3 +41,8 @@ export type Todo = {
   isCompleted: boolean;
   label: string;
 };
+
+export type ModalState = {
+  isOpen: boolean;
+  onClose: () => void;
+};
