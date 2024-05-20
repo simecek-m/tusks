@@ -1,29 +1,42 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTheme } from "provider/ThemeProvider";
 import { FC } from "react";
-import { IColor } from "type";
+import { IColor, ITag } from "type";
+import { motion } from "framer-motion";
 
 interface TagProps {
   id: string;
   label: string;
   color: IColor;
-  onClickIcon: (id: string) => void;
+  owner: string;
+  onDelete: (tag: ITag) => void;
 }
 
-const Tag: FC<TagProps> = ({ id, label, color, onClickIcon }) => {
+const Tag: FC<TagProps> = ({ id, label, color, owner, onDelete }) => {
   const { theme } = useTheme();
   const bg =
     theme === "dark" ? { background: color.dark } : { background: color.light };
+
+  const MotionIcon = motion(FontAwesomeIcon);
+
   return (
-    <div className="flex w-fit select-none flex-row items-center justify-center gap-2 rounded-full bg-white px-3 py-2 text-black shadow-md dark:bg-gray-900 dark:text-white">
-      <span style={bg} className="h-5 w-5 rounded-full"></span>
+    <motion.div
+      className="flex w-fit select-none flex-row items-center justify-center gap-2 rounded-full bg-white px-3 py-2 text-black shadow-md dark:bg-gray-900 dark:text-white"
+      whileHover="hover"
+    >
+      <span style={bg} className="h-5 w-5 rounded-full" />
       <span>{label}</span>
-      <FontAwesomeIcon
-        icon="xmark"
+      <MotionIcon
+        icon="trash-can"
         className="cursor-pointer p-1"
-        onClick={() => onClickIcon(id)}
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete({ id, color, label, owner });
+        }}
+        initial={{ scale: 0, width: 0 }}
+        variants={{ hover: { scale: 1, width: "auto" } }}
       />
-    </div>
+    </motion.div>
   );
 };
 
