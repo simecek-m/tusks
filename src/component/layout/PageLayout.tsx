@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from "react";
 
 const PageLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="flex h-screen w-full flex-col overflow-hidden">
+    <div className="flex h-screen w-screen flex-col overflow-hidden">
       <Topbar />
       {children}
     </div>

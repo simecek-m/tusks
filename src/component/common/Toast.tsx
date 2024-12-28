@@ -29,13 +29,13 @@ const Toast: FC<ToastProps> = ({
     <motion.div
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      className="flex w-fit flex-row gap-2 rounded-3xl bg-white px-4 py-2 shadow-md dark:bg-slate-900"
+      className="flex w-fit flex-row gap-2 bg-white px-4 py-2 shadow-md dark:bg-gray-900"
     >
-      <span className={clsx("flex items-center", TypeVariant[type])}>
-        <FontAwesomeIcon icon={icon} />
+      <span className={clsx("mr-2 flex items-center", TypeVariant[type])}>
+        <FontAwesomeIcon icon={icon} className="text-2xl" />
       </span>
       <div className="flex flex-col">
-        <span>{title}</span>
+        <span className="font-bold">{title}</span>
         <span className="text-sm font-light">{description}</span>
       </div>
     </motion.div>

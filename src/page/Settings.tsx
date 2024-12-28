@@ -1,19 +1,14 @@
-import Heading from "component/common/Heading";
 import PageContent from "component/layout/PageContent";
 import PageLayout from "component/layout/PageLayout";
+import { ProfileCard } from "component/ProfileCard";
 import { FC } from "react";
 
-const Share: FC = () => {
+export const Settings: FC = () => {
   return (
     <PageLayout>
       <PageContent>
-        <Heading
-          text="Share"
-          description="who do you share your projects with?"
-        />
+        <ProfileCard />
       </PageContent>
     </PageLayout>
   );
 };
-
-export default Share;
