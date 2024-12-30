@@ -12,7 +12,7 @@ interface TagProps {
   onDelete: (tag: ITag) => void;
 }
 
-const Tag: FC<TagProps> = ({ id, label, color, owner, onDelete }) => {
+export const Tag: FC<TagProps> = ({ id, label, color, owner, onDelete }) => {
   const { theme } = useTheme();
   const bg =
     theme === "dark" ? { background: color.dark } : { background: color.light };
@@ -39,5 +39,3 @@ const Tag: FC<TagProps> = ({ id, label, color, owner, onDelete }) => {
     </motion.div>
   );
 };
-
-export default Tag;

@@ -1,8 +1,8 @@
-import PageLayout from "component/layout/PageLayout";
-import Spinner from "component/common/Spinner";
-import PageContent from "component/layout/PageContent";
+import { Spinner } from "component/common/Spinner";
+import { PageContent } from "component/layout/PageContent";
+import { PageLayout } from "component/layout/PageLayout";
 
-const Loading = () => {
+export const Loading = () => {
   return (
     <PageLayout>
       <PageContent>
@@ -14,5 +14,3 @@ const Loading = () => {
     </PageLayout>
   );
 };
-
-export default Loading;

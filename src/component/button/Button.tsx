@@ -1,12 +1,12 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import clsx from "clsx";
-import ButtonIcon from "component/button/ButtonIcon";
+import { ButtonIcon } from "component/button/ButtonIcon";
+import { motion } from "framer-motion";
 import { ButtonHTMLAttributes, FC } from "react";
 import { ActionType } from "type";
-import { motion } from "framer-motion";
 
 const BASE_BUTTON_STYLE =
-  "bg-transparent hover:text-white dark:hover:text-black flex shrink-0 flex-row items-center justify-center gap-2 overflow-hidden border-4 py-2 pl-2 pr-5 font-bold transition duration-300";
+  "lowercase bg-transparent hover:text-white dark:hover:text-black flex shrink-0 flex-row items-center justify-center gap-2 overflow-hidden border-4 py-2 px-5 font-bold transition duration-300";
 
 const ButtonVariants: Record<ActionType, string> = {
   primary:
@@ -25,7 +25,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-const Button: FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   onClick,
   type = "button",
   isDisabled = false,
@@ -46,11 +46,11 @@ const Button: FC<ButtonProps> = ({
       disabled={isDisabled || isSubmitting}
       whileHover="hover"
       className={clsx(
-        className,
         BASE_BUTTON_STYLE,
         { "cursor-wait": isSubmitting },
         { "cursor-not-allowed opacity-60": isDisabled },
-        ButtonVariants[variant]
+        ButtonVariants[variant],
+        className
       )}
     >
       <ButtonIcon
@@ -60,7 +60,7 @@ const Button: FC<ButtonProps> = ({
         isSubmitting={isSubmitting}
       />
       <span
-        className={clsx("capitalize", {
+        className={clsx({
           "font-normal italic": !!isSubmitting && !isDisabled,
         })}
       >
@@ -69,5 +69,3 @@ const Button: FC<ButtonProps> = ({
     </motion.button>
   );
 };
-
-export default Button;

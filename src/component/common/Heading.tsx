@@ -5,7 +5,7 @@ interface HeadingProps {
   description?: string;
 }
 
-const Heading: FC<HeadingProps> = ({ text, description }) => {
+export const Heading: FC<HeadingProps> = ({ text, description }) => {
   return (
     <div className="flex w-full flex-col gap-2">
       <span className="text-3xl font-black">{text}</span>
@@ -16,5 +16,3 @@ const Heading: FC<HeadingProps> = ({ text, description }) => {
     </div>
   );
 };
-
-export default Heading;

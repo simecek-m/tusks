@@ -1,11 +1,11 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Menu from "component/menu/Menu";
+import { Menu } from "component/menu/Menu";
 import { useTheme } from "provider/ThemeProvider";
 import { FC } from "react";
 import { IMenuListItem } from "type";
 
-const ThemeSwitcher: FC = () => {
+export const ThemeSwitcher: FC = () => {
   const { themeSettings, setThemePreference } = useTheme();
 
   const themeVariants: IMenuListItem[] = [
@@ -39,5 +39,3 @@ const ThemeSwitcher: FC = () => {
     </Menu>
   );
 };
-
-export default ThemeSwitcher;

@@ -1,4 +1,4 @@
-import Button from "component/button/Button";
+import { Button } from "component/button/Button";
 import { Card } from "component/common/Card";
 import { ProfileDeactivateModal } from "component/modal/ProfileDeactivateModal";
 import { AVATAR_IMG } from "constant/assets";
@@ -31,7 +31,6 @@ export const ProfileCard: FC = () => {
               icon="lock"
               hoverIcon="user-lock"
               variant="error"
-              className="py-0 pr-3 pl-1"
               onClick={onOpen}
             >
               deactivate

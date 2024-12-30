@@ -1,14 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import Button from "component/button/Button";
-import Title from "component/common/Title";
-import PageContent from "component/layout/PageContent";
-import PageLayout from "component/layout/PageLayout";
+import { Button } from "component/button/Button";
+import { Title } from "component/common/Title";
+import { PageContent } from "component/layout/PageContent";
+import { PageLayout } from "component/layout/PageLayout";
 import { TodoListPreview } from "component/todo/TodoListPreview";
 import { INDEX_PATH } from "constant/paths";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Home: FC = () => {
+export const Home: FC = () => {
   const { loginWithPopup, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
 
@@ -64,5 +64,3 @@ const Home: FC = () => {
     </PageLayout>
   );
 };
-
-export default Home;

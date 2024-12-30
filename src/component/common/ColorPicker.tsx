@@ -1,4 +1,4 @@
-import Button from "component/button/Button";
+import { Button } from "component/button/Button";
 import { motion, useDragControls } from "framer-motion";
 import {
   calculateHueFromElements,
@@ -11,7 +11,7 @@ interface ColorPickerProps {
   onConfirm: (hex: string) => void;
 }
 
-const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
+export const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
   const hueBarRef = useRef<HTMLDivElement | null>(null);
   const hueSliderRef = useRef<HTMLDivElement | null>(null);
   const hueSliderControls = useDragControls();
@@ -126,5 +126,3 @@ const ColorPicker: FC<ColorPickerProps> = ({ onConfirm }) => {
     </div>
   );
 };
-
-export default ColorPicker;

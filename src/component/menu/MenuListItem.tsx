@@ -8,7 +8,11 @@ interface MenuListItemProps {
   onClick: () => void;
 }
 
-const MenuListItem: FC<MenuListItemProps> = ({ icon, children, onClick }) => {
+export const MenuListItem: FC<MenuListItemProps> = ({
+  icon,
+  children,
+  onClick,
+}) => {
   return (
     <button
       onClick={onClick}
@@ -19,5 +23,3 @@ const MenuListItem: FC<MenuListItemProps> = ({ icon, children, onClick }) => {
     </button>
   );
 };
-
-export default MenuListItem;

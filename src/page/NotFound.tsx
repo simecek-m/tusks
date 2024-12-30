@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "component/button/Button";
-import PageContent from "component/layout/PageContent";
-import PageLayout from "component/layout/PageLayout";
+import { Button } from "component/button/Button";
+import { PageContent } from "component/layout/PageContent";
+import { PageLayout } from "component/layout/PageLayout";
 import { INDEX_PATH } from "constant/paths";
 import { useNavigate } from "react-router-dom";
 
-const NotFound = () => {
+export const NotFound = () => {
   const navigate = useNavigate();
   return (
     <PageLayout>
@@ -30,5 +30,3 @@ const NotFound = () => {
     </PageLayout>
   );
 };
-
-export default NotFound;

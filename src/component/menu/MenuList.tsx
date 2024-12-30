@@ -6,7 +6,7 @@ interface MenuListProps {
   children?: React.ReactNode;
 }
 
-const MenuList: FC<MenuListProps> = ({ visible, children }) => {
+export const MenuList: FC<MenuListProps> = ({ visible, children }) => {
   return (
     <div
       className={clsx(
@@ -20,5 +20,3 @@ const MenuList: FC<MenuListProps> = ({ visible, children }) => {
     </div>
   );
 };
-
-export default MenuList;

@@ -40,7 +40,7 @@ export type ThemeAction =
   | { type: "change_user_preference"; userPreference: UserThemePreference }
   | { type: "change_system_theme"; system: SystemTheme };
 
-const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
+export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const getSystemTheme = (): SystemTheme => {
     return window.matchMedia(DARK_MODE_MEDIA_QUERY).matches ? "dark" : "light";
   };
@@ -109,5 +109,3 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
-
-export default ThemeProvider;

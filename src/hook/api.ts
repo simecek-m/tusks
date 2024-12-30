@@ -7,7 +7,7 @@ import {
 } from "constant/endpoints";
 import { INewTag, IProfile, ITag } from "type";
 
-const useTusksApi = () => {
+export const useTusksApi = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   const client: AxiosInstance = axios.create({
@@ -57,5 +57,3 @@ const useTusksApi = () => {
     deleteTag,
   };
 };
-
-export default useTusksApi;

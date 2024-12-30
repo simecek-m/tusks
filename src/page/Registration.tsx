@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import Button from "component/button/Button";
-import Input from "component/form/Input";
-import Title from "component/common/Title";
-import PageContent from "component/layout/PageContent";
-import PageLayout from "component/layout/PageLayout";
+import { Button } from "component/button/Button";
+import { Title } from "component/common/Title";
+import { Input } from "component/form/Input";
+import { PageContent } from "component/layout/PageContent";
+import { PageLayout } from "component/layout/PageLayout";
 import { AVATAR_IMG } from "constant/assets";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
-import useTusksApi from "hook/api";
+import { useTusksApi } from "hook/api";
 import { useToast } from "provider/ToastProvider";
 import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -21,7 +21,7 @@ interface RegistrationProps {
   onRegister: (profile: IProfile) => void;
 }
 
-const Registration: FC<RegistrationProps> = ({ onRegister }) => {
+export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
   const queryClient = useQueryClient();
   const { user, logout } = useAuth0();
   const { toast } = useToast();
@@ -162,5 +162,3 @@ const Registration: FC<RegistrationProps> = ({ onRegister }) => {
     </PageLayout>
   );
 };
-
-export default Registration;

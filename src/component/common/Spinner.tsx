@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FC } from "react";
 
-const Spinner: FC = () => {
+export const Spinner: FC = () => {
   return (
     <motion.div
       initial={{ opacity: 0.2, scale: 1 }}
@@ -15,5 +15,3 @@ const Spinner: FC = () => {
     ></motion.div>
   );
 };
-
-export default Spinner;

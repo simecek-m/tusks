@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import Button from "component/button/Button";
+import { Button } from "component/button/Button";
 import { Modal } from "component/common/Modal";
 import { TAGS_QUERY_KEY } from "constant/queries";
-import useTusksApi from "hook/api";
+import { useTusksApi } from "hook/api";
 import { useTheme } from "provider/ThemeProvider";
 import { useToast } from "provider/ToastProvider";
 import { ITag, ModalState } from "type";

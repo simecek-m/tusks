@@ -1,7 +1,16 @@
+import clsx from "clsx";
 import { FC, PropsWithChildren } from "react";
 
-export const Card: FC<PropsWithChildren> = ({ children }) => {
+interface CardProps extends PropsWithChildren {
+  className?: string;
+}
+
+export const Card: FC<CardProps> = ({ children, className }) => {
   return (
-    <div className="w-fit bg-white shadow-lg dark:bg-gray-900">{children}</div>
+    <div
+      className={clsx(className, "w-fit bg-white shadow-lg dark:bg-gray-900")}
+    >
+      {children}
+    </div>
   );
 };

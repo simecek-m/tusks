@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import Button from "component/button/Button";
+import { Button } from "component/button/Button";
 import { Modal } from "component/common/Modal";
 import { HOME_PATH } from "constant/paths";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
-import useTusksApi from "hook/api";
+import { useTusksApi } from "hook/api";
 import { useToast } from "provider/ToastProvider";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";

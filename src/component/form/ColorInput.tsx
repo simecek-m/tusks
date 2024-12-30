@@ -1,4 +1,4 @@
-import ColorPicker from "component/common/ColorPicker";
+import { ColorPicker } from "component/common/ColorPicker";
 import { Modal } from "component/common/Modal";
 import { useModal } from "hook/modal";
 import { useState } from "react";
@@ -10,7 +10,7 @@ interface ColorInputProps {
   defaultValue?: string;
 }
 
-const ColorInput = ({
+export const ColorInput = ({
   label,
   name,
   defaultValue = "#adadad",
@@ -51,5 +51,3 @@ const ColorInput = ({
     </div>
   );
 };
-
-export default ColorInput;

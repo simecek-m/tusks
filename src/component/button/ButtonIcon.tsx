@@ -4,8 +4,6 @@ import clsx from "clsx";
 import { FC } from "react";
 import { motion } from "framer-motion";
 
-const buttonIconStyle = "p-2";
-
 interface ButtonIconProps {
   icon: IconProp;
   hoverIcon: IconProp;
@@ -13,7 +11,7 @@ interface ButtonIconProps {
   isDisabled?: boolean;
 }
 
-const ButtonIcon: FC<ButtonIconProps> = ({
+export const ButtonIcon: FC<ButtonIconProps> = ({
   icon,
   hoverIcon,
   isSubmitting = false,
@@ -27,7 +25,7 @@ const ButtonIcon: FC<ButtonIconProps> = ({
         initial={{ scale: 1 }}
         variants={isActive ? { hover: { scale: 0 } } : {}}
         icon={isDisabled ? "xmark" : isSubmitting ? "circle-notch" : icon}
-        className={clsx(buttonIconStyle, {
+        className={clsx({
           "animate-spin": !!isSubmitting && !isDisabled,
         })}
       />
@@ -35,10 +33,8 @@ const ButtonIcon: FC<ButtonIconProps> = ({
         icon={hoverIcon}
         initial={{ scale: 0 }}
         variants={isActive ? { hover: { scale: 1 } } : {}}
-        className={clsx(buttonIconStyle, "absolute")}
+        className="absolute"
       />
     </div>
   );
 };
-
-export default ButtonIcon;

@@ -1,5 +1,5 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import Toast from "component/common/Toast";
+import { Toast } from "component/common/Toast";
 import {
   createContext,
   FC,
@@ -44,7 +44,7 @@ interface ToastProviderProp extends PropsWithChildren {
   config?: IToastConfig;
 }
 
-const ToastProvider: FC<ToastProviderProp> = ({
+export const ToastProvider: FC<ToastProviderProp> = ({
   children,
   config = DEFAULT_TOAST_CONFIG,
 }) => {
@@ -77,5 +77,3 @@ const ToastProvider: FC<ToastProviderProp> = ({
     </ToastContext.Provider>
   );
 };
-
-export default ToastProvider;

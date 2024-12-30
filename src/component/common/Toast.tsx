@@ -1,9 +1,9 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import { ToastType } from "provider/ToastProvider";
 import { FC } from "react";
-import { motion } from "framer-motion";
 
 export interface ToastProps {
   title: string;
@@ -19,7 +19,7 @@ const TypeVariant: Record<ToastType, string> = {
   error: "text-red-500 dark:text-red-400",
 };
 
-const Toast: FC<ToastProps> = ({
+export const Toast: FC<ToastProps> = ({
   icon,
   title,
   description,
@@ -41,5 +41,3 @@ const Toast: FC<ToastProps> = ({
     </motion.div>
   );
 };
-
-export default Toast;

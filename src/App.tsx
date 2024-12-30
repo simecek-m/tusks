@@ -9,13 +9,13 @@ import {
   INDEX_PATH_NAME,
   SETTINGS_PATH_NAME,
 } from "constant/paths";
-import Dashboard from "page/Dashboard";
-import Home from "page/Home";
-import NotFound from "page/NotFound";
-import ProtectedRoute from "page/ProtectedRoute";
+import { Dashboard } from "page/Dashboard";
+import { Home } from "page/Home";
+import { NotFound } from "page/NotFound";
+import { ProtectedRoute } from "page/ProtectedRoute";
 import { Settings } from "page/Settings";
-import ThemeProvider from "provider/ThemeProvider";
-import ToastProvider from "provider/ToastProvider";
+import { ThemeProvider } from "provider/ThemeProvider";
+import { ToastProvider } from "provider/ToastProvider";
 import { FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
