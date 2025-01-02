@@ -1,5 +1,6 @@
 import { ColorPicker } from "component/common/ColorPicker";
 import { Modal } from "component/common/Modal";
+import { Constant } from "constant";
 import { useModal } from "hook/modal";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
@@ -7,17 +8,19 @@ import { useFormContext } from "react-hook-form";
 interface ColorInputProps {
   label: string;
   name: string;
-  defaultValue?: string;
+  type: "light" | "dark";
 }
 
 export const ColorInput = ({
   label,
   name,
-  defaultValue = "#adadad",
+  type = "light",
 }: ColorInputProps) => {
   const { isOpen, onOpen, onClose } = useModal();
-  const [color, setColor] = useState<string>(defaultValue);
-  const { register, setValue } = useFormContext();
+  const [color, setColor] = useState<string>(
+    type == "light" ? Constant.Color.Light : Constant.Color.Dark
+  );
+  const { register, setValue, getValues } = useFormContext();
 
   return (
     <div className="w-full">
@@ -45,6 +48,7 @@ export const ColorInput = ({
               setValue(name, hex);
               onClose();
             }}
+            defaultColor={getValues(name)}
           />
         </div>
       </Modal>

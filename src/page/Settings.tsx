@@ -37,7 +37,7 @@ export const Settings: FC = () => {
 
   return (
     <PageLayout>
-      <div className="flex h-full w-full flex-col gap-8 overflow-auto p-4 md:flex-row md:overflow-hidden">
+      <div className="flex h-full w-full flex-col gap-8 overflow-auto p-4 md:flex-row">
         <div className="flex h-fit w-full min-w-fit items-center justify-center md:h-full md:w-1/3">
           <ProfileCard />
         </div>

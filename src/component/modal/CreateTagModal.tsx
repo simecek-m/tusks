@@ -73,8 +73,8 @@ export const CreateTagModal = ({ isOpen, onClose }: ModalState) => {
         >
           <Input label="label" {...register("label")} error={errors?.label} />
           <div className="flex flex-row gap-3">
-            <ColorInput label="light" name="color.light" />
-            <ColorInput label="dark" name="color.dark" />
+            <ColorInput label="light" type="light" name="color.light" />
+            <ColorInput label="dark" type="dark" name="color.dark" />
           </div>
           <Button
             icon="tag"
