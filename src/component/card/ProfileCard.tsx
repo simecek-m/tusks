@@ -5,6 +5,7 @@ import { AVATAR_IMG } from "constant/assets";
 import { useModal } from "hook/modal";
 import { useUserProfile } from "provider/UserProfileProvider";
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 export const ProfileCard: FC = () => {
   const { profile } = useUserProfile();
@@ -20,7 +21,8 @@ export const ProfileCard: FC = () => {
           </div>
           <div className="opacity-60">{profile.email}</div>
           <div>
-            <img
+            <motion.img
+              whileHover={{ rotate: 6, borderRadius: 20 }}
               src={profile.picture ?? AVATAR_IMG}
               alt="profile picture"
               className="my-6 aspect-square w-[200px] object-cover shadow-2xl"
