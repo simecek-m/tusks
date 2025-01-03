@@ -6,14 +6,14 @@ import { Tag } from "component/common/Tag";
 import { PageLayout } from "component/layout/PageLayout";
 import { CreateTagModal } from "component/modal/CreateTagModal";
 import { DeleteTagModal } from "component/modal/DeleteTagModal";
-import { TAGS_QUERY_KEY } from "constant/queries";
+import { TAGS_QUERY_KEY, TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useModal } from "hook/modal";
 import { FC, useState } from "react";
-import { ITag } from "type";
+import { ITag, Team } from "type";
 
 export const Settings: FC = () => {
-  const { fetchAllTags } = useTusksApi();
+  const { fetchAllTags, fetchAllMyTeams } = useTusksApi();
 
   const [selectedTag, setSelectedTag] = useState<ITag>();
 
@@ -31,9 +31,17 @@ export const Settings: FC = () => {
 
   const {
     data: tags,
-    isLoading,
-    error,
+    isLoading: tagsLoading,
+    error: tagsError,
   } = useQuery<Array<ITag>, AxiosError>([TAGS_QUERY_KEY], fetchAllTags);
+
+  const {
+    data: teams,
+    isLoading: teamsLoading,
+    error: teamsError,
+  } = useQuery<Array<Team>, AxiosError>([TEAMS_QUERY_KEY], fetchAllMyTeams);
+
+  console.log("teams", teams);
 
   return (
     <PageLayout>
@@ -41,7 +49,7 @@ export const Settings: FC = () => {
         <div className="flex h-fit w-full min-w-fit items-center justify-center md:h-full md:w-1/3">
           <ProfileCard />
         </div>
-        <div className="flex h-fit w-full flex-col gap-4 p-12 md:h-full">
+        <div className="flex h-fit w-full flex-col gap-12 p-12 md:h-full">
           <div className="flex w-full flex-col gap-4">
             <div className="text-xl font-bold">Tags</div>
             <Button
@@ -54,8 +62,8 @@ export const Settings: FC = () => {
             >
               add tag
             </Button>
-            {isLoading && <div>tags are loading...</div>}
-            {error && <div>Error while loading tags!</div>}
+            {tagsLoading && <div>tags are loading...</div>}
+            {tagsError && <div>Error while loading tags!</div>}
             {tags && tags?.length > 0 ? (
               <div className="flex flex-row flex-wrap gap-2">
                 {tags.map((tag, index) => (
@@ -75,6 +83,28 @@ export const Settings: FC = () => {
             ) : (
               <div>no tags </div>
             )}
+          </div>
+          <div className="flex w-full flex-col gap-4">
+            <div className="text-xl font-bold">Teams</div>
+            <Button
+              icon="add"
+              hoverIcon="people-group"
+              className="w-fit gap-4"
+              onClick={() => {
+                onCreateTagModalOpen();
+              }}
+            >
+              create team
+            </Button>
+            {teamsLoading && <div>your teams are loading...</div>}
+            {teamsError && <div>Error while loading teams!</div>}
+            <div>
+              {teams && teams?.length > 0 ? (
+                <div>{teams.length}</div>
+              ) : (
+                <div>no teams you are member of found!</div>
+              )}
+            </div>
           </div>
         </div>
       </div>
