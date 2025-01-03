@@ -22,8 +22,6 @@ export const IconPicker: FC<IconPickerProps> = ({
   const [icon, setIcon] = useState<IconType>(defaultIcon);
   const [isConfirmHovered, setIsConfirmHovered] = useState<boolean>(true);
 
-  console.log("is confirm hovered", isConfirmHovered);
-
   return (
     <div className="flex flex-col gap-4">
       {icon && (

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ColorPicker } from "component/common/ColorPicker";
+import { ColorPicker } from "component/colorPicker/ColorPicker";
 import { Modal } from "component/common/Modal";
 import { Constant } from "constant";
 import { cn } from "helper/style";

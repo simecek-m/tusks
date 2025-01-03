@@ -18,7 +18,6 @@ export const useTusksApi = () => {
   client.interceptors.request.use(async (config) => {
     const accessToken = await getAccessTokenSilently();
     config.headers.Authorization = `Bearer ${accessToken}`;
-    console.log("access token ", accessToken);
     return config;
   });
 

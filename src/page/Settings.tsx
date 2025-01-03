@@ -41,8 +41,6 @@ export const Settings: FC = () => {
     error: teamsError,
   } = useQuery<Array<Team>, AxiosError>([TEAMS_QUERY_KEY], fetchAllMyTeams);
 
-  console.log("teams", teams);
-
   return (
     <PageLayout>
       <div className="flex h-full w-full flex-col gap-8 overflow-auto p-4 md:flex-row">

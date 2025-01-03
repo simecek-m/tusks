@@ -56,8 +56,8 @@ export const calculateSaturationSliderPositionInPx = (
   const slider = sliderElement?.getBoundingClientRect();
 
   if (area && slider) {
-    const posX = (saturation * area.width) / 100;
-    const posY = area.height - (value * area.height) / 100;
+    const posX = (saturation * area.width) / 100 - slider.width / 2;
+    const posY = area.height - (value * area.height) / 100 - slider.height / 2;
     return { x: posX, y: posY };
   } else {
     return { x: 0, y: 0 };
@@ -70,20 +70,14 @@ export const hsvToHex = (h: number, s: number, v: number): string => {
   return hex;
 };
 
-type HSV = { h: number; s: number; v: number };
+export type HSV = { hue: number; saturation: number; value: number };
 
 export const hexToHsv = (hex: string | undefined): HSV => {
   if (!hex) {
-    return { h: 0, s: 0, v: 0 };
+    return { hue: 0, saturation: 0, value: 0 };
   } else {
     const color = new Color(hex);
     const hsv = color.to("hsv");
-    return { h: hsv.h, s: hsv.s, v: hsv.v };
+    return { hue: hsv.h, saturation: hsv.s, value: hsv.v };
   }
-};
-
-export const hsvToHslString = (hsv: HSV): string => {
-  const color = new Color("hsv", [hsv.h, hsv.s, hsv.v]);
-  const { h, s, l } = color.to("hsl");
-  return `hsl(${h}, ${s}%, ${l}%)`;
 };
