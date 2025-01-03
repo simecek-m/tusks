@@ -1,4 +1,7 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "component/button/Button";
+import { Input } from "component/form/Input";
+import { Constant } from "constant";
 import { motion, useDragControls } from "framer-motion";
 import {
   calculateHueFromElements,
@@ -10,6 +13,7 @@ import {
   hsvToHslString,
   Position,
 } from "helper/color";
+import { useToast } from "provider/ToastProvider";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 interface ColorPickerProps {
@@ -35,6 +39,8 @@ export const ColorPicker: FC<ColorPickerProps> = ({
   const [value, setValue] = useState<number>(defaultHsv.v);
 
   const [hex, setHex] = useState<string>(hsvToHex(hue, saturation, value));
+
+  const { toast } = useToast();
 
   useEffect(() => {
     setHex(hsvToHex(hue, saturation, value));
@@ -126,10 +132,20 @@ export const ColorPicker: FC<ColorPickerProps> = ({
         2,
   };
 
+  const copyHexToClipboard = () => {
+    navigator.clipboard.writeText(hex);
+    toast({
+      icon: "clipboard",
+      title: "Clipboard",
+      description: "Color has been copied!",
+      type: "success",
+    });
+  };
+
   return (
     <div className="flex w-full flex-col gap-6">
       <h1 className="text-xl font-bold">Pick a color</h1>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col">
         <div
           className="flex h-5 w-full cursor-pointer items-center"
           ref={hueBarRef}
@@ -166,7 +182,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({
         </div>
         <div
           ref={saturationAndValueAreaRef}
-          className="relative h-64 w-full overflow-visible"
+          className="relative mt-4 h-64 w-full overflow-visible"
           style={{ background: `hsl(${hue} 100% 50%)` }}
           onPointerDown={(event) => {
             saturationAndValueSliderControls.start(event, {
@@ -207,8 +223,29 @@ export const ColorPicker: FC<ColorPickerProps> = ({
             dragElastic={0}
           />
         </div>
+        <div className="mt-4 flex flex-row gap-2">
+          <div className="flex w-14" style={{ background: hex }} />
+          <Input
+            value={hex}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setHex(e.target.value)
+            }
+            readOnly
+          />
+          <div
+            className="flex w-14 cursor-pointer items-center justify-center bg-gray-200 p-2 dark:bg-gray-800"
+            onClick={copyHexToClipboard}
+          >
+            <FontAwesomeIcon icon="copy" />
+          </div>
+        </div>
       </div>
-      <Button icon="palette" hoverIcon="check" onClick={() => onConfirm(hex)}>
+      <Button
+        icon="check"
+        isDisabled={!RegExp(Constant.Regex.Hex).test(hex)}
+        hoverIcon="palette"
+        onClick={() => onConfirm(hex)}
+      >
         Pick
       </Button>
     </div>

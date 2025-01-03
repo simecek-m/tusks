@@ -65,16 +65,17 @@ export const CreateTagModal = ({ isOpen, onClose }: ModalState) => {
         reset();
       }}
     >
-      <h1 className="text-lg font-black">Create tag</h1>
+      <h1 className="text-lg font-black">New tag</h1>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(submit)}
           className="mt-4 flex flex-col gap-2"
         >
           <Input label="label" {...register("label")} error={errors?.label} />
+          <div className="text-sm">color</div>
           <div className="flex flex-row gap-3">
-            <ColorInput label="light" type="light" name="color.light" />
-            <ColorInput label="dark" type="dark" name="color.dark" />
+            <ColorInput type="light" name="color.light" />
+            <ColorInput type="dark" name="color.dark" />
           </div>
           <Button
             icon="tag"

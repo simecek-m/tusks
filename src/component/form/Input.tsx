@@ -13,14 +13,16 @@ export const Input = forwardRef(
     ref: LegacyRef<HTMLInputElement>
   ) => {
     return (
-      <label className="mt-2 flex w-full cursor-text flex-col gap-1">
-        <span
-          className={cn("text-sm", {
-            "font-bold text-red-500 dark:text-red-300": !!error,
-          })}
-        >
-          {error?.message ?? label}
-        </span>
+      <label className="flex w-full cursor-text flex-col gap-1">
+        {!!label && (
+          <span
+            className={cn("text-sm", {
+              "font-bold text-red-500 dark:text-red-300": !!error,
+            })}
+          >
+            {error?.message ?? label}
+          </span>
+        )}
         <span
           className={cn(
             "flex flex-row bg-gray-200 px-5 py-2 font-medium focus-within:outline dark:bg-gray-800",
