@@ -23,6 +23,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isSubmitting?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   className?: string;
+  onHoverStart?: () => void;
+  onHoverEnd?: () => void;
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -35,6 +37,8 @@ export const Button: FC<ButtonProps> = ({
   hoverIcon,
   className,
   children,
+  onHoverStart,
+  onHoverEnd,
 }) => {
   return (
     <motion.button
@@ -44,6 +48,8 @@ export const Button: FC<ButtonProps> = ({
       }}
       type={type}
       disabled={isDisabled || isSubmitting}
+      onHoverStart={onHoverStart}
+      onHoverEnd={onHoverEnd}
       whileHover="hover"
       className={clsx(
         BASE_BUTTON_STYLE,
