@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 import { useTheme } from "provider/ThemeProvider";
 import { FC } from "react";
-import { IColor, ITag } from "type";
-import { motion } from "framer-motion";
+import { ITag, ThemedColor } from "type";
 
 interface TagProps {
   id: string;
   label: string;
-  color: IColor;
+  color: ThemedColor;
   owner: string;
   onDelete: (tag: ITag) => void;
 }

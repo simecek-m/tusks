@@ -1,4 +1,4 @@
-import { IColor, INewTag, IProfile } from "type";
+import { ThemedColor, INewTag, IProfile } from "type";
 import * as yup from "yup";
 
 export const PROFILE_SCHEMA: yup.SchemaOf<IProfile> = yup.object({
@@ -15,7 +15,7 @@ export const PROFILE_SCHEMA: yup.SchemaOf<IProfile> = yup.object({
     .transform((value) => `@${value}`),
 });
 
-export const COLOR_SCHEMA: yup.SchemaOf<IColor> = yup.object({
+export const COLOR_SCHEMA: yup.SchemaOf<ThemedColor> = yup.object({
   dark: yup.string().required(),
   light: yup.string().required(),
 });
