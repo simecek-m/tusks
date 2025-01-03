@@ -1,7 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import clsx from "clsx";
 import { motion } from "framer-motion";
+import { cn } from "helper/style";
 import { ToastType } from "provider/ToastProvider";
 import { FC } from "react";
 
@@ -31,7 +31,7 @@ export const Toast: FC<ToastProps> = ({
       animate={{ x: 0, opacity: 1 }}
       className="flex w-fit flex-row gap-2 bg-white px-4 py-2 shadow-md dark:bg-gray-900"
     >
-      <span className={clsx("mr-2 flex items-center", TypeVariant[type])}>
+      <span className={cn("mr-2 flex items-center", TypeVariant[type])}>
         <FontAwesomeIcon icon={icon} className="text-2xl" />
       </span>
       <div className="flex flex-col">

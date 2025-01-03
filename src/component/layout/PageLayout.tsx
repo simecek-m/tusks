@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { Topbar } from "component/layout/topbar/TopBar";
+import { cn } from "helper/style";
 import { FC, PropsWithChildren } from "react";
 
 interface PageLayoutProps extends PropsWithChildren {
@@ -9,7 +9,7 @@ interface PageLayoutProps extends PropsWithChildren {
 export const PageLayout: FC<PageLayoutProps> = ({ children, className }) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         className,
         "flex h-screen w-screen flex-col overflow-hidden"
       )}

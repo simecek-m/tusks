@@ -1,7 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import clsx from "clsx";
 import { ButtonIcon } from "component/button/ButtonIcon";
 import { motion } from "framer-motion";
+import { cn } from "helper/style";
 import { ButtonHTMLAttributes, FC } from "react";
 import { ActionType } from "type";
 
@@ -51,7 +51,7 @@ export const Button: FC<ButtonProps> = ({
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
       whileHover="hover"
-      className={clsx(
+      className={cn(
         BASE_BUTTON_STYLE,
         { "cursor-wait": isSubmitting },
         { "cursor-not-allowed opacity-60": isDisabled },
@@ -66,7 +66,7 @@ export const Button: FC<ButtonProps> = ({
         isSubmitting={isSubmitting}
       />
       <span
-        className={clsx({
+        className={cn({
           "font-normal italic": !!isSubmitting && !isDisabled,
         })}
       >

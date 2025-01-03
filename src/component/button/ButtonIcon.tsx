@@ -1,8 +1,8 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import clsx from "clsx";
 import { FC } from "react";
 import { motion } from "framer-motion";
+import { cn } from "helper/style";
 
 interface ButtonIconProps {
   icon: IconProp;
@@ -25,7 +25,7 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
         initial={{ scale: 1 }}
         variants={isActive ? { hover: { scale: 0 } } : {}}
         icon={isDisabled ? "xmark" : isSubmitting ? "circle-notch" : icon}
-        className={clsx({
+        className={cn({
           "animate-spin": !!isSubmitting && !isDisabled,
         })}
       />

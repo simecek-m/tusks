@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "helper/style";
 import { FC, PropsWithChildren } from "react";
 
 interface PageContentProps extends PropsWithChildren {
@@ -8,7 +8,7 @@ interface PageContentProps extends PropsWithChildren {
 export const PageContent: FC<PageContentProps> = ({ children, className }) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         "flex w-full grow flex-col overflow-auto p-4 md:p-8",
         className
       )}

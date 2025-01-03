@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "helper/style";
 import { forwardRef, HTMLProps, LegacyRef } from "react";
 import { FieldError } from "react-hook-form";
 
@@ -15,14 +15,14 @@ export const Input = forwardRef(
     return (
       <label className="mt-2 flex w-full cursor-text flex-col gap-1">
         <span
-          className={clsx("text-sm", {
+          className={cn("text-sm", {
             "font-bold text-red-500 dark:text-red-300": !!error,
           })}
         >
           {error?.message ?? label}
         </span>
         <span
-          className={clsx(
+          className={cn(
             "flex flex-row bg-gray-200 px-5 py-2 font-medium focus-within:outline dark:bg-gray-800",
             { "border-4 border-red-500 dark:border-red-300": !!error }
           )}

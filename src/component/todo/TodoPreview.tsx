@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import clsx from "clsx";
+import { cn } from "helper/style";
 import { FC } from "react";
 
 interface TodoProps {
@@ -26,7 +26,7 @@ export const TodoPreview: FC<TodoProps> = ({
       ) : (
         <FontAwesomeIcon icon={["far", "circle"]} />
       )}
-      <span className={clsx("ml-2", { "line-through": isCompleted })}>
+      <span className={cn("ml-2", { "line-through": isCompleted })}>
         {label}
       </span>
     </span>
