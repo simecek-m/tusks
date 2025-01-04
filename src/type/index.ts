@@ -47,10 +47,14 @@ export type ModalState = {
   onClose: () => void;
 };
 
-export type Team = {
+export type NewTeam = {
   name: string;
   description: string;
-  icon: IconProp;
+  icon: string;
+  color: ThemedColor;
+};
+
+export type Team = NewTeam & {
   members: Array<TeamMember>;
 };
 

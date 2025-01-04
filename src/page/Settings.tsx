@@ -5,6 +5,7 @@ import { ProfileCard } from "component/card/ProfileCard";
 import { Tag } from "component/common/Tag";
 import { PageLayout } from "component/layout/PageLayout";
 import { CreateTagModal } from "component/modal/CreateTagModal";
+import { CreateTeamModal } from "component/modal/CreateTeamModal";
 import { DeleteTagModal } from "component/modal/DeleteTagModal";
 import { TAGS_QUERY_KEY, TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
@@ -27,6 +28,12 @@ export const Settings: FC = () => {
     isOpen: isCreateTagModalOpen,
     onClose: onCreateTagModalClose,
     onOpen: onCreateTagModalOpen,
+  } = useModal();
+
+  const {
+    isOpen: isCreateTeamModalOpen,
+    onClose: onCreateTeamModalClose,
+    onOpen: onCreateTeamModalOpen,
   } = useModal();
 
   const {
@@ -89,7 +96,7 @@ export const Settings: FC = () => {
               hoverIcon="people-group"
               className="w-fit gap-4"
               onClick={() => {
-                onCreateTagModalOpen();
+                onCreateTeamModalOpen();
               }}
             >
               create team
@@ -117,6 +124,12 @@ export const Settings: FC = () => {
         <CreateTagModal
           isOpen={isCreateTagModalOpen}
           onClose={onCreateTagModalClose}
+        />
+      )}
+      {isCreateTeamModalOpen && (
+        <CreateTeamModal
+          isOpen={isCreateTeamModalOpen}
+          onClose={onCreateTeamModalClose}
         />
       )}
     </PageLayout>
