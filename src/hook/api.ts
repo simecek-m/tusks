@@ -1,15 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import axios, { AxiosInstance } from "axios";
-import { MY_PROFILE_ENDPOINT, PROFILES_ENDPOINT } from "constant/endpoints";
-import { IProfile } from "type";
+import {
+  MY_PROFILE_ENDPOINT,
+  PROFILES_ENDPOINT,
+  TAGS_ENDPOINT,
+  TEAMS_ENDPOINT,
+} from "constant/endpoints";
+import { INewTag, IProfile, ITag, NewTeam, Team } from "type";
 
-interface TusksApiFunctions {
-  fetchMyProfile: () => Promise<IProfile>;
-  postRegistration: (profile: IProfile) => Promise<IProfile>;
-  deactivateProfile: () => Promise<IProfile>;
-}
-
-const useTusksApi = (): TusksApiFunctions => {
+export const useTusksApi = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   const client: AxiosInstance = axios.create({
@@ -38,11 +37,34 @@ const useTusksApi = (): TusksApiFunctions => {
     return client.delete<never, IProfile>(MY_PROFILE_ENDPOINT);
   };
 
+  const fetchAllTags = (): Promise<Array<ITag>> => {
+    return client.get<never, Array<ITag>>(TAGS_ENDPOINT);
+  };
+
+  const createNewTag = (tag: INewTag): Promise<ITag> => {
+    return client.post<never, ITag>(TAGS_ENDPOINT, tag);
+  };
+
+  const deleteTag = (id: string): Promise<ITag> => {
+    return client.delete<never, ITag>(`${TAGS_ENDPOINT}/${id}`);
+  };
+
+  const fetchAllMyTeams = (): Promise<Array<Team>> => {
+    return client.get<never, Array<Team>>(TEAMS_ENDPOINT);
+  };
+
+  const createNewTeam = (team: NewTeam): Promise<Team> => {
+    return client.post<never, Team>(TEAMS_ENDPOINT, team);
+  };
+
   return {
     fetchMyProfile,
     postRegistration,
     deactivateProfile,
+    fetchAllTags,
+    createNewTag,
+    deleteTag,
+    fetchAllMyTeams,
+    createNewTeam,
   };
 };
-
-export default useTusksApi;

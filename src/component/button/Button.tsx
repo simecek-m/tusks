@@ -1,14 +1,18 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import clsx from "clsx";
-import ButtonIcon from "component/button/ButtonIcon";
+import { ButtonIcon } from "component/button/ButtonIcon";
+import { motion } from "framer-motion";
+import { cn } from "helper/style";
 import { ButtonHTMLAttributes, FC } from "react";
 import { ActionType } from "type";
-import { motion } from "framer-motion";
+
+const BASE_BUTTON_STYLE =
+  "rounded-xl lowercase bg-transparent hover:text-white dark:hover:text-black flex shrink-0 flex-row items-center justify-center gap-2 overflow-hidden border-4 py-2 px-5 font-bold transition duration-300";
 
 const ButtonVariants: Record<ActionType, string> = {
   primary:
-    "bg-primary-700 hover:bg-primary-800 dark:bg-primary-400 dark:hover:bg-primary-500",
-  error: "bg-red-600 hover:bg-red-700 dark:bg-red-400 dark:hover:bg-red-500",
+    "text-brand-light dark:text-brand-dark border-brand-light dark:border-brand-dark hover:bg-brand-light dark:hover:bg-brand-dark hover:dark:text-black",
+  error:
+    "text-error-light dark:text-error-dark border-error-light dark:border-error-dark hover:bg-error-light dark:hover:bg-error-dark",
 };
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,10 +21,13 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ActionType;
   isDisabled?: boolean;
   isSubmitting?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className?: string;
+  onHoverStart?: () => void;
+  onHoverEnd?: () => void;
 }
 
-const Button: FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   onClick,
   type = "button",
   isDisabled = false,
@@ -28,19 +35,28 @@ const Button: FC<ButtonProps> = ({
   icon,
   variant = "primary",
   hoverIcon,
+  className,
   children,
+  onHoverStart,
+  onHoverEnd,
 }) => {
   return (
     <motion.button
-      onClick={onClick}
+      onClick={(e) => {
+        onClick && onClick(e);
+        e.stopPropagation();
+      }}
       type={type}
       disabled={isDisabled || isSubmitting}
+      onHoverStart={onHoverStart}
+      onHoverEnd={onHoverEnd}
       whileHover="hover"
-      className={clsx(
-        "flex w-full shrink-0 flex-row items-center justify-center gap-2 overflow-hidden rounded-full py-2 pl-2 pr-5 font-bold text-slate-100 transition duration-300 dark:text-slate-900 sm:w-fit",
+      className={cn(
+        BASE_BUTTON_STYLE,
         { "cursor-wait": isSubmitting },
         { "cursor-not-allowed opacity-60": isDisabled },
-        ButtonVariants[variant]
+        ButtonVariants[variant],
+        className
       )}
     >
       <ButtonIcon
@@ -50,7 +66,7 @@ const Button: FC<ButtonProps> = ({
         isSubmitting={isSubmitting}
       />
       <span
-        className={clsx("capitalize", {
+        className={cn({
           "font-normal italic": !!isSubmitting && !isDisabled,
         })}
       >
@@ -59,5 +75,3 @@ const Button: FC<ButtonProps> = ({
     </motion.button>
   );
 };
-
-export default Button;

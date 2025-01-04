@@ -1,16 +1,15 @@
-import PageLayout from "component/layout/PageLayout";
-import Title from "component/Title";
+import { Title } from "component/common/Title";
+import { PageContent } from "component/layout/PageContent";
+import { PageLayout } from "component/layout/PageLayout";
 import { FC } from "react";
 
-const Dashboard: FC = () => {
+export const Dashboard: FC = () => {
   return (
     <PageLayout>
-      <div className="flex h-screen flex-col items-center justify-center gap-2 p-4">
+      <PageContent>
         <Title>Dashboard</Title>
         <p>user statistics</p>
-      </div>
+      </PageContent>
     </PageLayout>
   );
 };
-
-export default Dashboard;

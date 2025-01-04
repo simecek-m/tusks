@@ -8,16 +8,18 @@ interface MenuListItemProps {
   onClick: () => void;
 }
 
-const MenuListItem: FC<MenuListItemProps> = ({ icon, children, onClick }) => {
+export const MenuListItem: FC<MenuListItemProps> = ({
+  icon,
+  children,
+  onClick,
+}) => {
   return (
     <button
       onClick={onClick}
-      className="flex w-full cursor-pointer flex-row items-center gap-2 rounded-full px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800"
+      className="flex w-full cursor-pointer flex-row items-center gap-2 rounded-full px-3 py-2 hover:bg-background-light dark:hover:bg-background-dark"
     >
       <FontAwesomeIcon icon={icon} fixedWidth />
       <span className="whitespace-nowrap">{children}</span>
     </button>
   );
 };
-
-export default MenuListItem;

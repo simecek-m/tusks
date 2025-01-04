@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
-import useTusksApi from "hook/api";
-import AuthenticationError from "page/AuthenticationError";
-import Loading from "page/Loading";
-import Registration from "page/Registration";
+import { useTusksApi } from "hook/api";
+import { AuthenticationError } from "page/AuthenticationError";
+import { Loading } from "page/Loading";
+import { Registration } from "page/Registration";
 import { createContext, ReactElement, useContext, useState } from "react";
 import { IProfile, IUserProfileContext } from "type";
 
@@ -21,7 +21,7 @@ export const useUserProfile = (): IUserProfileContext => {
   return useContext(UserProfileContext);
 };
 
-const UserProfileProvider = ({
+export const UserProfileProvider = ({
   children,
 }: UserProfileProviderProps): ReactElement => {
   const { fetchMyProfile } = useTusksApi();
@@ -54,5 +54,3 @@ const UserProfileProvider = ({
     </UserProfileContext.Provider>
   );
 };
-
-export default UserProfileProvider;

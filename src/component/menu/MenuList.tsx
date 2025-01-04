@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "helper/style";
 import { FC } from "react";
 
 interface MenuListProps {
@@ -6,11 +6,11 @@ interface MenuListProps {
   children?: React.ReactNode;
 }
 
-const MenuList: FC<MenuListProps> = ({ visible, children }) => {
+export const MenuList: FC<MenuListProps> = ({ visible, children }) => {
   return (
     <div
-      className={clsx(
-        "absolute top-full right-0 z-10 mt-3 flex-col gap-1 rounded-3xl bg-white p-1 shadow-lg transition duration-300 dark:bg-slate-700",
+      className={cn(
+        "absolute top-full right-0 z-10 mt-4 flex-col gap-1 rounded-3xl bg-surface-light p-1 shadow-lg transition duration-300 dark:bg-surface-dark md:mt-3",
         {
           hidden: !visible,
         }
@@ -20,5 +20,3 @@ const MenuList: FC<MenuListProps> = ({ visible, children }) => {
     </div>
   );
 };
-
-export default MenuList;

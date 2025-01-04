@@ -1,13 +1,21 @@
-import ControlWidget from "component/layout/widget/ControlWidget";
+import { Topbar } from "component/layout/topbar/TopBar";
+import { cn } from "helper/style";
 import { FC, PropsWithChildren } from "react";
 
-const PageLayout: FC<PropsWithChildren> = ({ children }) => {
+interface PageLayoutProps extends PropsWithChildren {
+  className?: string;
+}
+
+export const PageLayout: FC<PageLayoutProps> = ({ children, className }) => {
   return (
-    <div>
-      <ControlWidget />
+    <div
+      className={cn(
+        className,
+        "flex h-screen w-screen flex-col overflow-hidden"
+      )}
+    >
+      <Topbar />
       {children}
     </div>
   );
 };
-
-export default PageLayout;

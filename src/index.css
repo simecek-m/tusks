@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poetsen+One&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +9,6 @@ body {
   font-family: 'Sora', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scrollbar-color: theme("colors.gray.400") transparent;
 }
 
 /* global scrollbars */
@@ -18,9 +17,13 @@ body {
   width: 10px;
 }
 
-*:hover::-webkit-scrollbar-thumb {
+html *:hover::-webkit-scrollbar-thumb {
   background: theme("colors.gray.400");
   border-radius: 10px;
+}
+
+html.dark *:hover::-webkit-scrollbar-thumb {
+  background: theme("colors.gray.600");
 }
 
 *::-webkit-scrollbar-thumb {
@@ -42,6 +45,6 @@ code {
 
 @layer base {
   body {
-    @apply text-slate-800 bg-slate-100 dark:text-slate-200 dark:bg-slate-800;
+    @apply text-slate-800 bg-background-light dark:text-slate-200 dark:bg-background-dark;
   }
 }

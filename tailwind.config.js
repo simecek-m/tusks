@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["Coiny", "cursive"],
+        heading: ["Poetsen One", "cursive"],
       },
       colors: {
         primary: {
@@ -19,6 +19,27 @@ module.exports = {
           700: "#0b715f",
           800: "#0c594c",
           900: "#0b4940",
+        },
+        brand: {
+          light: "#7a34eb",
+          dark: "#AD7CFC",
+        },
+        surface: {
+          light: "#FFFFFF",
+          dark: "#141414",
+        },
+        background: {
+          light: "#F1F1F1",
+          dark: "#000000",
+        },
+        error: {
+          light: "#D84747",
+          dark: "#FF6262",
+        },
+        gray: {
+          700: "#4f4f4f",
+          800: "#2e2e2e",
+          900: "#171717",
         },
       },
       borderRadius: {

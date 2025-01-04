@@ -12,13 +12,14 @@ import {
 export type UserThemePreference = "light" | "dark" | "system";
 export type SystemTheme = "light" | "dark";
 
-type ThemeState = {
+type ThemeSettings = {
   userPreference: UserThemePreference;
   system: SystemTheme;
 };
 
 interface IThemeContext {
-  theme: ThemeState;
+  theme: SystemTheme;
+  themeSettings: ThemeSettings;
   setThemePreference: (preference: UserThemePreference) => void;
 }
 
@@ -39,12 +40,15 @@ export type ThemeAction =
   | { type: "change_user_preference"; userPreference: UserThemePreference }
   | { type: "change_system_theme"; system: SystemTheme };
 
-const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
+export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const getSystemTheme = (): SystemTheme => {
     return window.matchMedia(DARK_MODE_MEDIA_QUERY).matches ? "dark" : "light";
   };
 
-  const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
+  const themeReducer = (
+    state: ThemeSettings,
+    action: ThemeAction
+  ): ThemeSettings => {
     switch (action.type) {
       case "change_user_preference": {
         localStorage.theme = action.userPreference;
@@ -62,13 +66,12 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
-  const [theme, dispatch] = useReducer<Reducer<ThemeState, ThemeAction>>(
-    themeReducer,
-    {
-      userPreference: localStorage.theme ?? "system",
-      system: getSystemTheme(),
-    }
-  );
+  const [themeSettings, dispatch] = useReducer<
+    Reducer<ThemeSettings, ThemeAction>
+  >(themeReducer, {
+    userPreference: localStorage.theme ?? "system",
+    system: getSystemTheme(),
+  });
 
   // listener to update system theme state when system theme was changed
   useEffect(() => {
@@ -86,21 +89,23 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
 
   // change document class [dark / light] when theme state was changed
   useEffect(() => {
-    document.documentElement.className =
-      theme.userPreference === "system" ? theme.system : theme.userPreference;
-  }, [theme]);
+    document.documentElement.className = theme;
+  }, [themeSettings]);
 
   const setThemePreference = (userPreference: UserThemePreference) => {
-    if (userPreference !== theme.userPreference) {
+    if (userPreference !== themeSettings.userPreference) {
       dispatch({ type: "change_user_preference", userPreference });
     }
   };
 
+  const theme: SystemTheme =
+    themeSettings.userPreference === "system"
+      ? themeSettings.system
+      : themeSettings.userPreference;
+
   return (
-    <ThemeContext.Provider value={{ theme, setThemePreference }}>
+    <ThemeContext.Provider value={{ theme, themeSettings, setThemePreference }}>
       {children}
     </ThemeContext.Provider>
   );
 };
-
-export default ThemeProvider;
