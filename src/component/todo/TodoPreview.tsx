@@ -26,7 +26,7 @@ export const TodoPreview: FC<TodoProps> = ({
       ) : (
         <FontAwesomeIcon icon={["far", "circle"]} />
       )}
-      <span className={cn("ml-2", { "line-through": isCompleted })}>
+      <span className={cn("ml-2", { "line-through opacity-50": isCompleted })}>
         {label}
       </span>
     </span>

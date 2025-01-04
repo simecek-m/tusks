@@ -2,11 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { Button } from "component/button/Button";
 import { ProfileCard } from "component/card/ProfileCard";
+import { TeamCard } from "component/card/TeamCard";
 import { Tag } from "component/common/Tag";
 import { PageLayout } from "component/layout/PageLayout";
 import { CreateTagModal } from "component/modal/CreateTagModal";
 import { CreateTeamModal } from "component/modal/CreateTeamModal";
 import { DeleteTagModal } from "component/modal/DeleteTagModal";
+import { IconType } from "constant/icons";
 import { TAGS_QUERY_KEY, TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useModal } from "hook/modal";
@@ -56,17 +58,19 @@ export const Settings: FC = () => {
         </div>
         <div className="flex h-fit w-full flex-col gap-12 p-12 md:h-full">
           <div className="flex w-full flex-col gap-4">
-            <div className="text-xl font-bold">Tags</div>
-            <Button
-              icon="add"
-              hoverIcon="tag"
-              className="w-fit"
-              onClick={() => {
-                onCreateTagModalOpen();
-              }}
-            >
-              add tag
-            </Button>
+            <div className="flex w-full flex-row items-center justify-between">
+              <div className="text-2xl font-bold">Tags</div>
+              <Button
+                icon="add"
+                hoverIcon="tag"
+                className="w-fit text-xs md:mr-44"
+                onClick={() => {
+                  onCreateTagModalOpen();
+                }}
+              >
+                new tag
+              </Button>
+            </div>
             {tagsLoading && <div>tags are loading...</div>}
             {tagsError && <div>Error while loading tags!</div>}
             {tags && tags?.length > 0 ? (
@@ -90,22 +94,35 @@ export const Settings: FC = () => {
             )}
           </div>
           <div className="flex w-full flex-col gap-4">
-            <div className="text-xl font-bold">Teams</div>
-            <Button
-              icon="add"
-              hoverIcon="people-group"
-              className="w-fit gap-4"
-              onClick={() => {
-                onCreateTeamModalOpen();
-              }}
-            >
-              create team
-            </Button>
+            <div className="flex w-full flex-row items-center justify-between">
+              <div className="text-2xl font-bold">Teams</div>
+              <Button
+                icon="add"
+                hoverIcon="people-group"
+                className="w-fit gap-3 text-xs md:mr-44"
+                onClick={() => {
+                  onCreateTeamModalOpen();
+                }}
+              >
+                new team
+              </Button>
+            </div>
             {teamsLoading && <div>your teams are loading...</div>}
             {teamsError && <div>Error while loading teams!</div>}
             <div>
               {teams && teams?.length > 0 ? (
-                <div>{teams.length}</div>
+                <div className="flex flex-row flex-wrap items-start gap-2">
+                  {teams.map((team, index) => (
+                    <TeamCard
+                      key={index}
+                      name={team.name}
+                      description={team.description}
+                      color={team.color}
+                      icon={team.icon as IconType}
+                      members={team.members}
+                    />
+                  ))}
+                </div>
               ) : (
                 <div>no teams you are member of found!</div>
               )}

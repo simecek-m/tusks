@@ -15,7 +15,7 @@ interface IconInputProps {
 export const IconInput = ({ name, defaultIcon = "icons" }: IconInputProps) => {
   const { isOpen, onOpen, onClose } = useModal();
   const [icon, setIcon] = useState<IconType>(defaultIcon);
-  const { register } = useFormContext();
+  const { register, setValue } = useFormContext();
 
   return (
     <div className="w-fit">
@@ -37,6 +37,7 @@ export const IconInput = ({ name, defaultIcon = "icons" }: IconInputProps) => {
           <IconPicker
             onPick={(icon) => {
               setIcon(icon);
+              setValue(name, icon);
               onClose();
             }}
             defaultIcon={icon}

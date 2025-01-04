@@ -15,7 +15,7 @@ export const TodoListPreview: FC<TodoListPreviewProps> = ({
 }) => {
   const [state, setState] = useState<Array<Todo>>(todos);
   return (
-    <div className="relative flex w-full min-w-[300px] flex-col gap-4 bg-surface-light p-8 drop-shadow-sm dark:bg-surface-dark">
+    <div className="relative flex w-full min-w-[300px] flex-col gap-4 rounded-xl bg-surface-light p-8 drop-shadow-sm dark:bg-surface-dark">
       <div className="text-3xl font-black">{title}</div>
       <div>
         {state.map(({ isCompleted, label }, index) => (
@@ -32,7 +32,7 @@ export const TodoListPreview: FC<TodoListPreviewProps> = ({
             }
           />
         ))}
-        <span className="absolute -right-2 -top-2 bg-brand-light px-2 py-1 text-sm text-white dark:bg-brand-dark dark:text-black">
+        <span className="absolute -right-2 -top-2 rounded-md bg-brand-light px-3 py-1 text-sm text-white dark:bg-brand-dark dark:text-black">
           #{tag}
         </span>
       </div>

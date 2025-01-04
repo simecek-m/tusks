@@ -22,10 +22,11 @@ export const ProfileCard: FC = () => {
           <div className="opacity-60">{profile.email}</div>
           <div>
             <motion.img
-              whileHover={{ rotate: 6, borderRadius: 20 }}
+              whileHover={{ rotate: 2, borderRadius: 100 }}
               src={profile.picture ?? AVATAR_IMG}
               alt="profile picture"
               className="my-6 aspect-square w-[200px] object-cover shadow-2xl"
+              style={{ borderRadius: 10 }}
             />
           </div>
           <div className="flex flex-row gap-2">
@@ -33,6 +34,7 @@ export const ProfileCard: FC = () => {
               icon="lock"
               hoverIcon="user-lock"
               variant="error"
+              className="gap-3"
               onClick={onOpen}
             >
               deactivate

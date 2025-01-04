@@ -6,7 +6,7 @@ import { ButtonHTMLAttributes, FC } from "react";
 import { ActionType } from "type";
 
 const BASE_BUTTON_STYLE =
-  "lowercase bg-transparent hover:text-white dark:hover:text-black flex shrink-0 flex-row items-center justify-center gap-2 overflow-hidden border-4 py-2 px-5 font-bold transition duration-300";
+  "rounded-xl lowercase bg-transparent hover:text-white dark:hover:text-black flex shrink-0 flex-row items-center justify-center gap-2 overflow-hidden border-4 py-2 px-5 font-bold transition duration-300";
 
 const ButtonVariants: Record<ActionType, string> = {
   primary:
