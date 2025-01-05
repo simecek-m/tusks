@@ -17,7 +17,7 @@ export const Home: FC = () => {
   return (
     <PageLayout>
       <PageContent>
-        <div className="flex h-full w-full flex-col items-center justify-around md:flex-row">
+        <div className="flex h-full w-full flex-col items-center justify-around gap-12 md:flex-row md:gap-0">
           <div className="flex w-full flex-col items-center justify-center gap-2">
             <Title>Tusks</Title>
             <p className="italic opacity-70">
