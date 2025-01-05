@@ -57,7 +57,7 @@ export const HuePicker: FC<HuePickerProps> = ({
 
   return (
     <div
-      className="flex h-5 w-full cursor-pointer items-center"
+      className="flex h-5 w-full cursor-pointer items-center rounded-lg"
       ref={hueBarRef}
       style={{
         background:
@@ -75,7 +75,7 @@ export const HuePicker: FC<HuePickerProps> = ({
       }}
     >
       <motion.div
-        className="h-7 w-5 border-4 border-black dark:border-white"
+        className="h-7 w-5 rounded-lg border-4 border-black dark:border-white"
         style={{
           background: `hsl(${hue} 100% 50%)`,
         }}

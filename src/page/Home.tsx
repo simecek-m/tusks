@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import Logo from "assets/img/logo.svg?react";
 import { Button } from "component/button/Button";
 import { Title } from "component/common/Title";
 import { PageContent } from "component/layout/PageContent";
@@ -7,6 +8,7 @@ import { TodoListPreview } from "component/todo/TodoListPreview";
 import { INDEX_PATH } from "constant/paths";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export const Home: FC = () => {
   const { loginWithPopup, isAuthenticated } = useAuth0();
@@ -17,11 +19,17 @@ export const Home: FC = () => {
       <PageContent>
         <div className="flex h-full w-full flex-col items-center justify-around md:flex-row">
           <div className="flex w-full flex-col items-center justify-center gap-2">
-            <Title>Hashtag</Title>
-            <p>organize your notes and never forget your great ideas again</p>
-            <span className="font-heading text-8xl text-brand-light dark:text-brand-dark">
-              #
-            </span>
+            <Title>Tusks</Title>
+            <p className="italic opacity-70">
+              Not everyone has an elephant&apos;s memory!
+            </p>
+            <motion.div
+              className="mt-4 bg-brand-light p-4 dark:bg-brand-dark"
+              style={{ borderRadius: 30 }}
+              whileHover={{ borderRadius: 100, rotate: 10 }}
+            >
+              <Logo className="w-56 fill-white dark:fill-black" />
+            </motion.div>
           </div>
           <div className="flex w-full justify-center">
             <div className="flex w-1/2 min-w-[300px] flex-col items-end gap-4">

@@ -30,7 +30,7 @@ export const ColorInput = ({ name, type = "light" }: ColorInputProps) => {
       />
       <div
         className={cn(
-          "flex h-14 w-14 cursor-pointer items-center justify-center text-black",
+          "flex h-14 w-14 cursor-pointer items-center justify-center rounded-lg text-black ",
           { "text-white": type === "light" }
         )}
         style={{ background: color }}

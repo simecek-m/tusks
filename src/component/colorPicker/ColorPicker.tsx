@@ -86,8 +86,12 @@ export const ColorPicker: FC<ColorPickerProps> = ({
           hexInputManuallyChanged={hexInputManuallyChanged}
         />
         <div className="mt-4 flex flex-row gap-2">
-          <div className="flex w-14" style={{ background: color.hex }} />
+          <div
+            className="flex w-14 rounded-lg"
+            style={{ background: color.hex }}
+          />
           <Input
+            className="rounded-lg"
             value={color.hex}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               const hex = e.target.value;
@@ -108,7 +112,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({
             }}
           />
           <div
-            className="flex w-14 cursor-pointer items-center justify-center bg-gray-200 p-2 dark:bg-gray-800"
+            className="flex w-14 cursor-pointer items-center justify-center rounded-lg bg-gray-200 p-2 dark:bg-gray-800"
             onClick={copyHexToClipboard}
           >
             <FontAwesomeIcon icon="copy" />
