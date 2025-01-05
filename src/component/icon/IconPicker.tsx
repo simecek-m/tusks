@@ -27,7 +27,7 @@ export const IconPicker: FC<IconPickerProps> = ({
         <div className="flex w-fit flex-row gap-2">
           <div
             className={cn(
-              "flex h-24 w-24 shrink-0 items-center justify-center bg-gray-200 p-4 transition-all duration-500 ease-in-out dark:bg-gray-800",
+              "flex h-24 w-24 shrink-0 items-center justify-center rounded-lg bg-gray-200 p-4 transition-all duration-500 ease-in-out dark:bg-gray-800",
               {
                 "bg-brand-light text-white dark:bg-brand-dark dark:text-black":
                   isConfirmHovered,
@@ -61,7 +61,7 @@ export const IconPicker: FC<IconPickerProps> = ({
             <motion.div
               key={index}
               whileHover={{ scale: 1.3 }}
-              className="flex h-8 w-8 cursor-pointer items-center justify-center bg-gray-200 p-6 dark:bg-gray-800"
+              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg bg-gray-200 p-6 dark:bg-gray-800"
               onClick={() => setIcon(iconName)}
             >
               <FontAwesomeIcon icon={iconName} />

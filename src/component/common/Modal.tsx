@@ -23,7 +23,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             exit={{ y: -100 }}
-            className="m-4 flex w-fit max-w-3xl flex-col bg-surface-light p-10 dark:bg-surface-dark"
+            className="m-4 flex w-fit max-w-3xl flex-col rounded-xl bg-surface-light p-10 dark:bg-surface-dark"
           >
             {children}
           </motion.div>
