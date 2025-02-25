@@ -13,10 +13,12 @@ import { TAGS_QUERY_KEY, TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useModal } from "hook/modal";
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ITag, Team } from "type";
 
 export const Settings: FC = () => {
   const { fetchAllTags, fetchAllMyTeams } = useTusksApi();
+  const navigate = useNavigate();
 
   const [selectedTag, setSelectedTag] = useState<ITag>();
 
@@ -120,6 +122,10 @@ export const Settings: FC = () => {
                       color={team.color}
                       icon={team.icon as IconType}
                       members={team.members}
+                      id={team.id}
+                      onClick={(id) => {
+                        navigate(`/teams/${id}`);
+                      }}
                     />
                   ))}
                 </div>
