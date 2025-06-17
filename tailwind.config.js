@@ -21,8 +21,8 @@ module.exports = {
           900: "#0b4940",
         },
         brand: {
-          light: "#098559",
-          dark: "#11d992",
+          light: "#6014B0",
+          dark: "#8882ff",
         },
         surface: {
           light: "#FFFFFF",
