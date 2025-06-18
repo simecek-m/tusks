@@ -57,7 +57,7 @@ export const TeamDetailPage = () => {
           </div>
         </div>
         <div>Members</div>
-        <div>
+        <div className="flex flex-col gap-2">
           {team.members.map((member) => (
             <div
               key={member.user.id}
