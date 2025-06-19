@@ -6,25 +6,29 @@ import { FC } from "react";
 import { TeamMember, ThemedColor } from "type";
 
 type TeamCardProps = {
+  id: string;
   name: string;
   description: string;
   icon: IconType;
   color: ThemedColor;
   members: Array<TeamMember>;
+  onClick: (id: string) => void;
 };
 
 export const TeamCard: FC<TeamCardProps> = ({
+  id,
   name,
   description,
   icon,
   color,
   members,
+  onClick,
 }) => {
   const { theme } = useTheme();
   const bg = theme === "dark" ? color.dark : color.light;
   return (
-    <Card>
-      <div className="flex w-96 flex-row gap-4 p-4">
+    <Card onClick={() => onClick(id)}>
+      <div className="flex w-96 cursor-pointer flex-row gap-4 p-4">
         <div
           className="flex h-10 w-10 items-center justify-center rounded-full text-white dark:text-black"
           style={{ backgroundColor: bg }}

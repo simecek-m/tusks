@@ -55,7 +55,20 @@ export type NewTeam = {
 };
 
 export type Team = NewTeam & {
+  id: string;
   members: Array<TeamMember>;
+};
+
+export type TeamDetail = {
+  name: string;
+  description: string;
+  icon: string;
+  color: ThemedColor;
+  members: Array<{
+    user: IProfile;
+    role: Role;
+    pending: boolean;
+  }>;
 };
 
 export type TeamMember = {

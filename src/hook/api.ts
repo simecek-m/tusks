@@ -6,7 +6,7 @@ import {
   TAGS_ENDPOINT,
   TEAMS_ENDPOINT,
 } from "constant/endpoints";
-import { INewTag, IProfile, ITag, NewTeam, Team } from "type";
+import { INewTag, IProfile, ITag, NewTeam, Team, TeamDetail } from "type";
 
 export const useTusksApi = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -57,6 +57,10 @@ export const useTusksApi = () => {
     return client.post<never, Team>(TEAMS_ENDPOINT, team);
   };
 
+  const fetchTeamById = (id: string): Promise<TeamDetail> => {
+    return client.get<never, TeamDetail>(`${TEAMS_ENDPOINT}/${id}`);
+  };
+
   return {
     fetchMyProfile,
     postRegistration,
@@ -66,5 +70,6 @@ export const useTusksApi = () => {
     deleteTag,
     fetchAllMyTeams,
     createNewTeam,
+    fetchTeamById,
   };
 };

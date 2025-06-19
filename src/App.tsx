@@ -8,12 +8,14 @@ import {
   HOME_PATH_NAME,
   INDEX_PATH_NAME,
   SETTINGS_PATH_NAME,
+  TEAM_DETAIL_PATH_NAME,
 } from "constant/paths";
 import { Dashboard } from "page/Dashboard";
 import { Home } from "page/Home";
 import { NotFound } from "page/NotFound";
 import { ProtectedRoute } from "page/ProtectedRoute";
 import { Settings } from "page/Settings";
+import { TeamDetailPage } from "page/TeamDetail";
 import { ThemeProvider } from "provider/ThemeProvider";
 import { ToastProvider } from "provider/ToastProvider";
 import { FC } from "react";
@@ -50,6 +52,10 @@ const App: FC = () => {
                 <Route path={INDEX_PATH_NAME} element={<ProtectedRoute />}>
                   <Route index element={<Dashboard />} />
                   <Route path={SETTINGS_PATH_NAME} element={<Settings />} />
+                  <Route
+                    path={TEAM_DETAIL_PATH_NAME}
+                    element={<TeamDetailPage />}
+                  />
                 </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>

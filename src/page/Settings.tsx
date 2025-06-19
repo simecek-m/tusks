@@ -13,10 +13,12 @@ import { TAGS_QUERY_KEY, TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useModal } from "hook/modal";
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ITag, Team } from "type";
 
 export const Settings: FC = () => {
   const { fetchAllTags, fetchAllMyTeams } = useTusksApi();
+  const navigate = useNavigate();
 
   const [selectedTag, setSelectedTag] = useState<ITag>();
 
@@ -58,8 +60,9 @@ export const Settings: FC = () => {
         </div>
         <div className="flex h-fit w-full flex-col gap-12 p-12 md:h-full">
           <div className="flex w-full flex-col gap-4">
-            <div className="flex w-full flex-row items-center justify-between">
+            <div className="flex flex-col">
               <div className="text-2xl font-bold">Tags</div>
+              <p>you can use tags to organize projects and pages</p>
               <Button
                 icon="add"
                 hoverIcon="tag"
@@ -67,8 +70,9 @@ export const Settings: FC = () => {
                 onClick={() => {
                   onCreateTagModalOpen();
                 }}
+                variant="primary"
               >
-                new tag
+                create tag
               </Button>
             </div>
             {tagsLoading && <div>tags are loading...</div>}
@@ -94,8 +98,9 @@ export const Settings: FC = () => {
             )}
           </div>
           <div className="flex w-full flex-col gap-4">
-            <div className="flex w-full flex-row items-center justify-between">
+            <div className="flex flex-col">
               <div className="text-2xl font-bold">Teams</div>
+              <p>teams for effective idea sharing</p>
               <Button
                 icon="add"
                 hoverIcon="people-group"
@@ -104,7 +109,7 @@ export const Settings: FC = () => {
                   onCreateTeamModalOpen();
                 }}
               >
-                new team
+                create team
               </Button>
             </div>
             {teamsLoading && <div>your teams are loading...</div>}
@@ -120,6 +125,10 @@ export const Settings: FC = () => {
                       color={team.color}
                       icon={team.icon as IconType}
                       members={team.members}
+                      id={team.id}
+                      onClick={(id) => {
+                        navigate(`/teams/${id}`);
+                      }}
                     />
                   ))}
                 </div>
