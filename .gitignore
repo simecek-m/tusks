@@ -18,3 +18,4 @@ yarn-error.log*
 !.env.test
 # Local Netlify folder
 .netlify
+/storybook-static

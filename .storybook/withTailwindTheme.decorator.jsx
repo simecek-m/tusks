@@ -5,8 +5,13 @@ export const withTailwindTheme = (Story, context) => {
 
   useEffect(() => {
     const htmlTag = document.documentElement;
-    htmlTag.classList =
-      theme === "dark" ? "dark bg-slate-800" : "light bg-slate-200";
+    htmlTag.classList.remove("dark", "light", "bg-slate-800", "bg-slate-200");
+
+    if (theme === "dark") {
+      htmlTag.classList.add("dark", "bg-slate-800");
+    } else {
+      htmlTag.classList.add("light", "bg-slate-200");
+    }
   }, [theme]);
 
   return <Story />;
