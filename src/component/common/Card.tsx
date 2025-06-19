@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from "react";
 
 interface CardProps extends PropsWithChildren {
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const Card: FC<CardProps> = ({ children, className, onClick }) => {
