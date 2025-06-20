@@ -12,7 +12,7 @@ export const Card: FC<CardProps> = ({ children, className, onClick }) => {
       onClick={onClick}
       className={cn(
         className,
-        "w-fit rounded-xl bg-white shadow-lg dark:bg-gray-900"
+        "w-fit rounded-xl bg-white shadow-lg dark:bg-gray-900",
       )}
     >
       {children}
