@@ -35,7 +35,7 @@ export const Input = forwardRef(
           <input
             ref={ref}
             {...rest}
-            className="w-full bg-transparent outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full bg-transparent outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
           />
         </span>
       </label>

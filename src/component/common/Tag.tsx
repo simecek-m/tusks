@@ -21,7 +21,7 @@ export const Tag: FC<TagProps> = ({ id, label, color, owner, onDelete }) => {
 
   return (
     <motion.div
-      className="flex w-fit select-none flex-row items-center justify-center gap-2 rounded-full bg-white px-3 py-2 text-black shadow-md dark:bg-gray-900 dark:text-white"
+      className="flex w-fit flex-row items-center justify-center gap-2 rounded-full bg-white px-3 py-2 text-black shadow-md select-none dark:bg-gray-900 dark:text-white"
       whileHover="hover"
     >
       <span style={bg} className="h-5 w-5 rounded-full" />

@@ -95,8 +95,8 @@ export const SaturationAndValuePicker: FC<SaturationAndValuePickerProps> = ({
         removeEventListener("pointermove", saturationAndVaulueChangeListener);
       }}
     >
-      <div className="absolute h-full w-full rounded-lg bg-gradient-to-r from-white to-transparent" />
-      <div className="absolute h-full w-full rounded-lg bg-gradient-to-t from-black to-transparent" />
+      <div className="absolute h-full w-full rounded-lg bg-linear-to-r from-white to-transparent" />
+      <div className="absolute h-full w-full rounded-lg bg-linear-to-t from-black to-transparent" />
       <motion.div
         className="h-7 w-7 rounded-full border-4 border-black dark:border-white"
         style={{

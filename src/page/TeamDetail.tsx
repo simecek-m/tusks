@@ -61,7 +61,7 @@ export const TeamDetailPage = () => {
           {team.members.map((member) => (
             <div
               key={member.user.id}
-              className="flex w-fit flex-row items-center gap-4 rounded-xl bg-white py-4 pl-4 pr-8 dark:bg-gray-900"
+              className="flex w-fit flex-row items-center gap-4 rounded-xl bg-white py-4 pr-8 pl-4 dark:bg-gray-900"
             >
               <img
                 src={member.user.picture}

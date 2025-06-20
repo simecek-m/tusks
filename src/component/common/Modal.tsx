@@ -16,14 +16,14 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute top-0 left-0 z-40 flex h-screen w-screen items-center justify-center bg-black bg-opacity-80"
+          className="absolute top-0 left-0 z-40 flex h-screen w-screen items-center justify-center bg-black/80"
         >
           <motion.div
             ref={modalBodyRef}
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             exit={{ y: -100 }}
-            className="m-4 flex w-fit max-w-3xl flex-col rounded-xl bg-surface-light p-10 dark:bg-surface-dark"
+            className="bg-surface-light dark:bg-surface-dark m-4 flex w-fit max-w-3xl flex-col rounded-xl p-10"
           >
             {children}
           </motion.div>

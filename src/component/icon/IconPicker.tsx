@@ -29,7 +29,7 @@ export const IconPicker: FC<IconPickerProps> = ({
             className={cn(
               "flex h-24 w-24 shrink-0 items-center justify-center rounded-lg bg-gray-200 p-4 transition-all duration-500 ease-in-out dark:bg-gray-800",
               {
-                "bg-brand-light text-white dark:bg-brand-dark dark:text-black":
+                "bg-brand-light dark:bg-brand-dark text-white dark:text-black":
                   isConfirmHovered,
               },
             )}

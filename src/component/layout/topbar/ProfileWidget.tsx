@@ -28,7 +28,7 @@ export const ProfileWidget = () => {
     <>
       {profile && (
         <Menu items={profileMenuList}>
-          <div className="flex items-center justify-center hover:text-primary-600 dark:hover:text-primary-400">
+          <div className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center justify-center">
             <img src={profile?.picture} className="h-7 w-7 rounded-full" />
           </div>
         </Menu>

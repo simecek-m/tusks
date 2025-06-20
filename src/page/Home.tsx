@@ -24,7 +24,7 @@ export const Home: FC = () => {
               Not everyone has an elephant&apos;s memory!
             </p>
             <motion.div
-              className="mt-4 bg-brand-light p-4 dark:bg-brand-dark"
+              className="bg-brand-light dark:bg-brand-dark mt-4 p-4"
               style={{ borderRadius: 30 }}
               whileHover={{ borderRadius: 100, rotate: 10 }}
             >
