@@ -18,7 +18,7 @@ export const ProfileDeactivateModal: FC<ModalState> = ({ isOpen, onClose }) => {
 
   const { mutateAsync, isLoading } = useMutation<IProfile, AxiosError>(
     [PROFILES_ME_QUERY_KEY],
-    deactivateProfile
+    deactivateProfile,
   );
   const deactivate = (): Promise<IProfile> => {
     return mutateAsync(undefined, {

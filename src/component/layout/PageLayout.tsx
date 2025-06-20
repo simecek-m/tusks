@@ -11,7 +11,7 @@ export const PageLayout: FC<PageLayoutProps> = ({ children, className }) => {
     <div
       className={cn(
         className,
-        "flex h-screen w-screen flex-col overflow-hidden"
+        "flex h-screen w-screen flex-col overflow-hidden",
       )}
     >
       <Topbar />

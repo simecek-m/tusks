@@ -1,7 +1,7 @@
 import { MenuList } from "component/menu/MenuList";
 import { MenuListItem } from "component/menu/MenuListItem";
 import { useClickOutside } from "hook/clickOutside";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { IMenuListItem } from "type";
 
 interface MenuProps {

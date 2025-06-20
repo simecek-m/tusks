@@ -11,7 +11,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 export const Input = forwardRef(
   (
     { label, prefix, error, className, ...rest }: InputProps,
-    ref: LegacyRef<HTMLInputElement>
+    ref: LegacyRef<HTMLInputElement>,
   ) => {
     return (
       <label className="flex w-full cursor-text flex-col gap-1">
@@ -28,7 +28,7 @@ export const Input = forwardRef(
           className={cn(
             "flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline dark:bg-gray-800",
             { "border-4 border-red-500 dark:border-red-300": !!error },
-            className
+            className,
           )}
         >
           {!!prefix && <p>{prefix}</p>}
@@ -40,7 +40,7 @@ export const Input = forwardRef(
         </span>
       </label>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

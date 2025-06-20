@@ -22,7 +22,7 @@ export const TeamDetailPage = () => {
     isLoading: isTeamLoading,
     error: teamError,
   } = useQuery<TeamDetail, AxiosError>([TEAMS_QUERY_KEY, id], () =>
-    fetchTeamById(id ?? "")
+    fetchTeamById(id ?? ""),
   );
 
   if (isTeamLoading) return <Loading />;

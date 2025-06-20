@@ -23,7 +23,7 @@ export const IconInput = ({ name, defaultIcon = "icons" }: IconInputProps) => {
       <div>icon</div>
       <div
         className={cn(
-          "flex h-14 w-14 cursor-pointer items-center justify-center rounded-lg bg-gray-200 text-black dark:bg-gray-800 dark:text-white"
+          "flex h-14 w-14 cursor-pointer items-center justify-center rounded-lg bg-gray-200 text-black dark:bg-gray-800 dark:text-white",
         )}
         onClick={(e) => {
           e.stopPropagation();

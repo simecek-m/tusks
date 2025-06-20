@@ -28,7 +28,7 @@ export const ThemeSwitcher: FC = () => {
 
   const currentIcon: IconProp =
     themeVariants.find(
-      (variant) => variant.text === (themeSettings.userPreference as string)
+      (variant) => variant.text === (themeSettings.userPreference as string),
     )?.icon ?? themeVariants[2].icon;
 
   return (

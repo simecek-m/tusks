@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import type { Decorator } from "@storybook/react";
 
-export const withTailwindTheme = (Story, context) => {
-  const { theme } = context.globals;
+export const withTailwindTheme: Decorator = (Story, context) => {
+  const { theme } = context.globals as { theme: string };
 
   useEffect(() => {
     const htmlTag = document.documentElement;

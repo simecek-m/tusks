@@ -27,7 +27,7 @@ export const HuePicker: FC<HuePickerProps> = ({
     const x = calculateHueSliderPositionInPx(
       hueBarRef.current,
       hueSliderRef.current,
-      hue
+      hue,
     );
     setPositionX(x);
   }, [hueBarRef, hueSliderRef, hexInputManuallyChanged]);

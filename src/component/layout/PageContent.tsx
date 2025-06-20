@@ -10,7 +10,7 @@ export const PageContent: FC<PageContentProps> = ({ children, className }) => {
     <div
       className={cn(
         "flex w-full grow flex-col overflow-auto p-4 md:p-8",
-        className
+        className,
       )}
     >
       {children}

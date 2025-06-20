@@ -2,7 +2,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { ButtonIcon } from "component/button/ButtonIcon";
 import { motion } from "framer-motion";
 import { cn } from "helper/style";
-import { ButtonHTMLAttributes, FC } from "react";
+import React, { ButtonHTMLAttributes, FC } from "react";
 import { ActionType } from "type";
 
 const BASE_BUTTON_STYLE =
@@ -43,7 +43,9 @@ export const Button: FC<ButtonProps> = ({
   return (
     <motion.button
       onClick={(e) => {
-        onClick && onClick(e);
+        if (onClick) {
+          onClick(e);
+        }
         e.stopPropagation();
       }}
       type={type}
@@ -56,7 +58,7 @@ export const Button: FC<ButtonProps> = ({
         { "cursor-wait": isSubmitting },
         { "cursor-not-allowed opacity-60": isDisabled },
         ButtonVariants[variant],
-        className
+        className,
       )}
     >
       <ButtonIcon

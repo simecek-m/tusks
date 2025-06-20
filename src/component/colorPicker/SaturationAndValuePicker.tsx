@@ -35,7 +35,7 @@ export const SaturationAndValuePicker: FC<SaturationAndValuePickerProps> = ({
     if (area && slider) {
       const { saturation, value } = calculateSaturationAndValueFromElements(
         area,
-        slider
+        slider,
       );
       onSaturationChange(saturation);
       onValueChange(value);
@@ -72,7 +72,7 @@ export const SaturationAndValuePicker: FC<SaturationAndValuePickerProps> = ({
       saturation,
       value,
       saturationAndValueAreaRef.current,
-      saturationAndValueSliderRef.current
+      saturationAndValueSliderRef.current,
     );
     setPosition(result);
   }, [saturationAndValueAreaRef, hexInputManuallyChanged]);
@@ -80,7 +80,7 @@ export const SaturationAndValuePicker: FC<SaturationAndValuePickerProps> = ({
   return (
     <div
       ref={saturationAndValueAreaRef}
-      className="relative mt-6 h-64 w-full overflow-visible rounded-lg "
+      className="relative mt-6 h-64 w-full overflow-visible rounded-lg"
       style={{ background: `hsl(${hue} 100% 50%)` }}
       onPointerDown={(event) => {
         saturationAndValueSliderControls.start(event, {
@@ -96,7 +96,7 @@ export const SaturationAndValuePicker: FC<SaturationAndValuePickerProps> = ({
       }}
     >
       <div className="absolute h-full w-full rounded-lg bg-gradient-to-r from-white to-transparent" />
-      <div className="absolute h-full w-full rounded-lg bg-gradient-to-t from-black to-transparent " />
+      <div className="absolute h-full w-full rounded-lg bg-gradient-to-t from-black to-transparent" />
       <motion.div
         className="h-7 w-7 rounded-full border-4 border-black dark:border-white"
         style={{

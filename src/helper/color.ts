@@ -3,7 +3,7 @@ import Color from "colorjs.io";
 export const calculateHueSliderPositionInPx = (
   barElement: HTMLDivElement | undefined | null,
   sliderElement: HTMLDivElement | undefined | null,
-  hue: number
+  hue: number,
 ): number => {
   const bar = barElement;
   const slider = sliderElement?.getBoundingClientRect();
@@ -18,7 +18,7 @@ export const calculateHueSliderPositionInPx = (
 
 export const calculateHueFromElements = (
   barElement: HTMLDivElement,
-  sliderElement: HTMLDivElement
+  sliderElement: HTMLDivElement,
 ) => {
   const bar = barElement.getBoundingClientRect();
   const slider = sliderElement.getBoundingClientRect();
@@ -28,7 +28,7 @@ export const calculateHueFromElements = (
 
 export const calculateSaturationAndValueFromElements = (
   areaElement: HTMLDivElement,
-  sliderElement: HTMLDivElement
+  sliderElement: HTMLDivElement,
 ) => {
   const area = areaElement.getBoundingClientRect();
   const slider = sliderElement.getBoundingClientRect();
@@ -50,7 +50,7 @@ export const calculateSaturationSliderPositionInPx = (
   saturation: number,
   value: number,
   areaElement: HTMLDivElement | null,
-  sliderElement: HTMLDivElement | null
+  sliderElement: HTMLDivElement | null,
 ): Position => {
   const area = areaElement?.getBoundingClientRect();
   const slider = sliderElement?.getBoundingClientRect();

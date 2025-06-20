@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poetsen+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poetsen+One&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,13 +6,13 @@
 
 body {
   margin: 0;
-  font-family: 'Sora', sans-serif;
+  font-family: "Sora", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* global scrollbars */
-*::-webkit-scrollbar{
+*::-webkit-scrollbar {
   height: 10px;
   width: 10px;
 }
@@ -39,12 +39,12 @@ html.dark *:hover::-webkit-scrollbar-thumb {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 @layer base {
   body {
-    @apply text-slate-800 bg-background-light dark:text-slate-200 dark:bg-background-dark;
+    @apply bg-background-light text-slate-800 dark:bg-background-dark dark:text-slate-200;
   }
 }

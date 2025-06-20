@@ -4,7 +4,7 @@ import { Input } from "component/form/Input";
 import { AVAILABLE_ICONS, IconType } from "constant/icons";
 import { motion } from "framer-motion";
 import { cn } from "helper/style";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 
 type IconPickerProps = {
   defaultIcon?: IconType;
@@ -31,7 +31,7 @@ export const IconPicker: FC<IconPickerProps> = ({
               {
                 "bg-brand-light text-white dark:bg-brand-dark dark:text-black":
                   isConfirmHovered,
-              }
+              },
             )}
           >
             <FontAwesomeIcon icon={icon} size="2x" />

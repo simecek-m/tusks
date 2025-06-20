@@ -5,7 +5,12 @@ import { useTusksApi } from "hook/api";
 import { AuthenticationError } from "page/AuthenticationError";
 import { Loading } from "page/Loading";
 import { Registration } from "page/Registration";
-import { createContext, ReactElement, useContext, useState } from "react";
+import React, {
+  createContext,
+  ReactElement,
+  useContext,
+  useState,
+} from "react";
 import { IProfile, IUserProfileContext } from "type";
 
 const UserProfileContext = createContext<IUserProfileContext>({
@@ -32,7 +37,7 @@ export const UserProfileProvider = ({
     fetchMyProfile,
     {
       onSuccess: (profile) => setProfile(profile),
-    }
+    },
   );
 
   if (isLoading) return <Loading />;

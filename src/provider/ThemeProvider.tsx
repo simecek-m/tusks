@@ -29,7 +29,7 @@ export const useTheme = (): IThemeContext => {
   const context = useContext(ThemeContext);
   if (!context) {
     throw Error(
-      "You are trying to access Theme Context outside of its provider!"
+      "You are trying to access Theme Context outside of its provider!",
     );
   } else {
     return context;
@@ -47,7 +47,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const themeReducer = (
     state: ThemeSettings,
-    action: ThemeAction
+    action: ThemeAction,
   ): ThemeSettings => {
     switch (action.type) {
       case "change_user_preference": {
