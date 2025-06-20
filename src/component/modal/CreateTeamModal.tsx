@@ -12,13 +12,16 @@ import { useToast } from "provider/ToastProvider";
 import { FormProvider, useForm } from "react-hook-form";
 import { ModalState, NewTeam, Team } from "type";
 import { TEAM_SCHEMA } from "validation";
+import * as yup from "yup";
+
+type TeamForm = yup.InferType<typeof TEAM_SCHEMA>;
 
 export const CreateTeamModal = ({ isOpen, onClose }: ModalState) => {
   const { createNewTeam } = useTusksApi();
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const methods = useForm<Team>({
+  const methods = useForm<TeamForm>({
     mode: "onChange",
     resolver: yupResolver(TEAM_SCHEMA),
   });

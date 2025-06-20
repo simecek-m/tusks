@@ -16,6 +16,9 @@ import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { IProfile } from "type";
 import { PROFILE_SCHEMA } from "validation";
+import * as yup from "yup";
+
+type ProfileForm = yup.InferType<typeof PROFILE_SCHEMA>;
 
 interface RegistrationProps {
   onRegister: (profile: IProfile) => void;
@@ -32,7 +35,7 @@ export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
     register,
     setError,
     formState: { errors, isValid },
-  } = useForm<IProfile>({
+  } = useForm<ProfileForm>({
     resolver: yupResolver(PROFILE_SCHEMA),
     mode: "onChange",
   });

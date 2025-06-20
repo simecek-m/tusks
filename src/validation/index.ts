@@ -2,7 +2,7 @@ import { AVAILABLE_ICONS } from "constant/icons";
 import { INewTag, IProfile, NewTeam, ThemedColor } from "type";
 import * as yup from "yup";
 
-export const PROFILE_SCHEMA: yup.SchemaOf<IProfile> = yup.object({
+export const PROFILE_SCHEMA: yup.ObjectSchema<IProfile> = yup.object({
   email: yup.string().email().required(),
   firstName: yup.string().required(),
   id: yup.string().required(),
@@ -16,16 +16,17 @@ export const PROFILE_SCHEMA: yup.SchemaOf<IProfile> = yup.object({
     .transform((value) => `@${value}`),
 });
 
-export const COLOR_SCHEMA: yup.SchemaOf<ThemedColor> = yup.object({
+export const COLOR_SCHEMA: yup.ObjectSchema<ThemedColor> = yup.object({
   dark: yup.string().required(),
   light: yup.string().required(),
 });
 
-export const TAG_SCHEMA: yup.SchemaOf<INewTag> = yup.object({
+export const TAG_SCHEMA: yup.ObjectSchema<INewTag> = yup.object({
   label: yup.string().required(),
   color: COLOR_SCHEMA,
 });
-export const TEAM_SCHEMA: yup.SchemaOf<NewTeam> = yup.object({
+
+export const TEAM_SCHEMA: yup.ObjectSchema<NewTeam> = yup.object({
   name: yup.string().required(),
   description: yup.string().required(),
   icon: yup
