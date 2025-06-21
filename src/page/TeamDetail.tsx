@@ -19,15 +19,17 @@ export const TeamDetailPage = () => {
 
   const {
     data: team,
-    isLoading: isTeamLoading,
+    isPending: isTeamLoading,
     error: teamError,
-  } = useQuery<TeamDetail, AxiosError>([TEAMS_QUERY_KEY, id], () =>
-    fetchTeamById(id ?? ""),
-  );
+  } = useQuery<TeamDetail, AxiosError>({
+    queryKey: [TEAMS_QUERY_KEY, id],
+    queryFn: () => fetchTeamById(id!),
+    enabled: !!id,
+  });
 
   if (isTeamLoading) return <Loading />;
 
-  if (teamError)
+  if (teamError || !team)
     return (
       <PageLayout>
         <PageContent>

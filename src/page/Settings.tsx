@@ -42,15 +42,21 @@ export const Settings: FC = () => {
 
   const {
     data: tags,
-    isLoading: tagsLoading,
+    isPending: tagsLoading,
     error: tagsError,
-  } = useQuery<Array<ITag>, AxiosError>([TAGS_QUERY_KEY], fetchAllTags);
+  } = useQuery<Array<ITag>, AxiosError>({
+    queryKey: [TAGS_QUERY_KEY],
+    queryFn: fetchAllTags,
+  });
 
   const {
     data: teams,
-    isLoading: teamsLoading,
+    isPending: teamsLoading,
     error: teamsError,
-  } = useQuery<Array<Team>, AxiosError>([TEAMS_QUERY_KEY], fetchAllMyTeams);
+  } = useQuery<Array<Team>, AxiosError>({
+    queryKey: [TEAMS_QUERY_KEY],
+    queryFn: fetchAllMyTeams,
+  });
 
   return (
     <PageLayout>

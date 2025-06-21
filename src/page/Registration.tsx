@@ -12,6 +12,7 @@ import { AVATAR_IMG } from "constant/assets";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useToast } from "provider/ToastProvider";
+import { useUserProfile } from "provider/UserProfileProvider";
 import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { IProfile } from "type";
@@ -20,11 +21,7 @@ import * as yup from "yup";
 
 type ProfileForm = yup.InferType<typeof PROFILE_SCHEMA>;
 
-interface RegistrationProps {
-  onRegister: (profile: IProfile) => void;
-}
-
-export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
+export const Registration: FC = () => {
   const queryClient = useQueryClient();
   const { user, logout } = useAuth0();
   const { toast } = useToast();
@@ -43,16 +40,20 @@ export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
   const usernameInputRef = useRef<HTMLInputElement | null>();
   const { ref, ...rest } = register("username");
 
-  const { mutateAsync, isLoading } = useMutation<
+  const { updateProfile } = useUserProfile();
+
+  const { mutateAsync, isPending } = useMutation<
     IProfile,
     AxiosError,
     IProfile
-  >((profile: IProfile) => postRegistration(profile));
+  >({
+    mutationFn: postRegistration,
+  });
 
   const submit = (newProfile: IProfile): Promise<IProfile> => {
     return mutateAsync(newProfile, {
       onSuccess: (profile: IProfile) => {
-        onRegister(profile);
+        updateProfile(profile);
         queryClient.setQueryData([PROFILES_ME_QUERY_KEY], profile);
       },
       onError: (error) => {
@@ -153,7 +154,7 @@ export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
                   hoverIcon="check"
                   type="submit"
                   isDisabled={!isValid}
-                  isSubmitting={isLoading}
+                  isSubmitting={isPending}
                 >
                   continue
                 </Button>

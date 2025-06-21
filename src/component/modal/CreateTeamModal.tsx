@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { Button } from "component/button/Button";
 import { Modal } from "component/common/Modal";
 import { ColorInput } from "component/form/ColorInput";
@@ -33,11 +32,9 @@ export const CreateTeamModal = ({ isOpen, onClose }: ModalState) => {
     formState: { errors, isValid },
   } = methods;
 
-  const { mutateAsync: updateAsync, isLoading: isUpdating } = useMutation<
-    Team,
-    AxiosError,
-    NewTeam
-  >((team: NewTeam) => createNewTeam(team));
+  const { mutateAsync: updateAsync, isPending: isUpdating } = useMutation({
+    mutationFn: createNewTeam,
+  });
 
   const submit = async (team: NewTeam) => {
     await updateAsync(team, {

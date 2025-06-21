@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { Button } from "component/button/Button";
 import { Modal } from "component/common/Modal";
 import { ColorInput } from "component/form/ColorInput";
@@ -29,11 +28,9 @@ export const CreateTagModal = ({ isOpen, onClose }: ModalState) => {
     formState: { errors, isValid },
   } = methods;
 
-  const { mutateAsync: updateAsync, isLoading: isUpdating } = useMutation<
-    ITag,
-    AxiosError,
-    INewTag
-  >((tag: INewTag) => createNewTag(tag));
+  const { mutateAsync: updateAsync, isPending: isUpdating } = useMutation({
+    mutationFn: createNewTag,
+  });
 
   const submit = async (tag: INewTag) => {
     await updateAsync(tag, {

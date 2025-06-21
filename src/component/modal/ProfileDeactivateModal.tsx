@@ -1,30 +1,25 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { Button } from "component/button/Button";
 import { Modal } from "component/common/Modal";
-import { HOME_PATH } from "constant/paths";
-import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useToast } from "provider/ToastProvider";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 import { IProfile, ModalState } from "type";
 
 export const ProfileDeactivateModal: FC<ModalState> = ({ isOpen, onClose }) => {
   const { toast } = useToast();
-  const navigate = useNavigate();
   const { deactivateProfile } = useTusksApi();
-  const client = useQueryClient();
+  const { logout } = useAuth0();
 
-  const { mutateAsync, isLoading } = useMutation<IProfile, AxiosError>(
-    [PROFILES_ME_QUERY_KEY],
-    deactivateProfile,
-  );
+  const { mutateAsync, isPending } = useMutation<IProfile, AxiosError>({
+    mutationFn: deactivateProfile,
+  });
   const deactivate = (): Promise<IProfile> => {
     return mutateAsync(undefined, {
       onSuccess: () => {
-        client.removeQueries([PROFILES_ME_QUERY_KEY]);
-        navigate(HOME_PATH);
+        logout({ logoutParams: { returnTo: window.location.origin } });
       },
       onError: (error) => {
         toast({
@@ -51,7 +46,7 @@ export const ProfileDeactivateModal: FC<ModalState> = ({ isOpen, onClose }) => {
           hoverIcon="check"
           variant="error"
           onClick={deactivate}
-          isSubmitting={isLoading}
+          isSubmitting={isPending}
         >
           Confirm
         </Button>

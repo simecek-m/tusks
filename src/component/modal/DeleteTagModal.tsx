@@ -20,11 +20,11 @@ export const DeleteTagModal = ({
   const { deleteTag } = useTusksApi();
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { mutateAsync: deleteAsync, isLoading } = useMutation<
+  const { mutateAsync: deleteAsync, isPending } = useMutation<
     ITag,
     AxiosError,
     string
-  >((id: string) => deleteTag(id));
+  >({ mutationFn: deleteTag });
   const { theme } = useTheme();
 
   const onDelete = (id: string) => {
@@ -68,7 +68,7 @@ export const DeleteTagModal = ({
             variant="error"
             className="w-fit"
             onClick={() => onDelete(tag.id)}
-            isSubmitting={isLoading}
+            isSubmitting={isPending}
           >
             Delete
           </Button>
