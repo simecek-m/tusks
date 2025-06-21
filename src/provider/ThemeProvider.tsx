@@ -3,7 +3,6 @@ import {
   createContext,
   FC,
   PropsWithChildren,
-  Reducer,
   useContext,
   useEffect,
   useReducer,
@@ -40,35 +39,36 @@ export type ThemeAction =
   | { type: "change_user_preference"; userPreference: UserThemePreference }
   | { type: "change_system_theme"; system: SystemTheme };
 
+const themeReducer = (
+  state: ThemeSettings,
+  action: ThemeAction,
+): ThemeSettings => {
+  switch (action.type) {
+    case "change_user_preference": {
+      localStorage.theme = action.userPreference;
+      return {
+        ...state,
+        userPreference: action.userPreference,
+      };
+    }
+    case "change_system_theme": {
+      return {
+        ...state,
+        system: action.system,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const getSystemTheme = (): SystemTheme => {
     return window.matchMedia(DARK_MODE_MEDIA_QUERY).matches ? "dark" : "light";
   };
 
-  const themeReducer = (
-    state: ThemeSettings,
-    action: ThemeAction,
-  ): ThemeSettings => {
-    switch (action.type) {
-      case "change_user_preference": {
-        localStorage.theme = action.userPreference;
-        return {
-          ...state,
-          userPreference: action.userPreference,
-        };
-      }
-      case "change_system_theme": {
-        return {
-          ...state,
-          system: action.system,
-        };
-      }
-    }
-  };
-
-  const [themeSettings, dispatch] = useReducer<
-    Reducer<ThemeSettings, ThemeAction>
-  >(themeReducer, {
+  const [themeSettings, dispatch] = useReducer(themeReducer, {
     userPreference: localStorage.theme ?? "system",
     system: getSystemTheme(),
   });

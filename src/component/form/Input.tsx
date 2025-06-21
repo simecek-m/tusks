@@ -1,5 +1,5 @@
 import { cn } from "helper/style";
-import { forwardRef, HTMLProps, LegacyRef } from "react";
+import { forwardRef, HTMLProps, Ref } from "react";
 import { FieldError } from "react-hook-form";
 
 interface InputProps extends HTMLProps<HTMLInputElement> {
@@ -11,7 +11,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 export const Input = forwardRef(
   (
     { label, prefix, error, className, ...rest }: InputProps,
-    ref: LegacyRef<HTMLInputElement>,
+    ref: Ref<HTMLInputElement>,
   ) => {
     return (
       <label className="flex w-full cursor-text flex-col gap-1">

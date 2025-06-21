@@ -37,7 +37,7 @@ export const Registration: FC = () => {
     mode: "onChange",
   });
 
-  const usernameInputRef = useRef<HTMLInputElement | null>();
+  const usernameInputRef = useRef<HTMLInputElement | null>(null);
   const { ref, ...rest } = register("username");
 
   const { updateProfile } = useUserProfile();
