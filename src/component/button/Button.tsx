@@ -1,6 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { ButtonIcon } from "component/button/ButtonIcon";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { cn } from "helper/style";
 import React, { ButtonHTMLAttributes, FC } from "react";
 import { ActionType } from "type";
@@ -42,7 +42,7 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <motion.button
-      onClick={(e) => {
+      onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (onClick) {
           onClick(e);
         }

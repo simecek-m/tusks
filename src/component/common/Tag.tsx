@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useTheme } from "provider/ThemeProvider";
 import { FC } from "react";
 import { ITag, ThemedColor } from "type";

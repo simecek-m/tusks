@@ -6,7 +6,7 @@ import { PageContent } from "component/layout/PageContent";
 import { PageLayout } from "component/layout/PageLayout";
 import { TodoListPreview } from "component/todo/TodoListPreview";
 import { INDEX_PATH } from "constant/paths";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 

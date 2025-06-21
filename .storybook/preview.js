@@ -1,7 +1,7 @@
-import "tailwindcss/tailwind.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { withTailwindTheme } from "./withTailwindTheme.decorator";
+import "../src/index.css";
 
 library.add(fas);
 
