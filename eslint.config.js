@@ -65,6 +65,6 @@ export default [
   storybookConfig,
   prettier,
   {
-    ignores: ["build", "storybook-static", "!.storybook"],
+    ignores: ["build", "storybook-static", "!.storybook", "dist"],
   },
 ];
