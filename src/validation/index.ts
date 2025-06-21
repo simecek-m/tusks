@@ -1,4 +1,3 @@
-import { AVAILABLE_ICONS } from "constant/icons";
 import { INewTag, IProfile, NewTeam, ThemedColor } from "type";
 import * as yup from "yup";
 
@@ -29,9 +28,6 @@ export const TAG_SCHEMA: yup.ObjectSchema<INewTag> = yup.object({
 export const TEAM_SCHEMA: yup.ObjectSchema<NewTeam> = yup.object({
   name: yup.string().required(),
   description: yup.string().required(),
-  icon: yup
-    .string()
-    .required()
-    .oneOf([...AVAILABLE_ICONS]),
+  icon: yup.string().required(),
   color: COLOR_SCHEMA,
 });

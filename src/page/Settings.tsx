@@ -1,3 +1,4 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { Button } from "component/button/Button";
@@ -8,7 +9,6 @@ import { PageLayout } from "component/layout/PageLayout";
 import { CreateTagModal } from "component/modal/CreateTagModal";
 import { CreateTeamModal } from "component/modal/CreateTeamModal";
 import { DeleteTagModal } from "component/modal/DeleteTagModal";
-import { IconType } from "constant/icons";
 import { TAGS_QUERY_KEY, TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useModal } from "hook/modal";
@@ -123,7 +123,7 @@ export const Settings: FC = () => {
                       name={team.name}
                       description={team.description}
                       color={team.color}
-                      icon={team.icon as IconType}
+                      icon={team.icon as IconProp}
                       members={team.members}
                       id={team.id}
                       onClick={(id) => {

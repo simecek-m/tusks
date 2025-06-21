@@ -1,10 +1,10 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { Title } from "component/common/Title";
 import { PageContent } from "component/layout/PageContent";
 import { PageLayout } from "component/layout/PageLayout";
-import { IconType } from "constant/icons";
 import { TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { Loading } from "page/Loading";
@@ -47,7 +47,7 @@ export const TeamDetailPage = () => {
             className="flex h-14 w-14 items-center justify-center rounded-full text-white dark:text-black"
             style={{ backgroundColor: color }}
           >
-            <FontAwesomeIcon icon={team.icon as IconType} size="lg" />
+            <FontAwesomeIcon icon={team.icon as IconProp} size="lg" />
           </div>
           <div>
             <div className="font-heading text-3xl font-bold" style={{ color }}>
