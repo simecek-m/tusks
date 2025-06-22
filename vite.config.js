@@ -4,7 +4,18 @@ import { defineConfig } from "vite";
 import eslint from "vite-plugin-eslint";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 export default defineConfig({
-  plugins: [tailwindcss(), react(), tsconfigPaths(), svgr(), eslint()],
+  plugins: [
+    tailwindcss(),
+    tsconfigPaths(),
+    svgr(),
+    eslint(),
+    tanstackRouter({
+      target: "react",
+      autoCodeSplitting: true,
+    }),
+    react(),
+  ],
 });

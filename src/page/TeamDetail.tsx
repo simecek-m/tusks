@@ -1,6 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "@tanstack/react-router";
 import { AxiosError } from "axios";
 import { Title } from "component/common/Title";
 import { PageContent } from "component/layout/PageContent";
@@ -9,11 +10,10 @@ import { TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { Loading } from "page/Loading";
 import { useTheme } from "provider/ThemeProvider";
-import { useParams } from "react-router-dom";
 import { TeamDetail } from "type";
 
 export const TeamDetailPage = () => {
-  const { id } = useParams();
+  const { id } = useParams({ from: "/teams/:id" });
   const { fetchTeamById } = useTusksApi();
   const { theme } = useTheme();
 

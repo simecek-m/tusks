@@ -1,5 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
 import { AxiosError } from "axios";
 import { Button } from "component/button/Button";
 import { ProfileCard } from "component/card/ProfileCard";
@@ -13,12 +14,11 @@ import { TAGS_QUERY_KEY, TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useModal } from "hook/modal";
 import { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ITag, Team } from "type";
 
 export const Settings: FC = () => {
   const { fetchAllTags, fetchAllMyTeams } = useTusksApi();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [selectedTag, setSelectedTag] = useState<ITag>();
 
@@ -133,7 +133,7 @@ export const Settings: FC = () => {
                       members={team.members}
                       id={team.id}
                       onClick={(id) => {
-                        navigate(`/teams/${id}`);
+                        router.navigate({ to: `/teams/${id}` });
                       }}
                     />
                   ))}
