@@ -1,15 +1,16 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "component/button/Button";
 import { Input } from "component/form/Input";
-import { AVAILABLE_ICONS, IconType } from "constant/icons";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { cn } from "helper/style";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 type IconPickerProps = {
-  defaultIcon?: IconType;
+  defaultIcon?: IconProp;
   maxIcons?: number;
-  onPick: (icon: IconType) => void;
+  onPick: (icon: IconProp) => void;
 };
 
 export const IconPicker: FC<IconPickerProps> = ({
@@ -18,8 +19,25 @@ export const IconPicker: FC<IconPickerProps> = ({
   onPick,
 }) => {
   const [search, setSearch] = useState<string>("");
-  const [icon, setIcon] = useState<IconType>(defaultIcon);
+  const [icon, setIcon] = useState<IconProp>(defaultIcon);
   const [isConfirmHovered, setIsConfirmHovered] = useState<boolean>(false);
+
+  const AVAILABLE_ICONS: IconProp[] = Object.keys(fas).map(
+    (key) => fas[key as keyof typeof fas],
+  );
+
+  const getIconName = (icon: IconProp): string | undefined => {
+    if (typeof icon === "string") {
+      return icon;
+    }
+    if (Array.isArray(icon)) {
+      return icon[1];
+    }
+    if (typeof icon === "object" && icon !== null && "iconName" in icon) {
+      return icon.iconName;
+    }
+    return undefined;
+  };
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -29,9 +47,9 @@ export const IconPicker: FC<IconPickerProps> = ({
             className={cn(
               "flex h-24 w-24 shrink-0 items-center justify-center rounded-lg bg-gray-200 p-4 transition-all duration-500 ease-in-out dark:bg-gray-800",
               {
-                "bg-brand-light text-white dark:bg-brand-dark dark:text-black":
+                "bg-brand-light dark:bg-brand-dark text-white dark:text-black":
                   isConfirmHovered,
-              }
+              },
             )}
           >
             <FontAwesomeIcon icon={icon} size="2x" />
@@ -55,7 +73,7 @@ export const IconPicker: FC<IconPickerProps> = ({
         }
       />
       <div className="flex flex-row flex-wrap items-center justify-start gap-4">
-        {AVAILABLE_ICONS.filter((icon) => icon.includes(search))
+        {AVAILABLE_ICONS.filter((icon) => getIconName(icon)?.includes(search))
           ?.slice(0, maxIcons)
           .map((iconName, index) => (
             <motion.div

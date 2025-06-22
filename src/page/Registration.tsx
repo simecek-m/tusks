@@ -12,16 +12,16 @@ import { AVATAR_IMG } from "constant/assets";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useToast } from "provider/ToastProvider";
+import { useUserProfile } from "provider/UserProfileProvider";
 import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { IProfile } from "type";
 import { PROFILE_SCHEMA } from "validation";
+import * as yup from "yup";
 
-interface RegistrationProps {
-  onRegister: (profile: IProfile) => void;
-}
+type ProfileForm = yup.InferType<typeof PROFILE_SCHEMA>;
 
-export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
+export const Registration: FC = () => {
   const queryClient = useQueryClient();
   const { user, logout } = useAuth0();
   const { toast } = useToast();
@@ -32,24 +32,28 @@ export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
     register,
     setError,
     formState: { errors, isValid },
-  } = useForm<IProfile>({
+  } = useForm<ProfileForm>({
     resolver: yupResolver(PROFILE_SCHEMA),
     mode: "onChange",
   });
 
-  const usernameInputRef = useRef<HTMLInputElement | null>();
+  const usernameInputRef = useRef<HTMLInputElement | null>(null);
   const { ref, ...rest } = register("username");
 
-  const { mutateAsync, isLoading } = useMutation<
+  const { updateProfile } = useUserProfile();
+
+  const { mutateAsync, isPending } = useMutation<
     IProfile,
     AxiosError,
     IProfile
-  >((profile: IProfile) => postRegistration(profile));
+  >({
+    mutationFn: postRegistration,
+  });
 
   const submit = (newProfile: IProfile): Promise<IProfile> => {
     return mutateAsync(newProfile, {
       onSuccess: (profile: IProfile) => {
-        onRegister(profile);
+        updateProfile(profile);
         queryClient.setQueryData([PROFILES_ME_QUERY_KEY], profile);
       },
       onError: (error) => {
@@ -69,11 +73,11 @@ export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
 
   return (
     <PageLayout>
-      <div className="flex w-full grow flex-col overflow-auto bg-background-light dark:bg-background-dark">
+      <div className="bg-background-light dark:bg-background-dark flex w-full grow flex-col overflow-auto">
         <PageContent>
-          <div className="relative m-auto w-full max-w-4xl rounded-3xl bg-surface-light p-10 text-black shadow-lg dark:bg-surface-dark dark:text-white">
+          <div className="bg-surface-light dark:bg-surface-dark relative m-auto w-full max-w-4xl rounded-3xl p-10 text-black shadow-lg dark:text-white">
             <button
-              className="absolute top-0 right-0 m-1 flex h-10 w-10 items-center justify-center gap-2 rounded-full bg-background-light text-black transition duration-300 hover:bg-brand-light hover:text-white dark:bg-background-dark dark:text-white dark:hover:bg-brand-dark dark:hover:text-black"
+              className="bg-background-light hover:bg-brand-light dark:bg-background-dark dark:hover:bg-brand-dark absolute top-0 right-0 m-1 flex h-10 w-10 items-center justify-center gap-2 rounded-full text-black transition duration-300 hover:text-white dark:text-white dark:hover:text-black"
               onClick={() =>
                 logout({ logoutParams: { returnTo: window.location.origin } })
               }
@@ -95,7 +99,7 @@ export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
                   <img
                     src={user?.picture ?? AVATAR_IMG}
                     alt="profile picture"
-                    className="aspect-square w-1/2 rounded-squircle object-cover shadow-2xl"
+                    className="rounded-squircle aspect-square w-1/2 object-cover shadow-2xl"
                   />
                   <div className="flex w-full flex-col">
                     <Input
@@ -150,7 +154,7 @@ export const Registration: FC<RegistrationProps> = ({ onRegister }) => {
                   hoverIcon="check"
                   type="submit"
                   isDisabled={!isValid}
-                  isSubmitting={isLoading}
+                  isSubmitting={isPending}
                 >
                   continue
                 </Button>

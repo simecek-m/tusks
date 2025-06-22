@@ -1,5 +1,5 @@
 import { cn } from "helper/style";
-import { forwardRef, HTMLProps, LegacyRef } from "react";
+import { forwardRef, HTMLProps, Ref } from "react";
 import { FieldError } from "react-hook-form";
 
 interface InputProps extends HTMLProps<HTMLInputElement> {
@@ -11,7 +11,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 export const Input = forwardRef(
   (
     { label, prefix, error, className, ...rest }: InputProps,
-    ref: LegacyRef<HTMLInputElement>
+    ref: Ref<HTMLInputElement>,
   ) => {
     return (
       <label className="flex w-full cursor-text flex-col gap-1">
@@ -28,19 +28,19 @@ export const Input = forwardRef(
           className={cn(
             "flex flex-row rounded-xl bg-gray-200 px-5 py-2 font-medium focus-within:outline dark:bg-gray-800",
             { "border-4 border-red-500 dark:border-red-300": !!error },
-            className
+            className,
           )}
         >
           {!!prefix && <p>{prefix}</p>}
           <input
             ref={ref}
             {...rest}
-            className="w-full bg-transparent outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full bg-transparent outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
           />
         </span>
       </label>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

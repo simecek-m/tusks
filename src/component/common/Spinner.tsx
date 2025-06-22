@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FC } from "react";
 
 export const Spinner: FC = () => {
@@ -11,7 +11,7 @@ export const Spinner: FC = () => {
         repeatType: "reverse",
         duration: 0.5,
       }}
-      className="h-20 w-20 rounded-full bg-brand-light dark:bg-brand-dark"
+      className="bg-brand-light dark:bg-brand-dark h-20 w-20 rounded-full"
     ></motion.div>
   );
 };

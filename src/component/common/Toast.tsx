@@ -1,6 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { cn } from "helper/style";
 import { ToastType } from "provider/ToastProvider";
 import { FC } from "react";

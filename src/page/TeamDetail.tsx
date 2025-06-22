@@ -1,33 +1,35 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "@tanstack/react-router";
 import { AxiosError } from "axios";
 import { Title } from "component/common/Title";
 import { PageContent } from "component/layout/PageContent";
 import { PageLayout } from "component/layout/PageLayout";
-import { IconType } from "constant/icons";
 import { TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { Loading } from "page/Loading";
 import { useTheme } from "provider/ThemeProvider";
-import { useParams } from "react-router-dom";
 import { TeamDetail } from "type";
 
 export const TeamDetailPage = () => {
-  const { id } = useParams();
+  const { id } = useParams({ from: "/teams/:id" });
   const { fetchTeamById } = useTusksApi();
   const { theme } = useTheme();
 
   const {
     data: team,
-    isLoading: isTeamLoading,
+    isPending: isTeamLoading,
     error: teamError,
-  } = useQuery<TeamDetail, AxiosError>([TEAMS_QUERY_KEY, id], () =>
-    fetchTeamById(id ?? "")
-  );
+  } = useQuery<TeamDetail, AxiosError>({
+    queryKey: [TEAMS_QUERY_KEY, id],
+    queryFn: () => fetchTeamById(id!),
+    enabled: !!id,
+  });
 
   if (isTeamLoading) return <Loading />;
 
-  if (teamError)
+  if (teamError || !team)
     return (
       <PageLayout>
         <PageContent>
@@ -47,7 +49,7 @@ export const TeamDetailPage = () => {
             className="flex h-14 w-14 items-center justify-center rounded-full text-white dark:text-black"
             style={{ backgroundColor: color }}
           >
-            <FontAwesomeIcon icon={team.icon as IconType} size="lg" />
+            <FontAwesomeIcon icon={team.icon as IconProp} size="lg" />
           </div>
           <div>
             <div className="font-heading text-3xl font-bold" style={{ color }}>
@@ -61,7 +63,7 @@ export const TeamDetailPage = () => {
           {team.members.map((member) => (
             <div
               key={member.user.id}
-              className="flex w-fit flex-row items-center gap-4 rounded-xl bg-white py-4 pl-4 pr-8 dark:bg-gray-900"
+              className="flex w-fit flex-row items-center gap-4 rounded-xl bg-white py-4 pr-8 pl-4 dark:bg-gray-900"
             >
               <img
                 src={member.user.picture}

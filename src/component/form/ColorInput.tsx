@@ -15,7 +15,7 @@ interface ColorInputProps {
 export const ColorInput = ({ name, type = "light" }: ColorInputProps) => {
   const { isOpen, onOpen, onClose } = useModal();
   const [color, setColor] = useState<string>(
-    type == "light" ? Constant.Color.Light : Constant.Color.Dark
+    type == "light" ? Constant.Color.Light : Constant.Color.Dark,
   );
   const { register, setValue, getValues } = useFormContext();
 
@@ -30,8 +30,8 @@ export const ColorInput = ({ name, type = "light" }: ColorInputProps) => {
       />
       <div
         className={cn(
-          "flex h-14 w-14 cursor-pointer items-center justify-center rounded-lg text-black ",
-          { "text-white": type === "light" }
+          "flex h-14 w-14 cursor-pointer items-center justify-center rounded-lg text-black",
+          { "text-white": type === "light" },
         )}
         style={{ background: color }}
         onClick={(e) => {

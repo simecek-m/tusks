@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from "react";
 
 interface CardProps extends PropsWithChildren {
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const Card: FC<CardProps> = ({ children, className, onClick }) => {
@@ -12,7 +12,7 @@ export const Card: FC<CardProps> = ({ children, className, onClick }) => {
       onClick={onClick}
       className={cn(
         className,
-        "w-fit rounded-xl bg-white shadow-lg dark:bg-gray-900"
+        "w-fit rounded-xl bg-white shadow-lg dark:bg-gray-900",
       )}
     >
       {children}

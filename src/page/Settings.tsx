@@ -1,4 +1,6 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
 import { AxiosError } from "axios";
 import { Button } from "component/button/Button";
 import { ProfileCard } from "component/card/ProfileCard";
@@ -8,17 +10,15 @@ import { PageLayout } from "component/layout/PageLayout";
 import { CreateTagModal } from "component/modal/CreateTagModal";
 import { CreateTeamModal } from "component/modal/CreateTeamModal";
 import { DeleteTagModal } from "component/modal/DeleteTagModal";
-import { IconType } from "constant/icons";
 import { TAGS_QUERY_KEY, TEAMS_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { useModal } from "hook/modal";
 import { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ITag, Team } from "type";
 
 export const Settings: FC = () => {
   const { fetchAllTags, fetchAllMyTeams } = useTusksApi();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [selectedTag, setSelectedTag] = useState<ITag>();
 
@@ -42,15 +42,21 @@ export const Settings: FC = () => {
 
   const {
     data: tags,
-    isLoading: tagsLoading,
+    isPending: tagsLoading,
     error: tagsError,
-  } = useQuery<Array<ITag>, AxiosError>([TAGS_QUERY_KEY], fetchAllTags);
+  } = useQuery<Array<ITag>, AxiosError>({
+    queryKey: [TAGS_QUERY_KEY],
+    queryFn: fetchAllTags,
+  });
 
   const {
     data: teams,
-    isLoading: teamsLoading,
+    isPending: teamsLoading,
     error: teamsError,
-  } = useQuery<Array<Team>, AxiosError>([TEAMS_QUERY_KEY], fetchAllMyTeams);
+  } = useQuery<Array<Team>, AxiosError>({
+    queryKey: [TEAMS_QUERY_KEY],
+    queryFn: fetchAllMyTeams,
+  });
 
   return (
     <PageLayout>
@@ -123,11 +129,11 @@ export const Settings: FC = () => {
                       name={team.name}
                       description={team.description}
                       color={team.color}
-                      icon={team.icon as IconType}
+                      icon={team.icon as IconProp}
                       members={team.members}
                       id={team.id}
                       onClick={(id) => {
-                        navigate(`/teams/${id}`);
+                        router.navigate({ to: `/teams/${id}` });
                       }}
                     />
                   ))}

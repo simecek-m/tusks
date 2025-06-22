@@ -1,50 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poetsen+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poetsen+One&display=swap")
+layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  margin: 0;
-  font-family: 'Sora', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* global scrollbars */
-*::-webkit-scrollbar{
-  height: 10px;
-  width: 10px;
-}
-
-html *:hover::-webkit-scrollbar-thumb {
-  background: theme("colors.gray.400");
-  border-radius: 10px;
-}
-
-html.dark *:hover::-webkit-scrollbar-thumb {
-  background: theme("colors.gray.600");
-}
-
-*::-webkit-scrollbar-thumb {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   body {
-    @apply text-slate-800 bg-background-light dark:text-slate-200 dark:bg-background-dark;
+    @apply bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200;
   }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@theme {
+  --color-primary-50: #edfcf7;
+  --color-primary-100: #d4f7e9;
+  --color-primary-200: #aceed7;
+  --color-primary-300: #76dfc0;
+  --color-primary-400: #3ec9a5;
+  --color-primary-500: #1bae8d;
+  --color-primary-600: #109e81;
+  --color-primary-700: #0b715f;
+  --color-primary-800: #0c594c;
+  --color-primary-900: #0b4940;
+  --color-brand-light: #6014b0;
+  --color-brand-dark: #8882ff;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #141414;
+  --color-background-light: #f1f1f1;
+  --color-background-dark: #000000;
+  --color-error-light: #d84747;
+  --color-error-dark: #ff6262;
+  --color-gray-700: #4f4f4f;
+  --color-gray-800: #2e2e2e;
+  --color-gray-900: #171717;
+  --radius-squircle: 30%;
+  --font-heading: "Poetsen One", cursive, sans-serif;
+  --default-font-family: "Sora", sans-serif;
 }

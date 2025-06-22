@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useRouter } from "@tanstack/react-router";
 import Logo from "assets/img/logo.svg?react";
 import { Button } from "component/button/Button";
 import { Title } from "component/common/Title";
@@ -6,13 +7,12 @@ import { PageContent } from "component/layout/PageContent";
 import { PageLayout } from "component/layout/PageLayout";
 import { TodoListPreview } from "component/todo/TodoListPreview";
 import { INDEX_PATH } from "constant/paths";
+import { motion } from "motion/react";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 
 export const Home: FC = () => {
   const { loginWithPopup, isAuthenticated } = useAuth0();
-  const navigate = useNavigate();
+  const { navigate } = useRouter();
 
   return (
     <PageLayout>
@@ -24,7 +24,7 @@ export const Home: FC = () => {
               Not everyone has an elephant&apos;s memory!
             </p>
             <motion.div
-              className="mt-4 bg-brand-light p-4 dark:bg-brand-dark"
+              className="bg-brand-light dark:bg-brand-dark mt-4 p-4"
               style={{ borderRadius: 30 }}
               whileHover={{ borderRadius: 100, rotate: 10 }}
             >
@@ -47,7 +47,7 @@ export const Home: FC = () => {
                   <Button
                     icon="right-long"
                     hoverIcon="door-open"
-                    onClick={() => navigate(INDEX_PATH)}
+                    onClick={() => navigate({ to: INDEX_PATH })}
                   >
                     Continue
                   </Button>

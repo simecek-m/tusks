@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PageContent } from "component/layout/PageContent";
 import { PageLayout } from "component/layout/PageLayout";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FC } from "react";
 
 interface AuthenticationErrorProps {

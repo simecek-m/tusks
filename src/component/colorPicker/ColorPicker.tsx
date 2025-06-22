@@ -6,7 +6,7 @@ import { Input } from "component/form/Input";
 import { Constant } from "constant";
 import { hexToHsv, HSV, hsvToHex } from "helper/color";
 import { useToast } from "provider/ToastProvider";
-import { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 type Color = {
   hex: string;

@@ -1,10 +1,9 @@
-import { useDragControls } from "framer-motion";
 import {
   calculateHueFromElements,
   calculateHueSliderPositionInPx,
 } from "helper/color";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useDragControls } from "motion/react";
 
 type HuePickerProps = {
   hue: number;
@@ -27,7 +26,7 @@ export const HuePicker: FC<HuePickerProps> = ({
     const x = calculateHueSliderPositionInPx(
       hueBarRef.current,
       hueSliderRef.current,
-      hue
+      hue,
     );
     setPositionX(x);
   }, [hueBarRef, hueSliderRef, hexInputManuallyChanged]);

@@ -1,12 +1,9 @@
-module.exports = {
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/preset-create-react-app",
-  ],
-  framework: "@storybook/react",
-  core: {
-    builder: "@storybook/builder-webpack5",
+/** @type { import('@storybook/react-vite').StorybookConfig } */
+export default {
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
+  addons: ["@storybook/addon-links"],
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
   },
 };

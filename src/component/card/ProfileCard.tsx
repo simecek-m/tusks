@@ -5,7 +5,7 @@ import { AVATAR_IMG } from "constant/assets";
 import { useModal } from "hook/modal";
 import { useUserProfile } from "provider/UserProfileProvider";
 import { FC } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export const ProfileCard: FC = () => {
   const { profile } = useUserProfile();

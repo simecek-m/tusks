@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { Button } from "component/button/Button";
 import { Modal } from "component/common/Modal";
 import { ColorInput } from "component/form/ColorInput";
@@ -12,13 +11,16 @@ import { useToast } from "provider/ToastProvider";
 import { FormProvider, useForm } from "react-hook-form";
 import { ModalState, NewTeam, Team } from "type";
 import { TEAM_SCHEMA } from "validation";
+import * as yup from "yup";
+
+type TeamForm = yup.InferType<typeof TEAM_SCHEMA>;
 
 export const CreateTeamModal = ({ isOpen, onClose }: ModalState) => {
   const { createNewTeam } = useTusksApi();
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const methods = useForm<Team>({
+  const methods = useForm<TeamForm>({
     mode: "onChange",
     resolver: yupResolver(TEAM_SCHEMA),
   });
@@ -30,11 +32,9 @@ export const CreateTeamModal = ({ isOpen, onClose }: ModalState) => {
     formState: { errors, isValid },
   } = methods;
 
-  const { mutateAsync: updateAsync, isLoading: isUpdating } = useMutation<
-    Team,
-    AxiosError,
-    NewTeam
-  >((team: NewTeam) => createNewTeam(team));
+  const { mutateAsync: updateAsync, isPending: isUpdating } = useMutation({
+    mutationFn: createNewTeam,
+  });
 
   const submit = async (team: NewTeam) => {
     await updateAsync(team, {

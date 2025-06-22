@@ -2,7 +2,7 @@ import { Ref, useEffect, useRef } from "react";
 
 export const useClickOutside = (
   callback: () => void,
-  isElementVisible = true
+  isElementVisible = true,
 ): Ref<HTMLDivElement> => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -13,9 +13,11 @@ export const useClickOutside = (
   };
 
   useEffect(() => {
-    isElementVisible
-      ? document.addEventListener("click", handleClickOutside)
-      : document.removeEventListener("click", handleClickOutside);
+    if (isElementVisible) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isElementVisible]);
 

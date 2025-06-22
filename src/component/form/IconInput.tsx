@@ -1,7 +1,7 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal } from "component/common/Modal";
 import { IconPicker } from "component/icon/IconPicker";
-import { IconType } from "constant/icons";
 import { cn } from "helper/style";
 import { useModal } from "hook/modal";
 import { useState } from "react";
@@ -9,21 +9,26 @@ import { useFormContext } from "react-hook-form";
 
 interface IconInputProps {
   name: string;
-  defaultIcon?: IconType;
+  defaultIcon?: IconProp;
 }
 
 export const IconInput = ({ name, defaultIcon = "icons" }: IconInputProps) => {
   const { isOpen, onOpen, onClose } = useModal();
-  const [icon, setIcon] = useState<IconType>(defaultIcon);
+  const [icon, setIcon] = useState<IconProp>(defaultIcon);
   const { register, setValue } = useFormContext();
 
   return (
     <div className="w-fit">
-      <input {...register(name)} defaultValue={defaultIcon} readOnly hidden />
+      <input
+        {...register(name)}
+        defaultValue={defaultIcon as string}
+        readOnly
+        hidden
+      />
       <div>icon</div>
       <div
         className={cn(
-          "flex h-14 w-14 cursor-pointer items-center justify-center rounded-lg bg-gray-200 text-black dark:bg-gray-800 dark:text-white"
+          "flex h-14 w-14 cursor-pointer items-center justify-center rounded-lg bg-gray-200 text-black dark:bg-gray-800 dark:text-white",
         )}
         onClick={(e) => {
           e.stopPropagation();

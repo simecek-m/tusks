@@ -15,7 +15,7 @@ export const TodoPreview: FC<TodoProps> = ({
 }) => {
   return (
     <span
-      className="block w-fit cursor-pointer select-none text-lg"
+      className="block w-fit cursor-pointer text-lg select-none"
       onClick={() => onChange(!isCompleted)}
     >
       {isCompleted ? (

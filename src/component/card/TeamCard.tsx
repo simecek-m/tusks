@@ -1,6 +1,6 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "component/common/Card";
-import { IconType } from "constant/icons";
 import { useTheme } from "provider/ThemeProvider";
 import { FC } from "react";
 import { TeamMember, ThemedColor } from "type";
@@ -9,7 +9,7 @@ type TeamCardProps = {
   id: string;
   name: string;
   description: string;
-  icon: IconType;
+  icon: IconProp;
   color: ThemedColor;
   members: Array<TeamMember>;
   onClick: (id: string) => void;

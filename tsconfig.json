@@ -17,6 +17,6 @@
     "baseUrl": "./src",
     "outDir": "build"
   },
-  "include": ["src"],
+  "include": ["src/**/*", ".storybook/**/*"],
   "exclude": ["node_modules", "build"]
 }

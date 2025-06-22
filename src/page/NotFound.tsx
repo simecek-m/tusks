@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "@tanstack/react-router";
 import { Button } from "component/button/Button";
 import { PageContent } from "component/layout/PageContent";
 import { PageLayout } from "component/layout/PageLayout";
 import { INDEX_PATH } from "constant/paths";
-import { useNavigate } from "react-router-dom";
 
 export const NotFound = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   return (
     <PageLayout>
       <PageContent>
@@ -21,7 +21,7 @@ export const NotFound = () => {
           <Button
             icon="home"
             hoverIcon="arrow-right"
-            onClick={() => navigate(INDEX_PATH)}
+            onClick={() => router.navigate({ to: INDEX_PATH })}
           >
             home
           </Button>

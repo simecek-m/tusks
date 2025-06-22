@@ -1,16 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { PROFILES_ME_QUERY_KEY } from "constant/queries";
 import { useTusksApi } from "hook/api";
 import { AuthenticationError } from "page/AuthenticationError";
 import { Loading } from "page/Loading";
 import { Registration } from "page/Registration";
-import { createContext, ReactElement, useContext, useState } from "react";
+import React, { createContext, ReactElement, useContext } from "react";
 import { IProfile, IUserProfileContext } from "type";
 
 const UserProfileContext = createContext<IUserProfileContext>({
   profile: undefined,
-  setProfile: () => null,
+  updateProfile: () => null,
 });
 
 interface UserProfileProviderProps {
@@ -25,31 +25,39 @@ export const UserProfileProvider = ({
   children,
 }: UserProfileProviderProps): ReactElement => {
   const { fetchMyProfile } = useTusksApi();
-  const [profile, setProfile] = useState<IProfile>();
+  const queryClient = useQueryClient();
 
-  const { isLoading, error } = useQuery<IProfile, AxiosError>(
-    [PROFILES_ME_QUERY_KEY],
-    fetchMyProfile,
-    {
-      onSuccess: (profile) => setProfile(profile),
-    }
-  );
+  const {
+    data: profile,
+    isPending,
+    error,
+  } = useQuery<IProfile, AxiosError>({
+    queryKey: [PROFILES_ME_QUERY_KEY],
+    queryFn: fetchMyProfile,
+  });
 
-  if (isLoading) return <Loading />;
+  const updateProfile = (newProfile: IProfile): void => {
+    queryClient.setQueryData<IProfile | undefined>(
+      [PROFILES_ME_QUERY_KEY],
+      () => newProfile,
+    );
+  };
+
+  if (isPending) return <Loading />;
 
   if (error) {
     const message = error.message;
     const status = error.response?.status;
     switch (status) {
       case 404:
-        return <Registration onRegister={setProfile} />;
+        return <Registration />;
       default:
         return <AuthenticationError message={message} />;
     }
   }
 
   return (
-    <UserProfileContext.Provider value={{ profile, setProfile }}>
+    <UserProfileContext.Provider value={{ profile, updateProfile }}>
       {children}
     </UserProfileContext.Provider>
   );

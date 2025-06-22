@@ -16,7 +16,7 @@ export const MenuListItem: FC<MenuListItemProps> = ({
   return (
     <button
       onClick={onClick}
-      className="flex w-full cursor-pointer flex-row items-center gap-2 rounded-full px-3 py-2 hover:bg-background-light dark:hover:bg-background-dark"
+      className="hover:bg-background-light dark:hover:bg-background-dark flex w-full cursor-pointer flex-row items-center gap-2 rounded-full px-3 py-2"
     >
       <FontAwesomeIcon icon={icon} fixedWidth />
       <span className="whitespace-nowrap">{children}</span>
